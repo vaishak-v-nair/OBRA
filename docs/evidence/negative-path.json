@@ -1,0 +1,30 @@
+{
+  "invalid_creation": {
+    "status": 422,
+    "body": {
+      "error": {
+        "code": "validation_error",
+        "message": "Check the submitted fields.",
+        "details": [
+          {
+            "field": "body.title",
+            "message": "String should have at least 1 character"
+          }
+        ]
+      }
+    },
+    "rows_before": 4,
+    "rows_after": 4
+  },
+  "unavailable_database": {
+    "ready_status": 503,
+    "body": {
+      "error": {
+        "code": "database_unavailable",
+        "message": "Database unavailable. Try again shortly."
+      }
+    },
+    "elapsed_seconds": 3.014,
+    "live_status": 200
+  }
+}

@@ -1,0 +1,54 @@
+**********************
+PowerShell transcript start
+Start time: 20261018142418
+Username: VAISHAK-MSI\vaish
+RunAs User: VAISHAK-MSI\vaish
+Configuration Name: 
+Machine: VAISHAK-MSI (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -File scripts/verify.ps1
+Process ID: 27160
+PSVersion: 7.6.7
+PSEdition: Core
+GitCommitId: 7.6.7
+OS: Microsoft Windows 10.0.26300
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is docs/evidence/verification-transcript.txt
+COMMAND: docker compose -f infra/compose.yaml --profile test up -d --wait
+
+EXIT: 0
+COMMAND: uv sync --locked --directory apps/api
+
+EXIT: 0
+COMMAND: uv run --directory apps/api alembic upgrade head
+
+EXIT: 0
+COMMAND: uv run --directory apps/api pytest -q
+
+EXIT: 0
+COMMAND: uv run --directory apps/api ruff check .
+
+EXIT: 0
+COMMAND: uv run --directory apps/api ruff format --check .
+
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm typecheck
+
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm lint
+
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm build
+
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm test:e2e
+
+EXIT: 0
+**********************
+PowerShell transcript end
+End time: 20261018142552
+**********************

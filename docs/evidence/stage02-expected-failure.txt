@@ -1,0 +1,31 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+__________ test_deliberately_wrong_unauthorized_success_expectation ___________
+
+client = <starlette.testclient.TestClient object at 0x0000023500AB8EC0>
+
+    def test_deliberately_wrong_unauthorized_success_expectation(client):
+        project = client.post(
+            "/api/v1/projects",
+            json={
+                "title": "Private experiment",
+                "description": "Never share",
+                "workspace_id": client.workspace_id,
+            },
+        ).json()
+        other, _ = account(client.app, "experiment-outsider@example.com")
+        denied = other.get(f"/api/v1/projects/{project['id']}")
+        with Session(client.app.state.engine) as db:
+            assert db.get(Project, UUID(project["id"])).title == "Private experiment"
+        other.close()
+>       assert denied.status_code == 200, (
+            "Deliberately incorrect expectation: unauthorized access must never succeed."
+        )
+E       AssertionError: Deliberately incorrect expectation: unauthorized access must never succeed.
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+tests\experiments\unauthorized_success_experiment.py:25: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/experiments/unauthorized_success_experiment.py::test_deliberately_wrong_unauthorized_success_expectation
+1 failed in 0.62s

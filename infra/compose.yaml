@@ -1,0 +1,35 @@
+name: orba
+services:
+  postgres:
+    image: postgres:18.6-alpine
+    environment:
+      POSTGRES_USER: orba
+      POSTGRES_PASSWORD: orba_local
+      POSTGRES_DB: orba
+    ports:
+      - "127.0.0.1:54329:5432"
+    volumes:
+      - orba_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orba -d orba"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  test-postgres:
+    image: postgres:18.6-alpine
+    profiles: [test]
+    environment:
+      POSTGRES_USER: orba_test
+      POSTGRES_PASSWORD: orba_test_local
+      POSTGRES_DB: orba_test
+    ports:
+      - "127.0.0.1:54330:5432"
+    tmpfs:
+      - /var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orba_test -d orba_test"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  orba_data:

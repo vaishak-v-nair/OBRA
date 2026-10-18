@@ -1,0 +1,15 @@
+Independent review only; **execution unverified**. No files changed, tests run, skills read, or agents requested.
+
+1. **CEO strategy — P2: lifecycle contract drift.** The plan explicitly selects `draft`, but the model, API schema, UI and tests implement `created`. Resolve the contract before downstream stages depend on it. No material later-stage implementation expansion found. [Plan](/E:/BrosKi/OBRA/docs/IMPLEMENTATION_PLAN.md:185), [schema](/E:/BrosKi/OBRA/apps/api/orba/schemas.py:21).
+
+2. **Design usability — P1: closed mobile navigation remains keyboard-accessible.** CSS only translates the sidebar offscreen; its links remain tabbable. Opening it adds no focus management, Escape handling or background isolation. Keyboard users can navigate invisible controls. [CSS](/E:/BrosKi/OBRA/apps/web/src/app/globals.css:9), [shell](/E:/BrosKi/OBRA/apps/web/src/components/shell.tsx:25).
+
+3. **Design usability — P1: uncertain saves invite duplicate projects.** A POST timeout tells users to “try again,” although the commit may have succeeded. The form then re-enables submission without the planned warning to inspect Projects first. [Client](/E:/BrosKi/OBRA/apps/web/src/lib/api.ts:11), [form](/E:/BrosKi/OBRA/apps/web/src/components/project-form.tsx:23).
+
+4. **DX reproducibility — P1: checkout-to-success instructions and evidence are missing.** No README or VERIFICATION.md exists. Test fixtures assume migrations already ran; Playwright starts services but does not provision or migrate PostgreSQL. The supplied scripts therefore do not provide the promised complete reproduction path. [Fixture](/E:/BrosKi/OBRA/apps/api/tests/conftest.py:21), [Playwright setup](/E:/BrosKi/OBRA/apps/web/playwright.config.ts:11).
+
+5. **Engineering/security — P1: database exceptions can expose project content in logs.** Logging the full SQLAlchemy exception includes SQL parameters by default; failed inserts can log titles/descriptions, contrary to the plan. Configure parameter hiding and sanitized logging. [Handler](/E:/BrosKi/OBRA/apps/api/orba/main.py:73), [engine](/E:/BrosKi/OBRA/apps/api/orba/db.py:15).
+
+6. **Engineering/testing — P1: important planned failure paths lack coverage.** Browser tests omit genuine service failure with draft preservation, rapid double submission, empty state and whitespace validation. Backend tests omit clean-database migration verification and unmigrated-schema readiness. The unavailable-port test also asserts no elapsed-time bound. [Browser tests](/E:/BrosKi/OBRA/apps/web/tests/projects.spec.ts:9), [backend tests](/E:/BrosKi/OBRA/apps/api/tests/test_projects.py:97).
+
+The source contains a real persistence implementation and useful integration tests, but durable browser behavior, startup reproducibility and security handling remain unverified in this review.

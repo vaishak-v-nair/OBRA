@@ -1,0 +1,6 @@
+import Link from "next/link";
+import { ArrowUpRight, FolderPlus, Lightbulb, MoveUpRight, Sprout } from "lucide-react";
+import { ProjectForm } from "@/components/project-form";
+export default function Home() {
+  return <div className="home"><div className="home-intro"><div className="intro-symbol" aria-hidden="true"><Sprout size={30} strokeWidth={1.4} /></div><p className="eyebrow">A LITTLE CLARITY. A LOT OF POSSIBILITY.</p><h1>What would you like<br className="desktop-break" /> to build today?</h1><p className="home-subtitle">Your workspace for planning, building, testing, and delivering software with AI.</p></div><div className="home-workarea"><ProjectForm /><div className="idea-grid"><Link href="/projects/new" className="idea-card"><FolderPlus size={20} /><strong>Start a project</strong><p>Turn a fresh idea into a place to build.</p><ArrowUpRight size={16} className="card-arrow" /></Link><Link href="/projects" className="idea-card"><Lightbulb size={20} /><strong>Pick up where you left off</strong><p>Find your ideas, all in one workspace.</p><ArrowUpRight size={16} className="card-arrow" /></Link></div><div className="home-footnote"><span className="footnote-line" /><span>Your next great project starts here</span><MoveUpRight size={13} /><span className="footnote-line" /></div></div></div>;
+}
