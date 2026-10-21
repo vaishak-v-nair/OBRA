@@ -1,0 +1,39 @@
+[
+  {
+    "name": "ruff",
+    "argv": [
+      "uv",
+      "run",
+      "--directory",
+      "apps/api",
+      "ruff",
+      "check",
+      "."
+    ],
+    "started_at": "2026-10-20T08:04:29.692341+00:00",
+    "exit_code": 0,
+    "pid": 23812,
+    "duration_seconds": 0.164,
+    "completed_at": "2026-10-20T08:04:29.856115+00:00"
+  },
+  {
+    "name": "backend",
+    "argv": [
+      "uv",
+      "run",
+      "--directory",
+      "apps/api",
+      "pytest",
+      "-q",
+      "tests/test_pm_readiness.py",
+      "tests/test_readiness_evidence.py",
+      "tests/test_pm_reliability.py",
+      "tests/test_verification.py"
+    ],
+    "started_at": "2026-10-20T08:04:29.876072+00:00",
+    "exit_code": 0,
+    "pid": 26060,
+    "duration_seconds": 11.494,
+    "completed_at": "2026-10-20T08:04:41.370508+00:00"
+  }
+]

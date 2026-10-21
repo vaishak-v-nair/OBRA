@@ -1,0 +1,42 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_________ test_incorrectly_expect_configuration_failure_to_be_success _________
+
+client = <starlette.testclient.TestClient object at 0x0000020B62EABA10>
+
+    def test_incorrectly_expect_configuration_failure_to_be_success(client):
+        client.app.state.settings = Settings(
+            database_url=client.app.state.settings.database_url, pm_api_key=None, pm_model=None
+        )
+        project = client.post(
+            "/api/v1/projects",
+            json={
+                "workspace_id": client.workspace_id,
+                "title": "Failure experiment",
+                "description": "No configured provider",
+            },
+        ).json()
+        response = client.post(
+            f"/api/v1/projects/{project['id']}/pm-runs",
+            json={"client_request_id": str(uuid4()), "brief": "Track a daily habit"},
+        )
+        assert response.status_code == 503
+        with Session(client.app.state.engine) as db:
+            run = db.get(ProductManagerRun, UUID(response.json()["error"]["run_id"]))
+>           assert run.status == "succeeded", "Intentionally incorrect: the actual saved run is failed."
+E           AssertionError: Intentionally incorrect: the actual saved run is failed.
+E           assert 'failed' == 'succeeded'
+E             
+E             - succeeded
+E             + failed
+
+tests\experiments\pm_failed_run_success_experiment.py:33: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/experiments/pm_failed_run_success_experiment.py::test_incorrectly_expect_configuration_failure_to_be_success
+1 failed, 1 warning in 0.49s

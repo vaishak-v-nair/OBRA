@@ -1,0 +1,57 @@
+{
+  "execution_class": "controlled_provider_double",
+  "provider_double": true,
+  "posts": 1,
+  "database": {
+    "source": "fresh SQLAlchemy session against guarded PostgreSQL",
+    "run_id": "55d23752-1395-4639-a8a2-9909886630e1",
+    "project_id": "86fd3032-e897-4ad8-8894-a74a04483b58",
+    "status": "failed",
+    "provider": "google-gemini",
+    "workspace_id": "e6d9f112-df55-4d80-ab6e-a3833f789a32",
+    "initiator_id": "81e903ee-4b18-4243-ae95-9f95af797a6f",
+    "provider_response_id": null,
+    "provider_request_id": null,
+    "usage": null,
+    "prompt_version": "pm-v1",
+    "prompt_hash": "268749ec7f6f7527b7950889b51efae43dcd18a60f5140a51bae4c9a918e40ac",
+    "hash_version": "orba-pm-canonical-json-v1",
+    "started_at": "2026-10-20T08:44:16.326000+00:00",
+    "completed_at": "2026-10-20T08:44:17.843479+00:00",
+    "requested_model": "gemini-controlled-timeout-double",
+    "returned_model": null,
+    "error_category": "provider_unavailable",
+    "diagnostic_id": "dfd45a36-02ab-48a2-b5da-e6b62a4ce4f9",
+    "diagnostic": {
+      "attempt": 1,
+      "stages_ms": {
+        "provider_call": 1510.005,
+        "running_transaction": 20.054,
+        "admission_transaction": 28.536
+      },
+      "elapsed_ms": 1558.843,
+      "error_origin": "controlled_double",
+      "dispatch_phase": "provider_response",
+      "exception_type": "ControlledProviderFailure",
+      "timing_version": 1,
+      "provider_double": true,
+      "timing_boundary": "before_terminal_commit",
+      "provider_http_status": 503
+    },
+    "project_plans": [
+      {
+        "id": "c6ee0a63-b8b6-4ae0-b83d-4286bff9ef83",
+        "version": 1,
+        "state": "approved",
+        "generating_run_id": null,
+        "content_hash": "0e81ba8041e9966b8e3b48d565d04c8da3110fde6fdde12ef486c74f0b86eeec",
+        "approved_at": "2026-10-20T08:44:15.980008+00:00"
+      }
+    ]
+  },
+  "preservation": {
+    "content_hash": "0e81ba8041e9966b8e3b48d565d04c8da3110fde6fdde12ef486c74f0b86eeec",
+    "approved_by": "81e903ee-4b18-4243-ae95-9f95af797a6f",
+    "approved_at": "2026-10-20T08:44:15.980008Z"
+  }
+}

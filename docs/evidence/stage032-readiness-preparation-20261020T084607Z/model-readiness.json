@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "execution_class": "real_read_only_model_metadata",
+  "provider_double": false,
+  "attempt_id": "stage032-readiness-preparation-20261020T084607Z",
+  "source_sha256": "2a2128d0f21c914b4640db6eb7c31ddf446ad00076a9a28e52d03bfcbe44b098",
+  "execution_profile": {
+    "provider": "google-gemini",
+    "model": "gemini-3.8-flash",
+    "prompt_version": "pm-v1",
+    "prompt_sha256": "268749ec7f6f7527b7950889b51efae43dcd18a60f5140a51bae4c9a918e40ac",
+    "hash_version": "orba-pm-canonical-json-v1",
+    "schema_sha256": "255c82c7c5d33fe0ffce6376fd3d4d80545bfafda7b294fde8c5097ea40b93b0",
+    "sdk_version": "2.31.0",
+    "server_timeout_seconds": 90,
+    "transport_timeout_seconds": 95,
+    "envelope_timeout_seconds": 100,
+    "max_output_tokens": 6000,
+    "max_concurrent": 1,
+    "account_attempts_per_hour": 3,
+    "global_attempts_per_hour": 6,
+    "credential_configured": true
+  },
+  "gate_a_receipt": "20261020T083556Z-A-15fa5007\\receipt.json",
+  "gate_a_receipt_sha256": "30655fec59ae1cf4ef7eaa4e61a09ce11bbb2eb897bef307e6534a0f06aea224",
+  "command": {
+    "name": "provider-readiness",
+    "argv": [
+      "uv",
+      "run",
+      "--directory",
+      "apps/api",
+      "python",
+      "-m",
+      "scripts.check_pm_config",
+      "--check-model"
+    ],
+    "started_at": "2026-10-20T08:46:08.025030+00:00",
+    "exit_code": 0,
+    "pid": 19692,
+    "duration_seconds": 2.108,
+    "completed_at": "2026-10-20T08:46:10.133076+00:00"
+  },
+  "report": {
+    "version": 1,
+    "operation": "model_metadata",
+    "status": "ready_for_attempt",
+    "message": "The exact model advertises generateContent and compatible token limits; structured output is documented. Ready for a separately authorized live attempt only. Metadata does not prove generation, schema acceptance, available quota or persistence.",
+    "checked_at": "2026-10-20T08:46:09.246168Z",
+    "provider": "google-gemini",
+    "sdk_version": "2.31.0",
+    "configured": true,
+    "requested_model": "gemini-3.8-flash",
+    "metadata_model": "models/gemini-3.8-flash",
+    "supported_actions": [
+      "generateContent",
+      "countTokens",
+      "createCachedContent",
+      "batchGenerateContent"
+    ],
+    "input_token_limit": 1048576,
+    "output_token_limit": 65536,
+    "structured_output_support": "documented",
+    "structured_output_documentation": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+    "generation_limits": {
+      "server_timeout_seconds": 90,
+      "transport_timeout_seconds": 95,
+      "envelope_timeout_seconds": 100,
+      "max_output_tokens": 6000,
+      "max_concurrent": 1,
+      "account_attempts_per_hour": 3,
+      "global_attempts_per_hour": 6
+    },
+    "metadata_timeout_seconds": 10,
+    "metadata_envelope_seconds": 12,
+    "metadata_requests": 1,
+    "generation_requests": 0,
+    "live_generation_verified": false,
+    "provider_http_status": 200,
+    "error_origin": null,
+    "elapsed_ms": 619.754
+  }
+}

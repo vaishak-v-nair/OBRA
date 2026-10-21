@@ -1,0 +1,76 @@
+# Stage03.1 CEO / strategy review
+
+Date: 2026-10-19. Actual reviewer source: **in-host independent Codex-family review**. This is an independent review perspective within the current host; it is not a different-model review or a cross-model vote.
+
+Decision: proceed with the narrowly scoped deterministic hardening, subject to the P1 acceptance conditions below. Do not make a new real-model request now. Gate B remains blocked on a passing, current Gate A, review of its diagnostics, and the owner's later explicit authorization. This review grants no paid-call, commit, deployment, or Stage04 authority.
+
+The plan addresses the right problem. The historical record separates genuine model/browser successes from a failed integrated Full invocation; it must keep doing so. Stage03.1 should make product correctness independently assessable, make paid validation deliberate, and make unknown outcomes recoverable. It does not establish improved provider availability or solve the provider's internal deadline cause.
+
+This is a source review, not execution evidence. I read AGENTS.md, docs/STAGE031_PLAN.md, docs/VERIFICATION_STAGE03.md, the existing verification commands, provider/lifecycle routes, proxy, PM UI, live/negative browser tests, and SQL inspection helper. I did not read runtime credentials, execute tests or services, call a provider, access the database, change Git, or edit application code. Historical test counts and provider outcomes below are documented prior results, not rerun results. Only this review artifact was written.
+
+## Findings and required fixes
+
+### CEO-01 — P1: Gate A must eliminate existing external AI paths, including the negative test
+
+Evidence: scripts/verify.ps1:28 invokes test:e2e:negative for both existing scopes. apps/web/playwright.negative.config.ts:7 starts the real runtime with an intentionally invalid key and an explicit real model. apps/web/tests-negative/provider-failure.spec.ts explicitly performs a real SDK/provider request. Removing only the two positive Full checks would therefore leave Gate A dependent on an external AI service. The current script also defaults to Full (scripts/verify.ps1:1).
+
+Required fix: make the default verification entry point deterministic. Remove the real invalid-key scenario from its command graph and replace its regression purpose with the owner's explicitly allowed, clearly labeled test-only controlled-provider failure scenario. Use the real application, authentication, PostgreSQL, and browser; the controlled provider must have no production runtime configuration switch. Preserve the historical real rejection evidence under its original identity. Ensure legacy positive entry points cannot silently dispatch when reached without the new explicit live opt-in and current Gate A prerequisite.
+
+Acceptance: Gate A succeeds without an owner credential and cannot invoke the real provider even if an owner credential exists in the environment. Its controlled-provider evidence must identify itself as deterministic application/error-path coverage and must never satisfy live evidence requirements. A fail-fast external AI dispatch guard in the deterministic test host is stronger evidence than merely seeing no successful response. Installation/package network access is distinct from an AI request and should not be mislabeled as an offline guarantee.
+
+### CEO-02 — P1: The verdict needs a precise source/evidence contract, not a newer green file
+
+Evidence: docs/STAGE031_PLAN.md:15 proposes the right manifest and immutable-report approach, but has not yet specified invalidation and result selection. The existing transcript is overwritten with -Force (scripts/verify.ps1:6); the live browser writes a fixed success artifact only at its final line (apps/web/tests-live/pm-live.spec.ts:42). The source is explicitly uncommitted, so a Git commit ID alone cannot bind the result (docs/VERIFICATION_STAGE03.md:3).
+
+Required fix: use one versioned manifest for Gates A, B, and C, covering actual product source, prompt/schema, migrations, lockfiles, verification scripts, test hosts/configuration, and tests, including relevant untracked files. Declare exclusions for generated reports and review artifacts to avoid circular invalidation; exclusions must not omit product or verification code. Hash before and after each gate and reject source changes during execution. Record nonsecret effective provider/model/timeout/output bounds and relevant tool versions separately; do not hash or expose credential values or unrestricted environment dumps.
+
+Each invocation needs its own attempt ID, immutable report path, exact executed commands and native exits, actual counts, start/completion state, source fingerprint, and linked evidence. Missing, malformed, incomplete, unsupported-schema, wrong-provider-kind, skipped, failed, or mismatched evidence cannot yield VERIFIED. An absent Gate B is BLOCKED for live scope, not PASS. Gate C must select explicit compatible receipts and validate their contents; it must not infer success from file presence, a latest timestamp, an asserted mocks:false field, or a previous source snapshot.
+
+Acceptance: deterministic negative cases reject an old green receipt after a source mutation, a missing command/evidence file, a truncated report, an unsupported schema, and a controlled-provider receipt presented as live. Preserve the latest failed historical Full as a separate historical outcome. A later green Gate A/B result may establish the new explicitly defined Stage03.1 contract; it cannot retroactively make that Full command pass.
+
+### CEO-03 — P1: One paid browser request is sufficient only with two fresh SQL audit points and bounded accounting
+
+Evidence: the current live browser already creates a real authenticated session, submits the generation POST, retrieves its draft through the authenticated API, edits, reloads, approves, reloads, and checks unrelated-user denial (apps/web/tests-live/pm-live.spec.ts:10-41). That is a suitable combined API/browser path. It currently does not execute an independent draft or approval SQL audit. scripts/inspect_pm_run.py:26-49 reads useful run/plan metadata, but does not itself validate the complete graph, exact approval actor/revision, or human provenance. The historical ledger explicitly notes that test DB resets clear application admission counters (docs/VERIFICATION_STAGE03.md:128).
+
+Required fix: keep one small real browser generation as Gate B. Observe its actual generation POST and authenticated GET; bind every artifact to the same attempt/project/run/plan IDs. Immediately after generation, before any edit or approval, independently inspect fresh PostgreSQL state: succeeded real run, complete related graph, generated origin, generating_run_id, valid content/hash, draft state, and no approval actor/time. After the browser edit/save/reload/explicit approval/reload, inspect fresh SQL again: the same plan/run, expected saved revision/version, approval actor/time, human provenance on the edited field, and coherent unchanged generated relationships. Persist safe metadata from both audit points before any cleanup. Keep unrelated authenticated-user API/UI denial.
+
+The wrapper must reserve the single paid-capable attempt before dispatch and retain its outcome outside the reset test DB, including failed/unknown calls. Use one worker, zero Playwright retries, one SDK attempt, no positive API preflight generation, no automatic rerun after a selector or audit failure, and no automatic continuation. A failure after generation is still a consumed attempt. Finalize a failure/blocked receipt even if the browser exits before its final success assertion. Do not require metadata the provider did not return or estimate missing usage/cost.
+
+Assessment: **accept this single-request Gate B design**. A second paid API generation would mostly duplicate the model path and spend quota without proving a different required behavior. The initial draft audit prevents the human-edited final document from becoming the only evidence of model output. This is evidence for one real execution, not a provider reliability benchmark or a semantic-quality certification. No such call is authorized by this review.
+
+### CEO-04 — P1: Manual retry must not turn an unknown outcome into permission for another generation
+
+Evidence: the current UI accurately says that no matching run leaves the outcome unconfirmed (apps/web/src/components/product-plan.tsx:102), yet Clear request reference can remove pendingId when the cached run list is not active (line 138). Generation is then unlocked by the absence of pendingId (line 132). A stale list or lost response can therefore let a local action discard the only recovery reference. The server already has durable request identity, fenced execution, terminal transitions, and uncertain-commit reconciliation (pm_service.py:168-252,289-324,430-499); reuse these safeguards.
+
+Required fix: distinguish pending/running/unknown from confirmed terminal failed/interrupted. Use GET-only recovery for uncertain dispatched requests and missing-run results; clearing local storage is not evidence that a server request stopped. Offer a new paid-capable request only after an authoritative terminal failure/interruption has been confirmed, or after a definite pre-dispatch rejection establishes that no model call occurred. A succeeded result should open its saved plan; an additional generation remains an explicit separate action. Issue a fresh UUID only when the user activates an allowed new attempt, with a synchronous click guard. Never replay the old POST as recovery.
+
+Preserve the brief, instructions, selected context reference, and any local edits in page memory on failure; do not put briefs or credentials into sessionStorage. Revalidate context revisions and current membership on the server. Preserve approved versions. Acceptance should cover delayed success after a lost response, unknown commit, no matching run, expired lease, terminal failure, and double activation, with counted provider dispatches. Elapsed browser time alone is never proof of server termination.
+
+### CEO-05 — P2: Timings should explain observed phases without claiming an unobserved cause
+
+Evidence: pm_provider.py:231-246 maps local timeout exceptions and a real provider HTTP504 into the same product category, with different available metadata. The proxy currently collapses fetch failures to api_unavailable (apps/web/src/app/api/v1/[...path]/route.ts:38-39). The server already has short transaction phases and a monotonic total budget, plus special handling for uncertain commit acknowledgement.
+
+Required fix: retain compatible user-facing categories while adding bounded, allowlisted phase durations and observed failure origin. Separate upstream HTTP504/provider status from local SDK/HTTP timeout, and separate both from a browser/proxy loss of response. Use monotonic durations within one process; do not subtract clocks across browser, proxy, and API. Unknown/unreached phases must remain unknown rather than fabricated zeroes. Record admission, dispatch/provider wait, validation, and publication where observed, with explicit acknowledgement uncertainty if needed. Timing persistence must never overwrite terminal success or require another provider call. Do not expose raw provider bodies, exception messages, input snapshots, or secrets in logs.
+
+Acceptance: controlled tests prove the origin distinction and safe metadata. The diagnostics may identify where time elapsed, but cannot establish why Google's internal deadline expired or promise that a larger local timeout fixes it. No queue, external telemetry service, background worker, or new agent is needed for this stage.
+
+### CEO-06 — P2: Keep the new acceptance boundary explicit and small
+
+Evidence: the plan correctly excludes Stage04 and preserves the working provider/PRD contract. The strongest historical evidence is a single genuine model-backed journey; the record already disclaims reliability and semantic guarantees (docs/VERIFICATION_STAGE03.md:144-146).
+
+Required fix: make the operating result immediately legible: Gate A PASS/FAIL with no external AI request; Gate B NOT RUN/BLOCKED/FAIL/PASS with its separate paid-attempt outcome; Gate C PARTIAL/BLOCKED/FAILED/VERIFIED only under the documented combination and source match. Show historical Full separately. Keep the acceptance surface to existing PM reliability, retry/recovery, safe diagnostics, and bounded verification. Do not add provider routing, model comparison, orchestration, a verification dashboard, automatic commits, or a general evidence platform.
+
+Acceptance: one small source manifest, shared strict receipt validation, immutable per-attempt reports, targeted failure tests, and an updated human-readable verification record. Stop after Gate A and present its concrete evidence for the owner's later paid-call decision. If Gate A is green while live permission is absent, report that exact partial outcome without requesting or simulating a success state.
+
+## Six-dimension assessment
+
+| Dimension | Assessment | Reason / decision |
+|---|---|---|
+| Stated premises | Sound with limits | Actual prior API/browser successes and provider timeouts justify separation. The precise provider-side cause and remaining quota are unknown. Preserve that uncertainty. |
+| Right problem | Strong | The owner needs confidence that drafts, authority, persistence, and recovery behave correctly before paying for another external availability sample. Deterministic correctness and live evidence are separate questions. |
+| Scope | Appropriate if held | Reuse the current provider, durable lifecycle, API, UI, and guarded PostgreSQL test setup. Changes are PM hardening plus verification; no Stage04, new provider, tool execution, or deployment. |
+| Alternatives | Proposed option preferred | Keeping Full unchanged wastes repeated deterministic work around paid uncertainty. Fixtures alone cannot establish live PM execution. Increasing timeout alone has no demonstrated reliability benefit. One fully audited real browser request covers API and UI without a duplicate paid generation. |
+| Competitive and operating risk | Manageable, conditional | Strategic inference: inspectable drafts, approval integrity, and honest outcomes support a trust proposition. A generic green badge, lost attempt accounting, or retry that duplicates spend would undermine it. This is an inference from this product's design, not external competitive research. |
+| Six-month regret | Low if narrow; high if evidence drifts | Likely regret is stale green receipts, overwritten failures, and an expanding verification framework that delays PM usefulness. Stable receipts, source binding, a preserved attempt ledger, and a small acceptance surface reduce that risk. A single live pass must never become an availability or output-quality claim. |
+
+Recommended next action: incorporate these acceptance conditions, finish the existing deterministic implementation, execute Gate A sequentially within the guarded test setup, and stop before Gate B. This review does not change the current documented Stage03 PARTIAL verdict and establishes no new runtime verification result.

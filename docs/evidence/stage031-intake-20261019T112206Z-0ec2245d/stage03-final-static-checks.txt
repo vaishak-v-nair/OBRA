@@ -1,0 +1,90 @@
+**********************
+PowerShell transcript start
+Start time: 20261019155649
+Username: VAISHAK-MSI\vaish
+RunAs User: VAISHAK-MSI\vaish
+Configuration Name: 
+Machine: VAISHAK-MSI (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$ErrorActionPreference = 'Stop'
+Start-Transcript -Path docs/evidence/stage03-final-static-checks.txt -Force
+try {
+  foreach ($orbaTask in @('typecheck','lint','build')) {
+    Write-Output "COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm $orbaTask"
+    & npm exec --yes --package=pnpm@12.14.0 -- pnpm $orbaTask 2>&1 | ForEach-Object { Write-Output "$_" }
+    $orbaCheckExit = $LASTEXITCODE
+    Write-Output "EXIT: $orbaCheckExit"
+    if ($orbaCheckExit -ne 0) { throw "$orbaTask failed with exit $orbaCheckExit" }
+  }
+} finally { Stop-Transcript }
+Process ID: 15544
+PSVersion: 7.6.7
+PSEdition: Core
+GitCommitId: 7.6.7
+OS: Microsoft Windows 10.0.26300
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is docs/evidence/stage03-final-static-checks.txt
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm typecheck
+$ pnpm --filter @orba/web typecheck
+$ pnpm --filter @orba/web typecheck
+$ next typegen && tsc --noEmit
+$ next typegen && tsc --noEmit
+Generating route types...
+✓ Types generated successfully
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm lint
+$ pnpm --filter @orba/web lint
+$ pnpm --filter @orba/web lint
+$ eslint . --max-warnings 0
+$ eslint . --max-warnings 0
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm build
+$ pnpm --filter @orba/web build
+$ pnpm --filter @orba/web build
+$ next build
+$ next build
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.ts took 32ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1175ms
+  Running TypeScript ...
+  Finished TypeScript in 3.4s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/11) ...
+  Generating static pages using 11 workers (2/11)
+  Generating static pages using 11 workers (5/11)
+  Generating static pages using 11 workers (8/11)
+✓ Generating static pages using 11 workers (11/11) in 375ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /[section]
+├ ƒ /api/v1/[...path]
+├ ○ /invitations/accept
+├ ○ /projects
+├ ƒ /projects/[id]
+├ ○ /projects/new
+├ ○ /settings
+├ ○ /signin
+├ ○ /signup
+├ ○ /workspaces
+├ ƒ /workspaces/[id]
+└ ○ /workspaces/new
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+EXIT: 0
+**********************
+PowerShell transcript end
+End time: 20261019155723
+**********************

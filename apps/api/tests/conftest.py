@@ -2,19 +2,26 @@ import os
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy.engine import make_url
 
 from orba.config import Settings
 from orba.main import create_app
 from scripts.prepare_tests import prepare
+from scripts.test_database import guard_test_url
 
 TEST_DATABASE_URL = os.environ.get(
     "TEST_DATABASE_URL",
     "postgresql+psycopg://orba_test:orba_test_local@127.0.0.1:54330/orba_test",
 )
 # Never truncate an arbitrary database supplied by a developer's environment.
-if make_url(TEST_DATABASE_URL).database != "orba_test":
-    raise RuntimeError("Integration tests require the isolated orba_test database.")
+guard_test_url(TEST_DATABASE_URL)
+
+
+def pytest_collection_modifyitems(items):
+    for item in items:
+        if any(item.get_closest_marker(name) for name in ("skip", "skipif", "xfail")):
+            raise pytest.UsageError(
+                "Mandatory verification does not permit skip/skipif/xfail markers."
+            )
 
 
 @pytest.fixture(scope="session")

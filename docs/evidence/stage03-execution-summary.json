@@ -1,0 +1,80 @@
+{
+  "source": "Parsed actual Full transcript and separately executed browser/experiment output",
+  "full_exit_code": 1,
+  "full_commands": [
+    {
+      "command": "docker compose -f infra/compose.yaml --profile test up -d --wait",
+      "exit_code": 0
+    },
+    {
+      "command": "uv sync --locked --directory apps/api",
+      "exit_code": 0
+    },
+    {
+      "command": "npm exec --yes --package=pnpm@12.14.0 -- pnpm install --frozen-lockfile",
+      "exit_code": 0
+    },
+    {
+      "command": "npm exec --yes --package=pnpm@12.14.0 -- pnpm peers check",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run --directory apps/api alembic upgrade head",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run --directory apps/api alembic check",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run --directory apps/api pytest -q",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run --directory apps/api ruff check .",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run --directory apps/api ruff format --check .",
+      "exit_code": 0
+    },
+    {
+      "command": "npm exec --yes --package=pnpm@12.14.0 -- pnpm typecheck",
+      "exit_code": 0
+    },
+    {
+      "command": "npm exec --yes --package=pnpm@12.14.0 -- pnpm lint",
+      "exit_code": 0
+    },
+    {
+      "command": "npm exec --yes --package=pnpm@12.14.0 -- pnpm build",
+      "exit_code": 0
+    },
+    {
+      "command": "npm exec --yes --package=pnpm@12.14.0 -- pnpm test:e2e",
+      "exit_code": 0
+    },
+    {
+      "command": "npm exec --yes --package=pnpm@12.14.0 -- pnpm test:e2e:negative",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run --directory apps/api python -m scripts.verify_pm_live",
+      "exit_code": 1
+    }
+  ],
+  "full_live_browser_command": "NOT RUN: fail-fast stopped at live API",
+  "standalone_live_browser": {
+    "exit_code": 0,
+    "passed": 1,
+    "duration": "1.4m",
+    "evidence": "stage03-final-live-browser-console.txt"
+  },
+  "expected_failure_experiment": {
+    "exit_code": 1,
+    "failed": 1,
+    "evidence": "stage03-expected-failure.txt"
+  },
+  "owner_credential_generation_attempts": 6,
+  "stage_verdict": "PARTIAL"
+}

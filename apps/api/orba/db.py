@@ -13,6 +13,7 @@ def make_engine(url: str):
     return create_engine(
         url,
         pool_pre_ping=True,
+        pool_timeout=2,
         hide_parameters=True,
         connect_args={"connect_timeout": 3, "options": "-c statement_timeout=5000"},
     )

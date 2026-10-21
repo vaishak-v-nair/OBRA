@@ -1,0 +1,128 @@
+F...                                                                     [100%]
+================================== FAILURES ===================================
+___ test_real_sdk_parses_candidate_and_usage_and_makes_one_bounded_request ____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024DA6100770>
+
+    def test_real_sdk_parses_candidate_and_usage_and_makes_one_bounded_request(monkeypatch):
+        requests = []
+    
+        def transport(request):
+            requests.append(request)
+            body = json.loads(request.content)
+            config = body["generationConfig"]
+            assert request.url.host == "generativelanguage.googleapis.com"
+            assert config["maxOutputTokens"] == 6000 and config["candidateCount"] == 1
+            assert config["responseMimeType"] == "application/json"
+            assert config["thinkingConfig"]["thinkingLevel"] == "LOW"
+            assert config["responseJsonSchema"] == gemini_output_schema()
+            return httpx.Response(
+                200,
+                json={
+                    "candidates": [
+                        {
+                            "content": {"parts": [{"text": '{"unit_contract":true}'}]},
+                            "finishReason": "STOP",
+                        }
+                    ],
+                    "modelVersion": "unit-model-fixture",
+                    "responseId": "unit-response-fixture",
+                    "usageMetadata": {
+                        "promptTokenCount": 5,
+                        "candidatesTokenCount": 3,
+                        "totalTokenCount": 8,
+                    },
+                },
+                headers={"x-request-id": "unit-request-fixture"},
+            )
+    
+        monkeypatch.setattr("orba.pm_provider.LimitedTransport", lambda: httpx.MockTransport(transport))
+>       result = asyncio.run(GeminiProductManagerProvider(unit_settings()).generate({"brief": "unit"}))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pm_provider_unit.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\vaish\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\asyncio\runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\vaish\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\asyncio\runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\vaish\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\asyncio\base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+orba\pm_provider.py:205: in generate
+    response = await client.aio.models.generate_content(
+.venv\Lib\site-packages\google\genai\models.py:8499: in generate_content
+    return await self._generate_content_with_continuation(
+.venv\Lib\site-packages\google\genai\models.py:8346: in _generate_content_with_continuation
+    response = await self._generate_content(
+.venv\Lib\site-packages\google\genai\models.py:6944: in _generate_content
+    response = await self._api_client.async_request(
+.venv\Lib\site-packages\google\genai\_api_client.py:1885: in async_request
+    result = await self._async_request(
+.venv\Lib\site-packages\google\genai\_api_client.py:1818: in _async_request
+    return await self._async_retry(  # type: ignore[no-any-return]
+.venv\Lib\site-packages\tenacity\asyncio\__init__.py:112: in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\tenacity\asyncio\__init__.py:157: in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\tenacity\_utils.py:111: in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\tenacity\__init__.py:393: in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+C:\Users\vaish\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\concurrent\futures\_base.py:443: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\vaish\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\concurrent\futures\_base.py:395: in __get_result
+    raise self._exception
+.venv\Lib\site-packages\tenacity\asyncio\__init__.py:116: in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\google\genai\_api_client.py:1791: in _async_request_once
+    client_response = await self._async_httpx_client.request(  # type: ignore[union-attr]
+.venv\Lib\site-packages\httpx\_client.py:1540: in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1629: in send
+    response = await self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:1657: in _send_handling_auth
+    response = await self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:1694: in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1730: in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_transports\mock.py:34: in handle_async_request
+    response = self.handler(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+request = <Request('POST', 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent')>
+
+    def transport(request):
+        requests.append(request)
+        body = json.loads(request.content)
+        config = body["generationConfig"]
+        assert request.url.host == "generativelanguage.googleapis.com"
+        assert config["maxOutputTokens"] == 6000 and config["candidateCount"] == 1
+        assert config["responseMimeType"] == "application/json"
+>       assert config["thinkingConfig"]["thinkingLevel"] == "LOW"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'thinkingLevel'
+
+tests\test_pm_provider_unit.py:36: KeyError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_pm_provider_unit.py::test_real_sdk_parses_candidate_and_usage_and_makes_one_bounded_request
+1 failed, 3 passed, 1 warning in 1.17s

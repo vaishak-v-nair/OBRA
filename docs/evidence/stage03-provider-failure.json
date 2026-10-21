@@ -1,0 +1,40 @@
+{
+  "scenario": "Actual SDK call with intentionally invalid test key",
+  "http_status": 502,
+  "run_id": "9deea007-8e66-403c-844a-a861f73084ba",
+  "status": "failed",
+  "error_category": "provider_access_denied",
+  "diagnostic_id": "7fe06300-bfac-4fbd-978f-3505266708f6",
+  "plan_id": null,
+  "previous_approved_hash": "a31267341fe1872e6d6fdf71007e90ab72c41a2eaaba28cdcf29c2cef7250d5b",
+  "previous_approval_unchanged": true,
+  "mocks": false,
+  "database": {
+    "source": "fresh SQLAlchemy session against guarded PostgreSQL",
+    "run_id": "9deea007-8e66-403c-844a-a861f73084ba",
+    "project_id": "49823757-b0fc-486d-9537-3228dfbb448e",
+    "status": "failed",
+    "provider": "google-gemini",
+    "requested_model": "gemini-3.8-flash",
+    "returned_model": null,
+    "error_category": "provider_access_denied",
+    "diagnostic_id": "7fe06300-bfac-4fbd-978f-3505266708f6",
+    "diagnostic": {
+      "dispatch_phase": "provider_response",
+      "exception_type": "ClientError",
+      "provider_reason": "API_KEY_INVALID",
+      "provider_status": "INVALID_ARGUMENT",
+      "provider_http_status": 400
+    },
+    "project_plans": [
+      {
+        "id": "37cd0574-d7d1-4e32-9c17-b561e528c467",
+        "version": 1,
+        "state": "approved",
+        "generating_run_id": null,
+        "content_hash": "a31267341fe1872e6d6fdf71007e90ab72c41a2eaaba28cdcf29c2cef7250d5b",
+        "approved_at": "2026-10-19T10:18:14.118155+00:00"
+      }
+    ]
+  }
+}

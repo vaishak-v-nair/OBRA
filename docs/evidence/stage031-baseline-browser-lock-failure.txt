@@ -1,0 +1,29 @@
+$ pnpm --filter @orba/web test:e2e
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [12340]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:20800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:7064) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] ⨯ Another next dev server is already running.
+[WebServer] 
+[WebServer] - Local:        http://127.0.0.1:3000
+[WebServer] - PID:          10360
+[WebServer] - Dir:          E:\BrosKi\OBRA\apps\web
+[WebServer] - Log:          .next\dev\logs\next-development.log
+[WebServer] 
+[WebServer] You can access the existing server at http://127.0.0.1:3000,
+[WebServer] or run taskkill /PID 10360 /F to stop it and start a new one.
+Error: Process from config.webServer was not able to start. Exit code: 1
+
+[ELIFECYCLE] Command failed with exit code 1.
+Error: ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL
+
+  × "pnpm recursive run" failed in E:\BrosKi\OBRA\apps/web
+
+[ELIFECYCLE] Command failed with exit code 1.
+BASELINE_BROWSER_EXIT=1

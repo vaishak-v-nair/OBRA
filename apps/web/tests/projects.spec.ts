@@ -1,3 +1,4 @@
+import { evidencePath } from "./evidence";
 import { test, expect, type Page } from "@playwright/test";
 import { execFileSync } from "node:child_process";
 import { signup, createWorkspace } from "./helpers";
@@ -35,9 +36,15 @@ test("chat creates a real project, survives reload, and appears in Projects", as
   const record = await response.json();
   await expect(page).toHaveURL(new RegExp(`/projects/${record.id}$`));
   await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
-  await expect(page.getByText(description, { exact: true })).toBeVisible();
+  // The editable PM brief also contains this text; verify the saved overview explicitly.
+  const originalDescription = page.locator("p.original-description");
+  await expect(originalDescription).toBeVisible();
+  await expect(originalDescription).toHaveText(description);
+  await expect(page.getByRole("textbox", { name: "Product brief", exact: true })).toHaveValue(description);
   await page.reload();
   await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+  await expect(originalDescription).toHaveText(description);
+  await expect(page.getByRole("textbox", { name: "Product brief", exact: true })).toHaveValue(description);
   await navigate(page, "Projects");
   await expect(page.getByRole("link").filter({ has: page.getByRole("heading", { name: title, exact: true }) })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
@@ -115,9 +122,9 @@ test("navigation supports mobile Escape and focus restoration", async ({ page })
 test("home layout in both themes", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "What would you like to build today?" })).toBeVisible();
-  await page.screenshot({ path: `../../docs/evidence/${test.info().project.name}-home.png`, fullPage: true });
+  await page.screenshot({ path: evidencePath(`${test.info().project.name}-home.png`), fullPage: true });
   await page.getByRole("button", { name: "Toggle color theme" }).click();
-  await page.screenshot({ path: `../../docs/evidence/${test.info().project.name}-home-alternate.png`, fullPage: true });
+  await page.screenshot({ path: evidencePath(`${test.info().project.name}-home-alternate.png`), fullPage: true });
 });
 
 test("rapid duplicate submission sends a single creation request", async ({ page }) => {

@@ -5,9 +5,14 @@ import os
 from alembic import command
 from alembic.config import Config
 from sqlalchemy import text
-from sqlalchemy.engine import make_url
 
 from orba.db import make_engine
+from scripts.test_database import guard_test_url
+
+TEST_URL = os.environ.get(
+    "TEST_DATABASE_URL",
+    "postgresql+psycopg://orba_test:orba_test_local@127.0.0.1:54330/orba_test",
+)
 
 
 def prepare(reset: bool = True):
@@ -15,9 +20,7 @@ def prepare(reset: bool = True):
         "TEST_DATABASE_URL",
         "postgresql+psycopg://orba_test:orba_test_local@127.0.0.1:54330/orba_test",
     )
-    parsed = make_url(url)
-    if parsed.database != "orba_test" or parsed.username != "orba_test":
-        raise RuntimeError("Refusing cleanup: expected isolated orba_test database and role.")
+    guard_test_url(url)
     previous = os.environ.get("DATABASE_URL")
     os.environ["DATABASE_URL"] = url
     try:
@@ -28,7 +31,7 @@ def prepare(reset: bool = True):
                 with engine.begin() as connection:
                     connection.execute(
                         text(
-                            "TRUNCATE TABLE projects,workspace_invitations,workspace_members,sessions,login_attempts,workspaces,users"
+                            "TRUNCATE TABLE product_acceptance_criteria,product_stories,product_epics,product_plans,product_manager_runs,projects,workspace_invitations,workspace_members,sessions,login_attempts,workspaces,users"
                         )
                     )
                     connection.execute(

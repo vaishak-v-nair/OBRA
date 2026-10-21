@@ -1,0 +1,24 @@
+| Dimension | Verdict | Concrete reason |
+|---|---|---|
+| Premises | Unvalidated | The existing [project schema](E:/BrosKi/OBRA/apps/api/orba/schemas.py:8) permits minimal descriptions. The plan assumes those inputs can support a comprehensive product document without defining when information is insufficient. |
+| Right problem | Partially defined | The generation → review → approval workflow is explicit, but usefulness is not measurable: “content/quality invariants” remain unnamed. |
+| Scope calibration | Delivery risk | A comprehensive document contract, nested editing, provenance and approval history create substantial work within one agent. Concrete output limits and review burden are unspecified. |
+| Alternatives | Underexamined | The plan does not explain why generation followed by structured editing is preferable to manually preparing the same required artifact. This needs a decision rationale, not additional features. |
+| Competitive risk | Unproven | Chat plus a manually maintained document is a plausible substitute. Whether persisted provenance and exact approval justify ORBA’s additional workflow remains a hypothesis; no competitive superiority is established. |
+| Six-month trajectory | Incomplete | Historical versions are covered, but changing project inputs and correcting approved plans lack explicit product semantics. These maintenance questions belong within Stage 03. |
+
+Ranked blind spots follow. **Required** identifies gaps against stated truth, verification or bounded-output commitments. **Optional** identifies product policy choices.
+
+1. **High · Required — Completeness can manufacture certainty.** The [required document](E:/BrosKi/OBRA/docs/STAGE03_PLAN.md:42) includes target users, goals, solution and prerequisites, while provenance requirements emphasize requirements and backlog items. Specify how unknown or proposed overview information remains valid without invented certainty. Define approval as acceptance of an exact planning artifact, including disclosed uncertainty; it must not imply that assumptions became verified business facts.
+
+2. **High · Required — Acceptance criteria are not independently reviewable.** “[All 20 owner-required scenarios](E:/BrosKi/OBRA/docs/STAGE03_PLAN.md:127)” are referenced without an enumerated mapping, and live quality invariants are unspecified. List those scenarios and define the rubric before implementation: fidelity to supplied requirements, scope boundaries, consistent dependencies, observable criteria and explicit unknowns. Apply human assessment to the already-required live outputs; successful parsing and persistence cannot establish planning usefulness.
+
+3. **Medium · Optional — The payoff hypothesis is missing.** Name the initial user and the decision this artifact helps them make. Using the existing verification brief, compare generating and reviewing the plan with manually preparing the same artifact. Record review effort and substantive corrections. This tests the product premise without adding integrations, agents or a research programme.
+
+4. **Medium · Required — Output bounds are not concrete enough.** The [6,000-token default](E:/BrosKi/OBRA/docs/STAGE03_PLAN.md:83) sits beside an extensive required schema. Specify list counts and text limits, then evaluate their compatibility through the planned live checks. Document that truncation can consume provider resources while producing no saved draft. Preserve the explicit retry decision and avoid unsupported price estimates.
+
+5. **Medium · Required — Approval freshness is ambiguous.** The existing [project editor](E:/BrosKi/OBRA/apps/web/src/components/project-editor.tsx:14) changes the description independently of plan snapshots. Clarify that an approved plan applies to its captured inputs. Its presentation should identify that snapshot and avoid implying that subsequent project edits are incorporated. This requires no automatic regeneration or later-stage functionality.
+
+6. **Medium · Optional — Approval has an unstated correction cost.** Approved plans are immutable, editing accepts drafts only, and every new plan is tied to generation. The specified correction path therefore appears to require another model call. State that consequence before approval and document the intended maintenance workflow. Owner/Admin approval, immutable approvals and deferring a diff viewer are policy choices; this finding does not require additional endpoints.
+
+This is planning review evidence only; no functionality was implemented or tested. Stage 03 runtime verification remains **BLOCKED** by unavailable credentials. Both real API and real browser model calls remain mandatory for **VERIFIED**.

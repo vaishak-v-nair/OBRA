@@ -129,3 +129,63 @@ def test_first_registration_does_not_gain_existing_legacy_projects(raw_client):
         saved = db.get(Project, project_id)
         assert saved.workspace_id == LEGACY_ID and saved.creator_id is None
         assert saved.title == "Predates all users" and saved.description == "Existing Stage01 data"
+
+
+def test_populated_stage02_schema_and_records_survive_stage03(client):
+    """Upgrade a separate guarded-test schema; never downgrade the development DB."""
+    import json
+
+    client.post(
+        "/api/v1/projects",
+        json={
+            "title": "Populated Stage02",
+            "description": "Preserve this exact record",
+            "workspace_id": client.workspace_id,
+        },
+    ).raise_for_status()
+    schema = "stage02_probe_" + uuid4().hex
+    tables = (
+        "users",
+        "workspaces",
+        "workspace_members",
+        "sessions",
+        "login_attempts",
+        "workspace_invitations",
+        "projects",
+    )
+    engine = make_engine(TEST_DATABASE_URL)
+    with engine.begin() as connection:
+        connection.execute(text(f'CREATE SCHEMA "{schema}"'))
+        connection.execute(text(f'SET LOCAL search_path TO "{schema}"'))
+        config = Config("alembic.ini")
+        config.attributes["connection"] = connection
+        command.upgrade(config, "0febbe526f54")
+        for table in tables:
+            connection.execute(
+                text(
+                    f'INSERT INTO "{schema}".{table} SELECT * FROM public.{table} ON CONFLICT DO NOTHING'
+                )
+            )
+
+        def snapshot():
+            return {
+                table: sorted(
+                    json.dumps(row, sort_keys=True)
+                    for row in connection.scalars(
+                        text(f'SELECT to_jsonb(t) FROM "{schema}".{table} t')
+                    )
+                )
+                for table in tables
+            }
+
+        before = snapshot()
+        assert len(before["users"]) == 1 and len(before["projects"]) == 1
+        command.upgrade(config, "head")
+        assert snapshot() == before
+        command.upgrade(config, "head")
+        assert snapshot() == before
+        assert connection.scalar(text("SELECT count(*) FROM product_manager_runs")) == 0
+        assert connection.scalar(text("SELECT count(*) FROM product_plans")) == 0
+        connection.execute(text("SET LOCAL search_path TO public"))
+        connection.execute(text(f'DROP SCHEMA "{schema}" CASCADE'))
+    engine.dispose()

@@ -1,7 +1,6 @@
 import json
 from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
-from pathlib import Path
 from threading import Barrier
 from uuid import UUID
 
@@ -412,7 +411,9 @@ def test_private_project_isolation_and_forged_ids(client):
             "database_project_still_exists": saved is not None,
             "database_workspace_unchanged": str(saved.workspace_id) == client.workspace_id,
         }
-        path = Path("../../docs/evidence/stage02-authorization.json")
+        from scripts.test_evidence import evidence_path
+
+        path = evidence_path("authorization.json")
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(evidence, indent=2))
     other.close()

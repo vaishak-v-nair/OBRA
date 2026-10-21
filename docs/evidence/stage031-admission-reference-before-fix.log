@@ -1,0 +1,68 @@
+[WebServer] INFO:     Started server process [20048]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:19524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:16936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:12988) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=34d14554-b649-451b-8098-4754d93bc790 workspace_id=-
+[WebServer] (node:24864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=34d14554-b649-451b-8098-4754d93bc790 workspace_id=8d87c90f-fd5e-4dcb-bfdf-aae5a4b93863
+[WebServer] (node:24848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10852) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=93b58831-3c2a-41a4-9db6-b112499b2cbd stage=admission_commit_acknowledged elapsed_ms=27.620 stage_duration_ms=27.594 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=93b58831-3c2a-41a4-9db6-b112499b2cbd stage=running_commit_acknowledged elapsed_ms=45.633 stage_duration_ms=17.901 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=93b58831-3c2a-41a4-9db6-b112499b2cbd stage=failure_commit_acknowledged stage_duration_ms=13.985 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+[WebServer] (node:4804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests-controlled\pm-recovery.spec.ts:167:5 › known active-project rejection creates no run and never strands a request reference (14.0s)
+
+
+  1) [chromium] › tests-controlled\pm-recovery.spec.ts:167:5 › known active-project rejection creates no run and never strands a request reference 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  locator('#product-plan').getByRole('button', { name: 'Generate Product Plan', exact: true })
+    Expected: enabled
+    Received: disabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeEnabled" locator('#product-plan').getByRole('button', { name: 'Generate Product Plan', exact: true }) with timeout 5000ms
+      - waiting for locator('#product-plan').getByRole('button', { name: 'Generate Product Plan', exact: true })
+        14 × locator resolved to <button disabled type="submit" data-slot="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring [&_svg]:size-4 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4">Generate Product Plan</button>
+           - unexpected value "disabled"
+
+
+      184 |   expect((await first).status()).toBe(504);
+      185 |   await panel.getByRole("button",{name:"Check status",exact:true}).click();
+    > 186 |   await expect(panel.getByRole("button",{name:"Generate Product Plan",exact:true})).toBeEnabled();
+          |                                                                                     ^
+      187 |   await expect(panel.getByLabel("Product brief",{exact:true})).toHaveValue(brief);
+      188 |   expect(await page.evaluate(key=>sessionStorage.getItem(key),`orba-pm-request:${user.id}:${project.id}`)).toBeNull();
+      189 |   expect(posts).toBe(1);
+        at E:\BrosKi\OBRA\apps\web\tests-controlled\pm-recovery.spec.ts:186:85
+
+    Error Context: test-results\pm-recovery-known-active-p-7c8d7-strands-a-request-reference-chromium\error-context.md
+
+  1 failed
+    [chromium] › tests-controlled\pm-recovery.spec.ts:167:5 › known active-project rejection creates no run and never strands a request reference 
+Error: ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL
+
+  × "pnpm recursive exec" failed in E:\BrosKi\OBRA\apps/web
+

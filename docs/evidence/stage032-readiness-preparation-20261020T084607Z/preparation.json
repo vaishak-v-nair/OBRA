@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "execution_class": "readiness_preparation_only",
+  "provider_double": false,
+  "completed_at": "2026-10-20T08:46:10.423226+00:00",
+  "source_sha256": "2a2128d0f21c914b4640db6eb7c31ddf446ad00076a9a28e52d03bfcbe44b098",
+  "gate_a_receipt": "20261020T083556Z-A-15fa5007\\receipt.json",
+  "gate_a_receipt_sha256": "30655fec59ae1cf4ef7eaa4e61a09ce11bbb2eb897bef307e6534a0f06aea224",
+  "command": {
+    "name": "provider-readiness",
+    "argv": [
+      "uv",
+      "run",
+      "--directory",
+      "apps/api",
+      "python",
+      "-m",
+      "scripts.check_pm_config",
+      "--check-model"
+    ],
+    "started_at": "2026-10-20T08:46:08.025030+00:00",
+    "exit_code": 0,
+    "pid": 19692,
+    "duration_seconds": 2.108,
+    "completed_at": "2026-10-20T08:46:10.133076+00:00"
+  },
+  "readiness_status": "ready_for_attempt",
+  "readiness_evidence_validated": true,
+  "generation_requests": 0,
+  "gate_b_executed": false,
+  "live_generation_verified": false,
+  "artifacts": {
+    "attempt.json": "666eca8cf45149660f3e2e0dd6c20e03ba943764febbdfd0019c7ab20ce083f0",
+    "provider-readiness.log": "af6e487bee5a891acc5e44373ccbe48e17f6c896b12a8a3884a4737c409b2949",
+    "model-readiness.json": "fa5b3f29014dd35fac25070b7ca471bc649c839396c11945714471120eaa38b1"
+  }
+}

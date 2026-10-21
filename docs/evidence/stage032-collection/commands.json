@@ -1,0 +1,44 @@
+[
+  {
+    "name": "backend-collect",
+    "argv": [
+      "uv",
+      "run",
+      "--directory",
+      "apps/api",
+      "pytest",
+      "--collect-only",
+      "-q"
+    ],
+    "started_at": "2026-10-20T08:06:45.095428+00:00",
+    "exit_code": 0,
+    "pid": 15328,
+    "duration_seconds": 3.117,
+    "completed_at": "2026-10-20T08:06:48.212051+00:00"
+  },
+  {
+    "name": "browser-collect",
+    "argv": [
+      "npm",
+      "exec",
+      "--yes",
+      "--package=pnpm@12.14.0",
+      "--",
+      "pnpm",
+      "--filter",
+      "@orba/web",
+      "exec",
+      "playwright",
+      "test",
+      "--config",
+      "playwright.controlled.config.ts",
+      "--list",
+      "--reporter=json"
+    ],
+    "started_at": "2026-10-20T08:06:48.212232+00:00",
+    "exit_code": 0,
+    "pid": 26868,
+    "duration_seconds": 7.718,
+    "completed_at": "2026-10-20T08:06:55.930308+00:00"
+  }
+]

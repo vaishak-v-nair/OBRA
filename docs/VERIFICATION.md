@@ -1,240 +1,127 @@
-# ORBA Stage 02 verification record
+# ORBA Stage03: VERIFIED on the authorized 3.6/minimal profile
 
-Date: 2026-10-18. Scope: authentication, workspaces, roles, project isolation and manual invitations only. Stage 03 has not begun. Stage 01's historical record is preserved in VERIFICATION_STAGE01.md.
+Recorded 2026-10-20. **Stage03 verdict: VERIFIED.** Exactly one newly authorized real Gemini generation succeeded, followed by strict schema validation, actual PostgreSQL persistence, browser draft editing/reload, explicit approval/reload and unrelated-workspace denial. No implementation source was changed or paid request retried. [Full A/B/C report](VERIFICATION_STAGE033_LIVE.md).
 
-## A. Implementation summary
+|Gate|Result|Actual native exit|Evidence|
+|---|---|---:|---|
+|A deterministic|PASS:285 backend,60 regression browser,33 controlled-provider browser;14 commands exited 0; zero skips/retries|0|[A receipt](evidence/stage031/20261020T162458Z-A-dca02afc/receipt.json)|
+|B real Gemini browser|PASS:1 real model-backed browser flow, one generation, one worker, zero retries|0|[B receipt](evidence/stage031/20261020T165108Z-B-88c8d84b/receipt.json), [proof](evidence/stage031/20261020T165108Z-B-88c8d84b/live-proof.json)|
+|C source/profile-bound summary|VERIFIED: both applicable gates pass|0|[Actual output](evidence/stage033-authorized-live-20261020T165054Z/gate-c-console.log), [native exit](evidence/stage033-authorized-live-20261020T165054Z/gate-c-native-exit.json)|
 
-Implemented real FastAPI registration/login/logout/me/CSRF, Argon2id password hashes, hashed opaque PostgreSQL sessions, explicit expiry/revocation/rotation, HttpOnly cookies, exact-Origin and CSRF enforcement, and PostgreSQL login-attempt limits. Next.js proxies same-origin browser API requests without becoming an authentication authority.
+Source fingerprint `661f2828f7adbdc368a31616280ebec5d27048b2dc6f9feb1ecada06505b282d` matches A/B start/end/current (127 files). Requested/returned model gemini-3.6-flash; thinking minimal;6000 combined output/thinking tokens; concurrency 1 / retries 0;90/95/100s deadlines. Provider call 8.491347s; actual usage 684 prompt +1072 candidate =1756 total tokens. Provider response `GJzXavy_AdLtg8UPqLuBiAw`; provider request ID not returned. Run `3079738f-3dd5-43f5-bc59-ded3362de3a3`; plan `1acc58d7-4d76-4234-8399-27411dd29708`, graph 1 epic /1 story /2 criteria, approved version 1 /revision 2 at 2026-10-20T16:51:42.466719Z. A new independent SQL process confirmed the same persisted approved graph and hash; outsider plan API returned 404 and UI hid content.
 
-Implemented workspace creation/switching, Owner/Admin/Member/Viewer permissions, member listing/role management/removal, manual email-bound invitation creation/listing/revocation/acceptance, and authorized project create/list/read/edit. Authentication screens, account menu, workspace/settings/invitation pages, loading/error/permission handling and existing themes/Chat creation are connected to the real backend.
+The owner's ignored .env, uncommitted source, Git history/index and historical receipts remain preserved. Root .env stays3.8/LOW; successful live evidence is bound to explicitly authorized 3.6/minimal shell overrides. Historical503/504 failures remain failures. [Preservation/SQL audit](evidence/stage033-authorized-live-20261020T165054Z/verification-and-preservation-audit.json). One successful bounded request does not guarantee future provider availability or certify production security.
 
-Migration 0febbe526f54 preserves old project fields and moves ownership into a restricted legacy workspace with no members. Registration never claims legacy data. A terminal-only dry-run/apply command transfers explicit selected UUIDs to an existing target Owner. The migration refuses a listening local API on its configured port before upgrading development ownership. No reset/drop of the development database was used.
+This authorization is consumed. No additional paid generation, model switch, commit or Stage04 is authorized. To calculate C without another model call, set the same 3.6/minimal environment overrides and run `uv run --directory apps/api python -m scripts.verification summary`.
 
-## B. Changed files
+## Historical Stage03.3 pre-live report (verbatim)
 
-| Files | Responsibility |
+# ORBA Stage03.3: current verification
+
+Recorded 2026-10-20. **Stage03 remains PARTIAL.** Provider reliability preparation and deterministic verification completed; no paid model-generation request was authorized or made. [Full A-J report and exact commands](VERIFICATION_STAGE033.md), [dated model comparison](STAGE033_PROVIDER_RELIABILITY.md).
+
+|Gate|Current result|Actual exit|Evidence|
+|---|---|---:|---|
+|A deterministic|PASS:285 backend, 60 core browser, 33 controlled-provider browser; 14 commands exited 0; zero skips/retries|0|[Immutable receipt](evidence/stage031/20261020T162458Z-A-dca02afc/receipt.json)|
+|B live, current source|NOT RUN; fresh paid authorization required|NOT RUN|Latest historical B remains FAIL/upstream504; original record below|
+|C source-bound summary|PARTIAL; no passing current-source live B|2|[Output](evidence/stage033-closure-20261020T163512Z/gate-c-console.log), [native exit](evidence/stage033-closure-20261020T163512Z/gate-c-native-exit.json)|
+|Isolated false-success experiment|Actual incorrect failed==succeeded assertion rejected; not part of normal suite|1 expected|[Experiment](evidence/stage031/20261020T163512Z-wrong-success-b0919537/experiment.json)|
+
+Current source fingerprint: `661f2828f7adbdc368a31616280ebec5d27048b2dc6f9feb1ecada06505b282d` (127 files; start/end/current match). Receipt SHA256: `26b645c85a516fd84f41c5f9b3be42f464af96bfefbfcd978f0f878f73107f19`. Prior source2a2128d0... and its passing A/failed B remain history. Thirteen relevant files changed/four added/none removed; all other baseline source hashes remain unchanged.
+
+The latest504 was an upstream provider HTTP response after88.825s, before output validation/persistence. Earlier503 took1.538s. Schema/thinking/capacity effects remain hypotheses. Three read-only exact-model metadata GETs returned200 for3.8Flash/3.6Flash/3.5Flash-Lite; this is not live generation. Recommend a separately authorized3.6Flash/minimal trial with existing6000combinedtokens and90/95/100s budgets. Current ignored.env stays3.8/LOW unchanged. No automatic model switch/retry.
+
+Changes add explicit reviewed model/thinking configuration, a shared UTF8 input bound, pm-v2 and lean provider-only hints without changing the authoritative PRD schema, original-run configuration diagnostics and source/profile evidence binding. Actual real-PG/API and desktop/mobile/tablet deterministic checks passed. The intentionally incorrect assertion exited1 separately. Previously failing fixture/engine commands remain documented in the full report.
+
+The [preservation audit](evidence/stage033-closure-20261020T163512Z/preservation-and-gate-a-audit.json) checks 588 prior evidence files:587 byte-identical, only mutable latest-A advanced; no changed receipt/latest-B, credentials, HEAD or unrelated baseline source. The complete previous verification document is preserved verbatim below and [archived with its original hash](VERIFICATION_STAGE032_LIVE.md). Earlier failures/successes must not be recertified with this new source fingerprint.
+
+## Historical Stage03.2 report (verbatim)
+
+# ORBA Stage 03.2: authorized live Gate B result
+
+Recorded 2026-10-20. **Stage 03 verdict: PARTIAL.** The owner authorized one bounded live attempt on the frozen source below. It was executed once; Gemini returned upstream HTTP **504 DEADLINE_EXCEEDED**. The attempt stopped, no retry/model switch occurred, and no further paid call is authorized.
+
+## Gate A, B and C
+
+| Gate | Actual result | Native exit | Evidence |
+|---|---|---:|---|
+| A: deterministic | PASS; 224 backend, 60 core browser, 30 controlled-provider browser tests; all 14 commands 0, no mandatory skips/retries | 0 | [Receipt](evidence/stage031/20261020T083556Z-A-15fa5007/receipt.json) |
+| B: real Gemini browser | FAIL; 0 passed, 1 failed, 0 skipped, 0 flaky; one worker, retries 0 | 1 | [Receipt](evidence/stage031/20261020T090120Z-B-0f70b66f/receipt.json), [actual browser log](evidence/stage031/20261020T090120Z-B-0f70b66f/live-browser.log) |
+| C: source-bound summary | PARTIAL; A passes, B has no passing complete receipt | 2 | [Actual summary output](evidence/stage032-authorized-live-20261020T090047Z/gate-c-console.txt), [native exit](evidence/stage032-authorized-live-20261020T090047Z/gate-c-native-exit.json) |
+
+Gate A was revalidated against the unchanged current source and immutable report artifacts; it did not need a new execution. Its deterministic provider doubles remain separate from live model evidence. Gate C was calculated by the existing network-free script, without another model request. Historical successful live flows and failed HTTP 503/504 attempts remain history, not substitutes for this failed current-source B.
+
+## Actual provider response and validation evidence
+
+| Field | Recorded value |
 |---|---|
-| apps/api/orba/auth.py, security.py | Argon2id, opaque sessions, CSRF/Origin, rate limits and shared authorization |
-| apps/api/orba/workspaces.py | Real workspace, membership, invitation and role transactions |
-| apps/api/orba/main.py | Authenticated project APIs, PATCH editing, full schema readiness and safe errors |
-| apps/api/orba/models.py, schemas.py, config.py | Auth/workspace entities, validated API shapes and environment configuration |
-| apps/api/orba/migration_safety.py | Actual local listener guard before ownership migration |
-| apps/api/migrations/versions/0febbe526f54_auth_workspaces.py | Tables, constraints/indexes, non-destructive legacy backfill, forward-only safety |
-| apps/api/migrations/env.py, script.py.mako | Migration tooling and explicit connection support for isolated migration tests |
-| apps/api/scripts/claim_legacy.py | Explicit operator-only legacy claim, dry-run default |
-| apps/api/scripts/prepare_tests.py, tests/conftest.py | Guarded real test schema/data setup and real account fixtures |
-| apps/api/tests/test_projects.py | Retained Stage 01 scenarios adapted to authorized workspaces |
-| apps/api/tests/test_auth_workspaces.py, test_legacy.py | Auth, isolation, roles, races, migrations and actual CLI tests |
-| apps/api/tests/experiments/unauthorized_success_experiment.py | Explicit-only deliberately wrong authorization expectation |
-| apps/web/src/app/api/v1/[...path]/route.ts | Same-origin proxy, cookie/header forwarding, no-store responses |
-| apps/web/src/components/session.tsx, auth-form.tsx, shell.tsx | Session gate, signup/signin, actual account and workspace controls |
-| apps/web/src/components/project-form.tsx, project-editor.tsx | Preserve Chat flow; workspace-scoped writes and editing |
-| apps/web/src/app/workspaces, signin, signup, invitations/accept, settings | Real team and account flows |
-| apps/web/src/lib/api.ts, use-hash.ts | Typed cookie/CSRF requests and safe invitation fragment flow |
-| apps/web/tests, playwright.config.ts | Retained regression plus real multi-user browser flows |
-| scripts/verify.ps1 | Existing workflow extended with frozen install, peer/drift checks and native output capture |
-| README.md, AGENTS.md, docs/ARCHITECTURE.md, ROADMAP.md | Reproduction, scope, security contract and operational limits |
-| docs/STAGE02_PLAN.md, STAGE02_TEST_PLAN.md, STAGE02_INDEPENDENT_REVIEW.md | Sequential autoplan and actual independent review evidence |
-| apps/api/uv.lock, pyproject.toml, .env.example files | Maintained hashing/email libraries and configuration |
+| Requested provider/model | google-gemini / gemini-3.8-flash |
+| Official SDK | google-genai 2.31.0 |
+| Generation run | c0078a43-d0ad-4036-93d6-5881ba886e66 |
+| Test project | f0adb599-03e9-44e7-aa24-6cebeea87097 |
+| Provider outcome | ServerError, upstream HTTP 504, DEADLINE_EXCEEDED |
+| Error category/origin | provider_timeout / upstream_http |
+| Public API status | 504 |
+| Provider call duration | 88,825.025 ms (88.825025s) |
+| Recorded elapsed before terminal commit | 88,900.712 ms |
+| Acknowledged failure commit duration | 11.984 ms, separately logged |
+| Final run status | failed |
+| Internal diagnostic reference | 8271fdfd-5bfc-45f7-aae0-392418ae55ae |
+| Returned model / provider response ID / provider request ID | null / null / null |
+| Token usage | null; not returned, never assumed zero |
+| Structured PRD/schema validation | NOT RUN: no product-plan response was received |
 
-## C. Repository baseline and actual commands
+The record identifies an **upstream HTTP deadline response**, not a local 100s envelope or Next proxy timeout. The 90s provider / 95s transport / 100s outer limits were preserved. No timeout, model, credential, provider adapter, lifecycle or test assertion was changed to obtain another outcome.
 
-Environment: Windows/PowerShell 7.6.7, Node 26.7.0, pnpm 12.14.0, uv 0.12.13, Python 3.14.4, Docker Engine 29.8.1, PostgreSQL 18.6. Existing Next/React/TypeScript/ESLint lock versions retained. Added argon2-cffi 25.1.0 and email-validator 2.3.0 through uv.lock.
+The read-only readiness child separately exited 0 before generation and reported ready_for_attempt; it never proved generation availability. [Readiness artifact](evidence/stage031/20261020T090120Z-B-0f70b66f/model-readiness.json). The actual failed provider response has no returned model identifier, response/request ID or usage. Missing values were not inferred from configuration or populated with dummy metadata. The internal diagnostic reference above is not a provider response ID.
 
-Git status showed every source file untracked; main had no commits and no origin. It was not possible to distinguish later user changes with Git. Read the source and required documents; preserved a source snapshot at `C:/Users/vaish/AppData/Local/Temp/orba-stage01-before-stage02.zip` before editing. No commit, push or deployment occurred. The default development database contained zero projects before migration and still zero afterward; preservation is additionally established with seeded old-schema records in real PostgreSQL, rather than claiming nonexistent development records were observed.
+## Persistence, browser and isolation results
 
-The full pre-change scripts/verify.ps1 exited **0**: 15 backend tests passed in 12.43s and 30 browser tests passed in 40.3s, with original lint/type/build checks passing. The old local API/frontend processes were then stopped before migration. Historical baseline ledger is in docs/evidence/stage01-baseline.txt.
+| Mandatory live requirement | Actual result |
+|---|---|
+| Single real generation dispatch | One attempted POST, one forwarded POST, zero blocked duplicates; SDK attempts 1, HTTP transport retries 0 |
+| Configured scope | 1 worker, 0 browser retries, LOW thinking, 6,000 combined output/thinking-token limit; no continuation or paid API probe |
+| Browser setup | Real registration/sign-in, workspace and project creation reached the generation action |
+| Generation success | FAIL: browser/API received 504; normal 201 assertion actually failed |
+| Truthful failure UI | PASS for failure handling: the browser observed an alert; no fabricated PRD appeared |
+| Persisted run | One actual failed run, with completion timestamp and safe provider diagnostics |
+| Persisted plan graph | Zero plans, zero epics, zero stories, zero criteria |
+| Generated PRD rendering | NOT RUN: no valid plan existed |
+| Human criterion editing/reload | NOT RUN: stopped at provider failure |
+| Approval and approval persistence | NOT RUN: no draft/approved plan existed |
+| Unrelated-user isolation in this live flow | NOT RUN: stopped before that step; existing Gate A isolation coverage remains passed |
+| Successful live schema/API/independent SQL graph audit | NOT RUN: no generated plan |
 
-`pnpm` commands were executed through `npm exec --yes --package=pnpm@12.14.0 -- pnpm` because pnpm is not globally installed. Final exact script invocation: `pwsh -File scripts/verify.ps1`, exit **0**. Its constituent commands:
+The browser's first independent SQL process found the failed run and no plans. A second existing read-only inspector exited 0 and confirmed the same. A further fresh SQLAlchemy session used an explicit READ ONLY transaction on guarded PostgreSQL orba_test and counted **1 project, 1 run, 0 plans, 0 epics, 0 stories and 0 criteria**. That confirms the failure was persisted and no successful-looking graph was created; it is not successful-generation evidence. [Live proof](evidence/stage031/20261020T090120Z-B-0f70b66f/live-proof.json), [independent inspector](evidence/stage032-authorized-live-20261020T090047Z/failure-sql.json), [read-only SQL graph audit](evidence/stage032-authorized-live-20261020T090047Z/project-graph-sql-audit.json).
 
-| Actual command | Exit | Observed result |
+## Commands and actual exit codes
+
+| Command/check | Exit | Duration/meaning |
 |---|---:|---|
-| docker compose -f infra/compose.yaml --profile test up -d --wait | 0 | Both real PostgreSQL containers healthy |
-| uv sync --locked --directory apps/api | 0 | Locked environment checked |
-| pnpm install --frozen-lockfile | 0 | Lockfile up to date |
-| pnpm peers check | 0 | No peer dependency issues |
-| uv run --directory apps/api alembic upgrade head | 0 | Development revision at 0febbe526f54 |
-| uv run --directory apps/api alembic check | 0 | No new upgrade operations detected |
-| uv run --directory apps/api pytest -q | 0 | **44 passed in 27.94s** |
-| uv run --directory apps/api ruff check . | 0 | All checks passed |
-| uv run --directory apps/api ruff format --check . | 0 | 21 files already formatted |
-| pnpm typecheck | 0 | next typegen + strict tsc --noEmit |
-| pnpm lint | 0 | ESLint --max-warnings 0 |
-| pnpm build | 0 | Next production build generated all expected routes |
-| pnpm test:e2e | 0 | **42 passed (2.0m)** |
+| pwsh -NoProfile -File scripts/verify-live.ps1 -AllowPaid | 1 | Exactly one authorized native invocation; no retry |
+| uv run --directory apps/api python -m scripts.check_pm_config --check-model | 0 | Native B readiness child: 1.924s, read-only metadata only |
+| npm exec --yes --package=pnpm@12.14.0 -- pnpm test:e2e:live | 1 | Native B browser child: 111.328s; actual browser report duration 106.758812s |
+| uv run --directory apps/api python -m scripts.verification summary | 2 | Actual Gate C: PARTIAL |
+| uv run --directory apps/api python -m scripts.inspect_pm_run --run c0078a43-d0ad-4036-93d6-5881ba886e66 | 0 | Fresh SQL failure inspection: 1.560s, no model call |
+| Initial inline read-only preservation audit | 1 | Windows backslash-vs-forward-slash comparison in audit helper; SQL audit already written; no application edit or model request |
+| Corrected inline preservation audit | 0 | Normalized only path separators; still required exactly latest-B pointer to be the sole changed prior evidence file |
 
-Other executed commands:
+The preservation-helper failure remains in [audit-first-error.json](evidence/stage032-authorized-live-20261020T090047Z/audit-first-error.json). It was not suppressed and did not trigger any paid request. Existing isolated false-success experiments and every original negative-path result remain untouched; no assertion was weakened or skipped to turn this live failure green.
 
-| Command | Exit / result |
-|---|---|
-| git log before changes | 128, main has no commits |
-| gstack startup preamble probe | Helper absent; degraded mode, no helper telemetry/consensus invented |
-| uv add --directory apps/api 'argon2-cffi>=25,<26' 'email-validator>=2,<3' | 0 |
-| Alembic revision --autogenerate | 0; rendered unnamed-downgrade warning, corrected names and replaced downgrade with explicit forward-only refusal before execution |
-| Initial Stage 02 pytest | 1; 14 passed/1 failed because anonymous protection now correctly returns 401 before DB access |
-| Updated Stage 02 pytest | 0; 15 then 36, 38, 40, 43 and final 44 actual passing cases as coverage grew |
-| Initial frontend typecheck | 2 wrapper; old list call still passed offset where workspace ID was required; fixed together with API client |
-| Intermediate lint/Ruff checks | Nonzero for import order, explicit subprocess check flags and React effect/ref patterns; fixed without disabling rules |
-| First Stage 02 browser suite | 1; 32 passed/4 failed: async session gate/skip focus assumptions and early responsive-nav probe |
-| Focused keyboard suite | 1; 8 passed/1 failed: closed-details hidden button was included in focusables |
-| Focused mobile account regression after fix | 0; 1 passed in 12.4s |
-| Intermediate full scripts/verify.ps1 | 0; 40/39 then 43/42 backend/browser passing results before final additions |
-| codex --version / login status | 0; CLI 0.163.0, authenticated |
-| Read-only independent codex exec | 0; four material findings with actual source dispositions |
-| uv run --directory apps/api pytest -q tests/experiments/unauthorized_success_experiment.py | **1, intentional**; `assert 404 == 200`, separate from passing suite |
-| Uvicorn --host 127.0.0.1 --port 8000 --no-proxy-headers | Running; startup complete, live/ready HTTP 200 |
-| pnpm --filter @orba/web start | Running; Next ready in 201ms, signup HTTP 200 |
-| Production web/API smoke probes | 0; anonymous API 401, same-origin CSRF 200 and HttpOnly/Strict preauth cookie |
-| git diff --check | 0; bounded evidence because files remain untracked |
-
-Final transcript: docs/evidence/verification-transcript.txt. It now includes native stdout and all 13 exit statuses; some host-native lines appear twice because of PowerShell transcript behavior. Test counts above come from actual executed summaries, not duplicate transcript-line counting. Normal E2E retries are 0; no skipped or xfail tests exist in the passing suite.
-
-### Continuation runtime check, 2026-10-18 23:22 IST
-
-On resuming the handoff, ports 8000/3000 refused connections and `docker compose -f infra/compose.yaml ps` exited **1**: `open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.` Docker Desktop was stopped. Started the installed per-user Docker Desktop with `Start-Process -FilePath 'C:\Users\vaish\AppData\Local\Programs\DockerDesktop\Docker Desktop.exe' -WindowStyle Hidden`; its status changed from starting to running. No database reset or source change was needed.
-
-`docker compose -f infra/compose.yaml --profile test up -d --wait`, `docker compose -f infra/compose.yaml ps`, `uv run --directory apps/api alembic current` and `uv run --directory apps/api alembic check` each exited **0**. Both PostgreSQL containers became healthy, development revision remained `0febbe526f54 (head)`, and no new upgrade operations were detected. Restarted the documented Uvicorn command and the existing production web build; both reported ready (Next: 6.0s).
-
-Fresh HTTP assertions exited **0**: live/ready/signup/CSRF **200**, anonymous same-origin `/auth/me` **401**, signup form present, and pre-auth cookie HttpOnly/SameSite=Strict. Sanitized results are in `docs/evidence/stage02-resume-smoke.json`; no token or cookie value was recorded. The 44/42 counts above remain the actual complete verification run, archived in `docs/evidence/stage02-final-verification.txt`; tests were not claimed to have rerun during this runtime restart.
-
-## D. Verification matrix
-
-| Requirement | Result | Actual evidence |
-|---|---|---|
-| Valid registration persists user | PASS | Real API + independent SQL queries; browser signup |
-| Normalized duplicate email rejected | PASS | Mixed-case/whitespace duplicate returns 409; DB still one user |
-| Salted Argon2id password storage | PASS | Library verifies hashes; equal passwords produce distinct hashes |
-| Valid login and session persistence | PASS | API rotation/me assertions and browser sign-in after logout |
-| Invalid login rejected | PASS | Actual 401 safe error |
-| Unauthenticated protected request rejected | PASS | Real 401, including production smoke |
-| Logout revokes session | PASS | Stored revoked_at and replayed-cookie 401; browser content blocked |
-| Expired/revoked sessions rejected | PASS | Real DB lifecycle states produce 401 |
-| Session rotation | PASS | New cookie differs; presented prior session revoked in DB |
-| HttpOnly/SameSite/Secure configuration | PASS | HTTP cookie flags; real HTTPS TestClient/Secure cookie; invalid HTTPS/false startup rejected |
-| CSRF/Origin protections | PASS | Missing/wrong/stale/non-ASCII token and wrong Origin produce 403 |
-| Brute-force restriction | PASS | Persisted sequential limit; synchronized independent-instance race yields 401/429 |
-| Workspace creation and Owner membership | PASS | API/DB assertions and real UI creation |
-| Workspace switching | PASS | Old component state cleared; real selected-space project lists and empty state |
-| Owner invitation | PASS | Real authorized 201, one-time link, stored token hash |
-| Intended user joins shared workspace | PASS | Email-bound authenticated acceptance and unique persisted membership; two real browser contexts |
-| Expired/revoked/used/wrong-email invitation rejected | PASS | Real DB/token/API cases; no unauthorized member row |
-| Atomic invitation acceptance | PASS | Barrier-synchronized requests yield 200/400 and one DB membership |
-| Viewer cannot create/edit | PASS | API 403 and unchanged storage; browser disabled controls + actual denied request |
-| Member can create/edit | PASS | API/DB writes; UI promotion then real Member project contribution |
-| Member cannot invite/manage roles | PASS | Server-side 403 assertions |
-| Admin cannot promote self/affect Owners | PASS | Actual PATCH/DELETE denial |
-| Final Owner protected | PASS | 409 direct paths; synchronized owner demotions yield 200/409, one Owner remains |
-| Revocation versus project write | PASS | Real synchronized requests; either valid pre-revocation commit or denied write; all subsequent writes denied |
-| Private project exact UUID isolation | PASS | Other user read/edit 404; original DB row and ownership unchanged |
-| Private member list isolation | PASS | Other user's request 404 |
-| Forged workspace/creator IDs denied | PASS | Unauthorized workspace 404; extra creator field 422 |
-| Original project create/list/retrieve/persist | PASS | All 15 original backend cases retained/adapted; all 30 original browser scenarios retained |
-| Legacy IDs/data/timestamps survive migration | PASS | Fresh Stage 01 schema/seed -> actual Alembic head -> exact field comparison; repeated head remains one row |
-| First registration cannot claim legacy data | PASS | Project exists before first registration; no workspace access/creator assignment afterward |
-| Explicit operator claiming | PASS | Actual CLI dry run/apply/replay rejection; mixed batch rejects atomically; original fields/times unchanged |
-| Safe local upgrade | PASS | Actual listener causes migration guard refusal; closed port accepted |
-| Negative authorization detection | PASS | 404 with no secret content + independent DB existence check + UI absence |
-| Incorrect-success experiment really fails | PASS | Separate actual pytest exit1 at the deliberately incorrect assertion |
-| Themes/responsive/keyboard | PASS | Desktop/mobile/tablet Chromium regressions and account-menu/skip/Escape checks |
-| Build, lint, typecheck, locks, migration/drift | PASS | Final complete verification script exit0 |
-| Documentation/reproduction | PASS | Updated README, AGENTS, architecture/roadmap, test plan and this execution record |
-| Public deployment/production security certification | NOT RUN | Outside current local scope; not claimed |
-| Firefox/WebKit/physical devices/load/penetration testing | NOT RUN | Not part of the executed Chromium local acceptance |
-
-## E. Test evidence and scope
-
-Final actual backend summary:
+## Source fingerprint and evidence integrity
 
 ```text
-............................................                             [100%]
-44 passed in 27.94s
+2a2128d0f21c914b4640db6eb7c31ddf446ad00076a9a28e52d03bfcbe44b098
 ```
 
-Final actual browser summary:
+All **123 relevant source files** are byte-identical to the owner-authorized intake. The same fingerprint appears in Gate A and Gate B start/end manifests and Gate C. Gate B's exact nonsecret runtime profile and Gate A receipt hash match intake; its readiness and immutable artifact hashes were independently validated. No implementation code was edited.
 
-```text
-Running 42 tests using 1 worker
-42 passed (2.0m)
-```
+Of **564 pre-existing evidence files**, **563 remain byte-identical**. Only the documented mutable latest-B.json pointer advanced to this new failed attempt; no historical receipt was modified. Latest-A stayed unchanged. HEAD/index, root .env and API dotenv presence/content remain unchanged. No commit, discard, reset, credential change, public deployment or Stage 04 work occurred. [Authorization/intake](evidence/stage032-authorized-live-20261020T090047Z/authorization-intake.json), [preservation audit](evidence/stage032-authorized-live-20261020T090047Z/preservation-audit.json).
 
-Backend uses actual FastAPI handlers, SQLAlchemy, psycopg, Argon2id, Alembic and PostgreSQL. TestClient is the real application transport; no authentication/authorization mocks or SQLite substitutions. Password/session/invitation state is queried independently. Expiry/revocation tests put real persisted rows into those lifecycle states. Concurrency tests use synchronized threads, separate sessions/clients (and independent app instances for the limiter), real locks and time-bounded results.
+The previous current verification report was archived byte-for-byte before this current status update and checked against its pre-authorization hash. It preserves the complete Gate A command table, historical failed attempts, controlled-provider test evidence, timeout findings and reproduction instructions. [Pre-live report](evidence/stage032-authorized-live-20261020T090047Z/prelive-verification.md), [archive hash check](evidence/stage032-authorized-live-20261020T090047Z/prelive-report-preservation.json). Earlier Stage 03/03.1/password reports remain unchanged. A literal runtime-key scan found no occurrence in Git-visible files/frontend assets at audit time; this is not a comprehensive security certification.
 
-Browser tests use actual Next.js, a real separate Uvicorn process and isolated PostgreSQL. Four team/security scenarios plus ten retained Stage 01 scenarios run in each of three Chromium viewports (42). Team flow includes UI registration, workspace/project creation, reload, manual invitation, recipient registration/acceptance, shared visibility, actual Viewer denial, UI role promotion, Member contribution, logout, protected-content rejection and actual sign-in. Separate contexts verify exact UUID isolation and switching. Offline mode is a genuine browser network failure, not an intercepted fake API response. Offline logout asserts local content clearing and explicitly observes that an unreachable server session remains valid; it never fabricates revocation.
+## Remaining blocker and verdict
 
-Zero skipped/xfail tests and zero configured retries. The intentional wrong-policy file does not match normal pytest discovery and is invoked explicitly only. Auth network traces/failure screenshots are disabled to avoid storing cookies/passwords/invitation secrets; safe home screenshots are still explicitly generated, and all behavioral assertions remain intact.
+The current-source real Gemini generation and the downstream live validation/edit/approval/isolation journey did not complete. Correct failure handling cannot substitute for those mandatory successful live checks. Upstream DEADLINE_EXCEEDED is the observed blocker. Token consumption and any actual charge are unknown because the provider returned no usage metadata.
 
-Artifacts: docs/evidence/verification-transcript.txt, stage02-final-verification.txt, stage02-authorization.json, stage02-expected-failure.txt, stage02-api-smoke.json, stage02-web-smoke.json, stage02-resume-smoke.json; apps/web/playwright-report/index.html and test-results/.last-run.json (passed, no failed tests); six safe home screenshots. Generated browser artifacts are ignored. Desktop light home was visually inspected after Stage 02 integration. Browser device emulation does not establish native-device compatibility or full WCAG conformance.
-
-## F. Negative-path evidence
-
-The actual independent-user probe recorded:
-
-```json
-{
-  "project_id": "e0dfc13c-2861-40c5-a621-5700a5e27872",
-  "http_status": 404,
-  "response": {"error": {"code": "not_found", "message": "Project not found."}},
-  "database_project_still_exists": true,
-  "database_workspace_unchanged": true
-}
-```
-
-The test verifies original private title/description/ownership in a separate database session at the denial observation. Subsequent test cleanup intentionally clears only isolated test data. Browser tests separately show no private project content to the unrelated signed-in user. The correct test passes because the operation was denied; unauthorized access did not succeed.
-
-The isolated wrong-policy experiment used another real user and exact private UUID, verified that the DB still contained the project, then asserted unauthorized HTTP success. Actual output:
-
-```text
-E       assert 404 == 200
-E        + where 404 = <Response [404 Not Found]>.status_code
-1 failed in 0.62s
-EXPECTED_FAILURE_EXPERIMENT_EXIT=1
-```
-
-This is an explicitly expected-failure experiment. It is neither a production test failure nor an xfail/green stub. Its original output remains in stage02-expected-failure.txt. No application change was made to satisfy the incorrect expectation.
-
-Other genuine negative paths: CSRF/origin/role denial, login throttling, invitation expiry/reuse/revocation/email mismatch, final-owner protection, unavailable database readiness, and actual offline browser requests. Their expected denial/handling behavior is asserted in the normal passing suite.
-
-## G. Security limitations and review dispositions
-
-This is local development authentication, not certified production security. No verified email ownership, recovery, SSO/OAuth, MFA/passkeys, production TLS/reverse-proxy deployment, durable audit store, full distributed deployment qualification, penetration/load test or background session-cleanup worker. Duplicate-email registration can reveal account existence. The basic limiter can affect legitimate users behind a shared local proxy; it is documented and server-enforced, not advertised as complete abuse protection.
-
-Cookie Secure defaults false only for local HTTP; HTTPS configuration requires true. Services/DB bind loopback and public deployment was not attempted. Migration guard covers the configured local API port; operators must inventory/stop custom or remote processes independently. Legacy migration is forward-only. Terminal/database access is operator authority; the claim command is not available to web users.
-
-No real-time permission push: every subsequent protected request enforces current membership. A network failure may prevent server logout; the UI clears protected state and warns that revocation is unconfirmed. Project writes have no server idempotency contract; drafts persist and writes are not automatically retried.
-
-Autoplan ran sequential CEO → Design → DX → Eng review, with delegated and actual same-family read-only CLI review. Helper/designer tooling was absent; no Claude/cross-model consensus was invented. CLI exit0 reported four source findings: failed logout retained local data, unsafe old-API upgrade path, stale proxy launch instructions, and concurrency/mixed-claim test gaps. Resolved with local safe-clear/warning, migration listener guard, --no-proxy-headers startup, synchronized races and actual mixed-batch CLI verification. Delegated review also reproduced the non-ASCII CSRF exception and found mobile native focus controls missing; both were fixed and exercised. Review artifacts preserve findings as historical observations, not current unresolved failures.
-
-Earlier real failures were preserved above and fixed: anonymous 401 versus old availability assumption; workspace API client mismatch; lint/effect/ref rules; async gated skip/navigation focus; hidden closed-details focus target. No assertions were removed or rules disabled. Original backend availability test now supplies an opaque invalid credential to force the genuinely unavailable database session lookup; it does not fabricate an authenticated identity. The plain anonymous path is separately required to return 401.
-
-Source remains uncommitted/untracked as at intake. No remote CI, commit, push or deployment is claimed. Durable operational findings are documented in this repository: Uvicorn proxy-header trust, byte-safe CSRF comparison, native focus visibility, migration shutdown requirements and credential-safe test artifacts. No global memory was modified.
-
-## H. Exact reproduction
-
-Fresh setup and configuration are in README.md. From repository root:
-
-```powershell
-npm exec --yes --package=pnpm@12.14.0 -- pnpm install --frozen-lockfile
-uv sync --locked --directory apps/api
-npm exec --yes --package=pnpm@12.14.0 -- pnpm --filter @orba/web exec playwright install chromium
-pwsh -File scripts/verify.ps1
-```
-
-Docker Desktop must be running. Do not run backend/E2E concurrently; both use the isolated orba_test database. Free 8001/3001 before E2E; the runner refuses service reuse. Development 8000/3000 may run once already at Stage 02; fresh ownership migration requires the old API stopped. Use exact localhost WEB_ORIGIN and server-only API_URL examples.
-
-Start application in two terminals:
-
-```powershell
-uv run --directory apps/api uvicorn orba.main:app --host 127.0.0.1 --port 8000 --no-proxy-headers
-```
-
-```powershell
-npm exec --yes --package=pnpm@12.14.0 -- pnpm dev
-```
-
-Open http://localhost:3000. Real accounts must register; no seeded development identity/bypass exists. For production-built local serving use `pnpm build` then `pnpm --filter @orba/web start`. The current production-built server is running locally. Follow README's explicit dry-run/--apply procedure to claim legacy projects; never drop/reset development data.
-
-## I. Stage verdict
-
-**VERIFIED**
-
-All mandatory Stage 02 checks executed successfully within the recorded local PostgreSQL/Chromium scope. No Stage 03 functionality was implemented.
+**Stage 03: PARTIAL.** The single authorized paid attempt is consumed. Do not execute another live command, switch models, increase limits, retry or start Stage 04 without fresh owner authorization. This report records the failure; it does not authorize remediation or another attempt.

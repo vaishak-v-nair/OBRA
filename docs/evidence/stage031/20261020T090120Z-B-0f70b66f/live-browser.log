@@ -1,0 +1,67 @@
+$ pnpm --filter @orba/web test:e2e:live
+$ uv run --directory ../api python -m scripts.verification live-preflight && playwright test --config playwright.live.config.ts
+[WebServer] INFO:     Started server process [27608]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:8996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:28424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=1226f8c0-986a-489b-918d-640672e2be14 workspace_id=-
+[WebServer] (node:27412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_revoked actor_id=1226f8c0-986a-489b-918d-640672e2be14 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=1226f8c0-986a-489b-918d-640672e2be14 workspace_id=-
+[WebServer] (node:16736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1226f8c0-986a-489b-918d-640672e2be14 workspace_id=69fd30c3-6ed2-409e-95d9-0e08d0c904c5
+[WebServer] (node:5264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=c0078a43-d0ad-4036-93d6-5881ba886e66 stage=admission_commit_acknowledged elapsed_ms=54.560 stage_duration_ms=54.516 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c0078a43-d0ad-4036-93d6-5881ba886e66 stage=running_commit_acknowledged elapsed_ms=75.546 stage_duration_ms=20.791 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] (node:4448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=c0078a43-d0ad-4036-93d6-5881ba886e66 stage=failure_commit_acknowledged stage_duration_ms=11.984 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=504
+[WebServer] (node:28196) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium-live] › tests-live\pm-live.spec.ts:9:5 › real model plan, editable criteria, persisted approval and unrelated-user denial (1.6m)
+
+
+  1) [chromium-live] › tests-live\pm-live.spec.ts:9:5 › real model plan, editable criteria, persisted approval and unrelated-user denial 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 504
+
+      30 |   await panel.getByRole("button",{name:"Generate Product Plan",exact:true}).click();const response=await generation;
+      31 |   if(response.status()!==201){const error=(await response.json()).error;proof.http_status=response.status();proof.run_id=error?.run_id;proof.error_category=error?.code;if(error?.run_id)proof.failure_sql=JSON.parse(execFileSync("uv",["run","--directory","../api","python","-m","scripts.inspect_pm_run","--run",error.run_id],{encoding:"utf8",stdio:["ignore","pipe","pipe"]}));await expect(panel.getByRole("alert")).toBeVisible();proof.failure_visible=true;}
+    > 32 |   expect(response.status()).toBe(201);const run=await response.json();proof.run_id=run.id;proof.plan_id=run.plan_id;proof.stage="draft_audit";
+         |                             ^
+      33 |   await expect(panel.getByTestId("plan-state")).toHaveText("draft");
+      34 |   const apiPlan=await (await page.request.get(`/api/v1/projects/${project.id}/pm-plans/${run.plan_id}`)).json();
+      35 |   expect(apiPlan.generation.id).toBe(run.id);expect(apiPlan.document.epics.length).toBeGreaterThan(0);expect(apiPlan.document.epics[0].stories.length).toBeGreaterThan(0);expect(apiPlan.approved_by).toBeNull();
+        at E:\BrosKi\OBRA\apps\web\tests-live\pm-live.spec.ts:32:29
+
+    Error Context: test-results\pm-live-real-model-plan-ed-0e566-l-and-unrelated-user-denial-chromium-live\error-context.md
+
+  1 failed
+    [chromium-live] › tests-live\pm-live.spec.ts:9:5 › real model plan, editable criteria, persisted approval and unrelated-user denial 
+[ELIFECYCLE] Command failed with exit code 1.
+Error: ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL
+
+  × "pnpm recursive run" failed in E:\BrosKi\OBRA\apps/web
+
+[ELIFECYCLE] Command failed with exit code 1.

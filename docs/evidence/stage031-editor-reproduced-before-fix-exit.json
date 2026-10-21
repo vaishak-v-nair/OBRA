@@ -1,0 +1,25 @@
+{
+  "name": "editor-revision-reproduced-before-fix",
+  "argv": [
+    "npm",
+    "exec",
+    "--yes",
+    "--package=pnpm@12.14.0",
+    "--",
+    "pnpm",
+    "--filter",
+    "@orba/web",
+    "exec",
+    "playwright",
+    "test",
+    "--config",
+    "playwright.controlled.config.ts",
+    "--project=chromium",
+    "--grep=status recovery never advances"
+  ],
+  "started_at": "2026-10-19T16:32:01.709809+00:00",
+  "exit_code": 1,
+  "pid": 22500,
+  "duration_seconds": 33.088,
+  "completed_at": "2026-10-19T16:32:34.797879+00:00"
+}

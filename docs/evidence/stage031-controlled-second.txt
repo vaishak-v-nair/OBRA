@@ -1,0 +1,484 @@
+$ pnpm --filter @orba/web test:e2e:controlled
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.controlled.config.ts
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [12296]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:8608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:11920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:22636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25948) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=ec8a00cf-28c9-4e02-a726-a2a5342f726f workspace_id=-
+[WebServer] (node:4688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ec8a00cf-28c9-4e02-a726-a2a5342f726f workspace_id=64a9601f-1c06-46ea-a352-ddad5a1981bc
+[WebServer] (node:25152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] ⨯ ./apps/web/src/components/product-plan.tsx
+[WebServer] Error: Reading source code for parsing failed
+[WebServer] An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+[WebServer] 
+[WebServer] Caused by:
+[WebServer] - invalid utf-8 sequence of 1 bytes from index 11092
+[WebServer] 
+[WebServer] Import traces:
+[WebServer]   Client Component Browser:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer]   Client Component SSR:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer] 
+[WebServer] [browser] ./apps/web/src/components/product-plan.tsx
+[WebServer] Error: Reading source code for parsing failed
+[WebServer] An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+[WebServer] 
+[WebServer] Caused by:
+[WebServer] - invalid utf-8 sequence of 1 bytes from index 11092
+[WebServer] 
+[WebServer] Import traces:
+[WebServer]   Client Component Browser:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer]   Client Component SSR:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component] 
+[WebServer] [browser] ./apps/web/src/components/product-plan.tsx
+[WebServer] Error: Reading source code for parsing failed
+[WebServer] An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+[WebServer] 
+[WebServer] Caused by:
+[WebServer] - invalid utf-8 sequence of 1 bytes from index 11092
+[WebServer] 
+[WebServer] Import traces:
+[WebServer]   Client Component Browser:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer]   Client Component SSR:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component] 
+[WebServer] [browser] ./apps/web/src/components/product-plan.tsx
+[WebServer] Error: Reading source code for parsing failed
+[WebServer] An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+[WebServer] 
+[WebServer] Caused by:
+[WebServer] - invalid utf-8 sequence of 1 bytes from index 11092
+[WebServer] 
+[WebServer] Import traces:
+[WebServer]   Client Component Browser:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer]   Client Component SSR:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component] 
+[WebServer] [browser] ./apps/web/src/components/product-plan.tsx
+[WebServer] Error: Reading source code for parsing failed
+[WebServer] An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+[WebServer] 
+[WebServer] Caused by:
+[WebServer] - invalid utf-8 sequence of 1 bytes from index 11092
+[WebServer] 
+[WebServer] Import traces:
+[WebServer]   Client Component Browser:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer]   Client Component SSR:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component] 
+  x   1 [chromium] › tests-controlled\pm-recovery.spec.ts:23:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt (12.1s)
+(node:4116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [browser] Uncaught Error: ./apps/web/src/components/product-plan.tsx
+[WebServer] Error: Reading source code for parsing failed
+[WebServer] An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+[WebServer] 
+[WebServer] Caused by:
+[WebServer] - invalid utf-8 sequence of 1 bytes from index 11092
+[WebServer] 
+[WebServer] Import traces:
+[WebServer]   Client Component Browser:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer]   Client Component SSR:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer] 
+[WebServer] [browser] ./apps/web/src/components/product-plan.tsx
+[WebServer] Error: Reading source code for parsing failed
+[WebServer] An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+[WebServer] 
+[WebServer] Caused by:
+[WebServer] - invalid utf-8 sequence of 1 bytes from index 11092
+[WebServer] 
+[WebServer] Import traces:
+[WebServer]   Client Component Browser:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer]   Client Component SSR:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component] 
+[WebServer] [browser] ./apps/web/src/components/product-plan.tsx
+[WebServer] Error: Reading source code for parsing failed
+[WebServer] An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+[WebServer] 
+[WebServer] Caused by:
+[WebServer] - invalid utf-8 sequence of 1 bytes from index 11092
+[WebServer] 
+[WebServer] Import traces:
+[WebServer]   Client Component Browser:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer]   Client Component SSR:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component] 
+[WebServer] [browser] ./apps/web/src/components/product-plan.tsx
+[WebServer] Error: Reading source code for parsing failed
+[WebServer] An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+[WebServer] 
+[WebServer] Caused by:
+[WebServer] - invalid utf-8 sequence of 1 bytes from index 11092
+[WebServer] 
+[WebServer] Import traces:
+[WebServer]   Client Component Browser:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component Browser]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component]
+[WebServer] 
+[WebServer]   Client Component SSR:
+[WebServer]     ./apps/web/src/components/product-plan.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Client Component SSR]
+[WebServer]     ./apps/web/src/app/projects/[id]/page.tsx [Server Component] 
+[WebServer] INFO:     security_event=session_rotated actor_id=1c1c5fef-8c92-40fe-b858-f72273d02cf4 workspace_id=-
+[WebServer] (node:22144) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1c1c5fef-8c92-40fe-b858-f72273d02cf4 workspace_id=9de4baef-53eb-43a6-843c-ca75cfbfad65
+[WebServer] (node:12536) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10064) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x   2 [chromium] › tests-controlled\pm-recovery.spec.ts:66:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed (1.0m)
+(node:9240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=70c8fa30-8ea6-4e7d-853c-c536aacadd4c workspace_id=-
+[WebServer] (node:15132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=70c8fa30-8ea6-4e7d-853c-c536aacadd4c workspace_id=785b03e2-8e4f-418b-be2e-e42fce8a26cb
+[WebServer] (node:26748) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:7616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  3 [chromium] › tests-controlled\pm-recovery.spec.ts:92:5 › controlled success retains recovery UUID when the saved-result read fails (8.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=363b6afe-cb4b-4cae-b4b7-d03ddc6af297 workspace_id=-
+[WebServer] (node:16548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=363b6afe-cb4b-4cae-b4b7-d03ddc6af297 workspace_id=1fd2fbfe-2841-4d82-9c50-884d5f594d5a
+[WebServer] (node:7036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:14644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9544) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x   4 [chromium] › tests-controlled\pm-recovery.spec.ts:114:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run (1.0m)
+(node:11932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=ea709c25-1755-475a-a406-6efbfcf29874 workspace_id=-
+[WebServer] (node:14272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ea709c25-1755-475a-a406-6efbfcf29874 workspace_id=abc1ff60-02ae-46aa-885c-ed3e1bbe3f14
+[WebServer] (node:7636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x   5 [mobile] › tests-controlled\pm-recovery.spec.ts:23:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt (1.0m)
+(node:12848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=d9ac8741-64e5-40e8-b0c7-5fad5dc417e2 workspace_id=-
+[WebServer] (node:22364) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d9ac8741-64e5-40e8-b0c7-5fad5dc417e2 workspace_id=6af1a522-7ba1-4864-97f6-bcaf710f64a6
+[WebServer] (node:9240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:14548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x   6 [mobile] › tests-controlled\pm-recovery.spec.ts:66:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed (1.0m)
+(node:25016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=9ba32e04-d96b-49cc-8c68-d0ea56b14b14 workspace_id=-
+[WebServer] (node:22920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9ba32e04-d96b-49cc-8c68-d0ea56b14b14 workspace_id=7eb77c69-a476-490c-aee5-5a4568a6d7a4
+[WebServer] (node:25532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:8568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25284) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  7 [mobile] › tests-controlled\pm-recovery.spec.ts:92:5 › controlled success retains recovery UUID when the saved-result read fails (7.6s)
+[WebServer] (node:23876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=035614d4-c340-460c-8d27-78650afc7cfd workspace_id=-
+[WebServer] (node:25592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=035614d4-c340-460c-8d27-78650afc7cfd workspace_id=d18b7769-1b3b-4ff8-88ad-737b85771105
+[WebServer] (node:5100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6164) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  8 [mobile] › tests-controlled\pm-recovery.spec.ts:114:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run (6.0s)
+(node:17980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=2e48bd14-5c9c-490d-970d-c661481519ad workspace_id=-
+[WebServer] (node:17428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=2e48bd14-5c9c-490d-970d-c661481519ad workspace_id=7a85665b-c970-4dd0-b12b-c43e90b778f1
+[WebServer] (node:20068) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25092) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15376) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  9 [tablet] › tests-controlled\pm-recovery.spec.ts:23:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt (17.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=38129072-6bfc-4561-b029-b48ddc151d84 workspace_id=-
+[WebServer] (node:10092) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=38129072-6bfc-4561-b029-b48ddc151d84 workspace_id=ef4ed8da-d64f-4d62-b1f2-7c84b7a22d6b
+[WebServer] (node:10112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 10 [tablet] › tests-controlled\pm-recovery.spec.ts:66:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed (7.6s)
+[WebServer] (node:14916) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=4f6d331f-b198-41e3-8d89-b41897f353b0 workspace_id=-
+[WebServer] (node:24728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=4f6d331f-b198-41e3-8d89-b41897f353b0 workspace_id=39b77c96-9234-4d36-9758-0ff8b70f859e
+[WebServer] (node:5392) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20144) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 [tablet] › tests-controlled\pm-recovery.spec.ts:92:5 › controlled success retains recovery UUID when the saved-result read fails (7.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=96f467c8-2452-4d1a-8dec-d70ef99a39a8 workspace_id=-
+[WebServer] (node:25984) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=96f467c8-2452-4d1a-8dec-d70ef99a39a8 workspace_id=07240912-719d-489c-8202-9c985a274bac
+[WebServer] (node:3928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 12 [tablet] › tests-controlled\pm-recovery.spec.ts:114:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run (6.2s)
+
+
+  1) [chromium] › tests-controlled\pm-recovery.spec.ts:23:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator: getByRole('button', { name: 'Generate Product Plan', exact: true })
+    Expected: enabled
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('button', { name: 'Generate Product Plan', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Generate Product Plan', exact: true })
+
+
+      16 |   await page.getByRole("button",{name:"Create project",exact:true}).click();
+      17 |   const project=await (await saved).json();
+    > 18 |   await expect(page.getByRole("button",{name:"Generate Product Plan",exact:true})).toBeEnabled();
+         |                                                                                    ^
+      19 |   const user=await (await page.request.get("/api/v1/auth/me")).json();
+      20 |   return {project,user,panel:page.locator("#product-plan")};
+      21 | }
+        at setup (E:\BrosKi\OBRA\apps\web\tests-controlled\pm-recovery.spec.ts:18:84)
+        at E:\BrosKi\OBRA\apps\web\tests-controlled\pm-recovery.spec.ts:24:30
+
+    Error Context: test-results\pm-recovery-controlled-tim-5be01-ords-a-fresh-failed-attempt-chromium\error-context.md
+
+  2) [chromium] › tests-controlled\pm-recovery.spec.ts:66:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.fill: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('#product-plan').getByLabel('Product brief', { exact: true })
+
+
+      67 |   const {project,panel}=await setup(page);
+      68 |   const brief="Preserve this brief after an injected response loss.";
+    > 69 |   await panel.getByLabel("Product brief",{exact:true}).fill(brief);
+         |                                                        ^
+      70 |   let posts=0;page.on("request",r=>{if(r.method()==="POST"&&r.url().endsWith("/pm-runs"))posts++;});
+      71 |   // Execute the real request against the controlled API, then lose its HTTP response.
+      72 |   await page.route("**/pm-runs",async route=>{await route.fetch();await route.abort("failed");});
+        at E:\BrosKi\OBRA\apps\web\tests-controlled\pm-recovery.spec.ts:69:56
+
+    Error Context: test-results\pm-recovery-lost-HTTP-resp-700f4-act-failed-run-is-confirmed-chromium\error-context.md
+
+  3) [chromium] › tests-controlled\pm-recovery.spec.ts:114:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.fill: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('#product-plan').getByLabel('Product brief', { exact: true })
+
+
+      123 |   await expect(panel.locator(".pm-information")).toContainText("Status refreshed");
+      124 |   const brief="Keep my brief when CSRF preparation is unavailable.";
+    > 125 |   await panel.getByLabel("Product brief",{exact:true}).fill(brief);
+          |                                                        ^
+      126 |   let posts=0;page.on("request",r=>{if(r.method()==="POST"&&r.url().endsWith("/pm-runs"))posts++;});
+      127 |   await page.route("**/api/v1/auth/csrf",route=>route.abort("failed"));
+      128 |   await panel.getByRole("button",{name:"Generate Product Plan",exact:true}).click();
+        at E:\BrosKi\OBRA\apps\web\tests-controlled\pm-recovery.spec.ts:125:56
+
+    Error Context: test-results\pm-recovery-failed-initial-34598-put-without-inventing-a-run-chromium\error-context.md
+
+  4) [mobile] › tests-controlled\pm-recovery.spec.ts:23:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.fill: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('#product-plan').getByLabel('Product brief', { exact: true })
+
+
+      30 |   await panel.getByText("Generate another product plan",{exact:true}).click();
+      31 |   const brief="Keep my original product brief during a controlled timeout.";
+    > 32 |   await panel.getByLabel("Product brief",{exact:true}).fill(brief);
+         |                                                        ^
+      33 |   await panel.getByLabel("Additional instructions (optional)").fill("Keep these instructions too.");
+      34 |   let posts=0;page.on("request",r=>{if(r.method()==="POST"&&r.url().endsWith("/pm-runs"))posts++;});
+      35 |   const failure=page.waitForResponse(r=>r.request().method()==="POST"&&r.url().endsWith("/pm-runs"));
+        at E:\BrosKi\OBRA\apps\web\tests-controlled\pm-recovery.spec.ts:32:56
+
+    Error Context: test-results\pm-recovery-controlled-tim-5be01-ords-a-fresh-failed-attempt-mobile\error-context.md
+
+  5) [mobile] › tests-controlled\pm-recovery.spec.ts:66:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.fill: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('#product-plan').getByLabel('Product brief', { exact: true })
+
+
+      67 |   const {project,panel}=await setup(page);
+      68 |   const brief="Preserve this brief after an injected response loss.";
+    > 69 |   await panel.getByLabel("Product brief",{exact:true}).fill(brief);
+         |                                                        ^
+      70 |   let posts=0;page.on("request",r=>{if(r.method()==="POST"&&r.url().endsWith("/pm-runs"))posts++;});
+      71 |   // Execute the real request against the controlled API, then lose its HTTP response.
+      72 |   await page.route("**/pm-runs",async route=>{await route.fetch();await route.abort("failed");});
+        at E:\BrosKi\OBRA\apps\web\tests-controlled\pm-recovery.spec.ts:69:56
+
+    Error Context: test-results\pm-recovery-lost-HTTP-resp-700f4-act-failed-run-is-confirmed-mobile\error-context.md
+
+  5 failed
+    [chromium] › tests-controlled\pm-recovery.spec.ts:23:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt 
+    [chromium] › tests-controlled\pm-recovery.spec.ts:66:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed 
+    [chromium] › tests-controlled\pm-recovery.spec.ts:114:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run 
+    [mobile] › tests-controlled\pm-recovery.spec.ts:23:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt 
+    [mobile] › tests-controlled\pm-recovery.spec.ts:66:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed 
+  7 passed (6.3m)
+[ELIFECYCLE] Command failed with exit code 1.
+Error: ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL
+
+  × "pnpm recursive run" failed in E:\BrosKi\OBRA\apps/web
+
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,0 +1,98 @@
+{
+  "recorded_at": "2026-10-20T16:53:55.825790+00:00",
+  "source_sha256": "661f2828f7adbdc368a31616280ebec5d27048b2dc6f9feb1ecada06505b282d",
+  "all_source_manifests_match": true,
+  "runtime_profile": {
+    "provider": "google-gemini",
+    "model": "gemini-3.6-flash",
+    "prompt_version": "pm-v2",
+    "prompt_sha256": "c7b8aac189085ca73a281633265461c7327dfb3a5e531d61b7e3c51f42a29056",
+    "hash_version": "orba-pm-canonical-json-v1",
+    "schema_sha256": "255c82c7c5d33fe0ffce6376fd3d4d80545bfafda7b294fde8c5097ea40b93b0",
+    "provider_schema_sha256": "cbe399effdd5289c0511c69237acac349175845776f0450431628049786414c7",
+    "sdk_version": "2.31.0",
+    "server_timeout_seconds": 90,
+    "transport_timeout_seconds": 95,
+    "envelope_timeout_seconds": 100,
+    "max_output_tokens": 6000,
+    "thinking_level": "minimal",
+    "max_input_bytes": 48000,
+    "max_concurrent": 1,
+    "account_attempts_per_hour": 3,
+    "global_attempts_per_hour": 6,
+    "credential_configured": true
+  },
+  "gate_a_receipt": "docs/evidence/stage031/20261020T162458Z-A-dca02afc/receipt.json",
+  "gate_a_receipt_sha256": "26b645c85a516fd84f41c5f9b3be42f464af96bfefbfcd978f0f878f73107f19",
+  "gate_a_result": "PASS",
+  "gate_a_native_exit": 0,
+  "gate_b_receipt": "docs/evidence/stage031/20261020T165108Z-B-88c8d84b/receipt.json",
+  "gate_b_receipt_sha256": "5d64a767a291579c85f165947bea525c845992ff8507d6b713fb43fed868a7fd",
+  "gate_b_result": "PASS",
+  "gate_b_native_exit": 0,
+  "gate_c_result": {
+    "version": 1,
+    "recorded_at": "2026-10-20T16:52:04.324450+00:00",
+    "source_sha256": "661f2828f7adbdc368a31616280ebec5d27048b2dc6f9feb1ecada06505b282d",
+    "gates": {
+      "A": {
+        "result": "PASS",
+        "receipt": "20261020T162458Z-A-dca02afc\\receipt.json"
+      },
+      "B": {
+        "result": "PASS",
+        "receipt": "20261020T165108Z-B-88c8d84b\\receipt.json"
+      }
+    },
+    "stage03_verdict": "VERIFIED"
+  },
+  "gate_c_native_exit": 0,
+  "generation_requests": 1,
+  "sdk_attempt": 1,
+  "transport_retries": 0,
+  "browser_workers": 1,
+  "browser_retries": 0,
+  "run_id": "3079738f-3dd5-43f5-bc59-ded3362de3a3",
+  "plan_id": "1acc58d7-4d76-4234-8399-27411dd29708",
+  "requested_model": "gemini-3.6-flash",
+  "returned_model": "gemini-3.6-flash",
+  "provider_response_id": "GJzXavy_AdLtg8UPqLuBiAw",
+  "provider_request_id": null,
+  "usage": {
+    "total_token_count": 1756,
+    "prompt_token_count": 684,
+    "prompt_tokens_details": [
+      {
+        "modality": "TEXT",
+        "token_count": 684
+      }
+    ],
+    "candidates_token_count": 1072
+  },
+  "provider_call_ms": 8491.347,
+  "validation_ms": 1.394,
+  "draft_api_sql_hash_match": true,
+  "approved_api_sql_and_fresh_sql_hash_match": true,
+  "relational_counts": {
+    "epics": 1,
+    "stories": 1,
+    "criteria": 2
+  },
+  "version": 1,
+  "approved_revision": 2,
+  "approved_by": "09c6bd65-4543-4c98-af23-3258d9f07642",
+  "approved_at": "2026-10-20T16:51:42.466719+00:00",
+  "outsider_http_status": 404,
+  "prior_git_visible_files_checked": 772,
+  "byte_identical_count": 771,
+  "only_allowed_changed_pointer": [
+    "docs/evidence/stage031/latest-B.json"
+  ],
+  "unexpected_changes": [],
+  "missing_files": [],
+  "dotenv_head_and_index_unchanged": true,
+  "historical_latest_failed_b_unchanged": true,
+  "prelive_report_archived_verbatim": true,
+  "verdict": "VERIFIED",
+  "scope": "Authorized source and gemini-3.6-flash/minimal runtime profile; not a provider uptime guarantee or production-security certification"
+}

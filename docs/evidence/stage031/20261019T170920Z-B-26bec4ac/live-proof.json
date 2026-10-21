@@ -1,0 +1,52 @@
+{
+  "execution_class": "real_gemini_browser",
+  "provider_double": false,
+  "result": "FAIL",
+  "stage": "provider_request",
+  "actor_id": "dd7860ad-36c6-4fd0-9aea-4d8d5064de74",
+  "project_id": "208f80fa-ca5a-4343-9eff-4a1874179c39",
+  "client_request_id": "610885af-61fe-441c-a833-c3a2f3efd8f4",
+  "http_status": 502,
+  "run_id": "5421d0db-f2da-4886-b583-d5c8acf99dee",
+  "error_category": "provider_unavailable",
+  "failure_sql": {
+    "source": "fresh SQLAlchemy session against guarded PostgreSQL",
+    "run_id": "5421d0db-f2da-4886-b583-d5c8acf99dee",
+    "project_id": "208f80fa-ca5a-4343-9eff-4a1874179c39",
+    "status": "failed",
+    "provider": "google-gemini",
+    "workspace_id": "20b68d31-a12b-4d1e-8308-ca5a19292f0e",
+    "initiator_id": "dd7860ad-36c6-4fd0-9aea-4d8d5064de74",
+    "provider_response_id": null,
+    "provider_request_id": null,
+    "usage": null,
+    "prompt_version": "pm-v1",
+    "prompt_hash": "268749ec7f6f7527b7950889b51efae43dcd18a60f5140a51bae4c9a918e40ac",
+    "hash_version": "orba-pm-canonical-json-v1",
+    "started_at": "2026-10-19T17:09:39.952091+00:00",
+    "completed_at": "2026-10-19T17:09:41.498705+00:00",
+    "requested_model": "gemini-3.8-flash",
+    "returned_model": null,
+    "error_category": "provider_unavailable",
+    "diagnostic_id": "d761c5f9-a731-40a1-8b40-794543a1f935",
+    "diagnostic": {
+      "attempt": 1,
+      "stages_ms": {
+        "provider_call": 1537.654,
+        "running_transaction": 28.006,
+        "admission_transaction": 36.425
+      },
+      "elapsed_ms": 1602.373,
+      "error_origin": "upstream_http",
+      "dispatch_phase": "provider_response",
+      "exception_type": "ServerError",
+      "timing_version": 1,
+      "provider_status": "UNAVAILABLE",
+      "timing_boundary": "before_terminal_commit",
+      "provider_http_status": 503
+    },
+    "project_plans": []
+  },
+  "failure_visible": true,
+  "generation_posts": 1
+}

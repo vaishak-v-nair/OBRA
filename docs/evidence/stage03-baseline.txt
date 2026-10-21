@@ -1,0 +1,993 @@
+**********************
+PowerShell transcript start
+Start time: 20261018233401
+Username: VAISHAK-MSI\vaish
+RunAs User: VAISHAK-MSI\vaish
+Configuration Name: 
+Machine: VAISHAK-MSI (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -File scripts/verify.ps1
+Process ID: 25072
+PSVersion: 7.6.7
+PSEdition: Core
+GitCommitId: 7.6.7
+OS: Microsoft Windows 10.0.26300
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is docs/evidence/verification-transcript.txt
+COMMAND: docker compose -f infra/compose.yaml --profile test up -d --wait
+ Container orba-test-postgres-1 Running
+ Container orba-postgres-1 Running
+ Container orba-postgres-1 Waiting
+ Container orba-test-postgres-1 Waiting
+ Container orba-test-postgres-1 Healthy
+ Container orba-postgres-1 Healthy
+EXIT: 0
+COMMAND: uv sync --locked --directory apps/api
+Resolved 50 packages in 1ms
+Checked 46 packages in 2ms
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm install --frozen-lockfile
+Scope: all 2 workspace projects
+✓ Lockfile passes supply-chain policies (verified 9h ago)
+Lockfile is up to date, resolution step is skipped
+Done in 165ms using pnpm v12.14.0
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm peers check
+No peer dependency issues found
+EXIT: 0
+COMMAND: uv run --directory apps/api alembic upgrade head
+EXIT: 0
+COMMAND: uv run --directory apps/api alembic check
+No new upgrade operations detected.
+EXIT: 0
+COMMAND: uv run --directory apps/api pytest -q
+............................................                             [100%]
+44 passed in 25.79s
+EXIT: 0
+COMMAND: uv run --directory apps/api ruff check .
+All checks passed!
+EXIT: 0
+COMMAND: uv run --directory apps/api ruff format --check .
+21 files already formatted
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm typecheck
+$ pnpm --filter @orba/web typecheck
+$ pnpm --filter @orba/web typecheck
+$ next typegen && tsc --noEmit
+$ next typegen && tsc --noEmit
+Generating route types...
+✓ Types generated successfully
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm lint
+$ pnpm --filter @orba/web lint
+$ pnpm --filter @orba/web lint
+$ eslint . --max-warnings 0
+$ eslint . --max-warnings 0
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm build
+$ pnpm --filter @orba/web build
+$ pnpm --filter @orba/web build
+$ next build
+$ next build
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.ts took 103ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.4s
+  Running TypeScript ...
+  Finished TypeScript in 1829ms ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/11) ...
+  Generating static pages using 11 workers (2/11)
+  Generating static pages using 11 workers (5/11)
+  Generating static pages using 11 workers (8/11)
+✓ Generating static pages using 11 workers (11/11) in 279ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /[section]
+├ ƒ /api/v1/[...path]
+├ ○ /invitations/accept
+├ ○ /projects
+├ ƒ /projects/[id]
+├ ○ /projects/new
+├ ○ /settings
+├ ○ /signin
+├ ○ /signup
+├ ○ /workspaces
+├ ƒ /workspaces/[id]
+└ ○ /workspaces/new
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+EXIT: 0
+COMMAND: npm exec --yes --package=pnpm@12.14.0 -- pnpm test:e2e
+$ pnpm --filter @orba/web test:e2e
+$ pnpm --filter @orba/web test:e2e
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [15372]
+[WebServer] INFO:     Started server process [15372]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:14636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:14636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21380) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:21380) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 42 tests using 1 worker
+
+(node:5804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:5804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:6936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=d2718e62-617a-45b4-a1f7-81faed03a5d3 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=d2718e62-617a-45b4-a1f7-81faed03a5d3 workspace_id=-
+[WebServer] (node:25036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d2718e62-617a-45b4-a1f7-81faed03a5d3 workspace_id=8b9b0a18-2439-4367-97ec-d32e4951da53
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d2718e62-617a-45b4-a1f7-81faed03a5d3 workspace_id=8b9b0a18-2439-4367-97ec-d32e4951da53
+  ok  1 [chromium] › tests\projects.spec.ts:11:5 › empty Projects gives a usable first-project action (3.5s)
+[WebServer] (node:8456) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:8456) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=5bdcdc08-82eb-48b3-92a5-adf8fdc47e79 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=5bdcdc08-82eb-48b3-92a5-adf8fdc47e79 workspace_id=-
+[WebServer] (node:26140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:26140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5bdcdc08-82eb-48b3-92a5-adf8fdc47e79 workspace_id=2514f6c1-3128-49a8-afc8-66aff4ffcf07
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5bdcdc08-82eb-48b3-92a5-adf8fdc47e79 workspace_id=2514f6c1-3128-49a8-afc8-66aff4ffcf07
+[WebServer] (node:8848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:8848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:7616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:3572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 [chromium] › tests\projects.spec.ts:24:5 › chat creates a real project, survives reload, and appears in Projects (2.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=6858d9d7-fed2-494b-b0b5-9d40ec02efb7 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=6858d9d7-fed2-494b-b0b5-9d40ec02efb7 workspace_id=-
+[WebServer] (node:20660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:20660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=6858d9d7-fed2-494b-b0b5-9d40ec02efb7 workspace_id=eb0f0a1f-c9ae-4aaf-908f-d50c88ec8069
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=6858d9d7-fed2-494b-b0b5-9d40ec02efb7 workspace_id=eb0f0a1f-c9ae-4aaf-908f-d50c88ec8069
+  ok  3 [chromium] › tests\projects.spec.ts:46:5 › explicit project form saves title and description (1.5s)
+[WebServer] (node:19420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=781057ac-8833-4d4b-adb2-4853c37a0784 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=781057ac-8833-4d4b-adb2-4853c37a0784 workspace_id=-
+[WebServer] (node:22036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=781057ac-8833-4d4b-adb2-4853c37a0784 workspace_id=b77d64a3-b420-439c-83c2-8c831169a663
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=781057ac-8833-4d4b-adb2-4853c37a0784 workspace_id=b77d64a3-b420-439c-83c2-8c831169a663
+[WebServer] (node:1116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:1116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:7740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  4 [chromium] › tests\projects.spec.ts:55:5 › theme persists, future sections are honest, keyboard navigation works (2.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=9526595e-5fea-4b9d-865e-2c9202c6e041 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=9526595e-5fea-4b9d-865e-2c9202c6e041 workspace_id=-
+[WebServer] (node:11992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:11992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9526595e-5fea-4b9d-865e-2c9202c6e041 workspace_id=97410ad5-fdde-43c3-87c1-2d6a43cd29e6
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9526595e-5fea-4b9d-865e-2c9202c6e041 workspace_id=97410ad5-fdde-43c3-87c1-2d6a43cd29e6
+  ok  5 [chromium] › tests\projects.spec.ts:72:5 › nonexistent project shows an actual API not-found error (1.4s)
+[WebServer] (node:26476) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:26476) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24168) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:24168) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=de3c19c9-b703-4f46-9c69-75b9fc3e8b49 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=de3c19c9-b703-4f46-9c69-75b9fc3e8b49 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=de3c19c9-b703-4f46-9c69-75b9fc3e8b49 workspace_id=4fbfa995-fbdc-4fec-880e-f3dae1092e62
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=de3c19c9-b703-4f46-9c69-75b9fc3e8b49 workspace_id=4fbfa995-fbdc-4fec-880e-f3dae1092e62
+[WebServer] (node:7400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [chromium] › tests\projects.spec.ts:77:5 › network failure preserves the draft and permits deliberate retry (1.6s)
+[WebServer] (node:26476) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:26476) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:16100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:16100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=9f02edde-1993-4dda-b5f8-0025e521fdad workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=9f02edde-1993-4dda-b5f8-0025e521fdad workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9f02edde-1993-4dda-b5f8-0025e521fdad workspace_id=5f19940c-28d3-4deb-a9c8-e23c3ba175ed
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9f02edde-1993-4dda-b5f8-0025e521fdad workspace_id=5f19940c-28d3-4deb-a9c8-e23c3ba175ed
+[WebServer] (node:3572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:3572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  7 [chromium] › tests\projects.spec.ts:90:5 › whitespace cannot create a project (1.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=c6a12089-9f32-4674-985b-5b47df38206f workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=c6a12089-9f32-4674-985b-5b47df38206f workspace_id=-
+[WebServer] (node:2788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:2788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c6a12089-9f32-4674-985b-5b47df38206f workspace_id=af389466-5bee-4b96-812b-0bb2fba0a5bf
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c6a12089-9f32-4674-985b-5b47df38206f workspace_id=af389466-5bee-4b96-812b-0bb2fba0a5bf
+  ok  8 [chromium] › tests\projects.spec.ts:100:5 › navigation supports mobile Escape and focus restoration (1.2s)
+[WebServer] (node:23720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:23720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=efb68f23-94cf-4e34-93aa-49dfa38e3bd1 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=efb68f23-94cf-4e34-93aa-49dfa38e3bd1 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=efb68f23-94cf-4e34-93aa-49dfa38e3bd1 workspace_id=75829d70-6a0b-47e2-931c-7d2e25c63e0b
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=efb68f23-94cf-4e34-93aa-49dfa38e3bd1 workspace_id=75829d70-6a0b-47e2-931c-7d2e25c63e0b
+[WebServer] (node:24292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:24292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  9 [chromium] › tests\projects.spec.ts:115:5 › home layout in both themes (1.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=0b118f2d-d49f-498e-babd-79422cc6130f workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=0b118f2d-d49f-498e-babd-79422cc6130f workspace_id=-
+[WebServer] (node:25964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0b118f2d-d49f-498e-babd-79422cc6130f workspace_id=e3edf6a7-1f2e-4c27-b31f-b168ca4391c0
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0b118f2d-d49f-498e-babd-79422cc6130f workspace_id=e3edf6a7-1f2e-4c27-b31f-b168ca4391c0
+  ok 10 [chromium] › tests\projects.spec.ts:123:5 › rapid duplicate submission sends a single creation request (1.4s)
+[WebServer] (node:18588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:18588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:3572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=3a737208-abd6-4447-880d-32718c139642 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=3a737208-abd6-4447-880d-32718c139642 workspace_id=-
+[WebServer] (node:24268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:24268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3a737208-abd6-4447-880d-32718c139642 workspace_id=55f87807-58b3-4e83-922e-95b70a8f6165
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3a737208-abd6-4447-880d-32718c139642 workspace_id=55f87807-58b3-4e83-922e-95b70a8f6165
+[WebServer] (node:12608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:12608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:1540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:7388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=16c3b186-332b-43f9-ab9f-f48724cdadb8 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=16c3b186-332b-43f9-ab9f-f48724cdadb8 workspace_id=-
+[WebServer] (node:3572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:3572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=16c3b186-332b-43f9-ab9f-f48724cdadb8 workspace_id=55f87807-58b3-4e83-922e-95b70a8f6165
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=16c3b186-332b-43f9-ab9f-f48724cdadb8 workspace_id=55f87807-58b3-4e83-922e-95b70a8f6165
+[WebServer] (node:26436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:26436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:23304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:19964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:26152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_revoked actor_id=16c3b186-332b-43f9-ab9f-f48724cdadb8 workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=16c3b186-332b-43f9-ab9f-f48724cdadb8 workspace_id=-
+[WebServer] (node:7388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=16c3b186-332b-43f9-ab9f-f48724cdadb8 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=16c3b186-332b-43f9-ab9f-f48724cdadb8 workspace_id=-
+[WebServer] (node:24112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:24112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 [chromium] › tests\teams.spec.ts:7:5 › two people join a real workspace with Viewer restrictions, persistence and logout (6.6s)
+[WebServer] (node:24136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:24136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=621bab84-40db-432d-bc53-b727e4c229e0 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=621bab84-40db-432d-bc53-b727e4c229e0 workspace_id=-
+[WebServer] (node:18580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:18580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=621bab84-40db-432d-bc53-b727e4c229e0 workspace_id=5a966f11-c73f-4001-aa67-9cfef121f332
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=621bab84-40db-432d-bc53-b727e4c229e0 workspace_id=5a966f11-c73f-4001-aa67-9cfef121f332
+[WebServer] (node:7616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=621bab84-40db-432d-bc53-b727e4c229e0 workspace_id=20dd3ef7-1317-4206-bb6e-b90d767a1dd0
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=621bab84-40db-432d-bc53-b727e4c229e0 workspace_id=20dd3ef7-1317-4206-bb6e-b90d767a1dd0
+[WebServer] (node:25036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:13752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=29c73b96-50e1-48e3-8c44-3cef78484400 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=29c73b96-50e1-48e3-8c44-3cef78484400 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=29c73b96-50e1-48e3-8c44-3cef78484400 workspace_id=9cb99171-ac17-4353-90bf-e4c406b83b57
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=29c73b96-50e1-48e3-8c44-3cef78484400 workspace_id=9cb99171-ac17-4353-90bf-e4c406b83b57
+[WebServer] (node:14804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:14804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 12 [chromium] › tests\teams.spec.ts:74:5 › unrelated exact project UUID stays private and workspace switching clears projects (3.4s)
+[WebServer] (node:8748) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:8748) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=983b93db-fc62-4f37-91a1-1bf24dc9c584 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=983b93db-fc62-4f37-91a1-1bf24dc9c584 workspace_id=-
+[WebServer] (node:22636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=983b93db-fc62-4f37-91a1-1bf24dc9c584 workspace_id=22668349-faeb-4b7f-8b24-e771c2c102fb
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=983b93db-fc62-4f37-91a1-1bf24dc9c584 workspace_id=22668349-faeb-4b7f-8b24-e771c2c102fb
+[WebServer] INFO:     security_event=session_revoked actor_id=983b93db-fc62-4f37-91a1-1bf24dc9c584 workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=983b93db-fc62-4f37-91a1-1bf24dc9c584 workspace_id=-
+  ok 13 [chromium] › tests\teams.spec.ts:99:5 › account menu and signout remain keyboard accessible (1.1s)
+[WebServer] (node:19556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=e8655c59-dd24-485d-ac08-fbb31bb1308d workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=e8655c59-dd24-485d-ac08-fbb31bb1308d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e8655c59-dd24-485d-ac08-fbb31bb1308d workspace_id=2845c765-2818-4680-b626-d337063b98f6
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e8655c59-dd24-485d-ac08-fbb31bb1308d workspace_id=2845c765-2818-4680-b626-d337063b98f6
+[WebServer] (node:22692) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22692) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 14 [chromium] › tests\teams.spec.ts:117:5 › unconfirmed logout clears protected content without claiming server revocation (1.4s)
+[WebServer] (node:19664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:23304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:23304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=0fb4de8a-5e0a-40b7-aa97-1d756878f348 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=0fb4de8a-5e0a-40b7-aa97-1d756878f348 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0fb4de8a-5e0a-40b7-aa97-1d756878f348 workspace_id=7a6bf4c1-b87c-4247-b787-5da649ace718
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0fb4de8a-5e0a-40b7-aa97-1d756878f348 workspace_id=7a6bf4c1-b87c-4247-b787-5da649ace718
+[WebServer] (node:17920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:17920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 15 [mobile] › tests\projects.spec.ts:11:5 › empty Projects gives a usable first-project action (1.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5c3e20a9-6685-486d-b1ec-da185ebf6383 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=5c3e20a9-6685-486d-b1ec-da185ebf6383 workspace_id=-
+[WebServer] (node:22576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5c3e20a9-6685-486d-b1ec-da185ebf6383 workspace_id=e78b3c5a-4925-413d-adcb-054ee2d3253e
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5c3e20a9-6685-486d-b1ec-da185ebf6383 workspace_id=e78b3c5a-4925-413d-adcb-054ee2d3253e
+[WebServer] (node:6620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:6620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 16 [mobile] › tests\projects.spec.ts:24:5 › chat creates a real project, survives reload, and appears in Projects (2.1s)
+[WebServer] (node:22828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=d355698a-1ec5-480d-a7ec-031e8efab69a workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=d355698a-1ec5-480d-a7ec-031e8efab69a workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d355698a-1ec5-480d-a7ec-031e8efab69a workspace_id=0276fa5d-bcd7-4be6-a28f-fece37dadf97
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d355698a-1ec5-480d-a7ec-031e8efab69a workspace_id=0276fa5d-bcd7-4be6-a28f-fece37dadf97
+[WebServer] (node:18816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:18816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 17 [mobile] › tests\projects.spec.ts:46:5 › explicit project form saves title and description (1.5s)
+[WebServer] (node:14188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:14188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=a3023c82-cf2b-4b56-ba4d-7e6e123c850d workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=a3023c82-cf2b-4b56-ba4d-7e6e123c850d workspace_id=-
+[WebServer] (node:7616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a3023c82-cf2b-4b56-ba4d-7e6e123c850d workspace_id=fd0e6c28-2067-43eb-bf7c-0949052fdd90
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a3023c82-cf2b-4b56-ba4d-7e6e123c850d workspace_id=fd0e6c28-2067-43eb-bf7c-0949052fdd90
+[WebServer] (node:17304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:17304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 18 [mobile] › tests\projects.spec.ts:55:5 › theme persists, future sections are honest, keyboard navigation works (1.8s)
+[WebServer] (node:20912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:20912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=5daf4170-da09-45f1-a356-1df0d2c62e5b workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=5daf4170-da09-45f1-a356-1df0d2c62e5b workspace_id=-
+[WebServer] (node:19736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5daf4170-da09-45f1-a356-1df0d2c62e5b workspace_id=c2995991-6dc7-4e8c-ab73-89c8c3d76df2
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5daf4170-da09-45f1-a356-1df0d2c62e5b workspace_id=c2995991-6dc7-4e8c-ab73-89c8c3d76df2
+  ok 19 [mobile] › tests\projects.spec.ts:72:5 › nonexistent project shows an actual API not-found error (1.3s)
+[WebServer] (node:2280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:2280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:6620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=a98fc391-e025-429d-bfe3-8766ae0957d4 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=a98fc391-e025-429d-bfe3-8766ae0957d4 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a98fc391-e025-429d-bfe3-8766ae0957d4 workspace_id=c28deddd-421b-471a-b664-c1a76c723573
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a98fc391-e025-429d-bfe3-8766ae0957d4 workspace_id=c28deddd-421b-471a-b664-c1a76c723573
+[WebServer] (node:21420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:21420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 20 [mobile] › tests\projects.spec.ts:77:5 › network failure preserves the draft and permits deliberate retry (1.5s)
+[WebServer] (node:19908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:21736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=93c6740e-651c-411d-b98e-8efed59ef6f2 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=93c6740e-651c-411d-b98e-8efed59ef6f2 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=93c6740e-651c-411d-b98e-8efed59ef6f2 workspace_id=9108fb59-e16b-4a7f-83ae-b92088444ab4
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=93c6740e-651c-411d-b98e-8efed59ef6f2 workspace_id=9108fb59-e16b-4a7f-83ae-b92088444ab4
+[WebServer] (node:10284) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:10284) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 21 [mobile] › tests\projects.spec.ts:90:5 › whitespace cannot create a project (1.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b3ac2891-8fd0-46e2-b201-4913ca6711a9 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=b3ac2891-8fd0-46e2-b201-4913ca6711a9 workspace_id=-
+[WebServer] (node:16848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:16848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b3ac2891-8fd0-46e2-b201-4913ca6711a9 workspace_id=677d16de-abfe-4fd2-b22b-c037c80becf1
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b3ac2891-8fd0-46e2-b201-4913ca6711a9 workspace_id=677d16de-abfe-4fd2-b22b-c037c80becf1
+  ok 22 [mobile] › tests\projects.spec.ts:100:5 › navigation supports mobile Escape and focus restoration (1.2s)
+[WebServer] (node:22684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=b889cbe0-2bed-4950-ac81-6366e4456c58 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=b889cbe0-2bed-4950-ac81-6366e4456c58 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b889cbe0-2bed-4950-ac81-6366e4456c58 workspace_id=2a5ba2a2-04eb-4fa7-82b3-71b6747d33b0
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b889cbe0-2bed-4950-ac81-6366e4456c58 workspace_id=2a5ba2a2-04eb-4fa7-82b3-71b6747d33b0
+[WebServer] (node:18932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:18932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 23 [mobile] › tests\projects.spec.ts:115:5 › home layout in both themes (1.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=175d3218-457a-4cdb-8822-8891a9109a9c workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=175d3218-457a-4cdb-8822-8891a9109a9c workspace_id=-
+[WebServer] (node:11416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:11416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=175d3218-457a-4cdb-8822-8891a9109a9c workspace_id=9f6c5464-cbfe-42a6-a567-9e4fdfb48533
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=175d3218-457a-4cdb-8822-8891a9109a9c workspace_id=9f6c5464-cbfe-42a6-a567-9e4fdfb48533
+  ok 24 [mobile] › tests\projects.spec.ts:123:5 › rapid duplicate submission sends a single creation request (1.4s)
+[WebServer] (node:25828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1164) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:1164) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=da40931d-ed6c-4de8-b055-c00258aa2df1 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=da40931d-ed6c-4de8-b055-c00258aa2df1 workspace_id=-
+[WebServer] (node:17304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:17304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=da40931d-ed6c-4de8-b055-c00258aa2df1 workspace_id=4e205a8e-2ce6-4359-909c-e9b8b652a834
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=da40931d-ed6c-4de8-b055-c00258aa2df1 workspace_id=4e205a8e-2ce6-4359-909c-e9b8b652a834
+[WebServer] (node:7852) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7852) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:7188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:13280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:7936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=f6061949-71b2-4310-a8a2-5369f392d55e workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=f6061949-71b2-4310-a8a2-5369f392d55e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f6061949-71b2-4310-a8a2-5369f392d55e workspace_id=4e205a8e-2ce6-4359-909c-e9b8b652a834
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f6061949-71b2-4310-a8a2-5369f392d55e workspace_id=4e205a8e-2ce6-4359-909c-e9b8b652a834
+[WebServer] (node:18016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:18016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:12732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:23936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:23640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3224) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:3224) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_revoked actor_id=f6061949-71b2-4310-a8a2-5369f392d55e workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=f6061949-71b2-4310-a8a2-5369f392d55e workspace_id=-
+[WebServer] (node:23132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:23132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=f6061949-71b2-4310-a8a2-5369f392d55e workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=f6061949-71b2-4310-a8a2-5369f392d55e workspace_id=-
+[WebServer] (node:24912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:24912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 25 [mobile] › tests\teams.spec.ts:7:5 › two people join a real workspace with Viewer restrictions, persistence and logout (6.3s)
+[WebServer] (node:10120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:10120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=c02baa4f-7fb2-4f69-8a28-b919dd8c4bd6 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=c02baa4f-7fb2-4f69-8a28-b919dd8c4bd6 workspace_id=-
+[WebServer] (node:13752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:13752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c02baa4f-7fb2-4f69-8a28-b919dd8c4bd6 workspace_id=66527c17-9498-473e-96ac-d1e716019113
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c02baa4f-7fb2-4f69-8a28-b919dd8c4bd6 workspace_id=66527c17-9498-473e-96ac-d1e716019113
+[WebServer] (node:26028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:26028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:17276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c02baa4f-7fb2-4f69-8a28-b919dd8c4bd6 workspace_id=edaa9bce-179d-483e-a7d9-dccf6c0b030e
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c02baa4f-7fb2-4f69-8a28-b919dd8c4bd6 workspace_id=edaa9bce-179d-483e-a7d9-dccf6c0b030e
+[WebServer] (node:26152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:26152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=f7c13a37-5009-4f1d-8294-7623dcf13310 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=f7c13a37-5009-4f1d-8294-7623dcf13310 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f7c13a37-5009-4f1d-8294-7623dcf13310 workspace_id=5c78b1fa-55b9-483d-806c-77a90400a986
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f7c13a37-5009-4f1d-8294-7623dcf13310 workspace_id=5c78b1fa-55b9-483d-806c-77a90400a986
+[WebServer] (node:19092) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19092) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 26 [mobile] › tests\teams.spec.ts:74:5 › unrelated exact project UUID stays private and workspace switching clears projects (3.7s)
+[WebServer] (node:22728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=8f31b0a1-8dfd-4b9f-93cb-86faad46bbb2 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=8f31b0a1-8dfd-4b9f-93cb-86faad46bbb2 workspace_id=-
+[WebServer] (node:24680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:24680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=8f31b0a1-8dfd-4b9f-93cb-86faad46bbb2 workspace_id=9db58a3f-9bed-4af2-b8be-7d75b7fb5458
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=8f31b0a1-8dfd-4b9f-93cb-86faad46bbb2 workspace_id=9db58a3f-9bed-4af2-b8be-7d75b7fb5458
+[WebServer] INFO:     security_event=session_revoked actor_id=8f31b0a1-8dfd-4b9f-93cb-86faad46bbb2 workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=8f31b0a1-8dfd-4b9f-93cb-86faad46bbb2 workspace_id=-
+  ok 27 [mobile] › tests\teams.spec.ts:99:5 › account menu and signout remain keyboard accessible (1.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=c800db94-6bc6-4aa4-a046-ff1b7cddd16c workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=c800db94-6bc6-4aa4-a046-ff1b7cddd16c workspace_id=-
+[WebServer] (node:14124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:14124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c800db94-6bc6-4aa4-a046-ff1b7cddd16c workspace_id=3a8f3280-7e88-4c9c-bded-34a059d26c29
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c800db94-6bc6-4aa4-a046-ff1b7cddd16c workspace_id=3a8f3280-7e88-4c9c-bded-34a059d26c29
+[WebServer] (node:11544) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:11544) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:2592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 28 [mobile] › tests\teams.spec.ts:117:5 › unconfirmed logout clears protected content without claiming server revocation (1.6s)
+(node:7032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:7032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:19480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=38f74b81-875c-46b7-819e-a3a2e12f8512 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=38f74b81-875c-46b7-819e-a3a2e12f8512 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=38f74b81-875c-46b7-819e-a3a2e12f8512 workspace_id=883ffc75-18bd-4add-8a8c-dd9b312b9cc1
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=38f74b81-875c-46b7-819e-a3a2e12f8512 workspace_id=883ffc75-18bd-4add-8a8c-dd9b312b9cc1
+[WebServer] (node:24744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:24744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 29 [tablet] › tests\projects.spec.ts:11:5 › empty Projects gives a usable first-project action (1.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=70fbb143-5812-44cc-bb42-00b87aa02612 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=70fbb143-5812-44cc-bb42-00b87aa02612 workspace_id=-
+[WebServer] (node:14540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:14540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=70fbb143-5812-44cc-bb42-00b87aa02612 workspace_id=a62edfb5-4088-4030-94d7-eeaf0e4683f8
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=70fbb143-5812-44cc-bb42-00b87aa02612 workspace_id=a62edfb5-4088-4030-94d7-eeaf0e4683f8
+[WebServer] (node:24040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:24040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:20472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 30 [tablet] › tests\projects.spec.ts:24:5 › chat creates a real project, survives reload, and appears in Projects (1.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=ae85e2b7-9180-49ce-b86a-6b60a6962b04 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=ae85e2b7-9180-49ce-b86a-6b60a6962b04 workspace_id=-
+[WebServer] (node:18760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:18760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ae85e2b7-9180-49ce-b86a-6b60a6962b04 workspace_id=b4370d77-e4b3-41ab-b320-bb03c61098f7
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ae85e2b7-9180-49ce-b86a-6b60a6962b04 workspace_id=b4370d77-e4b3-41ab-b320-bb03c61098f7
+  ok 31 [tablet] › tests\projects.spec.ts:46:5 › explicit project form saves title and description (1.5s)
+[WebServer] (node:26112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:26112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:8328) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:8328) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=0a94d3e2-395f-4f14-a44a-137a51b4aaa3 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=0a94d3e2-395f-4f14-a44a-137a51b4aaa3 workspace_id=-
+[WebServer] (node:20588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:20588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0a94d3e2-395f-4f14-a44a-137a51b4aaa3 workspace_id=eeaed32d-0901-4f11-9fc7-58cfbeeba284
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0a94d3e2-395f-4f14-a44a-137a51b4aaa3 workspace_id=eeaed32d-0901-4f11-9fc7-58cfbeeba284
+  ok 32 [tablet] › tests\projects.spec.ts:55:5 › theme persists, future sections are honest, keyboard navigation works (1.5s)
+[WebServer] (node:5972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:5972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:6324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=1799e43a-96af-4291-ab97-63bc40c2fc55 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=1799e43a-96af-4291-ab97-63bc40c2fc55 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1799e43a-96af-4291-ab97-63bc40c2fc55 workspace_id=0960312c-98e9-4bab-af63-4718ac2bac9f
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1799e43a-96af-4291-ab97-63bc40c2fc55 workspace_id=0960312c-98e9-4bab-af63-4718ac2bac9f
+[WebServer] (node:9272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:9272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 33 [tablet] › tests\projects.spec.ts:72:5 › nonexistent project shows an actual API not-found error (1.4s)
+[WebServer] (node:23584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:23584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:6388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=dcc89c89-0f13-438e-9e95-402c5ecefbe9 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=dcc89c89-0f13-438e-9e95-402c5ecefbe9 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=dcc89c89-0f13-438e-9e95-402c5ecefbe9 workspace_id=ffb977df-748e-411a-9421-33561d0a67b2
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=dcc89c89-0f13-438e-9e95-402c5ecefbe9 workspace_id=ffb977df-748e-411a-9421-33561d0a67b2
+[WebServer] (node:16608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:16608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 34 [tablet] › tests\projects.spec.ts:77:5 › network failure preserves the draft and permits deliberate retry (1.6s)
+[WebServer] (node:22728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=2f031936-821f-4b68-af9d-2f20c2de9a4c workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=2f031936-821f-4b68-af9d-2f20c2de9a4c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=2f031936-821f-4b68-af9d-2f20c2de9a4c workspace_id=0bdf8f77-cc6e-4de2-ad8f-04233e457337
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=2f031936-821f-4b68-af9d-2f20c2de9a4c workspace_id=0bdf8f77-cc6e-4de2-ad8f-04233e457337
+[WebServer] (node:21400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:21400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 35 [tablet] › tests\projects.spec.ts:90:5 › whitespace cannot create a project (1.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d75bd217-b310-424a-b89a-0c1aba94d032 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=d75bd217-b310-424a-b89a-0c1aba94d032 workspace_id=-
+[WebServer] (node:19408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d75bd217-b310-424a-b89a-0c1aba94d032 workspace_id=d17ce8eb-4d2b-44cf-86b3-b6f674090cd2
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d75bd217-b310-424a-b89a-0c1aba94d032 workspace_id=d17ce8eb-4d2b-44cf-86b3-b6f674090cd2
+  ok 36 [tablet] › tests\projects.spec.ts:100:5 › navigation supports mobile Escape and focus restoration (1.2s)
+[WebServer] (node:7460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:7460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=287e8b86-2108-4c77-9d50-ed141819b067 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=287e8b86-2108-4c77-9d50-ed141819b067 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=287e8b86-2108-4c77-9d50-ed141819b067 workspace_id=7a028f1d-940a-4194-9a5e-496901bbdb2b
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=287e8b86-2108-4c77-9d50-ed141819b067 workspace_id=7a028f1d-940a-4194-9a5e-496901bbdb2b
+[WebServer] (node:20664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:20664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 37 [tablet] › tests\projects.spec.ts:115:5 › home layout in both themes (1.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=9c28eef3-f743-4af2-b1af-c188e01e6eaa workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=9c28eef3-f743-4af2-b1af-c188e01e6eaa workspace_id=-
+[WebServer] (node:19964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9c28eef3-f743-4af2-b1af-c188e01e6eaa workspace_id=4200004c-6201-4ca5-94fc-91284c098cb1
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9c28eef3-f743-4af2-b1af-c188e01e6eaa workspace_id=4200004c-6201-4ca5-94fc-91284c098cb1
+  ok 38 [tablet] › tests\projects.spec.ts:123:5 › rapid duplicate submission sends a single creation request (1.6s)
+[WebServer] (node:20912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:20912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=c887dd8d-7c16-46b4-931d-ac43d5edd93d workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=c887dd8d-7c16-46b4-931d-ac43d5edd93d workspace_id=-
+[WebServer] (node:17920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:17920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c887dd8d-7c16-46b4-931d-ac43d5edd93d workspace_id=be737260-2d0a-4204-bf62-22f2ca180a0e
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c887dd8d-7c16-46b4-931d-ac43d5edd93d workspace_id=be737260-2d0a-4204-bf62-22f2ca180a0e
+[WebServer] (node:22480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:22480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23948) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:23948) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:19736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:20268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=7a5bfbc8-0ee2-4656-975d-d11fc8c45f0a workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=7a5bfbc8-0ee2-4656-975d-d11fc8c45f0a workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7a5bfbc8-0ee2-4656-975d-d11fc8c45f0a workspace_id=be737260-2d0a-4204-bf62-22f2ca180a0e
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7a5bfbc8-0ee2-4656-975d-d11fc8c45f0a workspace_id=be737260-2d0a-4204-bf62-22f2ca180a0e
+[WebServer] (node:19492) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19492) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:19668) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19668) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_revoked actor_id=7a5bfbc8-0ee2-4656-975d-d11fc8c45f0a workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=7a5bfbc8-0ee2-4656-975d-d11fc8c45f0a workspace_id=-
+[WebServer] (node:4236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:4236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:2480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=7a5bfbc8-0ee2-4656-975d-d11fc8c45f0a workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=7a5bfbc8-0ee2-4656-975d-d11fc8c45f0a workspace_id=-
+[WebServer] (node:26088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:26088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 39 [tablet] › tests\teams.spec.ts:7:5 › two people join a real workspace with Viewer restrictions, persistence and logout (5.8s)
+[WebServer] (node:25036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=0bb54377-7b00-4823-8ef5-8bc0b3ee4a55 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=0bb54377-7b00-4823-8ef5-8bc0b3ee4a55 workspace_id=-
+[WebServer] (node:20268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:20268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0bb54377-7b00-4823-8ef5-8bc0b3ee4a55 workspace_id=9d8a4c66-8475-4f21-a950-e01ebe4cc1e7
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0bb54377-7b00-4823-8ef5-8bc0b3ee4a55 workspace_id=9d8a4c66-8475-4f21-a950-e01ebe4cc1e7
+[WebServer] (node:18820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:18820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:26504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0bb54377-7b00-4823-8ef5-8bc0b3ee4a55 workspace_id=f1cb762b-5c55-4662-a7f4-7951adfc3e4c
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0bb54377-7b00-4823-8ef5-8bc0b3ee4a55 workspace_id=f1cb762b-5c55-4662-a7f4-7951adfc3e4c
+[WebServer] (node:18740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:18740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=3418dcf0-4019-47bc-938b-9442d2e7ad17 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=3418dcf0-4019-47bc-938b-9442d2e7ad17 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3418dcf0-4019-47bc-938b-9442d2e7ad17 workspace_id=c8e970f4-25bc-49e2-b217-cbddaa36de6a
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3418dcf0-4019-47bc-938b-9442d2e7ad17 workspace_id=c8e970f4-25bc-49e2-b217-cbddaa36de6a
+[WebServer] (node:25944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:25944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 40 [tablet] › tests\teams.spec.ts:74:5 › unrelated exact project UUID stays private and workspace switching clears projects (3.5s)
+[WebServer] (node:20912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:20912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=11268187-3355-401a-bcf9-efbb1d144622 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=11268187-3355-401a-bcf9-efbb1d144622 workspace_id=-
+[WebServer] (node:24916) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:24916) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=11268187-3355-401a-bcf9-efbb1d144622 workspace_id=b16cb514-dee7-49b2-a001-afa6bbac9760
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=11268187-3355-401a-bcf9-efbb1d144622 workspace_id=b16cb514-dee7-49b2-a001-afa6bbac9760
+[WebServer] INFO:     security_event=session_revoked actor_id=11268187-3355-401a-bcf9-efbb1d144622 workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=11268187-3355-401a-bcf9-efbb1d144622 workspace_id=-
+  ok 41 [tablet] › tests\teams.spec.ts:99:5 › account menu and signout remain keyboard accessible (1.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=7d699ca3-ff92-43b5-adfa-9edc3c3d4d17 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=7d699ca3-ff92-43b5-adfa-9edc3c3d4d17 workspace_id=-
+[WebServer] (node:8460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:8460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7d699ca3-ff92-43b5-adfa-9edc3c3d4d17 workspace_id=618a40e3-a11b-4e2e-bd1b-ebabee1be159
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7d699ca3-ff92-43b5-adfa-9edc3c3d4d17 workspace_id=618a40e3-a11b-4e2e-bd1b-ebabee1be159
+  ok 42 [tablet] › tests\teams.spec.ts:117:5 › unconfirmed logout clears protected content without claiming server revocation (1.4s)
+[WebServer] (node:23792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:23792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:13576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+  42 passed (1.8m)
+EXIT: 0
+**********************
+PowerShell transcript end
+End time: 20261018233746
+**********************

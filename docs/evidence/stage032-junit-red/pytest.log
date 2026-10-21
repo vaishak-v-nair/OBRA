@@ -1,0 +1,100 @@
+F.F                                                                      [100%]
+================================== FAILURES ===================================
+_ test_junit_preserves_literal_parameters_and_rejects_changed_names[models/gemini-3.8-flash] _
+
+tmp_path = WindowsPath('C:/Users/vaish/AppData/Local/Temp/pytest-of-vaish/pytest-80/test_junit_preserves_literal_p0')
+parameter = 'models/gemini-3.8-flash'
+
+    @pytest.mark.parametrize(
+        "parameter", ["models/gemini-3.8-flash", "models.gemini-3.8-flash", "docs/a.py::section/b"]
+    )
+    def test_junit_preserves_literal_parameters_and_rejects_changed_names(tmp_path, parameter):
+        # Authored UNIT report: module path separators normalize; parameter text must not.
+        name = f"test_model[{parameter}]"
+        report = ET.Element("testsuites")
+        suite = ET.SubElement(report, "testsuite")
+        ET.SubElement(suite, "testcase", classname="tests.test_metadata", name=name)
+        path = tmp_path / "literal.xml"
+        ET.ElementTree(report).write(path)
+>       result = v.junit_report(path, [f"tests/test_metadata.py::{name}"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_verification.py:119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/vaish/AppData/Local/Temp/pytest-of-vaish/pytest-80/test_junit_preserves_literal_p0/literal.xml')
+required = ['tests/test_metadata.py::test_model[models/gemini-3.8-flash]']
+
+    def junit_report(path, required=()):
+        root = ET.parse(path).getroot()
+        cases = root.findall(".//testcase")
+        if not cases:
+            raise EvidenceError("Backend report contains no executed tests.")
+        found = set()
+        for case in cases:
+            if any(case.find(kind) is not None for kind in ("skipped", "failure", "error")):
+                raise EvidenceError("Backend failure/error/skip/xfail cannot pass Gate A.")
+            key = case.attrib.get("classname", "") + "::" + case.attrib.get("name", "")
+            if key in found:
+                raise EvidenceError("Duplicate backend result identity.")
+            found.add(key)
+        expected = {node.replace(".py::", "::").replace("/", ".") for node in required}
+        if not expected <= found:
+>           raise EvidenceError(f"Missing {len(expected - found)} mandatory backend baseline cases.")
+E           scripts.verification.EvidenceError: Missing 1 mandatory backend baseline cases.
+
+scripts\verification.py:208: EvidenceError
+_ test_junit_preserves_literal_parameters_and_rejects_changed_names[docs/a.py::section/b] _
+
+tmp_path = WindowsPath('C:/Users/vaish/AppData/Local/Temp/pytest-of-vaish/pytest-80/test_junit_preserves_literal_p2')
+parameter = 'docs/a.py::section/b'
+
+    @pytest.mark.parametrize(
+        "parameter", ["models/gemini-3.8-flash", "models.gemini-3.8-flash", "docs/a.py::section/b"]
+    )
+    def test_junit_preserves_literal_parameters_and_rejects_changed_names(tmp_path, parameter):
+        # Authored UNIT report: module path separators normalize; parameter text must not.
+        name = f"test_model[{parameter}]"
+        report = ET.Element("testsuites")
+        suite = ET.SubElement(report, "testsuite")
+        ET.SubElement(suite, "testcase", classname="tests.test_metadata", name=name)
+        path = tmp_path / "literal.xml"
+        ET.ElementTree(report).write(path)
+>       result = v.junit_report(path, [f"tests/test_metadata.py::{name}"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_verification.py:119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/vaish/AppData/Local/Temp/pytest-of-vaish/pytest-80/test_junit_preserves_literal_p2/literal.xml')
+required = ['tests/test_metadata.py::test_model[docs/a.py::section/b]']
+
+    def junit_report(path, required=()):
+        root = ET.parse(path).getroot()
+        cases = root.findall(".//testcase")
+        if not cases:
+            raise EvidenceError("Backend report contains no executed tests.")
+        found = set()
+        for case in cases:
+            if any(case.find(kind) is not None for kind in ("skipped", "failure", "error")):
+                raise EvidenceError("Backend failure/error/skip/xfail cannot pass Gate A.")
+            key = case.attrib.get("classname", "") + "::" + case.attrib.get("name", "")
+            if key in found:
+                raise EvidenceError("Duplicate backend result identity.")
+            found.add(key)
+        expected = {node.replace(".py::", "::").replace("/", ".") for node in required}
+        if not expected <= found:
+>           raise EvidenceError(f"Missing {len(expected - found)} mandatory backend baseline cases.")
+E           scripts.verification.EvidenceError: Missing 1 mandatory backend baseline cases.
+
+scripts\verification.py:208: EvidenceError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_verification.py::test_junit_preserves_literal_parameters_and_rejects_changed_names[models/gemini-3.8-flash]
+FAILED tests/test_verification.py::test_junit_preserves_literal_parameters_and_rejects_changed_names[docs/a.py::section/b]
+2 failed, 1 passed, 29 deselected, 1 warning in 0.38s

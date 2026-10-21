@@ -21,6 +21,7 @@ from orba.db import Base
 class Project(Base):
     __tablename__ = "projects"
     __table_args__ = (
+        UniqueConstraint("id", "workspace_id", name="uq_project_workspace"),
         CheckConstraint("length(trim(title)) BETWEEN 1 AND 120", name="title_length"),
         CheckConstraint("length(trim(description)) BETWEEN 1 AND 10000", name="description_length"),
         CheckConstraint("status = 'created'", name="project_status"),

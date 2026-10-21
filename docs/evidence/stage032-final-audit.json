@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "recorded_at": "2026-10-20T08:47:40.875447+00:00",
+  "result": "PASS",
+  "source_sha256": "2a2128d0f21c914b4640db6eb7c31ddf446ad00076a9a28e52d03bfcbe44b098",
+  "source_files": 123,
+  "source_files_unchanged": 110,
+  "source_files_intentionally_modified": [
+    "apps/api/scripts/check_pm_config.py",
+    "apps/api/scripts/verification.py",
+    "apps/api/scripts/verification_baseline.json",
+    "apps/api/tests/controlled_app.py",
+    "apps/api/tests/test_pm_reliability.py",
+    "apps/api/tests/test_verification.py",
+    "apps/web/tests-controlled/pm-recovery.spec.ts",
+    "apps/web/tests-live/pm-live.spec.ts",
+    "apps/web/tests/projects.spec.ts"
+  ],
+  "source_files_added": [
+    "apps/api/orba/pm_readiness.py",
+    "apps/api/tests/test_pm_readiness.py",
+    "apps/api/tests/test_readiness_evidence.py",
+    "apps/web/tests/generation-budget.ts"
+  ],
+  "source_files_removed": [],
+  "historical_evidence_files_at_intake": 369,
+  "historical_evidence_files_unchanged": 368,
+  "changed_mutable_pointers_only": [
+    "docs/evidence/stage031/latest-A.json"
+  ],
+  "latest_b_unchanged": true,
+  "dotenv_preservation": {
+    ".env": true,
+    "apps\\api\\.env": true
+  },
+  "git_head": "e3fccd63e88162065189b00be1696617f616eea3",
+  "head_unchanged": true,
+  "staged_files": [],
+  "commits_created": 0,
+  "reset_or_discard_operations": 0,
+  "gate_a_receipt": "docs\\evidence\\stage031\\20261020T083556Z-A-15fa5007\\receipt.json",
+  "gate_a_receipt_sha256": "30655fec59ae1cf4ef7eaa4e61a09ce11bbb2eb897bef307e6534a0f06aea224",
+  "gate_a_validated": true,
+  "readiness_preparation": "docs\\evidence\\stage032-readiness-preparation-20261020T084607Z",
+  "readiness_evidence_validated": true,
+  "new_paid_generation_requests_in_this_workflow": 0,
+  "gate_b_executed": false,
+  "credential_scan": {
+    "scope": "Literal configured runtime key only; not a comprehensive secret audit",
+    "git_visible_files_checked": 655,
+    "frontend_assets_checked": 24,
+    "repository_match_count": 0,
+    "asset_match_count": 0,
+    "credential_value_or_hash_recorded": false
+  }
+}

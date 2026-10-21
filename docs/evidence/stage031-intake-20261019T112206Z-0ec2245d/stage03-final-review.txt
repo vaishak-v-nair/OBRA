@@ -1,0 +1,63 @@
+**********************
+PowerShell transcript start
+Start time: 20261019160709
+Username: VAISHAK-MSI\vaish
+RunAs User: VAISHAK-MSI\vaish
+Configuration Name: 
+Machine: VAISHAK-MSI (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$ErrorActionPreference = 'Stop'
+Start-Transcript -Path docs/evidence/stage03-final-review.txt -Force
+try {
+  Write-Output 'COMMAND: git diff --check'
+  git diff --check
+  $orbaDiffExit = $LASTEXITCODE
+  Write-Output "EXIT: $orbaDiffExit"
+  if ($orbaDiffExit -ne 0) { throw "Whitespace check failed with exit $orbaDiffExit" }
+  Write-Output 'COMMAND: git log -1 --format=%h%x20%s'
+  git log -1 --format='%h%x20%s'
+  $orbaLogExit = $LASTEXITCODE
+  Write-Output "EXIT: $orbaLogExit"
+  if ($orbaLogExit -ne 0) { throw 'Cannot verify baseline commit.' }
+  Write-Output 'COMMAND: git hash-object docs/VERIFICATION_STAGE02.md'
+  $orbaArchive = git hash-object docs/VERIFICATION_STAGE02.md
+  $orbaArchiveExit = $LASTEXITCODE
+  Write-Output $orbaArchive
+  Write-Output "EXIT: $orbaArchiveExit"
+  if ($orbaArchiveExit -ne 0 -or $orbaArchive -ne 'dde460d8cc315bac70b16a099045454255e1d84d') { throw 'Historical Stage02 record differs from checkpoint.' }
+  Write-Output 'COMMAND: git diff --exit-code -- docs/evidence/stage02-authorization.json'
+  git diff --exit-code -- docs/evidence/stage02-authorization.json
+  $orbaHistoryExit = $LASTEXITCODE
+  Write-Output "EXIT: $orbaHistoryExit"
+  if ($orbaHistoryExit -ne 0) { throw 'Historical authorization record differs from checkpoint.' }
+  Write-Output 'FINAL REVIEW: Stage03 remains uncommitted; Full exit1 and standalone live browser exit0 are separately documented. No Stage04 work.'
+} finally { Stop-Transcript }
+Process ID: 3080
+PSVersion: 7.6.7
+PSEdition: Core
+GitCommitId: 7.6.7
+OS: Microsoft Windows 10.0.26300
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is docs/evidence/stage03-final-review.txt
+COMMAND: git diff --check
+
+EXIT: 0
+COMMAND: git log -1 --format=%h%x20%s
+
+EXIT: 0
+COMMAND: git hash-object docs/VERIFICATION_STAGE02.md
+dde460d8cc315bac70b16a099045454255e1d84d
+EXIT: 0
+COMMAND: git diff --exit-code -- docs/evidence/stage02-authorization.json
+
+EXIT: 0
+FINAL REVIEW: Stage03 remains uncommitted; Full exit1 and standalone live browser exit0 are separately documented. No Stage04 work.
+**********************
+PowerShell transcript end
+End time: 20261019160710
+**********************

@@ -1,0 +1,24 @@
+{
+  "name": "editor-revision-after-fix",
+  "argv": [
+    "npm",
+    "exec",
+    "--yes",
+    "--package=pnpm@12.14.0",
+    "--",
+    "pnpm",
+    "--filter",
+    "@orba/web",
+    "exec",
+    "playwright",
+    "test",
+    "--config",
+    "playwright.controlled.config.ts",
+    "--grep=status recovery never advances"
+  ],
+  "started_at": "2026-10-19T16:33:30.399000+00:00",
+  "exit_code": 0,
+  "pid": 24580,
+  "duration_seconds": 29.821,
+  "completed_at": "2026-10-19T16:34:00.220765+00:00"
+}

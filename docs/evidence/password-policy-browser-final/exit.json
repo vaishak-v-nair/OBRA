@@ -1,0 +1,25 @@
+{
+  "command": {
+    "name": "password-policy-browser",
+    "argv": [
+      "npm",
+      "exec",
+      "--yes",
+      "--package=pnpm@12.14.0",
+      "--",
+      "pnpm",
+      "--filter",
+      "@orba/web",
+      "exec",
+      "playwright",
+      "test",
+      "tests/password-policy.spec.ts"
+    ],
+    "started_at": "2026-10-19T17:42:12.787112+00:00",
+    "exit_code": 0,
+    "pid": 27592,
+    "duration_seconds": 38.035,
+    "completed_at": "2026-10-19T17:42:50.822033+00:00"
+  },
+  "services": "real API/auth/CSRF/PostgreSQL/browser; native clipboard; no model or auth mocks"
+}

@@ -1,0 +1,58 @@
+$ pnpm --filter @orba/web test:e2e:controlled
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.controlled.config.ts
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "<frozen runpy>", line 198, in _run_module_as_main
+[WebServer]   File "<frozen runpy>", line 88, in _run_code
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\.venv\Scripts\uvicorn.exe\__main__.py", line 10, in <module>
+[WebServer]     sys.exit(main())
+[WebServer]              ~~~~^^
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\click\core.py", line 1631, in __call__
+[WebServer]     return self.main(*args, **kwargs)
+[WebServer]            ~~~~~~~~~^^^^^^^^^^^^^^^^^
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\click\core.py", line 1552, in main
+[WebServer]     rv = self.invoke(ctx)
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\click\core.py", line 1415, in invoke
+[WebServer]     return ctx.invoke(self.callback, **ctx.params)
+[WebServer]            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\click\core.py", line 910, in invoke
+[WebServer]     return callback(*args, **kwargs)
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\uvicorn\main.py", line 448, in main
+[WebServer]     run(
+[WebServer]     ~~~^
+[WebServer]         app,
+[WebServer]         ^^^^
+[WebServer]     ...<49 lines>...
+[WebServer]         reset_contextvars=reset_contextvars,
+[WebServer]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[WebServer]     )
+[WebServer]     ^
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\uvicorn\main.py", line 620, in run
+[WebServer]     config.load_app()
+[WebServer]     ~~~~~~~~~~~~~~~^^
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\uvicorn\config.py", line 434, in load_app
+[WebServer]     return import_from_string(self.app)
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\uvicorn\importer.py", line 22, in import_from_string
+[WebServer]     raise exc from None
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+[WebServer]     module = importlib.import_module(module_str)
+[WebServer]   File "C:\Users\vaish\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\importlib\__init__.py", line 88, in import_module
+[WebServer]     return _bootstrap._gcd_import(name[level:], package, level)
+[WebServer]            ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[WebServer]   File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+[WebServer]   File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+[WebServer]   File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+[WebServer]   File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+[WebServer]   File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+[WebServer]   File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+[WebServer]   File "E:\BrosKi\OBRA\apps\api\tests\controlled_app.py", line 9, in <module>
+[WebServer]     from orba.config import Settings
+[WebServer] ModuleNotFoundError: No module named 'orba'
+Error: Process from config.webServer was not able to start. Exit code: 1
+
+[ELIFECYCLE] Command failed with exit code 1.
+Error: ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL
+
+  × "pnpm recursive run" failed in E:\BrosKi\OBRA\apps/web
+
+[ELIFECYCLE] Command failed with exit code 1.

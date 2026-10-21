@@ -1,0 +1,24 @@
+{
+  "name": "admission-reference-after-fix",
+  "argv": [
+    "npm",
+    "exec",
+    "--yes",
+    "--package=pnpm@12.14.0",
+    "--",
+    "pnpm",
+    "--filter",
+    "@orba/web",
+    "exec",
+    "playwright",
+    "test",
+    "--config",
+    "playwright.controlled.config.ts",
+    "--grep=known active-project rejection"
+  ],
+  "started_at": "2026-10-19T16:44:26.894857+00:00",
+  "exit_code": 0,
+  "pid": 18596,
+  "duration_seconds": 33.539,
+  "completed_at": "2026-10-19T16:45:00.433821+00:00"
+}

@@ -1,0 +1,268 @@
+$ pnpm --filter @orba/web test:e2e:controlled
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.controlled.config.ts
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [4240]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:24708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6164) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:23964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=970113ea-4634-4b26-9d3c-4651731f5146 workspace_id=-
+[WebServer] (node:27060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=970113ea-4634-4b26-9d3c-4651731f5146 workspace_id=8760cc0c-8889-42f7-a91a-4d613b78a0b8
+[WebServer] (node:13936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=0b15a3d9-ed8f-4694-af77-291292266292 stage=admission_commit_acknowledged elapsed_ms=43.043 stage_duration_ms=43.021 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=0b15a3d9-ed8f-4694-af77-291292266292 stage=running_commit_acknowledged elapsed_ms=83.132 stage_duration_ms=39.971 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=0b15a3d9-ed8f-4694-af77-291292266292 stage=failure_commit_acknowledged stage_duration_ms=72.080 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+[WebServer] (node:19096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=c34587ab-161a-45c2-8cc4-9d0f7d84ce47 stage=admission_commit_acknowledged elapsed_ms=30.754 stage_duration_ms=30.736 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c34587ab-161a-45c2-8cc4-9d0f7d84ce47 stage=running_commit_acknowledged elapsed_ms=51.729 stage_duration_ms=20.865 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c34587ab-161a-45c2-8cc4-9d0f7d84ce47 stage=failure_commit_acknowledged stage_duration_ms=24.544 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+[WebServer] (node:25316) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests-controlled\pm-recovery.spec.ts:23:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt (19.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=e7e50daa-939b-4a9a-9d04-9355f6a4c486 workspace_id=-
+[WebServer] (node:25024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e7e50daa-939b-4a9a-9d04-9355f6a4c486 workspace_id=24465fcc-cced-4511-8023-c29479492f08
+[WebServer] (node:20032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17652) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=6228b9f8-da5b-4e61-b48c-8fe719639bbb stage=admission_commit_acknowledged elapsed_ms=77.381 stage_duration_ms=77.363 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=6228b9f8-da5b-4e61-b48c-8fe719639bbb stage=running_commit_acknowledged elapsed_ms=101.402 stage_duration_ms=23.909 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=6228b9f8-da5b-4e61-b48c-8fe719639bbb stage=failure_commit_acknowledged stage_duration_ms=17.862 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok  2 [chromium] › tests-controlled\pm-recovery.spec.ts:66:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed (7.8s)
+[WebServer] (node:23724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=eab44406-4935-4ddd-a4df-98922bfb3e57 workspace_id=-
+[WebServer] (node:25356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=eab44406-4935-4ddd-a4df-98922bfb3e57 workspace_id=9fac8b7e-ca93-4a6b-8e76-54df7515c216
+[WebServer] (node:4976) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15832) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=b2f64da9-5420-428e-85d1-b2ee959dd407 stage=admission_commit_acknowledged elapsed_ms=43.571 stage_duration_ms=43.553 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=b2f64da9-5420-428e-85d1-b2ee959dd407 stage=running_commit_acknowledged elapsed_ms=77.210 stage_duration_ms=33.508 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] (node:23288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=b2f64da9-5420-428e-85d1-b2ee959dd407 stage=provider_response_received elapsed_ms=1608.982 stage_duration_ms=1531.453 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=b2f64da9-5420-428e-85d1-b2ee959dd407 stage=output_validated elapsed_ms=1613.804 stage_duration_ms=3.653 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=b2f64da9-5420-428e-85d1-b2ee959dd407 stage=publication_commit_acknowledged elapsed_ms=1795.480 stage_duration_ms=180.8 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] (node:3132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  3 [chromium] › tests-controlled\pm-recovery.spec.ts:92:5 › controlled success retains recovery UUID when the saved-result read fails (8.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=69f5b3af-adb9-4002-9e88-99e79f7c5dd7 workspace_id=-
+[WebServer] (node:4084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=69f5b3af-adb9-4002-9e88-99e79f7c5dd7 workspace_id=7ca3949c-a113-4807-80ea-2d5abf89e270
+[WebServer] (node:9276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:16944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  4 [chromium] › tests-controlled\pm-recovery.spec.ts:114:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run (6.6s)
+[WebServer] (node:10864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:23940) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=0f8ef89d-6a08-426f-9e9a-231b48c439ef workspace_id=-
+[WebServer] (node:28368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0f8ef89d-6a08-426f-9e9a-231b48c439ef workspace_id=50ec38f2-fbb2-4508-a03a-d6cf935f600b
+[WebServer] (node:28644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28492) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=9a76776c-06e4-4567-82fa-6adac60c06cc stage=admission_commit_acknowledged elapsed_ms=32.835 stage_duration_ms=32.775 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=9a76776c-06e4-4567-82fa-6adac60c06cc stage=running_commit_acknowledged elapsed_ms=57.360 stage_duration_ms=24.364 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=9a76776c-06e4-4567-82fa-6adac60c06cc stage=failure_commit_acknowledged stage_duration_ms=39.783 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+[WebServer] (node:28060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=17be9be1-10fd-4bec-8737-bcecf48d2d3d stage=admission_commit_acknowledged elapsed_ms=31.479 stage_duration_ms=31.45 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=17be9be1-10fd-4bec-8737-bcecf48d2d3d stage=running_commit_acknowledged elapsed_ms=54.465 stage_duration_ms=22.57 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=17be9be1-10fd-4bec-8737-bcecf48d2d3d stage=failure_commit_acknowledged stage_duration_ms=66.249 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+[WebServer] (node:28460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  5 [mobile] › tests-controlled\pm-recovery.spec.ts:23:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt (15.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5c6b6286-c23a-462f-88c7-9fba5b527163 workspace_id=-
+[WebServer] (node:28608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5c6b6286-c23a-462f-88c7-9fba5b527163 workspace_id=c68f4df5-8a5c-4ba9-9e73-fda55886f336
+[WebServer] (node:28520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=a23262d6-b571-4287-85d7-6e1150d0963a stage=admission_commit_acknowledged elapsed_ms=44.351 stage_duration_ms=44.333 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=a23262d6-b571-4287-85d7-6e1150d0963a stage=running_commit_acknowledged elapsed_ms=73.230 stage_duration_ms=28.734 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] (node:28436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=a23262d6-b571-4287-85d7-6e1150d0963a stage=failure_commit_acknowledged stage_duration_ms=19.230 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok  6 [mobile] › tests-controlled\pm-recovery.spec.ts:66:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed (7.2s)
+[WebServer] (node:28640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=677015d5-6a0a-42a0-b979-594976b86435 workspace_id=-
+[WebServer] (node:28588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=677015d5-6a0a-42a0-b979-594976b86435 workspace_id=4c97e819-7551-46de-abba-0b71ac1165bf
+[WebServer] (node:17620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=bf205677-c182-4b60-9cc0-0ce9d887d977 stage=admission_commit_acknowledged elapsed_ms=55.368 stage_duration_ms=55.346 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=bf205677-c182-4b60-9cc0-0ce9d887d977 stage=running_commit_acknowledged elapsed_ms=89.731 stage_duration_ms=34.204 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=bf205677-c182-4b60-9cc0-0ce9d887d977 stage=provider_response_received elapsed_ms=1605.513 stage_duration_ms=1515.641 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=bf205677-c182-4b60-9cc0-0ce9d887d977 stage=output_validated elapsed_ms=1606.651 stage_duration_ms=0.918 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=bf205677-c182-4b60-9cc0-0ce9d887d977 stage=publication_commit_acknowledged elapsed_ms=1783.647 stage_duration_ms=176.694 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] (node:9296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  7 [mobile] › tests-controlled\pm-recovery.spec.ts:92:5 › controlled success retains recovery UUID when the saved-result read fails (8.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b1367a22-632e-402a-890c-021a863282eb workspace_id=-
+[WebServer] (node:28588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b1367a22-632e-402a-890c-021a863282eb workspace_id=9af6065e-48e8-46e5-8d96-dd40743c11e5
+[WebServer] (node:27788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  8 [mobile] › tests-controlled\pm-recovery.spec.ts:114:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run (8.1s)
+[WebServer] (node:22108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:22372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=90b6d739-97d6-45a4-9f95-cfb79f826d5b workspace_id=-
+[WebServer] (node:2104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=90b6d739-97d6-45a4-9f95-cfb79f826d5b workspace_id=fed9d528-3aa3-4a81-b569-f6b1d984e8c7
+[WebServer] (node:14296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:16564) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=9206a3e6-29eb-4f7a-95d2-f7fd5845b4d9 stage=admission_commit_acknowledged elapsed_ms=36.829 stage_duration_ms=36.802 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] (node:28464) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=9206a3e6-29eb-4f7a-95d2-f7fd5845b4d9 stage=running_commit_acknowledged elapsed_ms=81.365 stage_duration_ms=44.411 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=9206a3e6-29eb-4f7a-95d2-f7fd5845b4d9 stage=failure_commit_acknowledged stage_duration_ms=46.342 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+[WebServer] (node:21048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=9b71387d-3fea-40e4-aadb-07e244fc6066 stage=admission_commit_acknowledged elapsed_ms=36.841 stage_duration_ms=36.825 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=9b71387d-3fea-40e4-aadb-07e244fc6066 stage=running_commit_acknowledged elapsed_ms=63.743 stage_duration_ms=26.778 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=9b71387d-3fea-40e4-aadb-07e244fc6066 stage=failure_commit_acknowledged stage_duration_ms=39.317 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+[WebServer] (node:4432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  9 [tablet] › tests-controlled\pm-recovery.spec.ts:23:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt (15.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=a1db25a6-f911-4691-a0b3-6a16309d6183 workspace_id=-
+[WebServer] (node:12272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a1db25a6-f911-4691-a0b3-6a16309d6183 workspace_id=5d5941db-4ee4-42e3-a02a-406cf806436e
+[WebServer] (node:3332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28392) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=55420d31-b5af-48c3-8e64-04324912f309 stage=admission_commit_acknowledged elapsed_ms=47.775 stage_duration_ms=47.742 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=55420d31-b5af-48c3-8e64-04324912f309 stage=running_commit_acknowledged elapsed_ms=80.023 stage_duration_ms=31.99 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] (node:24740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=55420d31-b5af-48c3-8e64-04324912f309 stage=failure_commit_acknowledged stage_duration_ms=22.213 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 10 [tablet] › tests-controlled\pm-recovery.spec.ts:66:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed (7.6s)
+[WebServer] (node:28440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=02f94a95-cc0b-4071-9247-e08fdf95821c workspace_id=-
+[WebServer] (node:4432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=02f94a95-cc0b-4071-9247-e08fdf95821c workspace_id=0ce72d34-ca9c-43a7-b20b-e32b48ad6aaa
+[WebServer] (node:27524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:18664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     pm_timing run_id=615bed0e-6c09-453c-9eb4-07af0624654f stage=admission_commit_acknowledged elapsed_ms=55.296 stage_duration_ms=55.24 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=615bed0e-6c09-453c-9eb4-07af0624654f stage=running_commit_acknowledged elapsed_ms=80.352 stage_duration_ms=24.446 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=615bed0e-6c09-453c-9eb4-07af0624654f stage=provider_response_received elapsed_ms=1591.117 stage_duration_ms=1510.229 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=615bed0e-6c09-453c-9eb4-07af0624654f stage=output_validated elapsed_ms=1594.683 stage_duration_ms=2.79 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=615bed0e-6c09-453c-9eb4-07af0624654f stage=publication_commit_acknowledged elapsed_ms=1710.367 stage_duration_ms=115.034 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] (node:2400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 [tablet] › tests-controlled\pm-recovery.spec.ts:92:5 › controlled success retains recovery UUID when the saved-result read fails (8.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=bec2e391-9306-4f05-8fb1-9148f5dd96b4 workspace_id=-
+[WebServer] (node:28292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=bec2e391-9306-4f05-8fb1-9148f5dd96b4 workspace_id=535b027b-cafe-4a3f-b281-2b5600b47eb0
+[WebServer] (node:12712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:14800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 12 [tablet] › tests-controlled\pm-recovery.spec.ts:114:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run (6.2s)
+
+  12 passed (2.2m)

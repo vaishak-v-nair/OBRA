@@ -12,3 +12,8 @@ playwright-report/
 *.tsbuildinfo
 *.log
 docs/evidence/*.png
+docs/evidence/**/*.png
+docs/evidence/stage031/gate.lock
+# Retain bounded verification command evidence while ordinary runtime logs stay ignored.
+!docs/evidence/stage031/**/*.log
+!docs/evidence/stage031-*.log

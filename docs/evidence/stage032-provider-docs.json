@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-20T07:39:07.750085+00:00",
+  "evidence_class": "official_documentation_review",
+  "generation_requests": 0,
+  "sources": [
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+      "findings": [
+        "Stable exact model gemini-3.8-flash",
+        "Structured outputs supported",
+        "Input1048576/output65536",
+        "Thinking low/medium/high supported"
+      ]
+    },
+    {
+      "url": "https://ai.google.dev/api/models",
+      "findings": [
+        "Read-only GET models.get and models.list",
+        "Model metadata includes supportedGenerationMethods and token limits; not a generation response"
+      ]
+    },
+    {
+      "url": "https://googleapis.github.io/python-genai/",
+      "findings": [
+        "Official Python SDK exposes models.get/list and HttpOptions; installed2.31.0 introspected separately"
+      ]
+    },
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+      "findings": [
+        "Provider quotas depend on project/tier, not ORBA admission budgets"
+      ]
+    },
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "findings": [
+        "Check current standard Gemini3.8 text input/output including thinking prices before paid approval; no account invoice or actual usage inferred"
+      ]
+    }
+  ]
+}

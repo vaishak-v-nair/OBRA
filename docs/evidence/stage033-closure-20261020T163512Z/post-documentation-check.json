@@ -1,0 +1,58 @@
+{
+  "recorded_at": "2026-10-20T16:42:29.857747+00:00",
+  "source_sha256": "661f2828f7adbdc368a31616280ebec5d27048b2dc6f9feb1ecada06505b282d",
+  "source_start_end_current_match": true,
+  "gate_a_receipt": "docs\\evidence\\stage031\\20261020T162458Z-A-dca02afc\\receipt.json",
+  "gate_a_receipt_sha256": "26b645c85a516fd84f41c5f9b3be42f464af96bfefbfcd978f0f878f73107f19",
+  "gate_a_result": "PASS",
+  "gate_a_native_exit": 0,
+  "gate_c_result": {
+    "version": 1,
+    "recorded_at": "2026-10-20T16:35:23.127315+00:00",
+    "source_sha256": "661f2828f7adbdc368a31616280ebec5d27048b2dc6f9feb1ecada06505b282d",
+    "gates": {
+      "A": {
+        "result": "PASS",
+        "receipt": "20261020T162458Z-A-dca02afc\\receipt.json"
+      },
+      "B": {
+        "result": "FAIL",
+        "reason": "Gate B has no passing complete receipt."
+      }
+    },
+    "stage03_verdict": "PARTIAL"
+  },
+  "gate_c_native_exit": 2,
+  "current_source_gate_b": "NOT RUN",
+  "false_success_experiment_receipt": "docs\\evidence\\stage031\\20261020T163512Z-wrong-success-b0919537\\experiment.json",
+  "false_success_native_exit": 1,
+  "false_success_detected": true,
+  "historical_evidence_checked": 588,
+  "historical_receipts_modified": [],
+  "only_mutable_pointer_advanced": [
+    "docs/evidence/stage031/latest-A.json"
+  ],
+  "dotenv_and_head_unchanged": true,
+  "archived_verification_preserved_verbatim": true,
+  "git_diff_check_exit": 0,
+  "current_doc_links_missing": [],
+  "literal_credential_scan": {
+    "files_scanned": 771,
+    "matches": [],
+    "not_a_complete_secret_audit": true
+  },
+  "documents_sha256": {
+    "README.md": "b4017792a82baf66c60e363358f23a0adfd4468b42d0aea5b98c0a663025f969",
+    "AGENTS.md": "701a2735e81a0b4898cb6cbfd68f3ed1ffd73ae86a580fdb7784759fa92c911f",
+    "docs\\ARCHITECTURE.md": "e6baac2f2e540ef3f3f160d8cc7efaa6f90635fa9fe074e587ff313d27936055",
+    "docs\\ROADMAP.md": "da7f4eb4f749401dc12eea0901c9e3121b9aa323a7895b7a05c88c900b6c47af",
+    "docs\\VERIFICATION.md": "1914bba6cfa40a10d5eab6469cdc88856921596eca43d34bd5da7f3fb6511227",
+    "docs\\VERIFICATION_STAGE033.md": "01530715244c8421f135080e501c008b9f77da73e15531487a06823f05ab4f8c",
+    "docs\\STAGE033_PROVIDER_RELIABILITY.md": "c62d876a052d929e0fabb6d1e925ec73d71655561a97618ce845d7277771a4b5",
+    "docs\\STAGE033_PLAN.md": "8b71aaa9c0561586841f63fe32ded0fab760963420a9b2b02f87323d2cb798cc"
+  },
+  "paid_generation_requests_in_stage033": 0,
+  "read_only_metadata_gets_in_stage033": 3,
+  "final_stage03_verdict": "PARTIAL",
+  "next_action": "STOP for fresh explicit authorization; no paid dispatch, commit, discard or Stage04"
+}

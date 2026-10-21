@@ -1,0 +1,51 @@
+{
+  "execution_class": "controlled_provider_double",
+  "provider_double": true,
+  "posts": 2,
+  "database": {
+    "source": "fresh SQLAlchemy session against guarded PostgreSQL",
+    "run_id": "f7682370-e75c-4357-a1cf-869e1d7c2fbf",
+    "project_id": "b391d05f-36c2-41ab-832d-8a322f3577f3",
+    "status": "failed",
+    "provider": "google-gemini",
+    "workspace_id": "d9c9542f-5dfd-44e3-b452-c1b50bd6e79b",
+    "initiator_id": "f9dbdb67-48c2-4447-bf13-868e4ae2ae7c",
+    "provider_response_id": null,
+    "provider_request_id": null,
+    "usage": null,
+    "prompt_version": "pm-v1",
+    "prompt_hash": "268749ec7f6f7527b7950889b51efae43dcd18a60f5140a51bae4c9a918e40ac",
+    "hash_version": "orba-pm-canonical-json-v1",
+    "started_at": "2026-10-19T16:50:49.469888+00:00",
+    "completed_at": "2026-10-19T16:50:50.990934+00:00",
+    "requested_model": "gemini-controlled-timeout-double",
+    "returned_model": null,
+    "error_category": "provider_timeout",
+    "diagnostic_id": "180cfd6c-2b3f-4397-8504-bf3bf05ead1a",
+    "diagnostic": {
+      "attempt": 1,
+      "stages_ms": {
+        "provider_call": 1507.31,
+        "running_transaction": 16.997,
+        "admission_transaction": 28.214
+      },
+      "elapsed_ms": 1553.042,
+      "error_origin": "controlled_double",
+      "dispatch_phase": "provider_call",
+      "exception_type": "ControlledProviderTimeout",
+      "timing_version": 1,
+      "provider_double": true,
+      "timing_boundary": "before_terminal_commit"
+    },
+    "project_plans": [
+      {
+        "id": "209a42c6-6b66-4853-b14b-6ca553c44711",
+        "version": 1,
+        "state": "approved",
+        "generating_run_id": null,
+        "content_hash": "c938bdafd042e11f2d2609741a47952e2429bb55652aecd1493abd8882afd06f",
+        "approved_at": "2026-10-19T16:50:46.253360+00:00"
+      }
+    ]
+  }
+}

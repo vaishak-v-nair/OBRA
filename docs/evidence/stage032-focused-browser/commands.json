@@ -1,0 +1,44 @@
+[
+  {
+    "name": "eslint",
+    "argv": [
+      "npm",
+      "exec",
+      "--yes",
+      "--package=pnpm@12.14.0",
+      "--",
+      "pnpm",
+      "lint"
+    ],
+    "started_at": "2026-10-20T08:07:46.994375+00:00",
+    "exit_code": 0,
+    "pid": 26096,
+    "duration_seconds": 71.221,
+    "completed_at": "2026-10-20T08:08:58.215690+00:00"
+  },
+  {
+    "name": "browser",
+    "argv": [
+      "npm",
+      "exec",
+      "--yes",
+      "--package=pnpm@12.14.0",
+      "--",
+      "pnpm",
+      "--filter",
+      "@orba/web",
+      "exec",
+      "playwright",
+      "test",
+      "--config",
+      "playwright.controlled.config.ts",
+      "--grep",
+      "controlled (upstream503|provider429|malformed)|live-test allowance"
+    ],
+    "started_at": "2026-10-20T08:09:02.286196+00:00",
+    "exit_code": 0,
+    "pid": 27852,
+    "duration_seconds": 146.747,
+    "completed_at": "2026-10-20T08:11:29.033497+00:00"
+  }
+]

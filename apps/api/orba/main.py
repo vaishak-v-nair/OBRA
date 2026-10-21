@@ -1,22 +1,28 @@
+import asyncio
 import logging
 from contextlib import asynccontextmanager
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import Depends, FastAPI, HTTPException, Query, Request
+from fastapi import Depends, FastAPI, Query, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from sqlalchemy import select, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
+from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from orba.auth import router as auth_router
 from orba.config import Settings
 from orba.db import get_session, make_engine
-from orba.models import Project, Workspace, WorkspaceMember
+from orba.models import Project
+from orba.pm import router as pm_router
+from orba.pm_errors import PMError
+from orba.pm_middleware import PMBodyLimitMiddleware
+from orba.pm_service import expire_runs, phase
 from orba.schemas import ProjectCreate, ProjectRead, ProjectUpdate
-from orba.security import DB, Identity, csrf_guard, membership, require_role
+from orba.security import DB, Identity, authorized_project, csrf_guard, membership, require_role
 from orba.workspaces import router as workspace_router
 
 logger = logging.getLogger(__name__)
@@ -28,14 +34,49 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
-        yield
-        engine.dispose()
+        stop = asyncio.Event()
+
+        def reconcile():
+            try:
+                with phase(engine) as db:
+                    expire_runs(db)
+            except SQLAlchemyError as exc:
+                logger.error("PM lease reconciliation unavailable (%s)", type(exc).__name__)
+
+        async def monitor():
+            while not stop.is_set():
+                await run_in_threadpool(reconcile)
+                try:
+                    await asyncio.wait_for(stop.wait(), timeout=5)
+                except TimeoutError:
+                    pass
+
+        task = asyncio.create_task(monitor())
+        try:
+            yield
+        finally:
+            stop.set()
+            await task
+            engine.dispose()
 
     app = FastAPI(title="ORBA API", version="0.1.0", lifespan=lifespan)
     app.state.engine = engine
     app.state.settings = config
     app.include_router(auth_router)
     app.include_router(workspace_router)
+    app.include_router(pm_router)
+    app.add_middleware(PMBodyLimitMiddleware)
+
+    @app.exception_handler(PMError)
+    async def pm_error(request: Request, exc: PMError):
+        logger.info(
+            "PM failure code=%s run_id=%s diagnostic_id=%s", exc.code, exc.run_id, exc.diagnostic_id
+        )
+        return JSONResponse(
+            status_code=exc.status,
+            content=exc.body(),
+            headers={"Retry-After": str(exc.retry_after)} if exc.retry_after else None,
+        )
 
     @app.middleware("http")
     async def private_responses(request: Request, call_next):
@@ -96,7 +137,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         # Check both connectivity and the migrated schema required to serve projects.
         session.execute(
             text(
-                "SELECT p.id,p.title,p.description,p.status,p.created_at,p.updated_at,p.workspace_id,p.creator_id,s.token_hash,u.email,w.is_legacy,m.role,i.token_hash,a.key FROM projects p CROSS JOIN sessions s CROSS JOIN users u CROSS JOIN workspaces w CROSS JOIN workspace_members m CROSS JOIN workspace_invitations i CROSS JOIN login_attempts a LIMIT 0"
+                "SELECT p.id,p.title,p.description,p.status,p.created_at,p.updated_at,p.workspace_id,p.creator_id,s.token_hash,u.email,w.is_legacy,m.role,i.token_hash,a.key,r.deadline_at,r.status,pl.content_hash,pl.revision,e.plan_id,st.epic_id,c.story_id FROM projects p CROSS JOIN sessions s CROSS JOIN users u CROSS JOIN workspaces w CROSS JOIN workspace_members m CROSS JOIN workspace_invitations i CROSS JOIN login_attempts a CROSS JOIN product_manager_runs r CROSS JOIN product_plans pl CROSS JOIN product_epics e CROSS JOIN product_stories st CROSS JOIN product_acceptance_criteria c LIMIT 0"
             )
         )
         return {"status": "ready"}
@@ -135,19 +176,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.get("/api/v1/projects/{project_id}", response_model=ProjectRead)
     def get_project(project_id: UUID, identity: Identity, session: DB):
-        project = session.scalar(
-            select(Project)
-            .join(Workspace)
-            .join(WorkspaceMember)
-            .where(
-                Project.id == project_id,
-                Workspace.is_legacy.is_(False),
-                WorkspaceMember.user_id == identity.user_id,
-            )
-        )
-        if project is None:
-            raise HTTPException(status_code=404, detail="Project not found.")
-        return project
+        return authorized_project(session, project_id, identity.user_id)
 
     @app.patch(
         "/api/v1/projects/{project_id}",

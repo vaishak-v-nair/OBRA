@@ -1,8 +1,8 @@
 from datetime import datetime
-from typing import Literal
+from typing import Annotated, Literal
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
+from pydantic import AfterValidator, BaseModel, ConfigDict, EmailStr, Field, field_validator
 
 
 class ProjectCreate(BaseModel):
@@ -44,15 +44,22 @@ class LoginInput(EmailInput):
     password: str = Field(min_length=1, max_length=128)
 
 
-class RegisterInput(LoginInput):
-    display_name: str = Field(min_length=1, max_length=80)
+def non_blank_password(value: str) -> str:
+    if value.isspace():
+        raise ValueError("Choose a password with at least one non-whitespace character.")
+    return value
 
-    @field_validator("password")
-    @classmethod
-    def password_policy(cls, value):
-        if len(value) < 12 or value.isspace():
-            raise ValueError("Use a password of 12 to 128 characters.")
-        return value
+
+# Credential writes (including future change/reset schemas) use this type.
+# Login and eligible hash-parameter upgrades must accept existing credentials.
+NewPassword = Annotated[
+    str, Field(min_length=15, max_length=128), AfterValidator(non_blank_password)
+]
+
+
+class RegisterInput(LoginInput):
+    password: NewPassword
+    display_name: str = Field(min_length=1, max_length=80)
 
     @field_validator("display_name")
     @classmethod

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "format",
+    "argv": [
+      "uv",
+      "run",
+      "--directory",
+      "apps/api",
+      "ruff",
+      "format",
+      "scripts/verification.py",
+      "tests/test_verification.py"
+    ],
+    "started_at": "2026-10-20T08:35:24.788918+00:00",
+    "exit_code": 0,
+    "pid": 1964,
+    "duration_seconds": 0.132,
+    "completed_at": "2026-10-20T08:35:24.921376+00:00"
+  },
+  {
+    "name": "ruff",
+    "argv": [
+      "uv",
+      "run",
+      "--directory",
+      "apps/api",
+      "ruff",
+      "check",
+      "."
+    ],
+    "started_at": "2026-10-20T08:35:24.922060+00:00",
+    "exit_code": 0,
+    "pid": 13504,
+    "duration_seconds": 0.134,
+    "completed_at": "2026-10-20T08:35:25.056382+00:00"
+  },
+  {
+    "name": "backend",
+    "argv": [
+      "uv",
+      "run",
+      "--directory",
+      "apps/api",
+      "pytest",
+      "-q",
+      "tests/test_verification.py",
+      "tests/test_readiness_evidence.py"
+    ],
+    "started_at": "2026-10-20T08:35:25.056529+00:00",
+    "exit_code": 0,
+    "pid": 28228,
+    "duration_seconds": 5.698,
+    "completed_at": "2026-10-20T08:35:30.754894+00:00"
+  },
+  {
+    "name": "collect",
+    "argv": [
+      "uv",
+      "run",
+      "--directory",
+      "apps/api",
+      "pytest",
+      "--collect-only",
+      "-q"
+    ],
+    "started_at": "2026-10-20T08:35:30.755116+00:00",
+    "exit_code": 0,
+    "pid": 9376,
+    "duration_seconds": 3.027,
+    "completed_at": "2026-10-20T08:35:33.782518+00:00"
+  }
+]

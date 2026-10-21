@@ -2,7 +2,7 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ApiError, request, type User, type Workspace } from "@/lib/api";
+import { advanceAuthEpoch, ApiError, request, type User, type Workspace } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 
 type SessionState = { user: User | null; workspaces: Workspace[]; workspace: Workspace | null; loading: boolean; error: string; logoutWarning: string; refresh: () => Promise<void>; select: (id: string) => void; signout: () => Promise<void> };
@@ -28,6 +28,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     if (!(e instanceof ApiError && e.status === 401)) setError(e instanceof Error ? e.message : "Could not check your session.");
   }, []);
   const refresh = useCallback(async () => {
+    advanceAuthEpoch();
     const current = ++generation.current;
     try {
       const data = await readSession();
@@ -42,13 +43,14 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     let active = true;
     const current = ++generation.current;
     readSession().then((data) => { if (active && current === generation.current) apply(data); }).catch((e: unknown) => { if (active && current === generation.current) failure(e); }).finally(() => { if (active && current === generation.current) setLoading(false); });
-    const expired = () => { generation.current++; setUser(null); setWorkspaces([]); setSelected(""); };
+    const expired = () => { advanceAuthEpoch(); generation.current++; setUser(null); setWorkspaces([]); setSelected(""); };
     window.addEventListener("orba-session-expired", expired);
     return () => { active = false; window.removeEventListener("orba-session-expired", expired); };
   }, [apply, failure]);
   const workspace = workspaces.find((space) => space.id === selected) ?? null;
   function select(id: string) { if (workspaces.some((space) => space.id === id)) { sessionStorage.setItem("orba-workspace", id); setSelected(id); router.push("/projects"); } }
   async function signout() {
+    advanceAuthEpoch();
     generation.current++; setUser(null); setWorkspaces([]); setSelected(""); sessionStorage.removeItem("orba-workspace");
     try { await request<void>("/api/v1/auth/logout", { method: "POST" }); setLogoutWarning(""); router.push("/signin"); }
     catch { setLogoutWarning("Protected content was cleared locally. Server sign-out could not be confirmed. Reconnect and sign in to check your session."); }

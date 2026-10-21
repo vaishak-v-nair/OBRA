@@ -1,0 +1,62 @@
+[WebServer] INFO:     Started server process [26088]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:2380) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22452) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:22692) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=928c4052-c0d7-463c-acad-677bc0382e5f workspace_id=-
+[WebServer] (node:5100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=928c4052-c0d7-463c-acad-677bc0382e5f workspace_id=2cc45375-b9f1-4412-9d51-d6b7186d932b
+[WebServer] (node:15276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:11128) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22984) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22560) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests-controlled\pm-recovery.spec.ts:136:5 › status recovery never advances the revision beneath an open unchanged editor (11.3s)
+
+
+  1) [chromium] › tests-controlled\pm-recovery.spec.ts:136:5 › status recovery never advances the revision beneath an open unchanged editor 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Another member saved this summary while the first editor was open."
+    Received: "Track a personal daily habit."
+
+      152 |   const response=await saving;
+      153 |   const persisted=await (await page.request.get(url)).json();
+    > 154 |   expect(persisted.document.summary.text).toBe(summary);
+          |                                           ^
+      155 |   expect(response.status()).toBe(409);
+      156 |   expect(persisted.revision).toBe(2);
+      157 |   await expect(panel.getByLabel("Then (criterion_checkin)",{exact:true})).toHaveValue(criterion);
+        at E:\BrosKi\OBRA\apps\web\tests-controlled\pm-recovery.spec.ts:154:43
+
+    Error Context: test-results\pm-recovery-status-recover-b5a4b-th-an-open-unchanged-editor-chromium\error-context.md
+
+  1 failed
+    [chromium] › tests-controlled\pm-recovery.spec.ts:136:5 › status recovery never advances the revision beneath an open unchanged editor 
+Error: ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL
+
+  × "pnpm recursive exec" failed in E:\BrosKi\OBRA\apps/web
+

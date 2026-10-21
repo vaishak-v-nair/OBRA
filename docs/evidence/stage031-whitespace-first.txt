@@ -1,0 +1,2504 @@
+AGENTS.md:1: trailing whitespace.
++# ORBA engineering contract
+AGENTS.md:3: trailing whitespace.
++Stage authority is the owner's request. Stage03 is authorized: one real Product Manager planning agent, using the owner's Gemini runtime credential and the official Google GenAI SDK. Preserve Stage01/02 project data, authentication and workspace isolation. Do not start Stage04 or other agents automatically. No public deployment, destructive operations, credential changes, or external messages without owner authorization.
+AGENTS.md:4: trailing whitespace.
++
+AGENTS.md:5: trailing whitespace.
++## Truth and verification
+AGENTS.md:6: trailing whitespace.
++
+AGENTS.md:7: trailing whitespace.
++- Never claim success from files existing. Execute the implementation and relevant checks.
+AGENTS.md:8: trailing whitespace.
++- Never fabricate terminal output, screenshots, API responses, DB records, agents, test results or evidence.
+AGENTS.md:9: trailing whitespace.
++- No dummy success states, fake authentication, fake AI agents, fake GitHub services or fake Skills installation.
+AGENTS.md:10: trailing whitespace.
++- Tests exercise application code. Isolated unit tests may use justified, explicitly identified mocks. Stage03.1 also explicitly authorizes labeled test-only controlled-provider deterministic integration/browser tests; all auth/API/PostgreSQL/browser behavior remains real, and these never prove live model success. A skipped test is not passed.
+AGENTS.md:11: trailing whitespace.
++- Preserve real command failures and fix their causes. Never weaken assertions, disable checks or remove tests to get green.
+AGENTS.md:12: trailing whitespace.
++- If a required dependency cannot be reached, report BLOCKED with actual error and missing dependency. Distinguish implemented, planned, blocked and verified.
+AGENTS.md:13: trailing whitespace.
++- Mandatory checks must pass before a VERIFIED verdict. Otherwise use PARTIAL, BLOCKED or FAILED. Update docs/VERIFICATION.md with commands, exit statuses, counts and limitations.
+AGENTS.md:14: trailing whitespace.
++- Test cleanup is allowed only against the guarded isolated `orba_test` database and role. Never clear development project data. Do not run backend and E2E tests simultaneously: both use this test database.
+AGENTS.md:15: trailing whitespace.
++
+AGENTS.md:16: trailing whitespace.
++## Architecture and development
+AGENTS.md:17: trailing whitespace.
++
+AGENTS.md:18: trailing whitespace.
++Use Next.js App Router, strict TypeScript, Tailwind, shadcn/ui, Lucide; FastAPI, Pydantic v2, SQLAlchemy 2, Alembic and PostgreSQL. Use pnpm and uv with committed lockfiles. Select current compatible stable releases; document compatibility exceptions. Do not substitute SQLite. Alembic migrations are the schema authority; no startup create_all.
+AGENTS.md:19: trailing whitespace.
++
+AGENTS.md:20: trailing whitespace.
++Keep business API behavior in apps/api; apps/web is the UI. Semantic theme tokens live in globals.css. Shared creation logic lives in ProjectForm. Use native controls and existing helpers before adding abstractions or dependencies. No empty shared packages.
+AGENTS.md:21: trailing whitespace.
++
+AGENTS.md:22: trailing whitespace.
++Handle invalid input, missing records, database failure, loading, empty and error states. Keep drafts on save failures. Never automatically retry a POST. Do not log credentials or project descriptions in error logs. Bind local services and database ports to loopback. Do not claim production security certification. Stage 02 must enforce real authentication and workspace isolation.
+AGENTS.md:23: trailing whitespace.
++
+AGENTS.md:24: trailing whitespace.
++Required verification: migrated real test PostgreSQL; persistence/list/retrieve/invalid/not-found/readiness tests; actual browser creation -> detail -> reload -> list; meaningful negative paths; lint; strict typecheck; production build. See README.md and docs/TEST_PLAN.md. Browser/device emulation does not establish native-device or all-browser compatibility.
+AGENTS.md:25: trailing whitespace.
++
+AGENTS.md:26: trailing whitespace.
++## Stage 02 security rules
+AGENTS.md:27: trailing whitespace.
++
+AGENTS.md:28: trailing whitespace.
++- FastAPI alone authenticates. Use Argon2id and hashed opaque PostgreSQL sessions; no hardcoded users, auth bypass, browser-stored authority or client-trusted ownership.
+AGENTS.md:29: trailing whitespace.
++- All cookie-authenticated writes require validated Origin and CSRF. Start Uvicorn with --no-proxy-headers. Never log passwords, hashes, cookie/session/CSRF/invitation tokens.
+AGENTS.md:30: trailing whitespace.
++- Every resource request validates current membership. All membership, invitation and project writes lock the workspace before role checks. Preserve the final Owner; Admins only manage Member/Viewer. Invitation acceptance must be atomic, email-bound, expiry/revocation/use checked, and recheck inviter privilege.
+AGENTS.md:31: trailing whitespace.
++- Never assign legacy projects to the first registrant. Preserve every original field. Legacy ownership is restricted; only scripts.claim_legacy with explicit IDs and --apply may transfer data. No public claim endpoint. No production database reset or migration downgrade to avoid complexity.
+AGENTS.md:32: trailing whitespace.
++- Keep the intentionally incorrect authorization experiment outside normal test discovery. Its actual exit1 is expected and must never be called a passing production test. Mandatory suites must contain no skips, xfail or dummy drivers.
+AGENTS.md:33: trailing whitespace.
++- Use same-origin Next API proxy without duplicating auth. SessionStorage may hold selected-workspace preference and Stage03's nonsecret account/project-scoped request/copy UUID references; never credentials, briefs or authentication authority. Never render protected content until session checks succeed. Manual invitation sharing is not email delivery.
+AGENTS.md:34: trailing whitespace.
++- Run scripts/verify.ps1 plus relevant schema/migration/auth/role/tenant/legacy and browser tests. Stage02 baseline is checkpoint e3fccd6. Preserve the owner's ignored .env; never print, commit or replace credentials.
+AGENTS.md:35: trailing whitespace.
++
+AGENTS.md:36: trailing whitespace.
++## Stage03 PM rules
+AGENTS.md:37: trailing whitespace.
++
+AGENTS.md:38: trailing whitespace.
++- One real configured provider only; no canned generated PRDs, fake runs, automatic paid generation, tool execution or orchestration. A run succeeds only after a genuine response passes Pydantic validation and the complete relational draft commits atomically.
+AGENTS.md:39: trailing whitespace.
++- Real-model API and browser verification are both mandatory for VERIFIED. Isolated provider doubles prove unit/error handling only; authored database fixtures are not model evidence. Missing model/credential/access is BLOCKED for live scope. Core-only success is not full verification.
+AGENTS.md:40: trailing whitespace.
++- Preserve historical Full/standalone outcomes; Stage03.1 uses independent Gate A/B/C with source/profile-bound immutable receipts. Do not dispatch a paid request until Gate A passes, diagnostics are reviewed, the command is ready, and the owner explicitly authorizes that next attempt. Normal verify.ps1 is Gate A; verify-live.ps1 requires -AllowPaid. Preserve separate outcomes for the historical integrated Full command and standalone live checks. A later successful model/browser call does not erase a failed Full run. Test resets clear local admission counters; track paid verification attempts across resets and stop bounded verification loops. Current Stage03 acceptance evidence and remaining provider deadline blocker are in docs/VERIFICATION.md.
+AGENTS.md:41: trailing whitespace.
++- Release the authentication transaction before the model call. Use durable idempotency/deadlines, short transactions, workspace locks, current original-session checks and fenced terminal transitions. Never overwrite success with failure after an uncertain commit or retry a POST automatically.
+AGENTS.md:42: trailing whitespace.
++- Draft edits use exact revisions and server-owned provenance; Owner/Admin approval binds exact version/revision/actor/time. Keep approved versions immutable. Blocking confirmations require recorded human disposition; preserve transitive uncertainty and source snapshots.
+AGENTS.md:43: trailing whitespace.
++- Runtime credentials stay server-side. Root .env is permitted for local runtime configuration; API-specific .env can override it. Model selection must be explicit. Provider configuration is not proof of successful generation.
+AGENTS.md:44: trailing whitespace.
++- The owner selected gemini-3.8-flash and requested quota-conscious use. Local configuration permits one concurrent generation with 6000 output tokens, three attempts/user/hour and six globally/hour. Provider project/tier quotas are separate and unknown; no automatic retry, continuation or generation on page load. Keep live verification calls small and sequential; preserve actual quota failures.
+AGENTS.md:45: trailing whitespace.
++- Preserve safe actual failure reasons/metadata, never raw secrets, provider bodies or user briefs in logs. Keep the intentionally wrong-success experiment separate and record its actual exit1. Stop after Stage03.
+AGENTS.md:46: trailing whitespace.
++
+AGENTS.md:47: trailing whitespace.
++
+AGENTS.md:48: trailing whitespace.
++## Stage03.1 reliability contract
+AGENTS.md:49: trailing whitespace.
++
+AGENTS.md:50: trailing whitespace.
++- No automatic model retry. Retain unknown request UUIDs for GET-only recovery; exact own terminal-run confirmation precedes explicit new-UUID Retry. Authoritative pre-admission rejection must not invent a terminal run. Restore input only by explicit authorized GET; never store briefs/tokens in browser storage.
+AGENTS.md:51: trailing whitespace.
++- ORBA_PM_TIMEOUT_SECONDS is the server/model budget, transport adds5s and the outer envelope10s. Logs distinguish upstream HTTP504 from local/transport/proxy timeout. Stored timings stop before terminal commit; log acknowledged commit separately. Do not claim this fixes upstream availability.
+AGENTS.md:52: trailing whitespace.
++- Gate A empties both key aliases and model, binds migrations/drift/tests to guarded orba_test, preserves all baseline identities and rejects missing/skip/xfail/flaky/retried reports. Test factory overrides only the model dependency and refuses development DSNs; no production fake-provider flag.
+AGENTS.md:53: trailing whitespace.
++- Gate B uses one actual browser generation, fresh draft and approval SQL graph/hash audits and real isolation checks. Explicit opt-in/current A/config required; no duplicate paid probe. Old successful live evidence cannot certify changed source. Gate C refuses absent/stale/controlled evidence. Do not rewrite historical failed attempts or automatically commit the owner's uncommitted Stage03 work.
+README.md:1: trailing whitespace.
++# ORBA · Stage 03
+README.md:2: trailing whitespace.
++
+README.md:3: trailing whitespace.
++A local development workspace with real accounts, workspace permissions, manual invitations, persisted projects and one Product Manager planning agent. Chat creates a project; explicit generation requests use a configured Gemini model to produce a validated, editable product plan. Architecture/coding/QA agents, orchestration, GitHub, multiplayer, Skills installation and cloud execution remain later-stage work. Current verification and blockers are in [docs/VERIFICATION.md](docs/VERIFICATION.md).
+README.md:4: trailing whitespace.
++
+README.md:5: trailing whitespace.
++Stage03 verdict remains **PARTIAL** during Stage03.1 hardening. The historical real model/browser successes and actual Full504 failure are preserved in [VERIFICATION_STAGE03.md](docs/VERIFICATION_STAGE03.md). Current deterministic Gate A and explicit paid Gate B are independently reported in [VERIFICATION.md](docs/VERIFICATION.md); both must have passing evidence for the same relevant source fingerprint before VERIFIED. Stage03.1 has made no new paid request.
+README.md:6: trailing whitespace.
++
+README.md:7: trailing whitespace.
++## Prerequisites
+README.md:8: trailing whitespace.
++
+README.md:9: trailing whitespace.
++Node.js 22+ (verified 26.7.0), pnpm 12.14.0, Python 3.12+ (verified uv-managed 3.14.4), uv, Docker Desktop/Linux containers. Ports: development 3000/8000/54329; tests 3001/8001/54330. Without global pnpm, replace each `pnpm` command with `npm exec --yes --package=pnpm@12.14.0 -- pnpm`.
+README.md:10: trailing whitespace.
++
+README.md:11: trailing whitespace.
++## Install and migrate (PowerShell, repository root)
+README.md:12: trailing whitespace.
++
+README.md:13: trailing whitespace.
++Stop any old Stage 01 API process before upgrading. Its unauthenticated routes must not run against the Stage 02 database. The ownership migration refuses to run while the local API port 8000 is listening. If using a custom backend port, set ORBA_API_PORT to that port before upgrading; this guard covers the local deployment, not an inventory of remote processes. Preserve the named development volume; do not reset/drop the database.
+README.md:14: trailing whitespace.
++
+README.md:15: trailing whitespace.
++```powershell
+README.md:16: trailing whitespace.
++pnpm install --frozen-lockfile
+README.md:17: trailing whitespace.
++uv sync --locked --directory apps/api
+README.md:18: trailing whitespace.
++docker compose -f infra/compose.yaml up -d --wait postgres
+README.md:19: trailing whitespace.
++if (!(Test-Path apps/api/.env)) { Copy-Item apps/api/.env.example apps/api/.env }
+README.md:20: trailing whitespace.
++if (!(Test-Path apps/web/.env.local)) { Copy-Item apps/web/.env.example apps/web/.env.local }
+README.md:21: trailing whitespace.
++uv run --directory apps/api alembic upgrade head
+README.md:22: trailing whitespace.
++uv run --directory apps/api alembic check
+README.md:23: trailing whitespace.
++```
+README.md:24: trailing whitespace.
++
+README.md:25: trailing whitespace.
++The development credentials in Compose are local-only. Existing projects are preserved in the restricted legacy workspace. Registering never grants access to them. The ownership migration is forward-only: use an operator-controlled offline backup restore if rollback is ever required, never serve the old API against the protected database.
+README.md:26: trailing whitespace.
++
+README.md:27: trailing whitespace.
++## Start in two terminals
+README.md:28: trailing whitespace.
++
+README.md:29: trailing whitespace.
++```powershell
+README.md:30: trailing whitespace.
++uv run --directory apps/api uvicorn orba.main:app --host 127.0.0.1 --port 8000 --no-proxy-headers
+README.md:31: trailing whitespace.
++```
+README.md:32: trailing whitespace.
++
+README.md:33: trailing whitespace.
++```powershell
+README.md:34: trailing whitespace.
++pnpm dev
+README.md:35: trailing whitespace.
++```
+README.md:36: trailing whitespace.
++
+README.md:37: trailing whitespace.
++Open **http://localhost:3000**, create an account, then create a workspace. The creator becomes Owner. API docs are at http://127.0.0.1:8000/docs, but write requests require the CSRF header and configured Origin. Health endpoints remain public. To use the production build locally, run `pnpm build`, then `pnpm --filter @orba/web start` with the API running.
+README.md:38: trailing whitespace.
++
+README.md:39: trailing whitespace.
++## Product Manager setup and use
+README.md:40: trailing whitespace.
++
+README.md:41: trailing whitespace.
++Preserve your existing root `.env`. If absent, copy `.env.example` there. Set a real **GEMINI_API_KEY** (or **ORBA_PM_API_KEY**) and an explicit **ORBA_PM_MODEL** identifier supported by your account. No model is chosen automatically; the Codex session's model/credentials do not configure ORBA. The API reads root `.env`, then `apps/api/.env` as an override, and process environment takes precedence. Restart the API after changing configuration. Never put runtime keys in `NEXT_PUBLIC_*`, frontend settings, source control or logs.
+README.md:42: trailing whitespace.
++
+README.md:43: trailing whitespace.
++```dotenv
+README.md:44: trailing whitespace.
++# In your ignored root .env; obtain your own credential. Do not paste secrets in reports.
+README.md:45: trailing whitespace.
++GEMINI_API_KEY=your-runtime-key
+README.md:46: trailing whitespace.
++ORBA_PM_MODEL=gemini-3.8-flash
+README.md:47: trailing whitespace.
++ORBA_PM_TIMEOUT_SECONDS=90
+README.md:48: trailing whitespace.
++ORBA_PM_MAX_OUTPUT_TOKENS=6000
+README.md:49: trailing whitespace.
++ORBA_PM_MAX_CONCURRENT=1
+README.md:50: trailing whitespace.
++ORBA_PM_ACCOUNT_ATTEMPTS_PER_HOUR=3
+README.md:51: trailing whitespace.
++ORBA_PM_GLOBAL_ATTEMPTS_PER_HOUR=6
+README.md:52: trailing whitespace.
++```
+README.md:53: trailing whitespace.
++
+README.md:54: trailing whitespace.
++The owner explicitly selected **gemini-3.8-flash** on 2026-10-19; the ignored local configuration uses the conservative values above. There is still no automatic model default: other installations must explicitly choose a model available to their account. `uv run --directory apps/api python -m scripts.check_pm_config` checks configuration without generation or billing; it does **not** verify provider access. Only Google Gemini is implemented, through the official `google-genai` SDK. OpenAI and Model Hub routing are not implemented.
+README.md:55: trailing whitespace.
++
+README.md:56: trailing whitespace.
++Google documents structured outputs and a 65,536-token output maximum for this model; ORBA caps each local response at 6,000 tokens and explicitly requests its supported low thinking level. Request/token/day quotas are project- and tier-specific; the active values must be checked in AI Studio, and are not inferred from the model catalog. Local hourly admission controls are additional application limits, not claims about remaining provider quota. Gate B uses one small real browser generation, authenticated API checks, and independent draft/approval SQL audits; it does not make a duplicate paid API probe. There are no automatic retries or paid continuations. Failed attempts and justified compatibility reruns are recorded separately. A 429 is a recorded failed run and requires an explicit later action. See [model documentation](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash) and [rate limits](https://ai.google.dev/gemini-api/docs/rate-limits).
+README.md:57: trailing whitespace.
++
+README.md:58: trailing whitespace.
++Create/open a project and review its **Product Plan** section. Refine the generation brief, optionally add instructions, and explicitly choose **Generate Product Plan**. This is a paid-capable request; no generation occurs on project creation, page load, reload or status checks. Viewers can read; Member/Admin/Owner can generate/edit/copy drafts; **Owner/Admin** can approve. AI output is always a draft. Review its source excerpts, suggestions, assumptions, epics, stories and Given/When/Then criteria. Edit fields and save to PostgreSQL. Resolve or defer blocking confirmations with a reason before approving the exact saved version/revision. Approval records the actor/time and makes that version immutable. Create a free human draft copy to propose corrections without calling the provider. Earlier approvals remain in history.
+README.md:59: trailing whitespace.
++
+README.md:60: trailing whitespace.
++No provider configured, invalid credentials, rate limits, timeouts and invalid output produce honest setup/errors. Run history contains actual persisted states; no intermediate agent steps are invented. **Check status** uses GET only. A request reference in sessionStorage stores a nonsecret, account/project-scoped UUID only; it is not authentication or a saved brief. A disconnect may leave bounded server work running and usage may already be incurred. There is no resume, takeover or automatic retry. Unknown outcomes offer GET-only recovery. After an exact own failed/interrupted run is confirmed, **Retry generation** rechecks it and starts one fresh UUID/run only on user action. The brief/instructions stay in page memory; **Restore submitted brief** explicitly retrieves an authorized snapshot after reload. Confirmed server-side rejection before admission permits a new explicit submission. Existing approved plans remain unchanged. Inspect status/versions before another request. Save conflicts preserve local edits and offer the latest saved revision for comparison. Unsaved edits are in page memory; leaving a page can discard them (reload/close warns). API authority is rechecked at publication using the original session, not a replacement login.
+README.md:61: trailing whitespace.
++
+README.md:62: trailing whitespace.
++The provider receives this project's title/description, the submitted brief/instructions and only explicitly selected same-project plan context. User briefs are untrusted data. Generated text never executes tools/code. Unresolved context blockers cannot be silently erased by regeneration. Source excerpts prove textual traceability, not semantic/business truth; humans must review requirements.
+README.md:63: trailing whitespace.
++
+README.md:64: trailing whitespace.
++Browser requests use `/api/v1/...` on the web origin. Next.js forwards them to the server-only `API_URL` (default http://127.0.0.1:8000). It forwards cookies/Origin/CSRF, preserves Set-Cookie, disables caching and does no authentication of its own. Remove any obsolete NEXT_PUBLIC_API_URL setting; it is no longer used. Keep the browser origin exactly localhost:3000 unless changing WEB_ORIGIN to match.
+README.md:65: trailing whitespace.
++
+README.md:66: trailing whitespace.
++## Authentication and configuration
+README.md:67: trailing whitespace.
++
+README.md:68: trailing whitespace.
++FastAPI is the sole authority. Emails are trimmed/case-folded and validated; passwords are not trimmed and must contain 12–128 characters. Argon2id salts every password hash. PostgreSQL sessions store SHA-256 hashes of 256-bit opaque random tokens. No browser-readable storage contains authentication credentials.
+README.md:69: trailing whitespace.
++
+README.md:70: trailing whitespace.
++Session cookies are host-only, HttpOnly, SameSite=Lax, explicitly expiring. Logout revokes the DB record; login/register rotates the cookie and revokes the presented active session. GET `/api/v1/auth/me` validates account status, token hash, expiration and revocation.
+README.md:71: trailing whitespace.
++
+README.md:72: trailing whitespace.
++| API setting | Default / behavior |
+README.md:73: trailing whitespace.
++|---|---|
+README.md:74: trailing whitespace.
++| DATABASE_URL | Local dev PostgreSQL at 54329 |
+README.md:75: trailing whitespace.
++| WEB_ORIGIN | http://localhost:3000; exact Origin required on every write |
+README.md:76: trailing whitespace.
++| COOKIE_SECURE | false for local HTTP; **must be true for HTTPS** (startup rejects HTTPS/false) |
+README.md:77: trailing whitespace.
++| SESSION_COOKIE | orba_session |
+README.md:78: trailing whitespace.
++| SESSION_LIFETIME_SECONDS | 604800 (7 days), bounded 60–2592000 |
+README.md:79: trailing whitespace.
++| INVITATION_LIFETIME_SECONDS | 172800 (2 days), bounded 60–604800 |
+README.md:80: trailing whitespace.
++| LOGIN_MAX_ATTEMPTS | 5 per normalized email per window; shared peer-IP budget is 20× this |
+README.md:81: trailing whitespace.
++| LOGIN_WINDOW_SECONDS | 900 |
+README.md:82: trailing whitespace.
++| Web API_URL | Server-only backend URL, port 8000 in development |
+README.md:83: trailing whitespace.
++
+README.md:84: trailing whitespace.
++For authenticated writes, the client fetches `/api/v1/auth/csrf` and sends its session-bound HMAC token as `X-CSRF-Token`. Login/registration use an HttpOnly, random pre-auth cookie paired with that endpoint's response token. Both patterns require the exact configured Origin; SameSite alone is not the defense. Missing, stale and malformed tokens are rejected. Do not log these values.
+README.md:85: trailing whitespace.
++
+README.md:86: trailing whitespace.
++Login/registration attempts are persisted in PostgreSQL and serialized with advisory transaction locks per account and peer IP. Failures consume attempts; successful attempts also consume budget. Old rows are cleaned on new attempts. This is a basic local limiter, not a certified internet abuse defense. Start Uvicorn with **--no-proxy-headers** so caller-controlled forwarded headers cannot change the peer identity. Behind the local proxy the IP bucket is deliberately shared. A full limiter can also lock out legitimate users; password reset/recovery and operator unlock UX are not implemented.
+README.md:87: trailing whitespace.
++
+README.md:88: trailing whitespace.
++## Workspace permissions
+README.md:89: trailing whitespace.
++
+README.md:90: trailing whitespace.
++| Role | View | Create/edit projects | Invite | Manage roles |
+README.md:91: trailing whitespace.
++|---|---|---|---|---|
+README.md:92: trailing whitespace.
++| Owner | Yes | Yes | Admin/Member/Viewer | All; final Owner protected |
+README.md:93: trailing whitespace.
++| Admin | Yes | Yes | Member/Viewer | Member/Viewer only |
+README.md:94: trailing whitespace.
++| Member | Yes | Yes | No | No |
+README.md:95: trailing whitespace.
++| Viewer | Yes | No | No | No |
+README.md:96: trailing whitespace.
++
+README.md:97: trailing whitespace.
++Only Owners can promote an existing member to Owner; invitations cannot grant Owner. Admins cannot change themselves, other Admins or Owners. Membership and invitation writes plus project writes lock the workspace row before re-reading the caller's role. Concurrent final-owner demotions and repeated invitation acceptance are tested against real PostgreSQL. Unauthorized private project/workspace lookups return the same 404 shape as missing resources.
+README.md:98: trailing whitespace.
++
+README.md:99: trailing whitespace.
++Select a workspace in the sidebar. The selected ID in sessionStorage is a preference only, validated against the server list; it grants no access. Changing account/workspace/route clears protected component state. Projects require an authorized workspace_id on create and list. Detail UUIDs and PATCH edits are checked server-side; creator_id cannot be supplied by the client. The original title/description bounds and created status remain.
+README.md:100: trailing whitespace.
++
+README.md:101: trailing whitespace.
++## Manual invitations
+README.md:102: trailing whitespace.
++
+README.md:103: trailing whitespace.
++Open Workspaces → Workspace settings. Owners/Admins can create an email-bound invitation with an allowed role. **No email is sent.** The authorized creation response returns its link once; copy/share it privately. Listing never returns the token or link again. Tokens are random, hashed in storage, expiring and single-use. Links put the token in a URL fragment to keep it out of HTTP access logs/referrers. Sign-in/sign-up retains it in a fragment, without accepting an arbitrary redirect URL.
+README.md:104: trailing whitespace.
++
+README.md:105: trailing whitespace.
++The recipient must authenticate with the invited email, then explicitly accept. Acceptance locks the workspace then the invitation, rechecks the inviter's current authority, and atomically adds the unique membership and consumes the invitation. Wrong email, expired/revoked/used token, duplicate membership or revoked inviter privilege is rejected. Authorized users can revoke a pending invitation. Expired is computed from expires_at; accepted/revoked status and timestamps are persisted. Role and removal actions have confirmation dialogs and backend checks.
+README.md:106: trailing whitespace.
++
+README.md:107: trailing whitespace.
++## Explicit legacy claiming (local operator only)
+README.md:108: trailing whitespace.
++
+README.md:109: trailing whitespace.
++The fixed restricted legacy workspace is `00000000-0000-0000-0000-000000000001`, has no members and is excluded from web access. There is no public claim endpoint. A local operator with database access can inspect unclaimed IDs:
+README.md:110: trailing whitespace.
++
+README.md:111: trailing whitespace.
++```powershell
+README.md:112: trailing whitespace.
++docker compose -f infra/compose.yaml exec -T postgres psql -U orba -d orba -c "SELECT id,title FROM projects WHERE workspace_id='00000000-0000-0000-0000-000000000001';"
+README.md:113: trailing whitespace.
++```
+README.md:114: trailing whitespace.
++
+README.md:115: trailing whitespace.
++Register and create the intended target workspace first. Obtain its ID and existing Owner ID from authenticated `/api/v1/workspaces` and `/api/v1/auth/me`, or inspect them locally with psql. Substitute explicit UUIDs below (repeat --project for additional selected IDs):
+README.md:116: trailing whitespace.
++
+README.md:117: trailing whitespace.
++```powershell
+README.md:118: trailing whitespace.
++uv run --directory apps/api python -m scripts.claim_legacy --workspace WORKSPACE_UUID --owner OWNER_UUID --project PROJECT_UUID
+README.md:119: trailing whitespace.
++uv run --directory apps/api python -m scripts.claim_legacy --workspace WORKSPACE_UUID --owner OWNER_UUID --project PROJECT_UUID --apply
+README.md:120: trailing whitespace.
++```
+README.md:121: trailing whitespace.
++
+README.md:122: trailing whitespace.
++The first command is a dry run. The second commits only if every selected project is still legacy and the target has that Owner. UUIDs, titles, descriptions, status and timestamps remain unchanged. Mixed/invalid selections fail atomically; already-claimed records cannot be moved again by this command. The local database credentials and terminal access define operator authority, not a web user privilege.
+README.md:123: trailing whitespace.
++
+README.md:124: trailing whitespace.
++## Verification
+README.md:125: trailing whitespace.
++
+README.md:126: trailing whitespace.
++Stop this checkout's development Next.js server before browser verification: ports3000/3001 share `.next/dev/lock`. Keep development data/volume intact. All backend/browser/fixture/experiment commands share guarded `orba_test` at loopback54330; run them sequentially. Frozen installs/images may need network access, but Gate A never depends on an external AI call.
+README.md:127: trailing whitespace.
++
+README.md:128: trailing whitespace.
++```powershell
+README.md:129: trailing whitespace.
++npm exec --yes --package=pnpm@12.14.0 -- pnpm --filter @orba/web exec playwright install chromium
+README.md:130: trailing whitespace.
++pwsh -NoProfile -File scripts/verify.ps1
+README.md:131: trailing whitespace.
++uv run --directory apps/api python -m scripts.verification summary
+README.md:132: trailing whitespace.
++```
+README.md:133: trailing whitespace.
++
+README.md:134: trailing whitespace.
++**Gate A** is the default normal workflow (`-Scope Core` is an alias). It starts only test-postgres, verifies frozen locks/peers, migrates/checks the guarded test database, runs all backend tests, Ruff, TypeScript, ESLint, production build, and the entire desktop/mobile/tablet regression plus controlled-provider recovery browser suites. Both key aliases/model are explicitly empty in child environments, preventing dotenv fallback. Controlled provider behavior is clearly labeled and test-only; auth/API/PostgreSQL/browser remain real. Test-only authored reports/doubles never count as live model evidence.
+README.md:135: trailing whitespace.
++
+README.md:136: trailing whitespace.
++Each gate creates a unique directory under `docs/evidence/stage031`, with command argv/log/exit/duration, create-once receipt, start/end source manifest and artifact hashes. The verifier rejects incomplete/skipped/xfail/retried/flaky reports and missing baseline identities. `latest-A.json`/`latest-B.json` point to receipts without rewriting historical attempts. Source identity includes tracked and relevant nonignored untracked app/test/script/config/lock files; dotenv secrets, build/dependency outputs, docs and evidence are excluded. The live nonsecret execution profile additionally records model/prompt/schema/SDK and timeout/output/admission bounds. Local owner-controlled files are not a hostile-machine attestation.
+README.md:137: trailing whitespace.
++
+README.md:138: trailing whitespace.
++**Gate B** requires a current passing A, configured runtime Gemini key/model, and explicit authorization for one paid-capable attempt. Do not run the following until authorized:
+README.md:139: trailing whitespace.
++
+README.md:140: trailing whitespace.
++```powershell
+README.md:141: trailing whitespace.
++pwsh -NoProfile -File scripts/verify-live.ps1 -AllowPaid
+README.md:142: trailing whitespace.
++uv run --directory apps/api python -m scripts.verification summary
+README.md:143: trailing whitespace.
++```
+README.md:144: trailing whitespace.
++
+README.md:145: trailing whitespace.
++It executes one real browser Generate -> draft API/independent SQL -> edit/reload -> approve/reload -> independent SQL -> unrelated404 journey. No automatic retry occurs. Missing opt-in/config/A is BLOCKED/nonzero before dispatch. Provider/validation/persistence/browser failure is nonzero and remains in its attempt record. A wrapper invocation without `-AllowPaid` only records a BLOCKED preflight. `-Scope Full` now exits2 with migration instructions, so the old command cannot silently spend quota. Low-level live commands/configs also require deliberate opt-in/current A and cannot certify B on their own. The old real invalid-key browser diagnostic is preserved outside A and requires `ORBA_EXTERNAL_FAILURE_OPT_IN=1`; normal failure tests use labeled doubles instead of contacting Google.
+README.md:146: trailing whitespace.
++
+README.md:147: trailing whitespace.
++Gate C (`summary`) revalidates required commands, native exits, actual structured test results, source/profile identity and artifact hashes. A PASS+B PASS for current source is eligible for VERIFIED; absent, blocked, failed, stale or controlled B is not. Summary exits2 while unverified. Historical failures and live successes remain historical and are never backfilled with a new fingerprint.
+README.md:148: trailing whitespace.
++
+README.md:149: trailing whitespace.
++Manual deterministic commands (clear runtime key/model variables in that shell, or prefer Gate A's automatic safe profile):
+README.md:150: trailing whitespace.
++
+README.md:151: trailing whitespace.
++```powershell
+README.md:152: trailing whitespace.
++$env:ORBA_PM_API_KEY=''; $env:GEMINI_API_KEY=''; $env:ORBA_PM_MODEL=''
+README.md:153: trailing whitespace.
++uv run --directory apps/api pytest -q
+README.md:154: trailing whitespace.
++npm exec --yes --package=pnpm@12.14.0 -- pnpm test:e2e
+README.md:155: trailing whitespace.
++npm exec --yes --package=pnpm@12.14.0 -- pnpm test:e2e:controlled
+README.md:156: trailing whitespace.
++```
+README.md:157: trailing whitespace.
++
+README.md:158: trailing whitespace.
++Fresh per-attempt test artifacts cannot overwrite earlier Stage03 evidence. Browser traces remain off to avoid credentials/cookies in traces. Chromium desktop/mobile/tablet emulation does not establish native-device or all-browser compatibility. Gate runners use an advisory local lock and bounded owned command trees; manually launched test commands must also respect the shared database boundary.
+README.md:159: trailing whitespace.
++
+README.md:160: trailing whitespace.
++Run the deliberately incorrect expectation separately:
+README.md:161: trailing whitespace.
++
+README.md:162: trailing whitespace.
++```powershell
+README.md:163: trailing whitespace.
++uv run --directory apps/api pytest -q tests/experiments/unauthorized_success_experiment.py
+README.md:164: trailing whitespace.
++uv run --directory apps/api pytest -q tests/experiments/pm_failed_run_success_experiment.py
+README.md:165: trailing whitespace.
++```
+README.md:166: trailing whitespace.
++
+README.md:167: trailing whitespace.
++Both must exit **1**: the first incorrectly expects `404 == 200`; the second incorrectly expects an actually failed, unconfigured PM run to be `succeeded`. These are explicit expected-failure experiments, outside normal discovery. Neither is a passing production test; no xfail/skip/green stub is used.
+README.md:168: trailing whitespace.
++
+README.md:169: trailing whitespace.
++## Limits
+README.md:170: trailing whitespace.
++
+README.md:171: trailing whitespace.
++Suitable for the current local development scope, **not certified production-secure**. No verified email ownership, password recovery, MFA/passkeys, SSO/OAuth, durable security audit store, production TLS/reverse-proxy configuration, distributed deployment certification, automatic session cleanup worker or penetration test. Registration's duplicate-email response can disclose that an address is registered. No real-time permission push; subsequent protected requests enforce current permissions. Logout clears protected local state immediately; if the server cannot be reached, the UI explicitly warns that revocation is unconfirmed and does not claim the session was revoked. There is no server-side project idempotency guarantee after an uncertain write. Existing TypeScript 6.0.3 / ESLint 9.39.5 compatibility pins remain documented in architecture; 9.x is npm-deprecated until current Next lint plugins support 10.
+README.md:172: trailing whitespace.
++
+README.md:173: trailing whitespace.
++PM requests are synchronous and bounded (timeout 5–180s, output 512–16000 tokens); the SDK performs one attempt with automatic continuation, retries and function calling disabled. Default local admission: one active run per project, two globally, five attempts/account/hour, twenty globally/hour. PostgreSQL locks coordinate local API workers; this is not a distributed orchestration platform. Lease expiry marks interrupted runs without resuming them. A valid paid response can be discarded after session/permission/lease expiry. Dollar costs are not estimated. No cancellation/billing guarantee, semantic truth guarantee, automatic recovery, architect or execution agent is claimed.
+README.md:174: trailing whitespace.
++
+README.md:175: trailing whitespace.
++See [architecture](docs/ARCHITECTURE.md), [Stage03 plan](docs/STAGE03_PLAN.md), [test plan](docs/STAGE03_TEST_PLAN.md) and [current verification](docs/VERIFICATION.md). Historical evidence is preserved in `docs/VERIFICATION_STAGE01.md` and `docs/VERIFICATION_STAGE02.md`. Stop after Stage03.
+apps/api/tests/test_auth_workspaces.py:1: trailing whitespace.
++import json
+apps/api/tests/test_auth_workspaces.py:2: trailing whitespace.
++from concurrent.futures import ThreadPoolExecutor
+apps/api/tests/test_auth_workspaces.py:3: trailing whitespace.
++from datetime import timedelta
+apps/api/tests/test_auth_workspaces.py:4: trailing whitespace.
++from threading import Barrier
+apps/api/tests/test_auth_workspaces.py:5: trailing whitespace.
++from uuid import UUID
+apps/api/tests/test_auth_workspaces.py:6: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:7: trailing whitespace.
++import pytest
+apps/api/tests/test_auth_workspaces.py:8: trailing whitespace.
++from conftest import csrf, register
+apps/api/tests/test_auth_workspaces.py:9: trailing whitespace.
++from fastapi.testclient import TestClient
+apps/api/tests/test_auth_workspaces.py:10: trailing whitespace.
++from sqlalchemy import func, select
+apps/api/tests/test_auth_workspaces.py:11: trailing whitespace.
++from sqlalchemy.orm import Session
+apps/api/tests/test_auth_workspaces.py:12: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:13: trailing whitespace.
++from orba.models import AuthSession, Project, User, WorkspaceInvitation, WorkspaceMember
+apps/api/tests/test_auth_workspaces.py:14: trailing whitespace.
++from orba.security import digest, now, passwords
+apps/api/tests/test_auth_workspaces.py:15: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:16: trailing whitespace.
++PASSWORD = "A long test password!"
+apps/api/tests/test_auth_workspaces.py:17: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:18: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:19: trailing whitespace.
++def account(app, email):
+apps/api/tests/test_auth_workspaces.py:20: trailing whitespace.
++    other = TestClient(app)
+apps/api/tests/test_auth_workspaces.py:21: trailing whitespace.
++    user = register(other, email)
+apps/api/tests/test_auth_workspaces.py:22: trailing whitespace.
++    return other, user
+apps/api/tests/test_auth_workspaces.py:23: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:24: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:25: trailing whitespace.
++def invite(owner, space, email, role="member"):
+apps/api/tests/test_auth_workspaces.py:26: trailing whitespace.
++    response = owner.post(
+apps/api/tests/test_auth_workspaces.py:27: trailing whitespace.
++        f"/api/v1/workspaces/{space}/invitations", json={"email": email, "role": role}
+apps/api/tests/test_auth_workspaces.py:28: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:29: trailing whitespace.
++    assert response.status_code == 201, response.text
+apps/api/tests/test_auth_workspaces.py:30: trailing whitespace.
++    data = response.json()
+apps/api/tests/test_auth_workspaces.py:31: trailing whitespace.
++    return data, data["invitation_link"].split("#token=")[1]
+apps/api/tests/test_auth_workspaces.py:32: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:33: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:34: trailing whitespace.
++def join(owner, other, space, user, role="member"):
+apps/api/tests/test_auth_workspaces.py:35: trailing whitespace.
++    _, token = invite(owner, space, user["email"], role)
+apps/api/tests/test_auth_workspaces.py:36: trailing whitespace.
++    response = other.post("/api/v1/invitations/accept", json={"token": token})
+apps/api/tests/test_auth_workspaces.py:37: trailing whitespace.
++    assert response.status_code == 200, response.text
+apps/api/tests/test_auth_workspaces.py:38: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:39: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:40: trailing whitespace.
++def test_registration_hashes_and_cookie_security(raw_client):
+apps/api/tests/test_auth_workspaces.py:41: trailing whitespace.
++    user = register(raw_client, " First@Example.com ")
+apps/api/tests/test_auth_workspaces.py:42: trailing whitespace.
++    assert user["email"] == "first@example.com"
+apps/api/tests/test_auth_workspaces.py:43: trailing whitespace.
++    assert set(user) == {"id", "email", "display_name"}
+apps/api/tests/test_auth_workspaces.py:44: trailing whitespace.
++    token = raw_client.cookies.get("orba_session")
+apps/api/tests/test_auth_workspaces.py:45: trailing whitespace.
++    with Session(raw_client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:46: trailing whitespace.
++        saved = db.get(User, UUID(user["id"]))
+apps/api/tests/test_auth_workspaces.py:47: trailing whitespace.
++        assert saved.password_hash.startswith("$argon2id$")
+apps/api/tests/test_auth_workspaces.py:48: trailing whitespace.
++        assert passwords.verify(saved.password_hash, PASSWORD)
+apps/api/tests/test_auth_workspaces.py:49: trailing whitespace.
++        session = db.scalar(select(AuthSession).where(AuthSession.user_id == saved.id))
+apps/api/tests/test_auth_workspaces.py:50: trailing whitespace.
++        assert session.token_hash == digest(token) and session.token_hash != token
+apps/api/tests/test_auth_workspaces.py:51: trailing whitespace.
++        assert session.expires_at > session.created_at
+apps/api/tests/test_auth_workspaces.py:52: trailing whitespace.
++    other, second = account(raw_client.app, "second@example.com")
+apps/api/tests/test_auth_workspaces.py:53: trailing whitespace.
++    with Session(raw_client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:54: trailing whitespace.
++        assert db.get(User, UUID(second["id"])).password_hash != saved.password_hash
+apps/api/tests/test_auth_workspaces.py:55: trailing whitespace.
++    csrf(raw_client)
+apps/api/tests/test_auth_workspaces.py:56: trailing whitespace.
++    response = raw_client.post(
+apps/api/tests/test_auth_workspaces.py:57: trailing whitespace.
++        "/api/v1/auth/login", json={"email": user["email"], "password": PASSWORD}
+apps/api/tests/test_auth_workspaces.py:58: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:59: trailing whitespace.
++    assert response.status_code == 200
+apps/api/tests/test_auth_workspaces.py:60: trailing whitespace.
++    cookie = response.headers["set-cookie"]
+apps/api/tests/test_auth_workspaces.py:61: trailing whitespace.
++    assert "HttpOnly" in cookie and "SameSite=lax" in cookie
+apps/api/tests/test_auth_workspaces.py:62: trailing whitespace.
++    assert raw_client.cookies.get("orba_session") != token
+apps/api/tests/test_auth_workspaces.py:63: trailing whitespace.
++    with Session(raw_client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:64: trailing whitespace.
++        assert (
+apps/api/tests/test_auth_workspaces.py:65: trailing whitespace.
++            db.scalar(select(AuthSession).where(AuthSession.token_hash == digest(token))).revoked_at
+apps/api/tests/test_auth_workspaces.py:66: trailing whitespace.
++            is not None
+apps/api/tests/test_auth_workspaces.py:67: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:68: trailing whitespace.
++    other.close()
+apps/api/tests/test_auth_workspaces.py:69: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:70: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:71: trailing whitespace.
++def test_duplicate_normalized_email_and_password_policy(raw_client):
+apps/api/tests/test_auth_workspaces.py:72: trailing whitespace.
++    register(raw_client)
+apps/api/tests/test_auth_workspaces.py:73: trailing whitespace.
++    response = raw_client.post(
+apps/api/tests/test_auth_workspaces.py:74: trailing whitespace.
++        "/api/v1/auth/register",
+apps/api/tests/test_auth_workspaces.py:75: trailing whitespace.
++        json={"email": " OWNER@EXAMPLE.COM ", "password": PASSWORD, "display_name": "Duplicate"},
+apps/api/tests/test_auth_workspaces.py:76: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:77: trailing whitespace.
++    assert response.status_code == 409
+apps/api/tests/test_auth_workspaces.py:78: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:79: trailing whitespace.
++        raw_client.post(
+apps/api/tests/test_auth_workspaces.py:80: trailing whitespace.
++            "/api/v1/auth/register",
+apps/api/tests/test_auth_workspaces.py:81: trailing whitespace.
++            json={"email": "weak@example.com", "password": "short", "display_name": "Weak"},
+apps/api/tests/test_auth_workspaces.py:82: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:83: trailing whitespace.
++        == 422
+apps/api/tests/test_auth_workspaces.py:84: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:85: trailing whitespace.
++    with Session(raw_client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:86: trailing whitespace.
++        assert db.scalar(select(func.count()).select_from(User)) == 1
+apps/api/tests/test_auth_workspaces.py:87: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:88: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:89: trailing whitespace.
++def test_login_invalid_and_logout_revocation(raw_client):
+apps/api/tests/test_auth_workspaces.py:90: trailing whitespace.
++    user = register(raw_client)
+apps/api/tests/test_auth_workspaces.py:91: trailing whitespace.
++    response = raw_client.post(
+apps/api/tests/test_auth_workspaces.py:92: trailing whitespace.
++        "/api/v1/auth/login", json={"email": user["email"], "password": "wrong"}
+apps/api/tests/test_auth_workspaces.py:93: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:94: trailing whitespace.
++    assert response.status_code == 401
+apps/api/tests/test_auth_workspaces.py:95: trailing whitespace.
++    assert "password_hash" not in response.text
+apps/api/tests/test_auth_workspaces.py:96: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:97: trailing whitespace.
++        raw_client.post(
+apps/api/tests/test_auth_workspaces.py:98: trailing whitespace.
++            "/api/v1/auth/login", json={"email": user["email"], "password": PASSWORD}
+apps/api/tests/test_auth_workspaces.py:99: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:100: trailing whitespace.
++        == 200
+apps/api/tests/test_auth_workspaces.py:101: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:102: trailing whitespace.
++    csrf(raw_client)
+apps/api/tests/test_auth_workspaces.py:103: trailing whitespace.
++    token = raw_client.cookies.get("orba_session")
+apps/api/tests/test_auth_workspaces.py:104: trailing whitespace.
++    assert raw_client.get("/api/v1/auth/me").json()["id"] == user["id"]
+apps/api/tests/test_auth_workspaces.py:105: trailing whitespace.
++    assert raw_client.post("/api/v1/auth/logout").status_code == 204
+apps/api/tests/test_auth_workspaces.py:106: trailing whitespace.
++    raw_client.cookies.set("orba_session", token)
+apps/api/tests/test_auth_workspaces.py:107: trailing whitespace.
++    assert raw_client.get("/api/v1/auth/me").status_code == 401
+apps/api/tests/test_auth_workspaces.py:108: trailing whitespace.
++    with Session(raw_client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:109: trailing whitespace.
++        assert db.scalar(
+apps/api/tests/test_auth_workspaces.py:110: trailing whitespace.
++            select(AuthSession).where(AuthSession.token_hash == digest(token))
+apps/api/tests/test_auth_workspaces.py:111: trailing whitespace.
++        ).revoked_at
+apps/api/tests/test_auth_workspaces.py:112: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:113: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:114: trailing whitespace.
++@pytest.mark.parametrize("state", ["expired", "revoked"])
+apps/api/tests/test_auth_workspaces.py:115: trailing whitespace.
++def test_invalid_sessions_rejected(raw_client, state):
+apps/api/tests/test_auth_workspaces.py:116: trailing whitespace.
++    register(raw_client)
+apps/api/tests/test_auth_workspaces.py:117: trailing whitespace.
++    token = raw_client.cookies.get("orba_session")
+apps/api/tests/test_auth_workspaces.py:118: trailing whitespace.
++    with Session(raw_client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:119: trailing whitespace.
++        session = db.scalar(select(AuthSession).where(AuthSession.token_hash == digest(token)))
+apps/api/tests/test_auth_workspaces.py:120: trailing whitespace.
++        if state == "expired":
+apps/api/tests/test_auth_workspaces.py:121: trailing whitespace.
++            session.expires_at = now() - timedelta(seconds=1)
+apps/api/tests/test_auth_workspaces.py:122: trailing whitespace.
++        else:
+apps/api/tests/test_auth_workspaces.py:123: trailing whitespace.
++            session.revoked_at = now()
+apps/api/tests/test_auth_workspaces.py:124: trailing whitespace.
++        db.commit()
+apps/api/tests/test_auth_workspaces.py:125: trailing whitespace.
++    assert raw_client.get("/api/v1/auth/me").status_code == 401
+apps/api/tests/test_auth_workspaces.py:126: trailing whitespace.
++    assert raw_client.get("/api/v1/workspaces").status_code == 401
+apps/api/tests/test_auth_workspaces.py:127: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:128: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:129: trailing whitespace.
++def test_anonymous_and_csrf_origin_guards(raw_client):
+apps/api/tests/test_auth_workspaces.py:130: trailing whitespace.
++    assert raw_client.get("/api/v1/projects").status_code == 401
+apps/api/tests/test_auth_workspaces.py:131: trailing whitespace.
++    csrf(raw_client)
+apps/api/tests/test_auth_workspaces.py:132: trailing whitespace.
++    body = {"email": "a@example.com", "password": PASSWORD, "display_name": "A"}
+apps/api/tests/test_auth_workspaces.py:133: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:134: trailing whitespace.
++        raw_client.post(
+apps/api/tests/test_auth_workspaces.py:135: trailing whitespace.
++            "/api/v1/auth/register", json=body, headers={"X-CSRF-Token": "wrong"}
+apps/api/tests/test_auth_workspaces.py:136: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:137: trailing whitespace.
++        == 403
+apps/api/tests/test_auth_workspaces.py:138: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:139: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:140: trailing whitespace.
++        raw_client.post(
+apps/api/tests/test_auth_workspaces.py:141: trailing whitespace.
++            "/api/v1/auth/register", json=body, headers={"Origin": "https://evil.example"}
+apps/api/tests/test_auth_workspaces.py:142: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:143: trailing whitespace.
++        == 403
+apps/api/tests/test_auth_workspaces.py:144: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:145: trailing whitespace.
++    register(raw_client)
+apps/api/tests/test_auth_workspaces.py:146: trailing whitespace.
++    raw_client.headers.pop("X-CSRF-Token")
+apps/api/tests/test_auth_workspaces.py:147: trailing whitespace.
++    assert raw_client.post("/api/v1/workspaces", json={"name": "Denied"}).status_code == 403
+apps/api/tests/test_auth_workspaces.py:148: trailing whitespace.
++    csrf(raw_client)
+apps/api/tests/test_auth_workspaces.py:149: trailing whitespace.
++    old_csrf = raw_client.headers["X-CSRF-Token"]
+apps/api/tests/test_auth_workspaces.py:150: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:151: trailing whitespace.
++        raw_client.post(
+apps/api/tests/test_auth_workspaces.py:152: trailing whitespace.
++            "/api/v1/auth/login", json={"email": "owner@example.com", "password": PASSWORD}
+apps/api/tests/test_auth_workspaces.py:153: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:154: trailing whitespace.
++        == 200
+apps/api/tests/test_auth_workspaces.py:155: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:156: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:157: trailing whitespace.
++        raw_client.post(
+apps/api/tests/test_auth_workspaces.py:158: trailing whitespace.
++            "/api/v1/workspaces", json={"name": "Stale token"}, headers={"X-CSRF-Token": old_csrf}
+apps/api/tests/test_auth_workspaces.py:159: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:160: trailing whitespace.
++        == 403
+apps/api/tests/test_auth_workspaces.py:161: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:162: trailing whitespace.
++    with Session(raw_client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:163: trailing whitespace.
++        assert db.scalar(select(func.count()).select_from(WorkspaceMember)) == 0
+apps/api/tests/test_auth_workspaces.py:164: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:165: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:166: trailing whitespace.
++def test_non_ascii_csrf_is_safely_rejected(raw_client):
+apps/api/tests/test_auth_workspaces.py:167: trailing whitespace.
++    csrf(raw_client)
+apps/api/tests/test_auth_workspaces.py:168: trailing whitespace.
++    response = raw_client.post(
+apps/api/tests/test_auth_workspaces.py:169: trailing whitespace.
++        "/api/v1/auth/register",
+apps/api/tests/test_auth_workspaces.py:170: trailing whitespace.
++        json={
+apps/api/tests/test_auth_workspaces.py:171: trailing whitespace.
++            "email": "invalid-header@example.com",
+apps/api/tests/test_auth_workspaces.py:172: trailing whitespace.
++            "password": PASSWORD,
+apps/api/tests/test_auth_workspaces.py:173: trailing whitespace.
++            "display_name": "Rejected",
+apps/api/tests/test_auth_workspaces.py:174: trailing whitespace.
++        },
+apps/api/tests/test_auth_workspaces.py:175: trailing whitespace.
++        headers=[(b"x-csrf-token", b"\xff")],
+apps/api/tests/test_auth_workspaces.py:176: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:177: trailing whitespace.
++    assert response.status_code == 403
+apps/api/tests/test_auth_workspaces.py:178: trailing whitespace.
++    assert "CSRF validation failed" in response.text
+apps/api/tests/test_auth_workspaces.py:179: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:180: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:181: trailing whitespace.
++def test_secure_cookie_configuration_and_https(raw_client):
+apps/api/tests/test_auth_workspaces.py:182: trailing whitespace.
++    from conftest import TEST_DATABASE_URL
+apps/api/tests/test_auth_workspaces.py:183: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:184: trailing whitespace.
++    from orba.config import Settings
+apps/api/tests/test_auth_workspaces.py:185: trailing whitespace.
++    from orba.main import create_app
+apps/api/tests/test_auth_workspaces.py:186: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:187: trailing whitespace.
++    with pytest.raises(ValueError, match="COOKIE_SECURE"):
+apps/api/tests/test_auth_workspaces.py:188: trailing whitespace.
++        Settings(web_origin="https://orba.example", cookie_secure=False)
+apps/api/tests/test_auth_workspaces.py:189: trailing whitespace.
++    app = create_app(
+apps/api/tests/test_auth_workspaces.py:190: trailing whitespace.
++        Settings(
+apps/api/tests/test_auth_workspaces.py:191: trailing whitespace.
++            database_url=TEST_DATABASE_URL, web_origin="https://orba.example", cookie_secure=True
+apps/api/tests/test_auth_workspaces.py:192: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:193: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:194: trailing whitespace.
++    with TestClient(app, base_url="https://orba.example") as client:
+apps/api/tests/test_auth_workspaces.py:195: trailing whitespace.
++        token = client.get("/api/v1/auth/csrf").json()["csrf_token"]
+apps/api/tests/test_auth_workspaces.py:196: trailing whitespace.
++        response = client.post(
+apps/api/tests/test_auth_workspaces.py:197: trailing whitespace.
++            "/api/v1/auth/register",
+apps/api/tests/test_auth_workspaces.py:198: trailing whitespace.
++            json={"email": "secure@example.com", "password": PASSWORD, "display_name": "Secure"},
+apps/api/tests/test_auth_workspaces.py:199: trailing whitespace.
++            headers={"Origin": "https://orba.example", "X-CSRF-Token": token},
+apps/api/tests/test_auth_workspaces.py:200: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:201: trailing whitespace.
++        assert response.status_code == 201
+apps/api/tests/test_auth_workspaces.py:202: trailing whitespace.
++        assert "Secure" in response.headers["set-cookie"]
+apps/api/tests/test_auth_workspaces.py:203: trailing whitespace.
++        assert client.get("/api/v1/auth/me").json()["email"] == "secure@example.com"
+apps/api/tests/test_auth_workspaces.py:204: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:205: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:206: trailing whitespace.
++def test_login_throttle_is_persisted(raw_client):
+apps/api/tests/test_auth_workspaces.py:207: trailing whitespace.
++    csrf(raw_client)
+apps/api/tests/test_auth_workspaces.py:208: trailing whitespace.
++    body = {"email": "unknown@example.com", "password": "incorrect"}
+apps/api/tests/test_auth_workspaces.py:209: trailing whitespace.
++    for _ in range(5):
+apps/api/tests/test_auth_workspaces.py:210: trailing whitespace.
++        assert raw_client.post("/api/v1/auth/login", json=body).status_code == 401
+apps/api/tests/test_auth_workspaces.py:211: trailing whitespace.
++    other = TestClient(raw_client.app)
+apps/api/tests/test_auth_workspaces.py:212: trailing whitespace.
++    csrf(other)
+apps/api/tests/test_auth_workspaces.py:213: trailing whitespace.
++    response = other.post("/api/v1/auth/login", json=body)
+apps/api/tests/test_auth_workspaces.py:214: trailing whitespace.
++    assert response.status_code == 429
+apps/api/tests/test_auth_workspaces.py:215: trailing whitespace.
++    assert response.headers["retry-after"] == "900"
+apps/api/tests/test_auth_workspaces.py:216: trailing whitespace.
++    other.close()
+apps/api/tests/test_auth_workspaces.py:217: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:218: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:219: trailing whitespace.
++def test_workspace_owner_and_invitation_hash_atomic_membership(client):
+apps/api/tests/test_auth_workspaces.py:220: trailing whitespace.
++    space = client.workspace_id
+apps/api/tests/test_auth_workspaces.py:221: trailing whitespace.
++    owner = client.get("/api/v1/auth/me").json()
+apps/api/tests/test_auth_workspaces.py:222: trailing whitespace.
++    assert client.get(f"/api/v1/workspaces/{space}").json()["role"] == "owner"
+apps/api/tests/test_auth_workspaces.py:223: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:224: trailing whitespace.
++        assert (
+apps/api/tests/test_auth_workspaces.py:225: trailing whitespace.
++            db.scalar(
+apps/api/tests/test_auth_workspaces.py:226: trailing whitespace.
++                select(WorkspaceMember).where(
+apps/api/tests/test_auth_workspaces.py:227: trailing whitespace.
++                    WorkspaceMember.workspace_id == UUID(space),
+apps/api/tests/test_auth_workspaces.py:228: trailing whitespace.
++                    WorkspaceMember.user_id == UUID(owner["id"]),
+apps/api/tests/test_auth_workspaces.py:229: trailing whitespace.
++                )
+apps/api/tests/test_auth_workspaces.py:230: trailing whitespace.
++            ).role
+apps/api/tests/test_auth_workspaces.py:231: trailing whitespace.
++            == "owner"
+apps/api/tests/test_auth_workspaces.py:232: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:233: trailing whitespace.
++    other, user = account(client.app, "invitee@example.com")
+apps/api/tests/test_auth_workspaces.py:234: trailing whitespace.
++    data, token = invite(client, space, user["email"])
+apps/api/tests/test_auth_workspaces.py:235: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:236: trailing whitespace.
++        saved = db.get(WorkspaceInvitation, UUID(data["id"]))
+apps/api/tests/test_auth_workspaces.py:237: trailing whitespace.
++        assert saved.token_hash == digest(token) and saved.token_hash != token
+apps/api/tests/test_auth_workspaces.py:238: trailing whitespace.
++    listing = client.get(f"/api/v1/workspaces/{space}/invitations")
+apps/api/tests/test_auth_workspaces.py:239: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:240: trailing whitespace.
++        token not in listing.text
+apps/api/tests/test_auth_workspaces.py:241: trailing whitespace.
++        and "token_hash" not in listing.text
+apps/api/tests/test_auth_workspaces.py:242: trailing whitespace.
++        and "invitation_link" not in listing.text
+apps/api/tests/test_auth_workspaces.py:243: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:244: trailing whitespace.
++    assert other.post("/api/v1/invitations/accept", json={"token": token}).status_code == 200
+apps/api/tests/test_auth_workspaces.py:245: trailing whitespace.
++    assert other.post("/api/v1/invitations/accept", json={"token": token}).status_code == 400
+apps/api/tests/test_auth_workspaces.py:246: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:247: trailing whitespace.
++        saved = db.get(WorkspaceInvitation, UUID(data["id"]))
+apps/api/tests/test_auth_workspaces.py:248: trailing whitespace.
++        assert saved.status == "accepted" and saved.accepted_at
+apps/api/tests/test_auth_workspaces.py:249: trailing whitespace.
++        assert (
+apps/api/tests/test_auth_workspaces.py:250: trailing whitespace.
++            db.scalar(
+apps/api/tests/test_auth_workspaces.py:251: trailing whitespace.
++                select(func.count())
+apps/api/tests/test_auth_workspaces.py:252: trailing whitespace.
++                .select_from(WorkspaceMember)
+apps/api/tests/test_auth_workspaces.py:253: trailing whitespace.
++                .where(
+apps/api/tests/test_auth_workspaces.py:254: trailing whitespace.
++                    WorkspaceMember.workspace_id == UUID(space),
+apps/api/tests/test_auth_workspaces.py:255: trailing whitespace.
++                    WorkspaceMember.user_id == UUID(user["id"]),
+apps/api/tests/test_auth_workspaces.py:256: trailing whitespace.
++                )
+apps/api/tests/test_auth_workspaces.py:257: trailing whitespace.
++            )
+apps/api/tests/test_auth_workspaces.py:258: trailing whitespace.
++            == 1
+apps/api/tests/test_auth_workspaces.py:259: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:260: trailing whitespace.
++    other.close()
+apps/api/tests/test_auth_workspaces.py:261: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:262: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:263: trailing whitespace.
++@pytest.mark.parametrize("failure", ["expired", "revoked", "wrong_email", "inviter_removed"])
+apps/api/tests/test_auth_workspaces.py:264: trailing whitespace.
++def test_invitation_failure_states(client, failure):
+apps/api/tests/test_auth_workspaces.py:265: trailing whitespace.
++    other, user = account(client.app, "intended@example.com")
+apps/api/tests/test_auth_workspaces.py:266: trailing whitespace.
++    data, token = invite(
+apps/api/tests/test_auth_workspaces.py:267: trailing whitespace.
++        client,
+apps/api/tests/test_auth_workspaces.py:268: trailing whitespace.
++        client.workspace_id,
+apps/api/tests/test_auth_workspaces.py:269: trailing whitespace.
++        "different@example.com" if failure == "wrong_email" else user["email"],
+apps/api/tests/test_auth_workspaces.py:270: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:271: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:272: trailing whitespace.
++        invitation = db.get(WorkspaceInvitation, UUID(data["id"]))
+apps/api/tests/test_auth_workspaces.py:273: trailing whitespace.
++        if failure == "expired":
+apps/api/tests/test_auth_workspaces.py:274: trailing whitespace.
++            invitation.expires_at = now() - timedelta(seconds=1)
+apps/api/tests/test_auth_workspaces.py:275: trailing whitespace.
++        if failure == "revoked":
+apps/api/tests/test_auth_workspaces.py:276: trailing whitespace.
++            invitation.status, invitation.revoked_at = "revoked", now()
+apps/api/tests/test_auth_workspaces.py:277: trailing whitespace.
++        if failure == "inviter_removed":
+apps/api/tests/test_auth_workspaces.py:278: trailing whitespace.
++            member = db.scalar(
+apps/api/tests/test_auth_workspaces.py:279: trailing whitespace.
++                select(WorkspaceMember).where(
+apps/api/tests/test_auth_workspaces.py:280: trailing whitespace.
++                    WorkspaceMember.workspace_id == UUID(client.workspace_id)
+apps/api/tests/test_auth_workspaces.py:281: trailing whitespace.
++                )
+apps/api/tests/test_auth_workspaces.py:282: trailing whitespace.
++            )
+apps/api/tests/test_auth_workspaces.py:283: trailing whitespace.
++            db.delete(member)
+apps/api/tests/test_auth_workspaces.py:284: trailing whitespace.
++        db.commit()
+apps/api/tests/test_auth_workspaces.py:285: trailing whitespace.
++    response = other.post("/api/v1/invitations/accept", json={"token": token})
+apps/api/tests/test_auth_workspaces.py:286: trailing whitespace.
++    assert response.status_code == 400
+apps/api/tests/test_auth_workspaces.py:287: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:288: trailing whitespace.
++        assert (
+apps/api/tests/test_auth_workspaces.py:289: trailing whitespace.
++            db.scalar(select(WorkspaceMember).where(WorkspaceMember.user_id == UUID(user["id"])))
+apps/api/tests/test_auth_workspaces.py:290: trailing whitespace.
++            is None
+apps/api/tests/test_auth_workspaces.py:291: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:292: trailing whitespace.
++    other.close()
+apps/api/tests/test_auth_workspaces.py:293: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:294: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:295: trailing whitespace.
++@pytest.mark.parametrize("role", ["viewer", "member", "admin"])
+apps/api/tests/test_auth_workspaces.py:296: trailing whitespace.
++def test_permission_matrix(client, role):
+apps/api/tests/test_auth_workspaces.py:297: trailing whitespace.
++    other, user = account(client.app, f"{role}@example.com")
+apps/api/tests/test_auth_workspaces.py:298: trailing whitespace.
++    join(client, other, client.workspace_id, user, role)
+apps/api/tests/test_auth_workspaces.py:299: trailing whitespace.
++    project = {
+apps/api/tests/test_auth_workspaces.py:300: trailing whitespace.
++        "title": "Role project",
+apps/api/tests/test_auth_workspaces.py:301: trailing whitespace.
++        "description": "Real write",
+apps/api/tests/test_auth_workspaces.py:302: trailing whitespace.
++        "workspace_id": client.workspace_id,
+apps/api/tests/test_auth_workspaces.py:303: trailing whitespace.
++    }
+apps/api/tests/test_auth_workspaces.py:304: trailing whitespace.
++    response = other.post("/api/v1/projects", json=project)
+apps/api/tests/test_auth_workspaces.py:305: trailing whitespace.
++    assert response.status_code == (403 if role == "viewer" else 201)
+apps/api/tests/test_auth_workspaces.py:306: trailing whitespace.
++    if role != "admin":
+apps/api/tests/test_auth_workspaces.py:307: trailing whitespace.
++        assert (
+apps/api/tests/test_auth_workspaces.py:308: trailing whitespace.
++            other.post(
+apps/api/tests/test_auth_workspaces.py:309: trailing whitespace.
++                f"/api/v1/workspaces/{client.workspace_id}/invitations",
+apps/api/tests/test_auth_workspaces.py:310: trailing whitespace.
++                json={"email": "new@example.com", "role": "viewer"},
+apps/api/tests/test_auth_workspaces.py:311: trailing whitespace.
++            ).status_code
+apps/api/tests/test_auth_workspaces.py:312: trailing whitespace.
++            == 403
+apps/api/tests/test_auth_workspaces.py:313: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:314: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:315: trailing whitespace.
++        other.patch(
+apps/api/tests/test_auth_workspaces.py:316: trailing whitespace.
++            f"/api/v1/workspaces/{client.workspace_id}/members/{user['id']}", json={"role": "owner"}
+apps/api/tests/test_auth_workspaces.py:317: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:318: trailing whitespace.
++        == 403
+apps/api/tests/test_auth_workspaces.py:319: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:320: trailing whitespace.
++    owner = client.get("/api/v1/auth/me").json()
+apps/api/tests/test_auth_workspaces.py:321: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:322: trailing whitespace.
++        other.delete(f"/api/v1/workspaces/{client.workspace_id}/members/{owner['id']}").status_code
+apps/api/tests/test_auth_workspaces.py:323: trailing whitespace.
++        == 403
+apps/api/tests/test_auth_workspaces.py:324: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:325: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:326: trailing whitespace.
++        other.patch(
+apps/api/tests/test_auth_workspaces.py:327: trailing whitespace.
++            f"/api/v1/workspaces/{client.workspace_id}/members/{owner['id']}",
+apps/api/tests/test_auth_workspaces.py:328: trailing whitespace.
++            json={"role": "viewer"},
+apps/api/tests/test_auth_workspaces.py:329: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:330: trailing whitespace.
++        == 403
+apps/api/tests/test_auth_workspaces.py:331: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:332: trailing whitespace.
++    other.close()
+apps/api/tests/test_auth_workspaces.py:333: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:334: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:335: trailing whitespace.
++def test_final_owner_and_role_changes(client):
+apps/api/tests/test_auth_workspaces.py:336: trailing whitespace.
++    user = client.get("/api/v1/auth/me").json()
+apps/api/tests/test_auth_workspaces.py:337: trailing whitespace.
++    url = f"/api/v1/workspaces/{client.workspace_id}/members/{user['id']}"
+apps/api/tests/test_auth_workspaces.py:338: trailing whitespace.
++    assert client.delete(url).status_code == 409
+apps/api/tests/test_auth_workspaces.py:339: trailing whitespace.
++    assert client.patch(url, json={"role": "admin"}).status_code == 409
+apps/api/tests/test_auth_workspaces.py:340: trailing whitespace.
++    other, second = account(client.app, "second-owner@example.com")
+apps/api/tests/test_auth_workspaces.py:341: trailing whitespace.
++    join(client, other, client.workspace_id, second)
+apps/api/tests/test_auth_workspaces.py:342: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:343: trailing whitespace.
++        client.patch(
+apps/api/tests/test_auth_workspaces.py:344: trailing whitespace.
++            f"/api/v1/workspaces/{client.workspace_id}/members/{second['id']}",
+apps/api/tests/test_auth_workspaces.py:345: trailing whitespace.
++            json={"role": "owner"},
+apps/api/tests/test_auth_workspaces.py:346: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:347: trailing whitespace.
++        == 200
+apps/api/tests/test_auth_workspaces.py:348: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:349: trailing whitespace.
++    assert client.patch(url, json={"role": "viewer"}).status_code == 200
+apps/api/tests/test_auth_workspaces.py:350: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:351: trailing whitespace.
++        client.post(
+apps/api/tests/test_auth_workspaces.py:352: trailing whitespace.
++            "/api/v1/projects",
+apps/api/tests/test_auth_workspaces.py:353: trailing whitespace.
++            json={"title": "Denied", "description": "Demoted", "workspace_id": client.workspace_id},
+apps/api/tests/test_auth_workspaces.py:354: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:355: trailing whitespace.
++        == 403
+apps/api/tests/test_auth_workspaces.py:356: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:357: trailing whitespace.
++    assert other.delete(url).status_code == 204
+apps/api/tests/test_auth_workspaces.py:358: trailing whitespace.
++    assert client.get(f"/api/v1/workspaces/{client.workspace_id}/members").status_code == 404
+apps/api/tests/test_auth_workspaces.py:359: trailing whitespace.
++    other.close()
+apps/api/tests/test_auth_workspaces.py:360: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:361: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:362: trailing whitespace.
++def test_private_project_isolation_and_forged_ids(client):
+apps/api/tests/test_auth_workspaces.py:363: trailing whitespace.
++    project = client.post(
+apps/api/tests/test_auth_workspaces.py:364: trailing whitespace.
++        "/api/v1/projects",
+apps/api/tests/test_auth_workspaces.py:365: trailing whitespace.
++        json={
+apps/api/tests/test_auth_workspaces.py:366: trailing whitespace.
++            "title": "Private secret title",
+apps/api/tests/test_auth_workspaces.py:367: trailing whitespace.
++            "description": "Private secret body",
+apps/api/tests/test_auth_workspaces.py:368: trailing whitespace.
++            "workspace_id": client.workspace_id,
+apps/api/tests/test_auth_workspaces.py:369: trailing whitespace.
++        },
+apps/api/tests/test_auth_workspaces.py:370: trailing whitespace.
++    ).json()
+apps/api/tests/test_auth_workspaces.py:371: trailing whitespace.
++    other, user = account(client.app, "unrelated@example.com")
+apps/api/tests/test_auth_workspaces.py:372: trailing whitespace.
++    own = other.post("/api/v1/workspaces", json={"name": "Other workspace"}).json()
+apps/api/tests/test_auth_workspaces.py:373: trailing whitespace.
++    private_response = other.get(f"/api/v1/projects/{project['id']}")
+apps/api/tests/test_auth_workspaces.py:374: trailing whitespace.
++    assert private_response.status_code == 404
+apps/api/tests/test_auth_workspaces.py:375: trailing whitespace.
++    assert "Private secret" not in private_response.text
+apps/api/tests/test_auth_workspaces.py:376: trailing whitespace.
++    denied = other.patch(
+apps/api/tests/test_auth_workspaces.py:377: trailing whitespace.
++        f"/api/v1/projects/{project['id']}", json={"title": "Stolen", "description": "Forged"}
+apps/api/tests/test_auth_workspaces.py:378: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:379: trailing whitespace.
++    assert denied.status_code == 404 and "Private secret" not in denied.text
+apps/api/tests/test_auth_workspaces.py:380: trailing whitespace.
++    assert other.get(f"/api/v1/workspaces/{client.workspace_id}/members").status_code == 404
+apps/api/tests/test_auth_workspaces.py:381: trailing whitespace.
++    assert other.get(f"/api/v1/projects?workspace_id={client.workspace_id}").status_code == 404
+apps/api/tests/test_auth_workspaces.py:382: trailing whitespace.
++    assert other.get(f"/api/v1/projects?workspace_id={own['id']}").json() == []
+apps/api/tests/test_auth_workspaces.py:383: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:384: trailing whitespace.
++        other.post(
+apps/api/tests/test_auth_workspaces.py:385: trailing whitespace.
++            "/api/v1/projects",
+apps/api/tests/test_auth_workspaces.py:386: trailing whitespace.
++            json={"title": "Forged", "description": "Bad", "workspace_id": client.workspace_id},
+apps/api/tests/test_auth_workspaces.py:387: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:388: trailing whitespace.
++        == 404
+apps/api/tests/test_auth_workspaces.py:389: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:390: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:391: trailing whitespace.
++        client.post(
+apps/api/tests/test_auth_workspaces.py:392: trailing whitespace.
++            "/api/v1/projects",
+apps/api/tests/test_auth_workspaces.py:393: trailing whitespace.
++            json={
+apps/api/tests/test_auth_workspaces.py:394: trailing whitespace.
++                "title": "Forged creator",
+apps/api/tests/test_auth_workspaces.py:395: trailing whitespace.
++                "description": "Bad",
+apps/api/tests/test_auth_workspaces.py:396: trailing whitespace.
++                "workspace_id": client.workspace_id,
+apps/api/tests/test_auth_workspaces.py:397: trailing whitespace.
++                "creator_id": user["id"],
+apps/api/tests/test_auth_workspaces.py:398: trailing whitespace.
++            },
+apps/api/tests/test_auth_workspaces.py:399: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:400: trailing whitespace.
++        == 422
+apps/api/tests/test_auth_workspaces.py:401: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:402: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:403: trailing whitespace.
++        saved = db.get(Project, UUID(project["id"]))
+apps/api/tests/test_auth_workspaces.py:404: trailing whitespace.
++        assert saved.title == "Private secret title" and saved.workspace_id == UUID(
+apps/api/tests/test_auth_workspaces.py:405: trailing whitespace.
++            client.workspace_id
+apps/api/tests/test_auth_workspaces.py:406: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:407: trailing whitespace.
++        evidence = {
+apps/api/tests/test_auth_workspaces.py:408: trailing whitespace.
++            "project_id": project["id"],
+apps/api/tests/test_auth_workspaces.py:409: trailing whitespace.
++            "http_status": private_response.status_code,
+apps/api/tests/test_auth_workspaces.py:410: trailing whitespace.
++            "response": private_response.json(),
+apps/api/tests/test_auth_workspaces.py:411: trailing whitespace.
++            "database_project_still_exists": saved is not None,
+apps/api/tests/test_auth_workspaces.py:412: trailing whitespace.
++            "database_workspace_unchanged": str(saved.workspace_id) == client.workspace_id,
+apps/api/tests/test_auth_workspaces.py:413: trailing whitespace.
++        }
+apps/api/tests/test_auth_workspaces.py:414: trailing whitespace.
++        from scripts.test_evidence import evidence_path
+apps/api/tests/test_auth_workspaces.py:415: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:416: trailing whitespace.
++        path = evidence_path("authorization.json")
+apps/api/tests/test_auth_workspaces.py:417: trailing whitespace.
++        path.parent.mkdir(parents=True, exist_ok=True)
+apps/api/tests/test_auth_workspaces.py:418: trailing whitespace.
++        path.write_text(json.dumps(evidence, indent=2))
+apps/api/tests/test_auth_workspaces.py:419: trailing whitespace.
++    other.close()
+apps/api/tests/test_auth_workspaces.py:420: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:421: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:422: trailing whitespace.
++def test_viewer_cannot_edit_and_member_can_edit(client):
+apps/api/tests/test_auth_workspaces.py:423: trailing whitespace.
++    project = client.post(
+apps/api/tests/test_auth_workspaces.py:424: trailing whitespace.
++        "/api/v1/projects",
+apps/api/tests/test_auth_workspaces.py:425: trailing whitespace.
++        json={"title": "Before", "description": "Original", "workspace_id": client.workspace_id},
+apps/api/tests/test_auth_workspaces.py:426: trailing whitespace.
++    ).json()
+apps/api/tests/test_auth_workspaces.py:427: trailing whitespace.
++    other, user = account(client.app, "reader@example.com")
+apps/api/tests/test_auth_workspaces.py:428: trailing whitespace.
++    join(client, other, client.workspace_id, user, "viewer")
+apps/api/tests/test_auth_workspaces.py:429: trailing whitespace.
++    url = f"/api/v1/projects/{project['id']}"
+apps/api/tests/test_auth_workspaces.py:430: trailing whitespace.
++    assert other.get(url).status_code == 200
+apps/api/tests/test_auth_workspaces.py:431: trailing whitespace.
++    assert other.patch(url, json={"title": "After", "description": "Changed"}).status_code == 403
+apps/api/tests/test_auth_workspaces.py:432: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:433: trailing whitespace.
++        client.patch(
+apps/api/tests/test_auth_workspaces.py:434: trailing whitespace.
++            f"/api/v1/workspaces/{client.workspace_id}/members/{user['id']}",
+apps/api/tests/test_auth_workspaces.py:435: trailing whitespace.
++            json={"role": "member"},
+apps/api/tests/test_auth_workspaces.py:436: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:437: trailing whitespace.
++        == 200
+apps/api/tests/test_auth_workspaces.py:438: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:439: trailing whitespace.
++    response = other.patch(url, json={"title": "After", "description": "Changed"})
+apps/api/tests/test_auth_workspaces.py:440: trailing whitespace.
++    assert response.status_code == 200
+apps/api/tests/test_auth_workspaces.py:441: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:442: trailing whitespace.
++        assert db.get(Project, UUID(project["id"])).title == "After"
+apps/api/tests/test_auth_workspaces.py:443: trailing whitespace.
++    other.close()
+apps/api/tests/test_auth_workspaces.py:444: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:445: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:446: trailing whitespace.
++def test_concurrent_final_owner_demotion_is_serialized(client):
+apps/api/tests/test_auth_workspaces.py:447: trailing whitespace.
++    other, user = account(client.app, "concurrent-owner@example.com")
+apps/api/tests/test_auth_workspaces.py:448: trailing whitespace.
++    join(client, other, client.workspace_id, user)
+apps/api/tests/test_auth_workspaces.py:449: trailing whitespace.
++    client.patch(
+apps/api/tests/test_auth_workspaces.py:450: trailing whitespace.
++        f"/api/v1/workspaces/{client.workspace_id}/members/{user['id']}", json={"role": "owner"}
+apps/api/tests/test_auth_workspaces.py:451: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:452: trailing whitespace.
++    first_id = client.get("/api/v1/auth/me").json()["id"]
+apps/api/tests/test_auth_workspaces.py:453: trailing whitespace.
++    barrier = Barrier(2)
+apps/api/tests/test_auth_workspaces.py:454: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:455: trailing whitespace.
++    def demote(actor, uid):
+apps/api/tests/test_auth_workspaces.py:456: trailing whitespace.
++        barrier.wait(timeout=5)
+apps/api/tests/test_auth_workspaces.py:457: trailing whitespace.
++        return actor.patch(
+apps/api/tests/test_auth_workspaces.py:458: trailing whitespace.
++            f"/api/v1/workspaces/{client.workspace_id}/members/{uid}", json={"role": "viewer"}
+apps/api/tests/test_auth_workspaces.py:459: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:460: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:461: trailing whitespace.
++    with ThreadPoolExecutor(max_workers=2) as pool:
+apps/api/tests/test_auth_workspaces.py:462: trailing whitespace.
++        futures = [
+apps/api/tests/test_auth_workspaces.py:463: trailing whitespace.
++            pool.submit(demote, actor, uid)
+apps/api/tests/test_auth_workspaces.py:464: trailing whitespace.
++            for actor, uid in [(client, first_id), (other, user["id"])]
+apps/api/tests/test_auth_workspaces.py:465: trailing whitespace.
++        ]
+apps/api/tests/test_auth_workspaces.py:466: trailing whitespace.
++        statuses = sorted(f.result(timeout=15).status_code for f in futures)
+apps/api/tests/test_auth_workspaces.py:467: trailing whitespace.
++    assert statuses == [200, 409]
+apps/api/tests/test_auth_workspaces.py:468: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:469: trailing whitespace.
++        assert (
+apps/api/tests/test_auth_workspaces.py:470: trailing whitespace.
++            db.scalar(
+apps/api/tests/test_auth_workspaces.py:471: trailing whitespace.
++                select(func.count())
+apps/api/tests/test_auth_workspaces.py:472: trailing whitespace.
++                .select_from(WorkspaceMember)
+apps/api/tests/test_auth_workspaces.py:473: trailing whitespace.
++                .where(
+apps/api/tests/test_auth_workspaces.py:474: trailing whitespace.
++                    WorkspaceMember.workspace_id == UUID(client.workspace_id),
+apps/api/tests/test_auth_workspaces.py:475: trailing whitespace.
++                    WorkspaceMember.role == "owner",
+apps/api/tests/test_auth_workspaces.py:476: trailing whitespace.
++                )
+apps/api/tests/test_auth_workspaces.py:477: trailing whitespace.
++            )
+apps/api/tests/test_auth_workspaces.py:478: trailing whitespace.
++            == 1
+apps/api/tests/test_auth_workspaces.py:479: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:480: trailing whitespace.
++    other.close()
+apps/api/tests/test_auth_workspaces.py:481: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:482: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:483: trailing whitespace.
++def test_concurrent_invitation_acceptance_only_one_membership(client):
+apps/api/tests/test_auth_workspaces.py:484: trailing whitespace.
++    other, user = account(client.app, "atomic@example.com")
+apps/api/tests/test_auth_workspaces.py:485: trailing whitespace.
++    _, token = invite(client, client.workspace_id, user["email"])
+apps/api/tests/test_auth_workspaces.py:486: trailing whitespace.
++    twin = TestClient(client.app)
+apps/api/tests/test_auth_workspaces.py:487: trailing whitespace.
++    twin.cookies.update(other.cookies)
+apps/api/tests/test_auth_workspaces.py:488: trailing whitespace.
++    twin.headers.update(other.headers)
+apps/api/tests/test_auth_workspaces.py:489: trailing whitespace.
++    barrier = Barrier(2)
+apps/api/tests/test_auth_workspaces.py:490: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:491: trailing whitespace.
++    def accept(actor):
+apps/api/tests/test_auth_workspaces.py:492: trailing whitespace.
++        barrier.wait(timeout=5)
+apps/api/tests/test_auth_workspaces.py:493: trailing whitespace.
++        return actor.post("/api/v1/invitations/accept", json={"token": token})
+apps/api/tests/test_auth_workspaces.py:494: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:495: trailing whitespace.
++    with ThreadPoolExecutor(max_workers=2) as pool:
+apps/api/tests/test_auth_workspaces.py:496: trailing whitespace.
++        futures = [pool.submit(accept, actor) for actor in [other, twin]]
+apps/api/tests/test_auth_workspaces.py:497: trailing whitespace.
++        assert sorted(f.result(timeout=15).status_code for f in futures) == [200, 400]
+apps/api/tests/test_auth_workspaces.py:498: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:499: trailing whitespace.
++        assert (
+apps/api/tests/test_auth_workspaces.py:500: trailing whitespace.
++            db.scalar(
+apps/api/tests/test_auth_workspaces.py:501: trailing whitespace.
++                select(func.count())
+apps/api/tests/test_auth_workspaces.py:502: trailing whitespace.
++                .select_from(WorkspaceMember)
+apps/api/tests/test_auth_workspaces.py:503: trailing whitespace.
++                .where(
+apps/api/tests/test_auth_workspaces.py:504: trailing whitespace.
++                    WorkspaceMember.workspace_id == UUID(client.workspace_id),
+apps/api/tests/test_auth_workspaces.py:505: trailing whitespace.
++                    WorkspaceMember.user_id == UUID(user["id"]),
+apps/api/tests/test_auth_workspaces.py:506: trailing whitespace.
++                )
+apps/api/tests/test_auth_workspaces.py:507: trailing whitespace.
++            )
+apps/api/tests/test_auth_workspaces.py:508: trailing whitespace.
++            == 1
+apps/api/tests/test_auth_workspaces.py:509: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:510: trailing whitespace.
++    other.close()
+apps/api/tests/test_auth_workspaces.py:511: trailing whitespace.
++    twin.close()
+apps/api/tests/test_auth_workspaces.py:512: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:513: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:514: trailing whitespace.
++def test_invitation_revocation_endpoint(client):
+apps/api/tests/test_auth_workspaces.py:515: trailing whitespace.
++    _, user = account(client.app, "revoke@example.com")
+apps/api/tests/test_auth_workspaces.py:516: trailing whitespace.
++    data, _token = invite(client, client.workspace_id, user["email"])
+apps/api/tests/test_auth_workspaces.py:517: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:518: trailing whitespace.
++        client.delete(
+apps/api/tests/test_auth_workspaces.py:519: trailing whitespace.
++            f"/api/v1/workspaces/{client.workspace_id}/invitations/{data['id']}"
+apps/api/tests/test_auth_workspaces.py:520: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:521: trailing whitespace.
++        == 204
+apps/api/tests/test_auth_workspaces.py:522: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:523: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:524: trailing whitespace.
++        invite_row = db.get(WorkspaceInvitation, UUID(data["id"]))
+apps/api/tests/test_auth_workspaces.py:525: trailing whitespace.
++        assert invite_row.revoked_at and invite_row.status == "revoked"
+apps/api/tests/test_auth_workspaces.py:526: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:527: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:528: trailing whitespace.
++def test_limiter_serializes_independent_app_instances(raw_client):
+apps/api/tests/test_auth_workspaces.py:529: trailing whitespace.
++    from conftest import TEST_DATABASE_URL
+apps/api/tests/test_auth_workspaces.py:530: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:531: trailing whitespace.
++    from orba.config import Settings
+apps/api/tests/test_auth_workspaces.py:532: trailing whitespace.
++    from orba.main import create_app
+apps/api/tests/test_auth_workspaces.py:533: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:534: trailing whitespace.
++    config = Settings(database_url=TEST_DATABASE_URL, login_max_attempts=1)
+apps/api/tests/test_auth_workspaces.py:535: trailing whitespace.
++    first = TestClient(create_app(config))
+apps/api/tests/test_auth_workspaces.py:536: trailing whitespace.
++    second = TestClient(create_app(config))
+apps/api/tests/test_auth_workspaces.py:537: trailing whitespace.
++    csrf(first)
+apps/api/tests/test_auth_workspaces.py:538: trailing whitespace.
++    csrf(second)
+apps/api/tests/test_auth_workspaces.py:539: trailing whitespace.
++    barrier = Barrier(2)
+apps/api/tests/test_auth_workspaces.py:540: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:541: trailing whitespace.
++    def attempt(actor):
+apps/api/tests/test_auth_workspaces.py:542: trailing whitespace.
++        barrier.wait(timeout=5)
+apps/api/tests/test_auth_workspaces.py:543: trailing whitespace.
++        return actor.post(
+apps/api/tests/test_auth_workspaces.py:544: trailing whitespace.
++            "/api/v1/auth/login",
+apps/api/tests/test_auth_workspaces.py:545: trailing whitespace.
++            json={"email": "race-limit@example.com", "password": "Bad password"},
+apps/api/tests/test_auth_workspaces.py:546: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:547: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:548: trailing whitespace.
++    with ThreadPoolExecutor(max_workers=2) as pool:
+apps/api/tests/test_auth_workspaces.py:549: trailing whitespace.
++        futures = [pool.submit(attempt, actor) for actor in [first, second]]
+apps/api/tests/test_auth_workspaces.py:550: trailing whitespace.
++        assert sorted(f.result(timeout=15).status_code for f in futures) == [401, 429]
+apps/api/tests/test_auth_workspaces.py:551: trailing whitespace.
++    first.close()
+apps/api/tests/test_auth_workspaces.py:552: trailing whitespace.
++    second.close()
+apps/api/tests/test_auth_workspaces.py:553: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:554: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:555: trailing whitespace.
++def test_member_revocation_and_project_write_are_serialized(client):
+apps/api/tests/test_auth_workspaces.py:556: trailing whitespace.
++    other, user = account(client.app, "revoke-write@example.com")
+apps/api/tests/test_auth_workspaces.py:557: trailing whitespace.
++    join(client, other, client.workspace_id, user)
+apps/api/tests/test_auth_workspaces.py:558: trailing whitespace.
++    barrier = Barrier(2)
+apps/api/tests/test_auth_workspaces.py:559: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:560: trailing whitespace.
++    def revoke():
+apps/api/tests/test_auth_workspaces.py:561: trailing whitespace.
++        barrier.wait(timeout=5)
+apps/api/tests/test_auth_workspaces.py:562: trailing whitespace.
++        return client.delete(f"/api/v1/workspaces/{client.workspace_id}/members/{user['id']}")
+apps/api/tests/test_auth_workspaces.py:563: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:564: trailing whitespace.
++    def write():
+apps/api/tests/test_auth_workspaces.py:565: trailing whitespace.
++        barrier.wait(timeout=5)
+apps/api/tests/test_auth_workspaces.py:566: trailing whitespace.
++        return other.post(
+apps/api/tests/test_auth_workspaces.py:567: trailing whitespace.
++            "/api/v1/projects",
+apps/api/tests/test_auth_workspaces.py:568: trailing whitespace.
++            json={
+apps/api/tests/test_auth_workspaces.py:569: trailing whitespace.
++                "title": "Racing write",
+apps/api/tests/test_auth_workspaces.py:570: trailing whitespace.
++                "description": "Either commits before removal or is rejected",
+apps/api/tests/test_auth_workspaces.py:571: trailing whitespace.
++                "workspace_id": client.workspace_id,
+apps/api/tests/test_auth_workspaces.py:572: trailing whitespace.
++            },
+apps/api/tests/test_auth_workspaces.py:573: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:574: trailing whitespace.
++
+apps/api/tests/test_auth_workspaces.py:575: trailing whitespace.
++    with ThreadPoolExecutor(max_workers=2) as pool:
+apps/api/tests/test_auth_workspaces.py:576: trailing whitespace.
++        removal = pool.submit(revoke)
+apps/api/tests/test_auth_workspaces.py:577: trailing whitespace.
++        creation = pool.submit(write)
+apps/api/tests/test_auth_workspaces.py:578: trailing whitespace.
++        assert removal.result(timeout=15).status_code == 204
+apps/api/tests/test_auth_workspaces.py:579: trailing whitespace.
++        result = creation.result(timeout=15)
+apps/api/tests/test_auth_workspaces.py:580: trailing whitespace.
++    assert result.status_code in {201, 404}
+apps/api/tests/test_auth_workspaces.py:581: trailing whitespace.
++    with Session(client.app.state.engine) as db:
+apps/api/tests/test_auth_workspaces.py:582: trailing whitespace.
++        assert (
+apps/api/tests/test_auth_workspaces.py:583: trailing whitespace.
++            db.scalar(
+apps/api/tests/test_auth_workspaces.py:584: trailing whitespace.
++                select(WorkspaceMember).where(
+apps/api/tests/test_auth_workspaces.py:585: trailing whitespace.
++                    WorkspaceMember.workspace_id == UUID(client.workspace_id),
+apps/api/tests/test_auth_workspaces.py:586: trailing whitespace.
++                    WorkspaceMember.user_id == UUID(user["id"]),
+apps/api/tests/test_auth_workspaces.py:587: trailing whitespace.
++                )
+apps/api/tests/test_auth_workspaces.py:588: trailing whitespace.
++            )
+apps/api/tests/test_auth_workspaces.py:589: trailing whitespace.
++            is None
+apps/api/tests/test_auth_workspaces.py:590: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:591: trailing whitespace.
++        count = db.scalar(
+apps/api/tests/test_auth_workspaces.py:592: trailing whitespace.
++            select(func.count()).select_from(Project).where(Project.creator_id == UUID(user["id"]))
+apps/api/tests/test_auth_workspaces.py:593: trailing whitespace.
++        )
+apps/api/tests/test_auth_workspaces.py:594: trailing whitespace.
++        assert count == (1 if result.status_code == 201 else 0)
+apps/api/tests/test_auth_workspaces.py:595: trailing whitespace.
++    assert (
+apps/api/tests/test_auth_workspaces.py:596: trailing whitespace.
++        other.post(
+apps/api/tests/test_auth_workspaces.py:597: trailing whitespace.
++            "/api/v1/projects",
+apps/api/tests/test_auth_workspaces.py:598: trailing whitespace.
++            json={
+apps/api/tests/test_auth_workspaces.py:599: trailing whitespace.
++                "title": "After removal",
+apps/api/tests/test_auth_workspaces.py:600: trailing whitespace.
++                "description": "Must fail",
+apps/api/tests/test_auth_workspaces.py:601: trailing whitespace.
++                "workspace_id": client.workspace_id,
+apps/api/tests/test_auth_workspaces.py:602: trailing whitespace.
++            },
+apps/api/tests/test_auth_workspaces.py:603: trailing whitespace.
++        ).status_code
+apps/api/tests/test_auth_workspaces.py:604: trailing whitespace.
++        == 404
+apps/api/tests/test_auth_workspaces.py:605: trailing whitespace.
++    )
+apps/api/tests/test_auth_workspaces.py:606: trailing whitespace.
++    other.close()
+apps/web/package.json:11: trailing whitespace.
++    "test:e2e": "uv run --directory ../api python -m scripts.prepare_tests && playwright test",
+apps/web/package.json:12: trailing whitespace.
++    "test:e2e:negative": "playwright test --config playwright.negative.config.ts",
+apps/web/package.json:13: trailing whitespace.
++    "test:e2e:live": "uv run --directory ../api python -m scripts.verification live-preflight && playwright test --config playwright.live.config.ts",
+apps/web/package.json:14: trailing whitespace.
++    "test:e2e:controlled": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.controlled.config.ts"
+apps/web/playwright.config.ts:1: trailing whitespace.
++import { defineConfig, devices } from "@playwright/test";
+apps/web/playwright.config.ts:2: trailing whitespace.
++export default defineConfig({
+apps/web/playwright.config.ts:3: trailing whitespace.
++  testDir: "./tests", forbidOnly: true, fullyParallel: false, workers: 1, retries: 0,
+apps/web/playwright.config.ts:4: trailing whitespace.
++  reporter: process.env.PLAYWRIGHT_JSON_OUTPUT_NAME ? [["list"], ["json"]] : [["list"], ["html", { open: "never" }]],
+apps/web/playwright.config.ts:5: trailing whitespace.
++  // Network traces include passwords/cookies. Keep auth credentials out of artifacts.
+apps/web/playwright.config.ts:6: trailing whitespace.
++  // Safe home screenshots are captured explicitly by the regression test.
+apps/web/playwright.config.ts:7: trailing whitespace.
++  use: { baseURL: "http://localhost:3001", trace: "off", screenshot: "off" },
+apps/web/playwright.config.ts:8: trailing whitespace.
++  projects: [
+apps/web/playwright.config.ts:9: trailing whitespace.
++    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+apps/web/playwright.config.ts:10: trailing whitespace.
++    { name: "mobile", use: { ...devices["iPhone 13"], defaultBrowserType: "chromium" } },
+apps/web/playwright.config.ts:11: trailing whitespace.
++    { name: "tablet", use: { ...devices["iPad Mini"], defaultBrowserType: "chromium" } },
+apps/web/playwright.config.ts:12: trailing whitespace.
++  ],
+apps/web/playwright.config.ts:13: trailing whitespace.
++  webServer: [
+apps/web/playwright.config.ts:14: trailing whitespace.
++    { command: "uv run --directory ../api uvicorn orba.main:app --host 127.0.0.1 --port 8001 --no-proxy-headers", url: "http://127.0.0.1:8001/health/ready", reuseExistingServer: false, env: { DATABASE_URL: "postgresql+psycopg://orba_test:orba_test_local@127.0.0.1:54330/orba_test", WEB_ORIGIN: "http://localhost:3001", ORBA_PM_API_KEY:"", GEMINI_API_KEY:"", ORBA_PM_MODEL:"" }, timeout: 60000 },
+apps/web/playwright.config.ts:15: trailing whitespace.
++    { command: "pnpm exec next dev --hostname 127.0.0.1 --port 3001", url: "http://localhost:3001", reuseExistingServer: false, env: { API_URL: "http://127.0.0.1:8001" }, timeout: 120000 },
+apps/web/playwright.config.ts:16: trailing whitespace.
++  ],
+apps/web/playwright.config.ts:17: trailing whitespace.
++});
+apps/web/src/app/api/v1/[...path]/route.ts:1: trailing whitespace.
++import { NextRequest } from "next/server";
+apps/web/src/app/api/v1/[...path]/route.ts:2: trailing whitespace.
++
+apps/web/src/app/api/v1/[...path]/route.ts:3: trailing whitespace.
++export const dynamic = "force-dynamic";
+apps/web/src/app/api/v1/[...path]/route.ts:4: trailing whitespace.
++async function proxy(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
+apps/web/src/app/api/v1/[...path]/route.ts:5: trailing whitespace.
++  const { path } = await context.params;
+apps/web/src/app/api/v1/[...path]/route.ts:6: trailing whitespace.
++  if (path.some((segment) => !/^[a-zA-Z0-9_-]+$/.test(segment))) return new Response(null, { status: 400 });
+apps/web/src/app/api/v1/[...path]/route.ts:7: trailing whitespace.
++  const upstream = new URL(`/api/v1/${path.join("/")}${request.nextUrl.search}`, process.env.API_URL ?? "http://127.0.0.1:8000");
+apps/web/src/app/api/v1/[...path]/route.ts:8: trailing whitespace.
++  const pm = path[0] === "projects" && ["pm-runs", "pm-plans"].includes(path[2]);
+apps/web/src/app/api/v1/[...path]/route.ts:9: trailing whitespace.
++  const headers = new Headers();
+apps/web/src/app/api/v1/[...path]/route.ts:10: trailing whitespace.
++  for (const name of ["cookie", "content-type", "origin", "x-csrf-token"]) {
+apps/web/src/app/api/v1/[...path]/route.ts:11: trailing whitespace.
++    const value = request.headers.get(name); if (value) headers.set(name, value);
+apps/web/src/app/api/v1/[...path]/route.ts:12: trailing whitespace.
++  }
+apps/web/src/app/api/v1/[...path]/route.ts:13: trailing whitespace.
++  const started=performance.now();
+apps/web/src/app/api/v1/[...path]/route.ts:14: trailing whitespace.
++  let upstreamDeadline:AbortSignal|undefined;
+apps/web/src/app/api/v1/[...path]/route.ts:15: trailing whitespace.
++  let dispatched=false;
+apps/web/src/app/api/v1/[...path]/route.ts:16: trailing whitespace.
++  try {
+apps/web/src/app/api/v1/[...path]/route.ts:17: trailing whitespace.
++    let body: string | undefined;
+apps/web/src/app/api/v1/[...path]/route.ts:18: trailing whitespace.
++    if (!["GET", "HEAD"].includes(request.method)) {
+apps/web/src/app/api/v1/[...path]/route.ts:19: trailing whitespace.
++      if (pm) {
+apps/web/src/app/api/v1/[...path]/route.ts:20: trailing whitespace.
++        const reader = request.body?.getReader();
+apps/web/src/app/api/v1/[...path]/route.ts:21: trailing whitespace.
++        const chunks: Uint8Array[] = []; let size = 0;
+apps/web/src/app/api/v1/[...path]/route.ts:22: trailing whitespace.
++        const cap = request.method === "PUT" ? 512 * 1024 : 256 * 1024;
+apps/web/src/app/api/v1/[...path]/route.ts:23: trailing whitespace.
++        const deadline = AbortSignal.timeout(5000);
+apps/web/src/app/api/v1/[...path]/route.ts:24: trailing whitespace.
++        if (reader) {
+apps/web/src/app/api/v1/[...path]/route.ts:25: trailing whitespace.
++          const aborted = () => { void reader.cancel(); };
+apps/web/src/app/api/v1/[...path]/route.ts:26: trailing whitespace.
++          deadline.addEventListener("abort", aborted, { once: true });
+apps/web/src/app/api/v1/[...path]/route.ts:27: trailing whitespace.
++          try { while (true) { const part = await reader.read(); if (deadline.aborted) return Response.json({error:{code:"request_body_timeout",message:"The planning request body timed out."}}, {status:408}); if (part.done) break; size += part.value.length; if (size > cap) { await reader.cancel(); return Response.json({error:{code:"request_too_large",message:"The planning request exceeds its size limit."}}, {status:413}); } chunks.push(part.value); } }
+apps/web/src/app/api/v1/[...path]/route.ts:28: trailing whitespace.
++          finally { deadline.removeEventListener("abort", aborted); reader.releaseLock(); }
+apps/web/src/app/api/v1/[...path]/route.ts:29: trailing whitespace.
++        }
+apps/web/src/app/api/v1/[...path]/route.ts:30: trailing whitespace.
++        const merged = new Uint8Array(size); let offset = 0; for (const chunk of chunks) { merged.set(chunk, offset); offset += chunk.length; }
+apps/web/src/app/api/v1/[...path]/route.ts:31: trailing whitespace.
++        body = new TextDecoder().decode(merged);
+apps/web/src/app/api/v1/[...path]/route.ts:32: trailing whitespace.
++      } else body = await request.text();
+apps/web/src/app/api/v1/[...path]/route.ts:33: trailing whitespace.
++    }
+apps/web/src/app/api/v1/[...path]/route.ts:34: trailing whitespace.
++    upstreamDeadline=AbortSignal.timeout(pm && request.method === "POST" && path[2] === "pm-runs" ? 290000 : 15000);
+apps/web/src/app/api/v1/[...path]/route.ts:35: trailing whitespace.
++    dispatched=true;
+apps/web/src/app/api/v1/[...path]/route.ts:36: trailing whitespace.
++    const response = await fetch(upstream, { method: request.method, headers,
+apps/web/src/app/api/v1/[...path]/route.ts:37: trailing whitespace.
++      body,
+apps/web/src/app/api/v1/[...path]/route.ts:38: trailing whitespace.
++      cache: "no-store", redirect: "manual", signal: AbortSignal.any([upstreamDeadline,request.signal]) });
+apps/web/src/app/api/v1/[...path]/route.ts:39: trailing whitespace.
++    const outgoing = new Headers({ "Cache-Control": "no-store", "Referrer-Policy": "no-referrer" });
+apps/web/src/app/api/v1/[...path]/route.ts:40: trailing whitespace.
++    for (const name of ["content-type", "retry-after"]) { const value = response.headers.get(name); if (value) outgoing.set(name, value); }
+apps/web/src/app/api/v1/[...path]/route.ts:41: trailing whitespace.
++    for (const cookie of response.headers.getSetCookie()) outgoing.append("Set-Cookie", cookie);
+apps/web/src/app/api/v1/[...path]/route.ts:42: trailing whitespace.
++    return new Response(response.status === 204 ? null : response.body, { status: response.status, headers: outgoing });
+apps/web/src/app/api/v1/[...path]/route.ts:43: trailing whitespace.
++  } catch {
+apps/web/src/app/api/v1/[...path]/route.ts:44: trailing whitespace.
++    if(pm){
+apps/web/src/app/api/v1/[...path]/route.ts:45: trailing whitespace.
++      const origin=upstreamDeadline?.aborted?"proxy_deadline":request.signal.aborted?"client_disconnect":"api_transport";
+apps/web/src/app/api/v1/[...path]/route.ts:46: trailing whitespace.
++      console.info(JSON.stringify({event:"pm_proxy_failure",stage:"next_proxy",elapsed_ms:Math.round(performance.now()-started),error_category:"run_outcome_unknown",origin,attempt:1,final_state:"unknown"}));
+apps/web/src/app/api/v1/[...path]/route.ts:47: trailing whitespace.
++      return Response.json({error:{code:dispatched?"run_outcome_unknown":"request_not_dispatched",message:dispatched?"ORBA could not confirm this request's result. Check status before starting another generation. Your input is preserved.":"The planning request was not sent to the API. Your input is preserved; reconnect before trying again."}},{status:503});
+apps/web/src/app/api/v1/[...path]/route.ts:48: trailing whitespace.
++    }
+apps/web/src/app/api/v1/[...path]/route.ts:49: trailing whitespace.
++    return Response.json({ error: { code: "api_unavailable", message: "Could not reach ORBA. The operation could not be confirmed. Check the workspace before retrying a save." } }, { status: 503 });
+apps/web/src/app/api/v1/[...path]/route.ts:50: trailing whitespace.
++  }
+apps/web/src/app/api/v1/[...path]/route.ts:51: trailing whitespace.
++}
+apps/web/src/app/api/v1/[...path]/route.ts:52: trailing whitespace.
++export { proxy as GET, proxy as POST, proxy as PATCH, proxy as DELETE, proxy as PUT };
+apps/web/src/app/globals.css:1: trailing whitespace.
++@import "tailwindcss";
+apps/web/src/app/globals.css:2: trailing whitespace.
++@custom-variant dark (&:where(.dark, .dark *));
+apps/web/src/app/globals.css:3: trailing whitespace.
++:root{--background:#F7F7F4;--surface:#fff;--elevated:#f1f3ef;--foreground:#222C2B;--secondary:#53625D;--primary:#237D71;--primary-foreground:#fff;--border:#DFE7E2;--muted:#edf1ec;--ring:#237D71;--sidebar:#eff1ec;--danger:#a32d36;--accent-soft:#e1eee7}
+apps/web/src/app/globals.css:4: trailing whitespace.
++.dark{--background:#101216;--surface:#1D2427;--elevated:#272E34;--foreground:#DDE7E6;--secondary:#A3B2B0;--primary:#36D5B3;--primary-foreground:#10241f;--border:#343e42;--muted:#272E34;--ring:#36D5B3;--sidebar:#161b1f;--danger:#ff9aa5;--accent-soft:#203a34}
+apps/web/src/app/globals.css:5: trailing whitespace.
++@theme inline{--color-background:var(--background);--color-surface:var(--surface);--color-foreground:var(--foreground);--color-secondary:var(--secondary);--color-primary:var(--primary);--color-primary-foreground:var(--primary-foreground);--color-border:var(--border);--color-muted:var(--muted);--color-ring:var(--ring)}
+apps/web/src/app/globals.css:6: trailing whitespace.
++*{box-sizing:border-box}body{margin:0;background:var(--background);color:var(--foreground);font-family:Arial,Helvetica,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}a,button,input,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:not-allowed}a:focus-visible,button:focus-visible{outline:2px solid var(--ring);outline-offset:4px}textarea:focus,input:focus{outline:2px solid var(--ring);outline-offset:3px}h1,h2,p{margin:0}h1,h2{font-weight:500}svg{flex-shrink:0}.app-shell{display:flex;min-height:100dvh}.sidebar{width:244px;position:fixed;inset:0 auto 0 0;display:flex;flex-direction:column;padding:29px 19px 16px;background:var(--sidebar);border-right:1px solid var(--border);z-index:30}.brand-row{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;gap:9px;align-items:center;font-size:30px;font-weight:650;letter-spacing:-1.7px;line-height:1}.brand-period{color:var(--primary);margin-left:-8px}.brand-mark{width:29px;height:29px;border:6px solid var(--primary);border-radius:10px 10px 10px 2px;font-size:0;transform:rotate(-8deg)}.workspace-label{display:flex;align-items:center;gap:10px;margin:35px 0 23px;font-weight:500;font-size:12px}.workspace-avatar{display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:600}.workspace-label small,.profile-row small{display:block;font-size:11px;color:var(--secondary);margin-top:4px;font-weight:400}.new-project{width:100%;justify-content:flex-start!important;box-shadow:0 2px 2px #00000007}.nav-caption{font-size:10px;letter-spacing:1.4px;color:var(--secondary);margin:30px 12px 12px}.nav-link{display:flex;gap:12px;align-items:center;min-height:43px;margin:3px 0;padding:0 12px;border-radius:7px;color:var(--secondary);font-size:13px}.nav-link:hover{background:var(--muted);color:var(--foreground)}.nav-link.active{background:var(--accent-soft);color:var(--primary);font-weight:600}.nav-chevron{margin-left:auto}.sidebar-bottom{margin-top:auto;padding-top:30px}.foundation-note{position:relative;margin:0 4px 23px;border-top:1px solid var(--border);padding:21px 8px 0}.tiny-label{font-size:9px;letter-spacing:1.3px;color:var(--secondary)}.foundation-note p{font-size:17px;line-height:1.5;margin-top:10px;letter-spacing:-.3px}.foundation-note svg{position:absolute;right:5px;bottom:6px;color:var(--primary)}.profile-row{display:flex;gap:10px;align-items:center;padding:18px 4px 0;border-top:1px solid var(--border);margin-top:14px;font-size:12px}.main-column{margin-left:244px;width:calc(100% - 244px);display:flex;flex-direction:column;min-width:0}.topbar{height:77px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid var(--border)}.breadcrumb{display:flex;gap:13px;align-items:center;color:var(--secondary);font-size:12px}.breadcrumb strong{font-weight:500;color:var(--foreground)}.topbar-actions{display:flex;gap:17px;align-items:center}.local-label{font-size:11px;color:var(--secondary)}main{flex:1;outline:none}.app-footer{padding:20px 40px;display:flex;justify-content:space-between;font-size:10px;color:var(--secondary)}.home{max-width:940px;padding:76px 48px 55px;margin:auto}.home-intro{text-align:center}.intro-symbol{display:inline-flex;color:var(--primary);background:var(--accent-soft);width:57px;height:57px;align-items:center;justify-content:center;border-radius:18px;margin-bottom:25px}.eyebrow{font-size:10px;letter-spacing:1.8px;font-weight:500;color:var(--secondary);margin-bottom:19px}.home h1{font-size:clamp(32px,3.3vw,46px);line-height:1.18;letter-spacing:-1.8px}.home-subtitle{max-width:460px;margin:20px auto 0;color:var(--secondary);line-height:1.8;font-size:14px}.home-workarea{max-width:682px;margin:36px auto 0}.composer{background:var(--surface);border:1px solid var(--border);border-radius:17px;box-shadow:0 8px 28px #00000004;padding:18px 15px 12px}.composer:focus-within{border-color:var(--primary)}.composer textarea{display:block;width:100%;resize:vertical;border:0;background:transparent;color:var(--foreground);padding:5px 8px;line-height:1.7;min-height:105px;max-height:350px;font-size:14px;border-radius:6px}.composer textarea::placeholder{color:var(--secondary)}.composer-toolbar{display:flex;justify-content:space-between;align-items:center;margin-top:5px;gap:10px}.composer-tools{display:flex;align-items:center;gap:2px}.composer-tool-label{font-size:11px;color:var(--secondary);margin-left:10px}.form-help{font-size:10px;color:var(--secondary);text-align:center;margin:12px 0;line-height:1.6}.idea-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:31px}.idea-card{position:relative;border:1px solid var(--border);border-radius:12px;padding:20px;background:color-mix(in srgb,var(--surface) 45%,transparent);transition:background .15s,border-color .15s}.idea-card:hover{background:var(--surface);border-color:var(--primary)}.idea-card>svg:first-child{color:var(--primary);margin-bottom:16px}.idea-card strong{display:block;font-size:12px;font-weight:500;margin-bottom:8px}.idea-card p{font-size:11px;color:var(--secondary);line-height:1.6}.card-arrow{position:absolute;top:20px;right:18px;color:var(--secondary)}.home-footnote{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:38px;font-size:10px;color:var(--secondary)}.footnote-line{height:1px;background:var(--border);width:35px}.page-content{max-width:1200px;padding:54px 55px;margin:auto}.page-content.narrow{max-width:800px}.page-title{font-size:34px;letter-spacing:-1.2px;line-height:1.25;overflow-wrap:anywhere}.page-description{color:var(--secondary);line-height:1.8;margin-top:12px}.page-heading{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-bottom:36px}.page-heading .eyebrow{margin-bottom:12px}.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:20px}.project-card{background:var(--surface);padding:24px;border:1px solid var(--border);border-radius:13px;min-width:0;transition:border-color .15s}.project-card:hover{border-color:var(--primary)}.project-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.project-icon{display:inline-flex;justify-content:center;align-items:center;width:42px;height:42px;border-radius:11px;color:var(--primary);background:var(--accent-soft)}.project-icon.large{width:65px;height:65px;border-radius:17px}.status-badge{font-size:10px;font-weight:500;color:var(--primary);background:var(--accent-soft);border:1px solid var(--border);border-radius:20px;padding:5px 10px;white-space:nowrap}.project-card h2{font-size:17px;line-height:1.5;overflow-wrap:anywhere}.project-card>p{color:var(--secondary);font-size:12px;line-height:1.8;margin-top:10px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;min-height:65px}.project-card-footer{border-top:1px solid var(--border);margin-top:24px;padding-top:18px;color:var(--secondary);font-size:10px;display:flex;justify-content:space-between;align-items:center}.state-box{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;min-height:350px;justify-content:center;padding:40px 20px;border:1px dashed var(--border);border-radius:15px;color:var(--secondary);margin-top:30px}.state-box h1,.state-box h2{color:var(--foreground);font-size:22px;letter-spacing:-.5px}.state-box p{max-width:430px;line-height:1.8;font-size:13px}.back-link{display:inline-flex;gap:9px;align-items:center;color:var(--secondary);font-size:12px;margin-bottom:34px}.back-link:hover{color:var(--primary)}.title-field{margin:28px 0 22px}.title-field label,.field-label{font-size:12px;font-weight:500;display:block;margin-bottom:12px}.title-field input{width:100%;height:47px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--foreground);padding:0 15px}.field-label{padding-left:8px}.detail-heading{display:flex;gap:20px;align-items:center;margin-top:5px}.detail-heading .eyebrow{margin-bottom:8px}.detail-heading .status-badge{margin-left:auto}.detail-meta{display:flex;gap:8px;align-items:center;font-size:11px;color:var(--secondary);margin-top:25px}.overview-panel{margin-top:35px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:30px}.overview-panel h2,.future-panel h2{font-size:18px;letter-spacing:-.3px}.section-subtitle{font-size:11px;color:var(--secondary);margin-top:8px}.original-description{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9;margin-top:28px;font-size:14px}.future-panel{display:flex;align-items:flex-start;gap:20px;margin-top:25px;border:1px dashed var(--border);border-radius:14px;padding:30px;color:var(--secondary)}.future-panel h2{color:var(--foreground)}.future-panel p{font-size:12px;line-height:1.8;margin-top:10px}.later-label{display:inline-block;font-size:10px;margin-top:18px;border:1px solid var(--border);border-radius:6px;padding:6px 9px}.future-arrow{margin-left:auto}.pagination{display:flex;gap:20px;justify-content:center;align-items:center;margin-top:30px}.error-message{margin-top:14px;border:1px solid var(--danger);border-radius:8px;padding:13px;color:var(--danger);font-size:12px;line-height:1.6}.mobile-only{display:none!important}.skip-link{position:fixed;left:15px;top:-100px;padding:12px;background:var(--primary);color:var(--primary-foreground);z-index:100;border-radius:5px}.skip-link:focus{top:10px}
+apps/web/src/app/globals.css:7: trailing whitespace.
++@media(min-width:1500px){.home{padding-top:110px}.home h1{font-size:49px}}
+apps/web/src/app/globals.css:8: trailing whitespace.
++@media(max-width:1050px){.sidebar{width:215px}.main-column{margin-left:215px;width:calc(100% - 215px)}.topbar{padding:0 25px}.home{padding:60px 30px 35px}.page-content{padding:40px 30px}.local-label{display:none}.app-footer{padding:20px 25px}.home h1{font-size:38px}}
+apps/web/src/app/globals.css:9: trailing whitespace.
++@media(max-width:720px){.sidebar{transform:translateX(-100%);transition:transform .2s;width:260px}.sidebar.is-open{transform:translateX(0)}.main-column{margin-left:0;width:100%}.mobile-only{display:inline-flex!important}.mobile-backdrop{position:fixed;inset:0;background:#0008;z-index:25;border:0}.topbar{height:65px;padding:0 16px}.breadcrumb{gap:7px}.home{padding:40px 21px}.home h1{font-size:34px;letter-spacing:-1.3px}.home-subtitle{font-size:13px}.eyebrow{font-size:9px;letter-spacing:1.3px}.intro-symbol{margin-bottom:24px}.home-workarea{margin-top:30px}.idea-grid{gap:10px}.idea-card{padding:16px}.idea-card p{font-size:10px}.idea-card strong{font-size:11px;max-width:145px}.composer-tool-label{font-size:10px;margin-left:4px}.app-footer{padding:18px 20px;gap:20px;font-size:9px}.app-footer>span:first-child{display:none}.app-footer>span:last-child{margin:auto}.page-content{padding:35px 22px}.page-heading{align-items:flex-start;flex-direction:column}.page-title{font-size:29px}.detail-heading{flex-wrap:wrap;gap:13px}.detail-heading>div{flex:1;min-width:160px}.detail-heading .status-badge{margin-left:0}.overview-panel,.future-panel{padding:22px}.future-panel{gap:12px}.future-arrow{display:none}.future-panel h2{font-size:16px}.state-box{min-height:320px}.desktop-break{display:none}}
+apps/web/src/app/globals.css:10: trailing whitespace.
++@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+apps/web/src/app/globals.css:13: trailing whitespace.
++@layer base{a{text-decoration:none;color:inherit}button,input,textarea{font:inherit}}
+apps/web/src/app/globals.css:14: trailing whitespace.
++.session-content{min-height:100dvh}.workspace-choice{min-width:0;flex:1}.workspace-choice label{display:block;color:var(--secondary);font-size:10px;margin-bottom:5px}.workspace-choice select{width:100%;max-width:155px;background:transparent;border:0;color:var(--foreground);font-size:12px;padding:5px 0}.workspace-choice select option{background:var(--surface)}.account-menu{min-width:0;flex:1}.account-menu summary{cursor:pointer;font-size:11px;overflow-wrap:anywhere}.account-menu p{font-size:10px;color:var(--secondary);margin:10px 0;overflow-wrap:anywhere}.standard-form{display:flex;flex-direction:column;gap:20px;margin-top:30px;max-width:540px}.standard-form label{display:flex;flex-direction:column;gap:10px;font-size:12px;font-weight:500}.standard-form input,.standard-form select,.invitation-link input,.member-controls select{border:1px solid var(--border);border-radius:8px;padding:12px;background:var(--surface);color:var(--foreground);min-height:44px;width:100%}.standard-form button{align-self:flex-start}.form-note{color:var(--secondary);font-size:12px;line-height:1.8}.form-note a,.workspace-actions>a{color:var(--primary);text-decoration:underline;text-underline-offset:4px}.workspace-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:25px}.members-list{margin-top:24px}.member-row{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid var(--border);padding:22px 0;overflow-wrap:anywhere}.member-row p{font-size:12px;color:var(--secondary);margin:8px 0 12px}.member-controls form{display:flex;align-items:center;gap:10px}.invitation-link{margin:25px 0;display:flex;flex-direction:column;gap:12px}.invitation-link label{font-size:12px}.invitation-link button{align-self:flex-start}.workspace-choice select:focus-visible,summary:focus-visible{outline:2px solid var(--ring);outline-offset:3px}.auth-page{padding-top:65px}@media(max-width:720px){.member-row{flex-direction:column;align-items:flex-start}.workspace-choice select{max-width:175px}.standard-form{max-width:100%}.auth-page{padding-top:35px}}
+apps/web/src/app/globals.css:15: trailing whitespace.
++.sidebar{overflow-y:auto}.new-project{flex-shrink:0}@media(max-height:800px){.foundation-note{display:none}}
+apps/web/src/app/globals.css:16: trailing whitespace.
++.pm-panel{margin-top:25px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:30px;min-width:0}.pm-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.pm-heading .eyebrow{margin-bottom:10px}.pm-heading h2{display:flex;align-items:center;gap:10px;font-size:22px;letter-spacing:-.5px}.pm-heading .later-label{margin:0}.pm-panel h3{font-size:16px;margin-bottom:12px}.pm-panel p{line-height:1.8;overflow-wrap:anywhere;white-space:pre-wrap}.pm-panel section{min-width:0}.pm-fields{display:flex;flex-direction:column;gap:17px;margin-top:20px}.pm-fields>button{align-self:flex-start}.pm-panel label{display:flex;flex-direction:column;gap:9px;font-size:12px;font-weight:500;min-width:0}.pm-panel textarea,.pm-panel select{border:1px solid var(--border);background:var(--background);color:var(--foreground);border-radius:8px;padding:12px;width:100%;min-width:0;max-width:100%;line-height:1.6}.pm-panel textarea{resize:vertical;min-height:75px}.pm-panel select{min-height:44px}.pm-panel select:focus-visible,.pm-panel summary:focus-visible{outline:2px solid var(--ring);outline-offset:3px}.pm-panel summary{cursor:pointer;line-height:1.7;overflow-wrap:anywhere}.pm-generator{margin-top:25px;border-top:1px solid var(--border);padding-top:22px}.pm-generator>summary{font-weight:500;color:var(--primary)}.pm-setup,.pm-approval{margin-top:24px;background:var(--elevated);border:1px solid var(--border);border-radius:10px;padding:22px}.pm-setup p,.pm-approval>p{font-size:12px;color:var(--secondary);margin-top:10px}.pm-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}.pm-actions .form-note{flex-basis:100%}.pm-checkbox{display:flex!important;flex-direction:row!important;align-items:flex-start;line-height:1.8}.pm-checkbox input{margin-top:4px;min-width:16px;accent-color:var(--primary)}.pm-saved{margin-top:32px;padding-top:28px;border-top:1px solid var(--border)}.pm-version{min-width:210px!important;flex:1;max-width:400px}.pm-reference{font-size:10px;color:var(--secondary);line-height:1.8;margin-top:10px;overflow-wrap:anywhere}.pm-evidence{background:var(--background);border:1px solid var(--border);border-radius:8px;padding:14px;margin-top:16px;font-size:11px;color:var(--secondary)}.pm-evidence h4{margin-top:12px;color:var(--foreground)}.pm-evidence p{margin-top:9px}.pm-document{display:flex;flex-direction:column;gap:26px;margin-top:28px}.pm-document p,.pm-document li{font-size:13px}.pm-document ul,.pm-document ol{padding-left:21px;display:flex;flex-direction:column;gap:16px}.pm-overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.pm-source{font-size:10px;line-height:1.8;color:var(--secondary);margin-top:8px}.pm-source summary{display:list-item;font-size:10px}.pm-source blockquote{margin:8px 0 0;border-left:2px solid var(--border);padding:4px 12px;white-space:pre-wrap;overflow-wrap:anywhere}.pm-epic{border:1px solid var(--border);border-radius:10px;padding:22px;margin-top:18px}.pm-epic h4{font-size:16px;margin:0}.pm-story{margin-top:23px;padding-top:21px;border-top:1px solid var(--border)}.pm-story h5{font-size:14px;margin:0 0 12px}.pm-story h5 small{font-weight:400;color:var(--secondary);font-size:10px;margin-left:5px}.pm-story h6{font-size:12px;margin:18px 0 10px}.pm-story>p{margin-top:9px}.pm-story ol>li{padding:12px;background:var(--background);border-radius:6px}.pm-confirmation{padding:18px;border:1px solid var(--border);border-radius:8px;margin-top:13px}.pm-confirmation>strong{font-size:11px;color:var(--primary)}.pm-confirmation p{margin-top:8px}.pm-loading{display:flex;align-items:center;gap:10px;margin-top:25px;font-size:12px;color:var(--secondary)}.pm-notice{display:flex;align-items:flex-start;gap:9px;font-size:12px;margin-top:18px;color:var(--primary)}.pm-notice svg{margin-top:5px}.pm-empty{margin-top:25px;padding:28px 0;color:var(--secondary)}.pm-empty h3{color:var(--foreground)}.pm-empty p{max-width:600px;font-size:12px}.pm-history{border-top:1px solid var(--border);padding-top:20px;margin-top:30px;font-size:12px}.pm-history ul{padding-left:18px}.pm-history li{padding:13px 0}.pm-history button:not([data-slot]){color:var(--primary);text-decoration:underline;margin-top:9px}.pm-editor{border:0;padding:0;margin:28px 0 0;min-width:0;display:flex;flex-direction:column;gap:20px}.pm-editor legend{font-size:17px;margin-bottom:20px}.pm-editor>details{border-top:1px solid var(--border);padding-top:16px}.pm-edit-row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px}.pm-edit-row label{flex:1;min-width:160px}.pm-edit-row small{flex-basis:100%;color:var(--secondary);font-size:10px}.pm-edit-card{padding:20px;border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;gap:18px}.pm-edit-card>button{align-self:flex-start}.pm-edit-card .pm-edit-card{background:var(--background)}.pm-criterion-edit{border-left:2px solid var(--primary);padding-left:16px;display:flex;flex-direction:column;gap:14px}.pm-criterion-edit>button{align-self:flex-start}.pm-editor .pm-actions{margin-top:0}
+apps/web/src/app/globals.css:17: trailing whitespace.
++@media(max-width:720px){.pm-panel{padding:22px}.pm-overview-grid{grid-template-columns:1fr}.pm-epic{padding:16px}.pm-edit-card{padding:14px}.pm-edit-row{flex-direction:column;align-items:stretch}.pm-edit-row label{min-width:0}.pm-edit-row>button{align-self:flex-start}.pm-setup,.pm-approval{padding:16px}.pm-panel [data-slot=button]{white-space:normal;height:auto;min-height:44px;padding-top:10px;padding-bottom:10px}.pm-actions{align-items:stretch}.pm-panel h2{font-size:20px}}
+apps/web/src/app/globals.css:18: trailing whitespace.
++@media(max-width:720px){[data-slot=button]{min-height:44px;min-width:44px}}
+apps/web/src/app/globals.css:19: trailing whitespace.
++
+apps/web/src/app/globals.css:20: trailing whitespace.
++
+apps/web/src/app/globals.css:21: trailing whitespace.
++.pm-field{display:flex;flex-direction:column;gap:9px;min-width:0}.pm-edit-row .pm-field{flex:1}
+apps/web/src/app/globals.css:22: trailing whitespace.
++
+apps/web/src/app/globals.css:23: trailing whitespace.
++.pm-information{display:flex;align-items:flex-start;gap:9px;font-size:12px;margin-top:18px;color:var(--secondary)}.pm-information svg{flex-shrink:0;margin-top:5px}
+apps/web/tests/projects.spec.ts:1: trailing whitespace.
++import { evidencePath } from "./evidence";
+apps/web/tests/projects.spec.ts:2: trailing whitespace.
++import { test, expect, type Page } from "@playwright/test";
+apps/web/tests/projects.spec.ts:3: trailing whitespace.
++import { execFileSync } from "node:child_process";
+apps/web/tests/projects.spec.ts:4: trailing whitespace.
++import { signup, createWorkspace } from "./helpers";
+apps/web/tests/projects.spec.ts:5: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:6: trailing whitespace.
++test.beforeAll(() => { execFileSync("uv", ["run", "--directory", "../api", "python", "-m", "scripts.prepare_tests"], { stdio: "pipe" }); });
+apps/web/tests/projects.spec.ts:7: trailing whitespace.
++test.beforeEach(async ({ page }) => {
+apps/web/tests/projects.spec.ts:8: trailing whitespace.
++  await signup(page, `stage01-${Date.now()}-${Math.random().toString(16).slice(2)}@example.com`);
+apps/web/tests/projects.spec.ts:9: trailing whitespace.
++  await createWorkspace(page, "Regression workspace");
+apps/web/tests/projects.spec.ts:10: trailing whitespace.
++});
+apps/web/tests/projects.spec.ts:11: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:12: trailing whitespace.
++test("empty Projects gives a usable first-project action", async ({ page }) => {
+apps/web/tests/projects.spec.ts:13: trailing whitespace.
++  await page.goto("/projects");
+apps/web/tests/projects.spec.ts:14: trailing whitespace.
++  await expect(page.getByRole("heading", { name: "Every project starts with an idea" })).toBeVisible();
+apps/web/tests/projects.spec.ts:15: trailing whitespace.
++  await page.getByRole("link", { name: "Create your first project" }).click();
+apps/web/tests/projects.spec.ts:16: trailing whitespace.
++  await expect(page.getByLabel("Project title")).toBeVisible();
+apps/web/tests/projects.spec.ts:17: trailing whitespace.
++});
+apps/web/tests/projects.spec.ts:18: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:19: trailing whitespace.
++async function navigate(page: Page, name: string) {
+apps/web/tests/projects.spec.ts:20: trailing whitespace.
++  const menu = page.getByRole("button", { name: "Open navigation", exact: true });
+apps/web/tests/projects.spec.ts:21: trailing whitespace.
++  if (await menu.isVisible()) await menu.click();
+apps/web/tests/projects.spec.ts:22: trailing whitespace.
++  await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name, exact: true }).click();
+apps/web/tests/projects.spec.ts:23: trailing whitespace.
++}
+apps/web/tests/projects.spec.ts:24: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:25: trailing whitespace.
++test("chat creates a real project, survives reload, and appears in Projects", async ({ page }) => {
+apps/web/tests/projects.spec.ts:26: trailing whitespace.
++  const description = `Persistence ${test.info().project.name} ${Date.now()}\nBuild a thoughtful reading workspace.`;
+apps/web/tests/projects.spec.ts:27: trailing whitespace.
++  const title = description.split("\n")[0];
+apps/web/tests/projects.spec.ts:28: trailing whitespace.
++  await page.goto("/");
+apps/web/tests/projects.spec.ts:29: trailing whitespace.
++  await expect(page.getByRole("heading", { name: "What would you like to build today?" })).toBeVisible();
+apps/web/tests/projects.spec.ts:30: trailing whitespace.
++  await expect(page.getByRole("button", { name: "Attachments coming in a later stage" })).toBeDisabled();
+apps/web/tests/projects.spec.ts:31: trailing whitespace.
++  await page.getByLabel("Project description", { exact: true }).fill(description);
+apps/web/tests/projects.spec.ts:32: trailing whitespace.
++  const save = page.waitForResponse((response) => response.url().endsWith("/api/v1/projects") && response.request().method() === "POST");
+apps/web/tests/projects.spec.ts:33: trailing whitespace.
++  await page.getByRole("button", { name: "Create project", exact: true }).click();
+apps/web/tests/projects.spec.ts:34: trailing whitespace.
++  const response = await save;
+apps/web/tests/projects.spec.ts:35: trailing whitespace.
++  expect(response.status()).toBe(201);
+apps/web/tests/projects.spec.ts:36: trailing whitespace.
++  const record = await response.json();
+apps/web/tests/projects.spec.ts:37: trailing whitespace.
++  await expect(page).toHaveURL(new RegExp(`/projects/${record.id}$`));
+apps/web/tests/projects.spec.ts:38: trailing whitespace.
++  await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+apps/web/tests/projects.spec.ts:39: trailing whitespace.
++  await expect(page.getByText(description, { exact: true })).toBeVisible();
+apps/web/tests/projects.spec.ts:40: trailing whitespace.
++  await page.reload();
+apps/web/tests/projects.spec.ts:41: trailing whitespace.
++  await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+apps/web/tests/projects.spec.ts:42: trailing whitespace.
++  await navigate(page, "Projects");
+apps/web/tests/projects.spec.ts:43: trailing whitespace.
++  await expect(page.getByRole("link").filter({ has: page.getByRole("heading", { name: title, exact: true }) })).toBeVisible();
+apps/web/tests/projects.spec.ts:44: trailing whitespace.
++  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+apps/web/tests/projects.spec.ts:45: trailing whitespace.
++});
+apps/web/tests/projects.spec.ts:46: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:47: trailing whitespace.
++test("explicit project form saves title and description", async ({ page }) => {
+apps/web/tests/projects.spec.ts:48: trailing whitespace.
++  const title = `Named project ${test.info().project.name} ${Date.now()}`;
+apps/web/tests/projects.spec.ts:49: trailing whitespace.
++  await page.goto("/projects/new");
+apps/web/tests/projects.spec.ts:50: trailing whitespace.
++  await page.getByLabel("Project title").fill(title);
+apps/web/tests/projects.spec.ts:51: trailing whitespace.
++  await page.getByLabel("Project description", { exact: true }).fill("A project with a deliberate title.");
+apps/web/tests/projects.spec.ts:52: trailing whitespace.
++  await page.getByRole("button", { name: "Create project", exact: true }).click();
+apps/web/tests/projects.spec.ts:53: trailing whitespace.
++  await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+apps/web/tests/projects.spec.ts:54: trailing whitespace.
++});
+apps/web/tests/projects.spec.ts:55: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:56: trailing whitespace.
++test("theme persists, future sections are honest, keyboard navigation works", async ({ page }) => {
+apps/web/tests/projects.spec.ts:57: trailing whitespace.
++  await page.goto("/");
+apps/web/tests/projects.spec.ts:58: trailing whitespace.
++  await expect(page.getByRole("heading", { name: "What would you like to build today?" })).toBeVisible();
+apps/web/tests/projects.spec.ts:59: trailing whitespace.
++  await page.keyboard.press("Tab");
+apps/web/tests/projects.spec.ts:60: trailing whitespace.
++  await expect(page.getByRole("link", { name: "Skip to content" })).toBeFocused();
+apps/web/tests/projects.spec.ts:61: trailing whitespace.
++  await page.keyboard.press("Enter");
+apps/web/tests/projects.spec.ts:62: trailing whitespace.
++  await expect(page.locator("main")).toBeFocused();
+apps/web/tests/projects.spec.ts:63: trailing whitespace.
++  const before = await page.locator("html").getAttribute("class");
+apps/web/tests/projects.spec.ts:64: trailing whitespace.
++  await page.getByRole("button", { name: "Toggle color theme" }).click();
+apps/web/tests/projects.spec.ts:65: trailing whitespace.
++  await expect(page.locator("html")).not.toHaveAttribute("class", before ?? "");
+apps/web/tests/projects.spec.ts:66: trailing whitespace.
++  const after = await page.locator("html").getAttribute("class");
+apps/web/tests/projects.spec.ts:67: trailing whitespace.
++  await page.reload();
+apps/web/tests/projects.spec.ts:68: trailing whitespace.
++  await expect(page.locator("html")).toHaveAttribute("class", after!);
+apps/web/tests/projects.spec.ts:69: trailing whitespace.
++  await navigate(page, "Skills");
+apps/web/tests/projects.spec.ts:70: trailing whitespace.
++  await expect(page.getByRole("heading", { name: "Coming in a later stage" })).toBeVisible();
+apps/web/tests/projects.spec.ts:71: trailing whitespace.
++});
+apps/web/tests/projects.spec.ts:72: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:73: trailing whitespace.
++test("nonexistent project shows an actual API not-found error", async ({ page }) => {
+apps/web/tests/projects.spec.ts:74: trailing whitespace.
++  await page.goto("/projects/00000000-0000-0000-0000-000000000000");
+apps/web/tests/projects.spec.ts:75: trailing whitespace.
++  await expect(page.getByRole("main").getByRole("alert")).toHaveText("Project not found.");
+apps/web/tests/projects.spec.ts:76: trailing whitespace.
++});
+apps/web/tests/projects.spec.ts:77: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:78: trailing whitespace.
++test("network failure preserves the draft and permits deliberate retry", async ({ page, context }) => {
+apps/web/tests/projects.spec.ts:79: trailing whitespace.
++  const description = `Recoverable draft ${test.info().project.name} ${Date.now()}`;
+apps/web/tests/projects.spec.ts:80: trailing whitespace.
++  await page.goto("/");
+apps/web/tests/projects.spec.ts:81: trailing whitespace.
++  await page.getByLabel("Project description", { exact: true }).fill(description);
+apps/web/tests/projects.spec.ts:82: trailing whitespace.
++  await context.setOffline(true);
+apps/web/tests/projects.spec.ts:83: trailing whitespace.
++  await page.getByRole("button", { name: "Create project", exact: true }).click();
+apps/web/tests/projects.spec.ts:84: trailing whitespace.
++  await expect(page.getByRole("main").getByRole("alert")).toContainText("Could not reach ORBA");
+apps/web/tests/projects.spec.ts:85: trailing whitespace.
++  await expect(page.getByLabel("Project description", { exact: true })).toHaveValue(description);
+apps/web/tests/projects.spec.ts:86: trailing whitespace.
++  await context.setOffline(false);
+apps/web/tests/projects.spec.ts:87: trailing whitespace.
++  await page.getByRole("button", { name: "Create project", exact: true }).click();
+apps/web/tests/projects.spec.ts:88: trailing whitespace.
++  await expect(page.getByRole("heading", { name: description, exact: true })).toBeVisible();
+apps/web/tests/projects.spec.ts:89: trailing whitespace.
++});
+apps/web/tests/projects.spec.ts:90: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:91: trailing whitespace.
++test("whitespace cannot create a project", async ({ page }) => {
+apps/web/tests/projects.spec.ts:92: trailing whitespace.
++  await page.goto("/");
+apps/web/tests/projects.spec.ts:93: trailing whitespace.
++  let posts = 0;
+apps/web/tests/projects.spec.ts:94: trailing whitespace.
++  page.on("request", (request) => { if (request.method() === "POST" && request.url().endsWith("/api/v1/projects")) posts++; });
+apps/web/tests/projects.spec.ts:95: trailing whitespace.
++  await page.getByLabel("Project description", { exact: true }).fill("   ");
+apps/web/tests/projects.spec.ts:96: trailing whitespace.
++  await page.getByRole("button", { name: "Create project", exact: true }).click();
+apps/web/tests/projects.spec.ts:97: trailing whitespace.
++  await expect(page.getByRole("main").getByRole("alert")).toContainText("Enter a project description");
+apps/web/tests/projects.spec.ts:98: trailing whitespace.
++  expect(posts).toBe(0);
+apps/web/tests/projects.spec.ts:99: trailing whitespace.
++});
+apps/web/tests/projects.spec.ts:100: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:101: trailing whitespace.
++test("navigation supports mobile Escape and focus restoration", async ({ page }) => {
+apps/web/tests/projects.spec.ts:102: trailing whitespace.
++  await page.goto("/");
+apps/web/tests/projects.spec.ts:103: trailing whitespace.
++  await expect(page.getByRole("heading", { name: "What would you like to build today?" })).toBeVisible();
+apps/web/tests/projects.spec.ts:104: trailing whitespace.
++  const menu = page.getByRole("button", { name: "Open navigation", exact: true });
+apps/web/tests/projects.spec.ts:105: trailing whitespace.
++  if (await menu.isVisible()) {
+apps/web/tests/projects.spec.ts:106: trailing whitespace.
++    await menu.click();
+apps/web/tests/projects.spec.ts:107: trailing whitespace.
++    await expect(page.getByRole("dialog", { name: "Workspace navigation" })).toBeVisible();
+apps/web/tests/projects.spec.ts:108: trailing whitespace.
++    await page.keyboard.press("Escape");
+apps/web/tests/projects.spec.ts:109: trailing whitespace.
++    await expect(menu).toBeFocused();
+apps/web/tests/projects.spec.ts:110: trailing whitespace.
++    await expect(page.getByRole("link", { name: "Settings", exact: true })).toBeHidden();
+apps/web/tests/projects.spec.ts:111: trailing whitespace.
++  } else {
+apps/web/tests/projects.spec.ts:112: trailing whitespace.
++    await expect(page.getByRole("navigation", { name: "Main navigation" })).toBeVisible();
+apps/web/tests/projects.spec.ts:113: trailing whitespace.
++  }
+apps/web/tests/projects.spec.ts:114: trailing whitespace.
++});
+apps/web/tests/projects.spec.ts:115: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:116: trailing whitespace.
++test("home layout in both themes", async ({ page }) => {
+apps/web/tests/projects.spec.ts:117: trailing whitespace.
++  await page.goto("/");
+apps/web/tests/projects.spec.ts:118: trailing whitespace.
++  await expect(page.getByRole("heading", { name: "What would you like to build today?" })).toBeVisible();
+apps/web/tests/projects.spec.ts:119: trailing whitespace.
++  await page.screenshot({ path: evidencePath(`${test.info().project.name}-home.png`), fullPage: true });
+apps/web/tests/projects.spec.ts:120: trailing whitespace.
++  await page.getByRole("button", { name: "Toggle color theme" }).click();
+apps/web/tests/projects.spec.ts:121: trailing whitespace.
++  await page.screenshot({ path: evidencePath(`${test.info().project.name}-home-alternate.png`), fullPage: true });
+apps/web/tests/projects.spec.ts:122: trailing whitespace.
++});
+apps/web/tests/projects.spec.ts:123: trailing whitespace.
++
+apps/web/tests/projects.spec.ts:124: trailing whitespace.
++test("rapid duplicate submission sends a single creation request", async ({ page }) => {
+apps/web/tests/projects.spec.ts:125: trailing whitespace.
++  const title = `Single save ${test.info().project.name} ${Date.now()}`;
+apps/web/tests/projects.spec.ts:126: trailing whitespace.
++  let posts = 0;
+apps/web/tests/projects.spec.ts:127: trailing whitespace.
++  page.on("request", (request) => { if (request.method() === "POST" && request.url().endsWith("/api/v1/projects")) posts++; });
+apps/web/tests/projects.spec.ts:128: trailing whitespace.
++  await page.goto("/");
+apps/web/tests/projects.spec.ts:129: trailing whitespace.
++  await page.getByLabel("Project description", { exact: true }).fill(title);
+apps/web/tests/projects.spec.ts:130: trailing whitespace.
++  await page.getByRole("form", { name: "Create project", exact: true }).evaluate((form: HTMLFormElement) => { form.requestSubmit(); form.requestSubmit(); });
+apps/web/tests/projects.spec.ts:131: trailing whitespace.
++  await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+apps/web/tests/projects.spec.ts:132: trailing whitespace.
++  expect(posts).toBe(1);
+apps/web/tests/projects.spec.ts:133: trailing whitespace.
++});
+docs/ARCHITECTURE.md:1: trailing whitespace.
++# ORBA Stage 03 architecture
+docs/ARCHITECTURE.md:2: trailing whitespace.
++
+docs/ARCHITECTURE.md:3: trailing whitespace.
++The existing Next.js/FastAPI/PostgreSQL monorepo, authentication and workspace authorization are retained. Stage03 adds one real Product Manager planning agent. The scope remains local development; passing tests do not certify production security. Current verified and blocked scope is in VERIFICATION.md.
+docs/ARCHITECTURE.md:4: trailing whitespace.
++
+docs/ARCHITECTURE.md:5: trailing whitespace.
++```text
+docs/ARCHITECTURE.md:6: trailing whitespace.
++Browser localhost:3000
+docs/ARCHITECTURE.md:7: trailing whitespace.
++  ThemeProvider -> SessionProvider -> Shell -> AuthGate -> protected page
+docs/ARCHITECTURE.md:8: trailing whitespace.
++  Session cookie (HttpOnly) | CSRF header | selected workspace preference
+docs/ARCHITECTURE.md:9: trailing whitespace.
++       |
+docs/ARCHITECTURE.md:10: trailing whitespace.
++Next /api/v1/[...path] proxy (API_URL, server-only)
+docs/ARCHITECTURE.md:11: trailing whitespace.
++  forwards Cookie/Origin/Content-Type/X-CSRF-Token; preserves Set-Cookie
+docs/ARCHITECTURE.md:12: trailing whitespace.
++  no authentication database, no claim/session authority, no credential logs
+docs/ARCHITECTURE.md:13: trailing whitespace.
++       |
+docs/ARCHITECTURE.md:14: trailing whitespace.
++FastAPI 127.0.0.1:8000 --no-proxy-headers
+docs/ARCHITECTURE.md:15: trailing whitespace.
++  auth: Argon2id, opaque sessions, CSRF+Origin, DB attempt buckets
+docs/ARCHITECTURE.md:16: trailing whitespace.
++  projects/workspaces: authenticated identity -> membership -> role -> transaction
+docs/ARCHITECTURE.md:17: trailing whitespace.
++       |
+docs/ARCHITECTURE.md:18: trailing whitespace.
++PostgreSQL 18.6 / Alembic 0001 -> 0febbe526f54 -> ab3987da8961
+docs/ARCHITECTURE.md:19: trailing whitespace.
++  users <- sessions
+docs/ARCHITECTURE.md:20: trailing whitespace.
++  users <-> workspace_members <-> workspaces <- projects
+docs/ARCHITECTURE.md:21: trailing whitespace.
++  workspace_invitations (email/role/token hash/expiry/terminal state)
+docs/ARCHITECTURE.md:22: trailing whitespace.
++  login_attempts (hashed account/IP keys + timestamps)
+docs/ARCHITECTURE.md:23: trailing whitespace.
++  projects <- product_manager_runs <- product_plans
+docs/ARCHITECTURE.md:24: trailing whitespace.
++  product_plans <- product_epics <- product_stories <- product_acceptance_criteria
+docs/ARCHITECTURE.md:25: trailing whitespace.
++  API only -> one official Gemini generateContent call (no tools/orchestrator)
+docs/ARCHITECTURE.md:26: trailing whitespace.
++
+docs/ARCHITECTURE.md:27: trailing whitespace.
++Tests: separate web:3001 -> API:8001 -> orba_test:54330
+docs/ARCHITECTURE.md:28: trailing whitespace.
++Dev:   web:3000 -> API:8000 -> orba:54329 (named persistent volume)
+docs/ARCHITECTURE.md:29: trailing whitespace.
++```
+docs/ARCHITECTURE.md:30: trailing whitespace.
++
+docs/ARCHITECTURE.md:31: trailing whitespace.
++## Data and migration
+docs/ARCHITECTURE.md:32: trailing whitespace.
++
+docs/ARCHITECTURE.md:33: trailing whitespace.
++Users have UUID, normalized unique email, salted Argon2id password hash, display name, status and aware timestamps. Sessions have UUID, user FK, unique token hash, created/expiration/revocation timestamps. Workspaces have UUID, name, unique readable slug with random suffix, creator FK, timestamps and a restricted-legacy flag. Memberships have unique workspace/user pairs, checked roles and joined timestamp. Invitations have unique token hashes, partial unique pending workspace/email index, checked role/status, inviter/email/expiry and terminal timestamps. Appropriate FK, membership/session/project lookup indexes are in the migration. SQLAlchemy models match Alembic (`alembic check`).
+docs/ARCHITECTURE.md:34: trailing whitespace.
++
+docs/ARCHITECTURE.md:35: trailing whitespace.
++Projects retain UUID/title/description/created status/timestamps and gain a nonnull workspace FK plus nullable creator FK. New projects always use the validated session's user and an authorized supplied workspace. Existing rows are backfilled into the fixed restricted workspace `00000000-0000-0000-0000-000000000001`, with creator null and no members. No default signup membership is created there. The migration adds the workspace column nullable, inserts/backfills ownership, then enforces not-null; original values are untouched. Repeat upgrade is a no-op through the Alembic revision record. Before the ownership upgrade, a native loopback listener probe rejects a running local API at port 8000 (ORBA_API_PORT selects a custom port). The known isolated orba_test database/role is exempt; no application authentication check is bypassed. Operators must independently stop remote/custom deployments. Downgrade deliberately fails instead of re-exposing private data or dropping auth state.
+docs/ARCHITECTURE.md:36: trailing whitespace.
++
+docs/ARCHITECTURE.md:37: trailing whitespace.
++The terminal-only claim command requires explicit target workspace, existing Owner and selected project UUIDs. It checks all rows under lock before making any transfer. Default is dry run; --apply changes only ownership/creator, preserving original updated_at explicitly. It refuses already-claimed rows. Local operator/database access is its authority; no HTTP claim route exists.
+docs/ARCHITECTURE.md:38: trailing whitespace.
++
+docs/ARCHITECTURE.md:39: trailing whitespace.
++## Authentication, cookies and CSRF
+docs/ARCHITECTURE.md:40: trailing whitespace.
++
+docs/ARCHITECTURE.md:41: trailing whitespace.
++FastAPI validates every protected request against a stored SHA-256 hash of a 32-byte random opaque token, unrevoked/unexpired session and active User. Login/register revokes the presented valid old session and creates a new one. Logout persists revocation and expires the cookie. The UI clears local protected state on every logout attempt and distinguishes an unconfirmed server revocation after network failure. Password verification uses maintained argon2-cffi Argon2id with unique salts; unknown users receive comparable dummy hash work. Passwords are not trimmed. User response schemas omit hashes/tokens.
+docs/ARCHITECTURE.md:42: trailing whitespace.
++
+docs/ARCHITECTURE.md:43: trailing whitespace.
++Cookie: host-only, Path=/, HttpOnly, SameSite=Lax, explicit max-age. COOKIE_SECURE is configurable for local HTTP and required true when WEB_ORIGIN is HTTPS. Session lifetime is bounded and enforced server-side. Session cookie names and lifetimes are API configuration, not frontend claims.
+docs/ARCHITECTURE.md:44: trailing whitespace.
++
+docs/ARCHITECTURE.md:45: trailing whitespace.
++GET /auth/csrf returns a token derived by HMAC from the currently validated opaque session credential; it is not stored in browser persistence. The client sends it on every POST/PUT/PATCH/DELETE. Before authentication, the endpoint creates a random HttpOnly SameSite=Strict cookie and returns its matching token. The exact configured Origin is independently required on all writes, including login/register, and no cross-origin read permission is granted. Tokens are compared as bytes so malformed non-ASCII headers produce 403 rather than TypeError. Responses are no-store. Invitation links use fragments and the root page declares no-referrer.
+docs/ARCHITECTURE.md:46: trailing whitespace.
++
+docs/ARCHITECTURE.md:47: trailing whitespace.
++The same-origin Next handler forwards only required headers and preserves multiple Set-Cookie values. It does not trust browser-supplied forwarded IP headers and does not create a competing session. API_URL is server-only and read at request time. Upstream failure produces a truthful 503. The frontend never automatically retries a write; unknown outcomes retain drafts and warn about possible duplicates.
+docs/ARCHITECTURE.md:48: trailing whitespace.
++
+docs/ARCHITECTURE.md:49: trailing whitespace.
++## Brute-force limits and concurrency
+docs/ARCHITECTURE.md:50: trailing whitespace.
++
+docs/ARCHITECTURE.md:51: trailing whitespace.
++PostgreSQL stores attempt timestamps under SHA-256 account and peer-IP keys. Each request locks both bucket keys in sorted order using transaction advisory locks, checks a rolling window, persists attempts and commits before password verification. Failed and successful attempts count. Defaults: 5 per account / 15 minutes, 100 per shared peer IP / 15 minutes. Expired attempt rows are removed on future attempts. Uvicorn must run --no-proxy-headers; otherwise its loopback proxy defaults can trust forged X-Forwarded-For values. The Next proxy strips those headers regardless. This local limiter has shared-IP lockout/throughput limitations and is not a full internet abuse-control system.
+docs/ARCHITECTURE.md:52: trailing whitespace.
++
+docs/ARCHITECTURE.md:53: trailing whitespace.
++All membership mutations, invitations and project writes first lock the workspace row, then read the caller's current role. Invitation acceptance locks workspace before invitation, refreshes the invite under lock, verifies pending/unexpired/email match, rechecks inviter privilege and inserts the unique membership and consumed state in one transaction. Consistent lock order prevents the obvious invite/role deadlock. Concurrent owner demotions preserve one Owner; concurrent accepts produce one membership. Reads use current membership joins. No frontend role control substitutes for backend enforcement.
+docs/ARCHITECTURE.md:54: trailing whitespace.
++
+docs/ARCHITECTURE.md:55: trailing whitespace.
++## Roles and API contracts
+docs/ARCHITECTURE.md:56: trailing whitespace.
++
+docs/ARCHITECTURE.md:57: trailing whitespace.
++Owner: read/write/invite/manage roles; cannot demote/remove final Owner. Admin: read/write, invite and manage only Member/Viewer; cannot promote self, affect Admin/Owner or issue Owner/Admin invitations. Member: read/write projects. Viewer: read only. Only an Owner can promote an existing member to Owner. Invitation creation never grants Owner.
+docs/ARCHITECTURE.md:58: trailing whitespace.
++
+docs/ARCHITECTURE.md:59: trailing whitespace.
++Existing routes are retained: POST/GET /api/v1/projects and GET /api/v1/projects/{id}. Create and list now require workspace_id; create forbids creator_id/status injection. PATCH /projects/{id} edits bounded title/description after write-role enforcement. List remains newest-first with deterministic UUID tie-break and 50-row UI pagination. Unauthorized resources use the same 404 response as absent ones. Expected validation, unauthenticated, forbidden, missing, duplicate, throttled and DB failures use structured 422/401/403/404/409/429/503 envelopes. Readiness checks the new tables/columns, not only network connectivity. Liveness remains DB-independent.
+docs/ARCHITECTURE.md:60: trailing whitespace.
++
+docs/ARCHITECTURE.md:61: trailing whitespace.
++Auth routes: register/login/logout/me/csrf. Workspace routes: create/list/detail/members, invitation create/list/revoke, role PATCH, membership DELETE. Invitation acceptance requires authentication and CSRF; no unauthenticated resource preview exposes workspace data. The invitation link is returned only from authorized creation and never reconstructed by listing. Expired is a derived read status; accepted/revoked timestamps and statuses are persisted. No email is sent.
+docs/ARCHITECTURE.md:62: trailing whitespace.
++
+docs/ARCHITECTURE.md:63: trailing whitespace.
++## Frontend state and preserved design
+docs/ARCHITECTURE.md:64: trailing whitespace.
++
+docs/ARCHITECTURE.md:65: trailing whitespace.
++Existing semantic palette, Button, navigation, ProjectForm, project list/detail, theme and responsive layouts are retained. Added auth forms, account menu, native workspace selector, creation page, member/invite settings and acceptance page. AuthGate blocks protected children while session checks are pending and clears component state on account/workspace/route changes. Request generations prevent stale session refresh responses overwriting newer identity. A workspace ID in sessionStorage is only a preference and is matched against authorized server workspaces. No password, session token or invitation token is stored there. CSRF tokens live per request; invitation fragments stay in URL/in-memory flow until consumed.
+docs/ARCHITECTURE.md:66: trailing whitespace.
++
+docs/ARCHITECTURE.md:67: trailing whitespace.
++Mobile navigation includes native select/summary controls in its visibility-aware focus trap and restores focus on Escape. Destructive membership/role actions use confirmations and only update server state on real success. Viewer project creation and editing controls reflect the returned role, with backend checks independently enforcing it. Permission revocation is enforced on subsequent requests; no real-time push is claimed.
+docs/ARCHITECTURE.md:68: trailing whitespace.
++
+docs/ARCHITECTURE.md:69: trailing whitespace.
++## Verification, observability and limits
+docs/ARCHITECTURE.md:70: trailing whitespace.
++
+docs/ARCHITECTURE.md:71: trailing whitespace.
++Stage 01 test scenarios remain with real registration/workspace setup. Integration tests use the guarded PostgreSQL test database and fresh migration schema for old-record preservation. No SQLite/mock auth substitutes. Playwright exercises real UI/backend/database in Chromium desktop/mobile/tablet. Auth network traces are off because they contain credentials; safe home screenshots remain. An explicit-only pytest experiment intentionally expects unauthorized success and must fail independently of the passing suite.
+docs/ARCHITECTURE.md:72: trailing whitespace.
++
+docs/ARCHITECTURE.md:73: trailing whitespace.
++Sanitized security event logs contain event codes and non-secret actor/workspace UUIDs only. DB errors log exception type only and SQL engines hide parameters. There is no durable audit store, production TLS/SSO/MFA/recovery, verified email ownership, full penetration test, multi-agent orchestration or public deployment. Legacy backups/production operations require an operator; no rollback/reset shortcut is authorized.
+docs/ARCHITECTURE.md:74: trailing whitespace.
++
+docs/ARCHITECTURE.md:75: trailing whitespace.
++Dependencies: existing Next 16.4.2/React 19.3.1 stack and PostgreSQL 18.6 retained; argon2-cffi 25.1.0 and email-validator 2.3.0 added through uv.lock. TypeScript 6.0.3 is required by the present parser; ESLint 9.39.5 satisfies current Next plugin peer ranges although npm marks it deprecated. Upgrade when compatible, do not disable checks.
+docs/ARCHITECTURE.md:76: trailing whitespace.
++
+docs/ARCHITECTURE.md:79: trailing whitespace.
++## Product Manager contract and persistence
+docs/ARCHITECTURE.md:80: trailing whitespace.
++
+docs/ARCHITECTURE.md:81: trailing whitespace.
++`pm_schemas.ProductDocument` is the sole authoritative output/edit contract. Pydantic forbids unknown fields and wrong scalar types. It bounds all text/collections and validates stable unique node keys, story format, nonempty Given/When/Then criteria, valid requirement/dependency references and an acyclic story dependency graph. Limits are eight epics, forty stories, 160 criteria, 80,000 document characters / 512 KiB. Root overview/scope/uncertainty nodes live once in `ProductPlan.content` JSONB; epics, stories and criteria live in relational tables and are assembled with three ordered bounded queries. The API does not persist a second full-PRD JSON copy. Stable child UUIDs are retained on unchanged keys across edits.
+docs/ARCHITECTURE.md:82: trailing whitespace.
++
+docs/ARCHITECTURE.md:83: trailing whitespace.
++Each attributed node records brief/title/description/context/suggested/assumption/human provenance. Provider-supplied quotes must be literal substrings of the selected input; source claims of human authority are rejected. Context stores exact version/revision/hash and bounded source-node snapshots, including transitive origin and blocker dispositions. The server carries unresolved blocking confirmations forward even if a later model omits them. Editing compares semantic content and parent keys, disregards client provenance and records the actual session actor for changed nodes. Blocking original wording cannot be erased or downgraded; human resolve/defer needs a reason and recorded actor/time. Textual matching does not establish semantic entailment or business truth; approval requires human review.
+docs/ARCHITECTURE.md:84: trailing whitespace.
++
+docs/ARCHITECTURE.md:85: trailing whitespace.
++`ProductManagerRun` stores actual initiating user/session, workspace/project, executor fencing UUID, client request UUID, versioned canonical request/snapshot hashes, immutable input snapshot, provider/requested model, prompt version/hash, start/deadline/completion times, returned identifiers/usage and safe error/diagnostic references. Internal diagnostics retain exception type, validation locations and allowlisted provider status/request ID/Retry-After, not raw bodies/headers/stack traces or credentials. Raw reasoning text is neither persisted nor exposed. No dollar estimate is fabricated.
+docs/ARCHITECTURE.md:86: trailing whitespace.
++
+docs/ARCHITECTURE.md:87: trailing whitespace.
++`ProductPlan` has monotonically increasing per-project version, optimistic revision, draft/approved/superseded state, root content hash, generating run or human-copy source, editor and approval evidence. Same-project composite FKs bind runs, sources and child ownership; unique constraints prevent duplicate request/copy IDs and duplicate version/run results. A partial unique index permits one current approval/project and another one active run/project. Workspace locks serialize version allocation, edits and approvals. The Stage03 migration is additive, forward-only and never rewrites existing project/auth records. Migration probes seed populated Stage01/02 schemas in the guarded test DB and compare original values exactly after real upgrades.
+docs/ARCHITECTURE.md:88: trailing whitespace.
++
+docs/ARCHITECTURE.md:89: trailing whitespace.
++Plan detail holds a shared lock on its root while assembling the relational graph, keeping root revision/hash and children coherent during a concurrent save. Run reads similarly hold shared locks while joining resulting plan references. A forced real PostgreSQL reader/writer schedule verifies that an editor waits, the first read returns its original coherent revision, and the next read returns the saved revision.
+docs/ARCHITECTURE.md:90: trailing whitespace.
++
+docs/ARCHITECTURE.md:91: trailing whitespace.
++## Provider and execution lifecycle
+docs/ARCHITECTURE.md:92: trailing whitespace.
++
+docs/ARCHITECTURE.md:93: trailing whitespace.
++One official maintained Google GenAI SDK adapter implements the typed provider protocol. This matches the owner's Gemini credential; OpenAI/Model Hub routing is out of scope. Settings load the ignored root `.env`, then API `.env`, with process environment highest precedence. `GEMINI_API_KEY` or `ORBA_PM_API_KEY` is a SecretStr. `ORBA_PM_MODEL` has no default and must be an explicit Gemini identifier. No credential is inferred from the development assistant. Configuration capability reports presence only; it does not claim connectivity or successful generation.
+docs/ARCHITECTURE.md:94: trailing whitespace.
++
+docs/ARCHITECTURE.md:95: trailing whitespace.
++On 2026-10-19 the owner explicitly selected `gemini-3.8-flash` and requested restrained quota use. Local settings choose one active request, three attempts/account/hour, six globally/hour, a 90-second provider timeout and 6000 output tokens. The timeout was raised from60 after an actual provider504 DEADLINE_EXCEEDED; that failed run is preserved and no automatic retry occurs. Code defaults remain configurable (two/five/twenty and60 seconds respectively). Google documents native structured output support and a 65,536 output-token ceiling for the selected model; ORBA uses the lower local cap. Actual RPM/TPM/RPD depend on the provider project/tier and are not exposed by the model metadata endpoint. Application budgets are not estimates of that quota. Each Full acceptance run makes at most two small, sequential positive requests. Compatibility/selector repairs and the provider timeout required manual reruns; this continuation is capped at six actual generation attempts. No account billing changes occur. See [selected model](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash) and [provider quotas](https://ai.google.dev/gemini-api/docs/rate-limits).
+docs/ARCHITECTURE.md:96: trailing whitespace.
++
+docs/ARCHITECTURE.md:97: trailing whitespace.
++`prompts/product_manager_v1.txt` is version `pm-v1`, separately hashed and stored on each run. It requires proportional scope, explicit assumptions/questions, testable stories/criteria and exact-source traceability, treats brief/context as untrusted data, forbids tool execution and returns only the schema. The SDK receives schema-constrained JSON output, but the server independently validates the actual response and graph/source invariants. It requires one complete STOP candidate and rejects refusals, truncation, unexpected tool/code parts or malformed JSON. The fixed official endpoint uses a capped 1 MiB uncompressed response transport, no redirects/environment proxy, one SDK attempt, no automatic continuation and no function calling. Every request has an outer timeout; no unbounded SDK retries.
+docs/ARCHITECTURE.md:98: trailing whitespace.
++
+docs/ARCHITECTURE.md:99: trailing whitespace.
++The provider grammar is projected from the authoritative Pydantic schema: constants become enums; unsupported string constraints, defaults/titles and nested maximum-array hints are omitted to fit Gemini's supported grammar/state budget. Full Pydantic length/array/key/type limits, graph checks, source validation and persistence bounds remain unchanged and mandatory after the real response. This is an explicit provider compatibility projection, not a relaxed application contract or fallback. The adapter uses the SDK's normal parsed response; its `should_return_http_response` raw-only mode would omit parsed candidates and is deliberately not enabled. Header metadata is available on the normal response. Five isolated synthetic-HTTP unit cases exercise the actual installed SDK's parsing, model/usage extraction, low thinking configuration, one-attempt quota/error/504 handling and retained strict validation. They are not live model evidence. A provider-returned504 is reported as provider_timeout/HTTP504, with its actual safe diagnostic, just as a local transport timeout is. The selected gemini-3.8-flash requests its supported LOW thinking level; other explicitly selected models keep their provider defaults.
+docs/ARCHITECTURE.md:100: trailing whitespace.
++
+docs/ARCHITECTURE.md:101: trailing whitespace.
++```text
+docs/ARCHITECTURE.md:102: trailing whitespace.
++Authenticate + Origin/CSRF + body/input validation
+docs/ARCHITECTURE.md:103: trailing whitespace.
++  capture scalar actor/session UUIDs; CLOSE the dependency DB session
+docs/ARCHITECTURE.md:104: trailing whitespace.
++  reserve pending (global advisory admission -> workspace -> project -> session locks; COMMIT)
+docs/ARCHITECTURE.md:105: trailing whitespace.
++  pending -> running (recheck original authority/executor/deadline; COMMIT confirmed)
+docs/ARCHITECTURE.md:106: trailing whitespace.
++  RELEASE all DB connections -> ONE bounded provider request
+docs/ARCHITECTURE.md:107: trailing whitespace.
++  validate actual JSON / graph / provenance / context blockers
+docs/ARCHITECTURE.md:108: trailing whitespace.
++  workspace -> project -> run -> original session locks, fresh authority + deadline
+docs/ARCHITECTURE.md:109: trailing whitespace.
++  persist entire graph + actual metadata -> recheck clock/session -> succeeded (ONE COMMIT)
+docs/ARCHITECTURE.md:110: trailing whitespace.
++  response uses a fresh persisted read
+docs/ARCHITECTURE.md:111: trailing whitespace.
++```
+docs/ARCHITECTURE.md:112: trailing whitespace.
++
+docs/ARCHITECTURE.md:113: trailing whitespace.
++Provider/schema errors persist failed status and no plan. Expired leases become interrupted; their actual provider failure cause can remain recorded separately. Terminal success is never replaced by a late failure. A final commit acknowledgement can be lost after success: the service reconciles by fresh read and otherwise returns `run_outcome_unknown`, never blindly retries execution or labels it failed. Exact idempotency-key/payload replay returns its persisted run; mismatched input is 409. Replay never resumes pending/interrupted work. Global local defaults are two active requests, one/project and five attempts/user/twenty globally per hour (including failed/missing-config attempts). Admission uses PostgreSQL locks, not an in-memory/distributed claim.
+docs/ARCHITECTURE.md:114: trailing whitespace.
++
+docs/ARCHITECTURE.md:115: trailing whitespace.
++Each DB phase uses pool timeout 2s, connection timeout 3s, lock timeout 1s, statement timeout 2s and transaction timeout 10s (PostgreSQL18). Pending lease is 20s; running lease is provider timeout +45s; startup dispatch budget is 60s and overall publication fence 285s. PM POST/PUT bodies have a five-second streamed-read deadline and 256/512 KiB limits before JSON parsing. The proxy preserves ordinary 15s upstream behavior and permits 290s only for generation POST; the browser generation bound is 300s and caller AbortSignals are retained. A client disconnect can leave its bounded synchronous server thread running, so usage may still occur. This is best effort continuation, not cancellation, resume, a job queue or an exactly-once billing guarantee.
+docs/ARCHITECTURE.md:116: trailing whitespace.
++
+docs/ARCHITECTURE.md:117: trailing whitespace.
++On startup and every five seconds a bounded sweep locks at most 100 expired runs with SKIP LOCKED and marks them interrupted. Project run GET/admission also reconciles expired leases. No provider request is recovered/replayed. Database outages are reported and reconciliation retries its read/update on the next sweep; no imaginary recovery work is displayed.
+docs/ARCHITECTURE.md:118: trailing whitespace.
++
+docs/ARCHITECTURE.md:119: trailing whitespace.
++## PM APIs, authorization and UI
+docs/ARCHITECTURE.md:120: trailing whitespace.
++
+docs/ARCHITECTURE.md:121: trailing whitespace.
++All routes below are under `/api/v1/projects/{project_id}` and require current project/workspace membership. Cross-workspace IDs return private 404, including run diagnostics. Writes also require Origin/CSRF and the original active session. Viewers read; Member/Admin/Owner generate/edit/copy drafts; only Owner/Admin approve. Publication checks current authority twice (including after graph flush) using fresh database time and the initiating session. Logout/role changes serialize against finalization via locks; if authority changes first, no plan commits. Once a valid publication commits, a later logout does not retroactively erase it.
+docs/ARCHITECTURE.md:122: trailing whitespace.
++
+docs/ARCHITECTURE.md:123: trailing whitespace.
++| Method/path | Contract |
+docs/ARCHITECTURE.md:124: trailing whitespace.
++|---|---|
+docs/ARCHITECTURE.md:125: trailing whitespace.
++| POST /pm-runs | client_request_id UUID, brief, optional instructions and exact context_plan_id/context_revision; 201 genuine success, 202 existing active, safe failure otherwise |
+docs/ARCHITECTURE.md:126: trailing whitespace.
++| GET /pm-runs | paginated actual runs + configuration capability; optional own client_request_id recovery filter |
+docs/ARCHITECTURE.md:127: trailing whitespace.
++| GET /pm-runs/{id} | safe metadata and authorized input snapshot; internal diagnostics stay server-side |
+docs/ARCHITECTURE.md:128: trailing whitespace.
++| GET /pm-plans | paginated version summaries; optional own copy_request_id filter |
+docs/ARCHITECTURE.md:129: trailing whitespace.
++| GET /pm-plans/{id} | validated complete relational document, provenance/input and actual generation evidence |
+docs/ARCHITECTURE.md:130: trailing whitespace.
++| PUT /pm-plans/{id} | expected_revision + whole validated document; draft-only optimistic edit; 409 preserves client draft |
+docs/ARCHITECTURE.md:131: trailing whitespace.
++| POST /pm-plans/{id}/approve | exact version + expected_revision; explicit Owner/Admin, no unresolved blocking confirmations; atomic supersession |
+docs/ARCHITECTURE.md:132: trailing whitespace.
++| POST /pm-plans/{id}/draft | exact source version/revision + durable client_request_id; free human copy, no model call |
+docs/ARCHITECTURE.md:133: trailing whitespace.
++
+docs/ARCHITECTURE.md:134: trailing whitespace.
++Project detail integrates `ProductPlan` and native-control `PlanEditor`, preserving the shell, ProjectForm, auth/workspace switcher and theme tokens. Overview/backlog/provenance, uncertainty, actual model/usage, exact input snapshots, saved version selector and run history are readable. The editor persists important fields, collection additions/removals, epic/story priorities/references/dependencies and criteria, plus reasoned blocker dispositions. Approval uses a visible exact-version confirmation and cannot operate on unsaved changes. History remains immutable; copies identify their source. Recovery performs GET only; account/project-scoped UUID preferences are nonsecret and grant no authority. An auth epoch prevents an old request's 401 from clearing a newer login. Protected state is cleared on account/workspace/route changes; backend checks remain authoritative.
+docs/ARCHITECTURE.md:135: trailing whitespace.
++
+docs/ARCHITECTURE.md:136: trailing whitespace.
++## Stage03.1 reliability and verification boundaries
+docs/ARCHITECTURE.md:137: trailing whitespace.
++
+docs/ARCHITECTURE.md:138: trailing whitespace.
++The historical Full/Core workflow and its actual results are preserved in VERIFICATION_STAGE03.md. Current verification has three independent gates. `scripts/verify.ps1` invokes fixed deterministic Gate A commands through one shared Python runner. Explicit empty key/model overrides defeat dotenv fallback; migrations and drift target guarded orba_test. All old backend and desktop/mobile/tablet tests remain, with labeled controlled-provider API/browser recovery tests added. Production selects only official Gemini via FastAPI dependency injection; only a guarded test-owned factory overrides it.
+docs/ARCHITECTURE.md:139: trailing whitespace.
++
+docs/ARCHITECTURE.md:140: trailing whitespace.
++`verify-live.ps1 -AllowPaid` requires applicable passing A, explicit opt-in and runtime configuration. One real browser generation validates actual API output, fresh relational draft/hash, human editing and reload, exact approval and reload, fresh approval/hash/actor/time, and unrelated-user denial. Receipts bind source paths/bytes and nonsecret effective provider configuration to command/artifact/result evidence. Gate C recomputes those checks and refuses stale, incomplete, modified, skipped, retried, controlled or missing live evidence. Receipts are local operational records, not cryptographic proof against a machine owner. Frozen package/image acquisition may require ordinary network access; Gate A has no external AI dependency.
+docs/ARCHITECTURE.md:141: trailing whitespace.
++
+docs/ARCHITECTURE.md:142: trailing whitespace.
++The SDK server deadline is T, transport T+5 and asyncio T+10, inside existing lease/publication/proxy/browser fences. Existing JSONB run diagnostics store finite phase timings known before terminal commit; actual acknowledged publication/failure is logged after its transaction exits. Logs never include briefs, credentials or arbitrary provider bodies. Expired leases remain interrupted, and uncertain commits remain GET-reconciled; no new success inference, queue, takeover or resumability exists. See STAGE031_TIMEOUT.md for actual historical504 evidence and its limits.
+docs/ARCHITECTURE.md:143: trailing whitespace.
++
+docs/ARCHITECTURE.md:144: trailing whitespace.
++A browser/proxy disconnect can leave bounded synchronous provider work running. Unknown requests retain a scoped nonsecret UUID, with GET-only status checks. A fresh exact own failed/interrupted run permits one new deliberate request; authoritative pre-admission rejection is separate from unknown outcomes. Input stays in page memory, with explicit authorized snapshot restoration after reload. Saved-result/copy references are cleared only after required result reads succeed. Setup/empty states require successful reads; uncertainty notices are neutral. Existing approval, provenance, authorization and revision checks remain authoritative.
+docs/ARCHITECTURE.md:145: trailing whitespace.
++
+docs/ARCHITECTURE.md:146: trailing whitespace.
++Official references: [Google GenAI SDK](https://googleapis.github.io/python-genai/) and [Gemini structured outputs](https://ai.google.dev/gemini-api/docs/structured-output). The locked SDK is2.31.0; its source was inspected for timeout/retry behavior. No Architect Agent, tool execution, orchestration, other provider or production-security certification has been added.
+docs/ROADMAP.md:1: trailing whitespace.
++# ORBA scope ledger
+docs/ROADMAP.md:2: trailing whitespace.
++
+docs/ROADMAP.md:3: trailing whitespace.
++## Stage 01: foundation retained
+docs/ROADMAP.md:4: trailing whitespace.
++
+docs/ROADMAP.md:5: trailing whitespace.
++Responsive shell, themes, Chat project creation, PostgreSQL project listing/detail, Alembic and real integration/browser verification. Historical acceptance evidence is in VERIFICATION_STAGE01.md. Original test scenarios remain and now authenticate into a real workspace.
+docs/ROADMAP.md:6: trailing whitespace.
++
+docs/ROADMAP.md:7: trailing whitespace.
++## Stage 02: accounts and workspace permissions
+docs/ROADMAP.md:8: trailing whitespace.
++
+docs/ROADMAP.md:9: trailing whitespace.
++Real registration/sign-in/sign-out; hashed opaque server sessions; Origin/CSRF checks; basic PostgreSQL login-attempt limits; workspace creation/switching; Owner/Admin/Member/Viewer roles; private project ownership; manual invitations; restricted legacy migration and operator-only claiming. Historical evidence is in VERIFICATION_STAGE02.md; regression evidence is in VERIFICATION.md. This ledger alone is not proof of verification.
+docs/ROADMAP.md:10: trailing whitespace.
++
+docs/ROADMAP.md:11: trailing whitespace.
++## Stage 03: Product Manager planning agent
+docs/ROADMAP.md:12: trailing whitespace.
++
+docs/ROADMAP.md:13: trailing whitespace.
++Implemented: one official Gemini adapter, versioned prompt, strict structured requirements, relational epics/stories/criteria, truthful persisted run lifecycle, bounded generation/idempotency, workspace authorization, revision-controlled draft edits, Owner/Admin approval, history and human draft copies. Execution evidence and any live-model blocker are in VERIFICATION.md. Implementation is not proof of live generation; positive real model API/browser verification remains mandatory.
+docs/ROADMAP.md:14: trailing whitespace.
++
+docs/ROADMAP.md:15: trailing whitespace.
++Current verdict: **PARTIAL**. Real selected-model API generation and the complete browser edit/approval/isolation journey passed;102 backend/51 core browser/1 real failure browser tests passed. The latest integrated Full run still exited1 on actual provider504 DEADLINE_EXCEEDED. Six bounded generation attempts were recorded; no further calls or Stage04 work followed.
+docs/ROADMAP.md:16: trailing whitespace.
++
+docs/ROADMAP.md:17: trailing whitespace.
++## Stage 03.1: reliability and verification hardening
+docs/ROADMAP.md:18: trailing whitespace.
++
+docs/ROADMAP.md:19: trailing whitespace.
++Separate deterministic Gate A, explicit paid Gate B and revision-bound Gate C; measured safe timing/error origins; truthful retry/input recovery; controlled negative browser coverage. Current results and pending paid authorization are in VERIFICATION.md. Historical504 and successful live flows remain in VERIFICATION_STAGE03.md. No new live evidence is assumed.
+docs/ROADMAP.md:20: trailing whitespace.
++
+docs/ROADMAP.md:21: trailing whitespace.
++## Stage 04 and beyond: not implemented
+docs/ROADMAP.md:22: trailing whitespace.
++
+docs/ROADMAP.md:23: trailing whitespace.
++Architect/coding/QA agents, autonomous orchestration, multiplayer presence, visual canvas, GitHub OAuth/analysis/contributions, Skills Intelligence/installation, full Model Hub/provider routing and cloud sandbox execution. Do not start automatically.
+package.json:1: trailing whitespace.
++{
+package.json:2: trailing whitespace.
++  "name": "orba",
+package.json:3: trailing whitespace.
++  "private": true,
+package.json:4: trailing whitespace.
++  "packageManager": "pnpm@12.14.0",
+package.json:5: trailing whitespace.
++  "scripts": {
+package.json:6: trailing whitespace.
++    "dev": "pnpm --filter @orba/web dev",
+package.json:7: trailing whitespace.
++    "build": "pnpm --filter @orba/web build",
+package.json:8: trailing whitespace.
++    "lint": "pnpm --filter @orba/web lint",
+package.json:9: trailing whitespace.
++    "typecheck": "pnpm --filter @orba/web typecheck",
+package.json:10: trailing whitespace.
++    "test:e2e": "pnpm --filter @orba/web test:e2e",
+package.json:11: trailing whitespace.
++    "test:e2e:negative": "pnpm --filter @orba/web test:e2e:negative",
+package.json:12: trailing whitespace.
++    "test:e2e:live": "pnpm --filter @orba/web test:e2e:live",
+package.json:13: trailing whitespace.
++    "test:e2e:controlled": "pnpm --filter @orba/web test:e2e:controlled"
+package.json:14: trailing whitespace.
++  }
+package.json:15: trailing whitespace.
++}
+scripts/verify.ps1:1: trailing whitespace.
++param([ValidateSet('Core','Full')][string]$Scope = 'Core')
+scripts/verify.ps1:2: trailing whitespace.
++$ErrorActionPreference = 'Stop'
+scripts/verify.ps1:3: trailing whitespace.
++Set-Location (Split-Path $PSScriptRoot -Parent)
+scripts/verify.ps1:4: trailing whitespace.
++if ($Scope -eq 'Full') {
+scripts/verify.ps1:5: trailing whitespace.
++    Write-Output 'Full no longer dispatches paid requests. Run Gate A, then explicitly use scripts/verify-live.ps1 -AllowPaid.'
+scripts/verify.ps1:6: trailing whitespace.
++    exit 2
+scripts/verify.ps1:7: trailing whitespace.
++}
+scripts/verify.ps1:8: trailing whitespace.
++& uv run --directory apps/api python -m scripts.verification A
+scripts/verify.ps1:9: trailing whitespace.
++$gateExit = $LASTEXITCODE
+scripts/verify.ps1:10: trailing whitespace.
++exit $gateExit

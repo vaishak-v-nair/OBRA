@@ -15,7 +15,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from orba.db import get_session
-from orba.models import AuthSession, User, Workspace, WorkspaceMember
+from orba.models import AuthSession, Project, User, Workspace, WorkspaceMember
 
 passwords = PasswordHasher(type=Type.ID)
 # Valid Argon2 work for unknown identities reduces username timing differences.
@@ -118,3 +118,19 @@ def membership(db: Session, workspace_id: UUID, user_id: UUID, *, lock: bool = F
 def require_role(member: WorkspaceMember, roles: set[str]):
     if member.role not in roles:
         raise HTTPException(403, "Your workspace role does not permit this action.")
+
+
+def authorized_project(db: Session, project_id: UUID, user_id: UUID) -> Project:
+    project = db.scalar(
+        select(Project)
+        .join(Workspace)
+        .join(WorkspaceMember)
+        .where(
+            Project.id == project_id,
+            Workspace.is_legacy.is_(False),
+            WorkspaceMember.user_id == user_id,
+        )
+    )
+    if project is None:
+        raise HTTPException(404, "Project not found.")
+    return project

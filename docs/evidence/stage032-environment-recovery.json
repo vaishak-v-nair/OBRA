@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-10-20T08:17:27.286215+00:00",
+  "commands": [
+    {
+      "command": "docker compose -f infra/compose.yaml --profile test up -d --wait test-postgres",
+      "exit_code": 1,
+      "error": "failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified."
+    },
+    {
+      "command": "docker desktop start --timeout 60",
+      "exit_code": 0,
+      "observed": "Starting Docker Desktop"
+    },
+    {
+      "command": "docker compose -f infra/compose.yaml --profile test up -d --wait test-postgres",
+      "exit_code": 0,
+      "observed": "orba-test-postgres-1 Healthy"
+    }
+  ],
+  "development_database_mutation": false,
+  "generation_requests": 0
+}

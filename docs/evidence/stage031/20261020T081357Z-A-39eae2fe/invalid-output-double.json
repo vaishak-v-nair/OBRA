@@ -1,0 +1,97 @@
+{
+  "scenario": "Isolated malformed-output provider DOUBLE; not live model evidence",
+  "database": "real guarded PostgreSQL",
+  "provider_double": true,
+  "status": "failed",
+  "error_category": "invalid_model_response",
+  "run_id": "c17710bc-8ad5-4389-b29d-359763c124ef",
+  "diagnostic_id": "9dd5f9b1-5818-4395-ac23-635f1b58e543",
+  "diagnostic": {
+    "attempt": 1,
+    "stages_ms": {
+      "validation": 0.118,
+      "provider_call": 0.746,
+      "running_transaction": 18.276,
+      "admission_transaction": 21.889
+    },
+    "elapsed_ms": 41.129,
+    "validation": [
+      {
+        "type": "extra_forbidden",
+        "field": "not_a_plan"
+      },
+      {
+        "type": "missing",
+        "field": "schema_version"
+      },
+      {
+        "type": "missing",
+        "field": "product_name"
+      },
+      {
+        "type": "missing",
+        "field": "summary"
+      },
+      {
+        "type": "missing",
+        "field": "problem_statement"
+      },
+      {
+        "type": "missing",
+        "field": "proposed_solution"
+      },
+      {
+        "type": "missing",
+        "field": "target_users"
+      },
+      {
+        "type": "missing",
+        "field": "user_goals"
+      },
+      {
+        "type": "missing",
+        "field": "in_scope"
+      },
+      {
+        "type": "missing",
+        "field": "out_of_scope"
+      },
+      {
+        "type": "missing",
+        "field": "functional_requirements"
+      },
+      {
+        "type": "missing",
+        "field": "nonfunctional_requirements"
+      },
+      {
+        "type": "missing",
+        "field": "prerequisites"
+      },
+      {
+        "type": "missing",
+        "field": "assumptions"
+      },
+      {
+        "type": "missing",
+        "field": "risks"
+      },
+      {
+        "type": "missing",
+        "field": "open_questions"
+      },
+      {
+        "type": "missing",
+        "field": "confirmations"
+      },
+      {
+        "type": "missing",
+        "field": "epics"
+      }
+    ],
+    "exception_type": "ValidationError",
+    "timing_version": 1,
+    "timing_boundary": "before_terminal_commit"
+  },
+  "persisted_plan_count": 0
+}

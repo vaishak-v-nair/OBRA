@@ -1,0 +1,189 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\BrosKi\\OBRA\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.live.config.ts"
+    ],
+    "configFile": "E:\\BrosKi\\OBRA\\apps\\web\\playwright.live.config.ts",
+    "rootDir": "E:/BrosKi/OBRA/apps/web/tests-live",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/BrosKi/OBRA/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-live",
+        "name": "chromium-live",
+        "testDir": "E:/BrosKi/OBRA/apps/web/tests-live",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 300000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "E:\\BrosKi\\OBRA\\apps\\web\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium-live",
+        "testDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-live",
+        "snapshotDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-live",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 300000,
+        "use": {
+          "baseURL": "http://localhost:3001",
+          "trace": "off",
+          "screenshot": "off",
+          "actionTimeout": 15000,
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium-live"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "pm-live.spec.ts",
+      "file": "pm-live.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real model plan, editable criteria, persisted approval and unrelated-user denial",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-live",
+              "projectName": "chromium-live",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 96639,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m504\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m504\u001b[39m\n    at E:\\BrosKi\\OBRA\\apps\\web\\tests-live\\pm-live.spec.ts:32:29",
+                    "location": {
+                      "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests-live\\pm-live.spec.ts",
+                      "column": 29,
+                      "line": 32
+                    },
+                    "snippet": "  30 |   await panel.getByRole(\"button\",{name:\"Generate Product Plan\",exact:true}).click();const response=await generation;\n  31 |   if(response.status()!==201){const error=(await response.json()).error;proof.http_status=response.status();proof.run_id=error?.run_id;proof.error_category=error?.code;if(error?.run_id)proof.failure_sql=JSON.parse(execFileSync(\"uv\",[\"run\",\"--directory\",\"../api\",\"python\",\"-m\",\"scripts.inspect_pm_run\",\"--run\",error.run_id],{encoding:\"utf8\",stdio:[\"ignore\",\"pipe\",\"pipe\"]}));await expect(panel.getByRole(\"alert\")).toBeVisible();proof.failure_visible=true;}\n> 32 |   expect(response.status()).toBe(201);const run=await response.json();proof.run_id=run.id;proof.plan_id=run.plan_id;proof.stage=\"draft_audit\";\n     |                             ^\n  33 |   await expect(panel.getByTestId(\"plan-state\")).toHaveText(\"draft\");\n  34 |   const apiPlan=await (await page.request.get(`/api/v1/projects/${project.id}/pm-plans/${run.plan_id}`)).json();\n  35 |   expect(apiPlan.generation.id).toBe(run.id);expect(apiPlan.document.epics.length).toBeGreaterThan(0);expect(apiPlan.document.epics[0].stories.length).toBeGreaterThan(0);expect(apiPlan.approved_by).toBeNull();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests-live\\pm-live.spec.ts",
+                        "column": 29,
+                        "line": 32
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m504\u001b[39m\n\n  30 |   await panel.getByRole(\"button\",{name:\"Generate Product Plan\",exact:true}).click();const response=await generation;\n  31 |   if(response.status()!==201){const error=(await response.json()).error;proof.http_status=response.status();proof.run_id=error?.run_id;proof.error_category=error?.code;if(error?.run_id)proof.failure_sql=JSON.parse(execFileSync(\"uv\",[\"run\",\"--directory\",\"../api\",\"python\",\"-m\",\"scripts.inspect_pm_run\",\"--run\",error.run_id],{encoding:\"utf8\",stdio:[\"ignore\",\"pipe\",\"pipe\"]}));await expect(panel.getByRole(\"alert\")).toBeVisible();proof.failure_visible=true;}\n> 32 |   expect(response.status()).toBe(201);const run=await response.json();proof.run_id=run.id;proof.plan_id=run.plan_id;proof.stage=\"draft_audit\";\n     |                             ^\n  33 |   await expect(panel.getByTestId(\"plan-state\")).toHaveText(\"draft\");\n  34 |   const apiPlan=await (await page.request.get(`/api/v1/projects/${project.id}/pm-plans/${run.plan_id}`)).json();\n  35 |   expect(apiPlan.generation.id).toBe(run.id);expect(apiPlan.document.epics.length).toBeGreaterThan(0);expect(apiPlan.document.epics[0].stories.length).toBeGreaterThan(0);expect(apiPlan.approved_by).toBeNull();\n    at E:\\BrosKi\\OBRA\\apps\\web\\tests-live\\pm-live.spec.ts:32:29"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T09:01:39.486Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "E:\\BrosKi\\OBRA\\apps\\web\\test-results\\pm-live-real-model-plan-ed-0e566-l-and-unrelated-user-denial-chromium-live\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests-live\\pm-live.spec.ts",
+                    "column": 29,
+                    "line": 32
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "87edc0a11a4ff15e14f6-ba64c89c5cafdab462ac",
+          "file": "pm-live.spec.ts",
+          "line": 9,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T09:01:32.156Z",
+    "duration": 106758.812,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

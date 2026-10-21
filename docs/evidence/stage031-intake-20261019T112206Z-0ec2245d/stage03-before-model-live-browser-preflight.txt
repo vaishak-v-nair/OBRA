@@ -1,0 +1,9 @@
+$ pnpm --filter @orba/web test:e2e:live
+$ uv run --directory ../api python -m scripts.check_pm_config && playwright test --config playwright.live.config.ts
+{"verdict": "BLOCKED", "missing": ["ORBA_PM_MODEL"], "live_generation_verified": false}
+[ELIFECYCLE] Command failed with exit code 1.
+Error: ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL
+
+  × "pnpm recursive run" failed in E:\BrosKi\OBRA\apps/web
+
+[ELIFECYCLE] Command failed with exit code 1.

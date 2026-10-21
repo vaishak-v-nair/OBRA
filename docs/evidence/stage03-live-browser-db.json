@@ -1,0 +1,79 @@
+{
+  "source": "Independent fresh SQLAlchemy session against guarded real PostgreSQL after the passing live browser flow",
+  "run_id": "f2ecf88d-6d7c-4d22-bd0e-902e2778e9ae",
+  "project_id": "e130a6f2-7b8b-4a08-9ecb-a787670fa6af",
+  "plan_id": "a8772c8e-563a-4754-b587-61c4e0b2f461",
+  "status": "succeeded",
+  "provider": "google-gemini",
+  "requested_model": "gemini-3.8-flash",
+  "returned_model": "gemini-3.8-flash",
+  "prompt_version": "pm-v1",
+  "provider_response_id": "Tu_VavCWHpmLjuMP-6CPoQk",
+  "provider_request_id": null,
+  "usage": {
+    "total_token_count": 3079,
+    "prompt_token_count": 753,
+    "prompt_tokens_details": [
+      {
+        "modality": "TEXT",
+        "token_count": 753
+      }
+    ],
+    "candidates_token_count": 2326
+  },
+  "state": "approved",
+  "version": 1,
+  "revision": 2,
+  "approved_by": "6493df36-f4fa-4105-bc4b-68021af483e7",
+  "approved_at": "2026-10-19T10:23:02.593628+00:00",
+  "epics": 1,
+  "stories": 1,
+  "criteria": 2,
+  "relationships_valid": true,
+  "content_hash": "89423948d7aa24f711a632f328a83effa68eea19d5be55dfc40a8a50580675c7",
+  "content_hash_matches": true,
+  "edited_criterion_persisted": true,
+  "edited_criterion_source": {
+    "kind": "human",
+    "quote": null,
+    "context_key": null,
+    "actor_id": "6493df36-f4fa-4105-bc4b-68021af483e7",
+    "inherited_kind": null
+  },
+  "blocking_confirmation_count": 1,
+  "blocking_confirmations_disposed_by_human": true,
+  "public_test_sample_after_human_edit": {
+    "epic_goal": "Allow a user to record daily habit completion and reliably see the updated status across page reloads.",
+    "story": "As a user, I want to record whether today's habit is complete, so that I can see my updated progress after reloading the page.",
+    "criteria": [
+      {
+        "key": "ac_save_toggle",
+        "given": "The habit check-in page is open and today's habit is incomplete",
+        "when": "The user marks the habit as complete",
+        "then": "The saved daily check-in is still visible after the page is reloaded.",
+        "source": {
+          "kind": "human",
+          "quote": null,
+          "context_key": null,
+          "actor_id": "6493df36-f4fa-4105-bc4b-68021af483e7",
+          "inherited_kind": null
+        }
+      },
+      {
+        "key": "ac_reload_persistence",
+        "given": "Today's habit has been saved as complete",
+        "when": "The user reloads the page",
+        "then": "The page displays the habit as complete without requiring re-entry",
+        "source": {
+          "kind": "brief",
+          "quote": "show the saved result after reload",
+          "context_key": null,
+          "actor_id": null,
+          "inherited_kind": null
+        }
+      }
+    ]
+  },
+  "mocks": false,
+  "verdict": "PASS"
+}
