@@ -212,9 +212,27 @@ class LimitedTransport(httpx.AsyncBaseTransport):
         await self.transport.aclose()
 
 
-class GeminiProductManagerProvider:
-    def __init__(self, settings: Settings):
+class GeminiStructuredProvider:
+    """Shared bounded official SDK request; domain contracts validate independently."""
+
+    def __init__(self, settings: Settings, *, prompt=None, schema_factory=None):
         self.settings = settings
+        self.prompt = prompt
+        self.schema_factory = schema_factory
+
+    def metrics(self, snapshot):
+        if self.prompt is None and self.schema_factory is None:
+            return request_metrics(snapshot)
+        schema = canonical(self.schema_factory()).encode("utf-8")
+        prompt_bytes = len(self.prompt.encode("utf-8"))
+        snapshot_bytes = len(canonical(snapshot).encode("utf-8"))
+        return {
+            "prompt_bytes": prompt_bytes,
+            "provider_schema_bytes": len(schema),
+            "snapshot_bytes": snapshot_bytes,
+            "input_bytes": prompt_bytes + len(schema) + snapshot_bytes,
+            "provider_schema_sha256": hashlib.sha256(schema).hexdigest(),
+        }
 
     async def generate(self, snapshot: dict) -> ProviderResult:
         config = self.settings
@@ -234,7 +252,7 @@ class GeminiProductManagerProvider:
                 diagnostic={"dispatch_phase": "before_provider_call"},
             ) from None
         try:
-            metrics = request_metrics(snapshot)
+            metrics = self.metrics(snapshot)
         except UnicodeEncodeError:
             raise ProviderFailure("validation_error", INVALID_UNICODE_MESSAGE, 422) from None
         if metrics["input_bytes"] > config.pm_max_input_bytes:
@@ -267,9 +285,13 @@ class GeminiProductManagerProvider:
                             model=config.pm_model,
                             contents=canonical(snapshot),
                             config=types.GenerateContentConfig(
-                                system_instruction=PROMPT,
+                                system_instruction=self.prompt
+                                if self.prompt is not None
+                                else PROMPT,
                                 response_mime_type="application/json",
-                                response_json_schema=gemini_output_schema(),
+                                response_json_schema=(
+                                    self.schema_factory or gemini_output_schema
+                                )(),
                                 max_output_tokens=config.pm_max_output_tokens,
                                 candidate_count=1,
                                 tools=[],
@@ -407,3 +429,7 @@ class GeminiProductManagerProvider:
             metadata.request_id,
             metadata.usage,
         )
+
+
+class GeminiProductManagerProvider(GeminiStructuredProvider):
+    """PM defaults are kept byte-for-byte equivalent at the provider boundary."""

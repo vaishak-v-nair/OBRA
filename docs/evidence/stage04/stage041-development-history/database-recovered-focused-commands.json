@@ -1,0 +1,41 @@
+[
+  {
+    "name": "test-postgres-after-desktop-start",
+    "argv": [
+      "docker",
+      "compose",
+      "-f",
+      "infra/compose.yaml",
+      "--profile",
+      "test",
+      "up",
+      "-d",
+      "--wait",
+      "test-postgres"
+    ],
+    "started_at": "2026-10-22T05:12:22.641684+00:00",
+    "exit_code": 0,
+    "pid": 19816,
+    "duration_seconds": 4.112,
+    "completed_at": "2026-10-22T05:12:26.753702+00:00"
+  },
+  {
+    "name": "focused-backend-after-database-recovery",
+    "argv": [
+      "uv",
+      "run",
+      "--directory",
+      "apps/api",
+      "pytest",
+      "tests/test_architect_preflight.py",
+      "tests/test_architect_verification.py",
+      "-q",
+      "--junitxml=C:\\Users\\vaish\\.gstack\\projects\\OBRA\\stage041\\20261021T185326Z\\focused-backend-recovered.xml"
+    ],
+    "started_at": "2026-10-22T05:12:26.753972+00:00",
+    "exit_code": 0,
+    "pid": 5384,
+    "duration_seconds": 6.1,
+    "completed_at": "2026-10-22T05:12:32.854476+00:00"
+  }
+]

@@ -1,0 +1,134 @@
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.architect-controlled.config.ts --grep 'hidden architecture tab'
+Traceback (most recent call last):
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3326, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1320, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 921, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 917, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 642, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\psycopg\connection.py", line 126, in connect
+    raise last_ex.with_traceback(None)
+psycopg.errors.ConnectionTimeout: connection timeout expired
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "E:\BrosKi\OBRA\apps\api\scripts\prepare_tests.py", line 52, in <module>
+    prepare()
+    ~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\scripts\prepare_tests.py", line 27, in prepare
+    command.upgrade(Config("alembic.ini"), "head")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\alembic\command.py", line 487, in upgrade
+    script.run_env()
+    ~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\alembic\script\base.py", line 550, in run_env
+    util.load_python_file(self.dir, "env.py")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\alembic\util\pyfiles.py", line 114, in load_python_file
+    module = load_module_py(module_id, path)
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\alembic\util\pyfiles.py", line 132, in load_module_py
+    spec.loader.exec_module(module)  # type: ignore
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "E:\BrosKi\OBRA\apps\api\migrations\env.py", line 23, in <module>
+    with engine.connect() as connection:
+         ~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2457, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3326, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1320, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 921, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 917, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 642, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\psycopg\connection.py", line 126, in connect
+    raise last_ex.with_traceback(None)
+sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[ELIFECYCLE] Command failed with exit code 1.
+Error: ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL
+
+  × "pnpm recursive run" failed in E:\BrosKi\OBRA\apps/web
+

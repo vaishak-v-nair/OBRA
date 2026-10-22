@@ -13,6 +13,8 @@ from sqlalchemy.orm import Session
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+from orba.architect import router as architect_router
+from orba.architect_service import expire_architect_runs
 from orba.auth import router as auth_router
 from orba.config import Settings
 from orba.db import get_session, make_engine
@@ -40,6 +42,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             try:
                 with phase(engine) as db:
                     expire_runs(db)
+                    expire_architect_runs(db)
             except SQLAlchemyError as exc:
                 logger.error("PM lease reconciliation unavailable (%s)", type(exc).__name__)
 
@@ -65,6 +68,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(auth_router)
     app.include_router(workspace_router)
     app.include_router(pm_router)
+    app.include_router(architect_router)
     app.add_middleware(PMBodyLimitMiddleware)
 
     @app.exception_handler(PMError)
@@ -138,6 +142,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         session.execute(
             text(
                 "SELECT p.id,p.title,p.description,p.status,p.created_at,p.updated_at,p.workspace_id,p.creator_id,s.token_hash,u.email,w.is_legacy,m.role,i.token_hash,a.key,r.deadline_at,r.status,pl.content_hash,pl.revision,e.plan_id,st.epic_id,c.story_id FROM projects p CROSS JOIN sessions s CROSS JOIN users u CROSS JOIN workspaces w CROSS JOIN workspace_members m CROSS JOIN workspace_invitations i CROSS JOIN login_attempts a CROSS JOIN product_manager_runs r CROSS JOIN product_plans pl CROSS JOIN product_epics e CROSS JOIN product_stories st CROSS JOIN product_acceptance_criteria c LIMIT 0"
+            )
+        )
+        session.execute(
+            text(
+                "SELECT ar.source_plan_id,av.revision,ac.architecture_id,t.planning_state,d.prerequisite_id,tr.story_id FROM architect_runs ar CROSS JOIN architecture_versions av CROSS JOIN architecture_components ac CROSS JOIN engineering_tasks t CROSS JOIN task_dependencies d CROSS JOIN requirement_traces tr LIMIT 0"
             )
         )
         return {"status": "ready"}

@@ -1,0 +1,1257 @@
+{
+  "backend": [
+    "tests/test_architect.py::test_approved_architecture_and_prd_survive_failed_regeneration",
+    "tests/test_architect.py::test_architect_mutations_reject_invalid_authority_or_input_before_dispatch[csrf]",
+    "tests/test_architect.py::test_architect_mutations_reject_invalid_authority_or_input_before_dispatch[forged_owner]",
+    "tests/test_architect.py::test_architect_mutations_reject_invalid_authority_or_input_before_dispatch[origin]",
+    "tests/test_architect.py::test_architect_mutations_reject_invalid_authority_or_input_before_dispatch[oversized]",
+    "tests/test_architect.py::test_database_rejects_self_and_cross_architecture_edges",
+    "tests/test_architect.py::test_edit_revision_approval_history_and_stale_editor",
+    "tests/test_architect.py::test_exact_human_obligation_disposition_is_required_and_persisted",
+    "tests/test_architect.py::test_expired_execution_lease_cannot_publish_and_is_reconciled",
+    "tests/test_architect.py::test_generation_persists_relational_proposal_and_source",
+    "tests/test_architect.py::test_generation_requires_exact_current_approved_source[draft]",
+    "tests/test_architect.py::test_generation_requires_exact_current_approved_source[foreign]",
+    "tests/test_architect.py::test_generation_requires_exact_current_approved_source[missing]",
+    "tests/test_architect.py::test_generation_requires_exact_current_approved_source[wrong_revision]",
+    "tests/test_architect.py::test_generation_requires_exact_current_approved_source[wrong_version]",
+    "tests/test_architect.py::test_graph_tampering_cannot_be_approved_even_when_diagram_could_render",
+    "tests/test_architect.py::test_incomplete_coverage_draft_cannot_be_approved",
+    "tests/test_architect.py::test_invalid_edits_roll_back_saved_graph[<lambda>0]",
+    "tests/test_architect.py::test_invalid_edits_roll_back_saved_graph[<lambda>1]",
+    "tests/test_architect.py::test_invalid_edits_roll_back_saved_graph[<lambda>2]",
+    "tests/test_architect.py::test_invalid_edits_roll_back_saved_graph[<lambda>3]",
+    "tests/test_architect.py::test_invalid_edits_roll_back_saved_graph[<lambda>4]",
+    "tests/test_architect.py::test_invalid_model_output_never_persists[not JSON]",
+    "tests/test_architect.py::test_invalid_model_output_never_persists[{\"schema_version\":1,\"overview\":null}]",
+    "tests/test_architect.py::test_invalid_model_output_never_persists[{}]",
+    "tests/test_architect.py::test_missing_configuration_records_honest_failure",
+    "tests/test_architect.py::test_new_unapproved_prd_does_not_stale_current_architecture",
+    "tests/test_architect.py::test_provider_failures_are_terminal_without_artifact[failure0]",
+    "tests/test_architect.py::test_provider_failures_are_terminal_without_artifact[failure1]",
+    "tests/test_architect.py::test_provider_failures_are_terminal_without_artifact[failure2]",
+    "tests/test_architect.py::test_real_sql_failure_rolls_back_every_artifact_and_records_failure",
+    "tests/test_architect.py::test_replay_and_explicit_failed_retry_are_auditable",
+    "tests/test_architect.py::test_roles_enforced_server_side[member]",
+    "tests/test_architect.py::test_roles_enforced_server_side[viewer]",
+    "tests/test_architect.py::test_source_approval_change_during_call_fences_publication",
+    "tests/test_architect.py::test_source_or_original_session_change_during_call_blocks_publication",
+    "tests/test_architect.py::test_success_replay_survives_source_supersession_and_new_caps",
+    "tests/test_architect.py::test_tenant_denials_return_no_content_and_rows_remain",
+    "tests/test_architect.py::test_unauthenticated_architect_reads_and_generation_are_rejected",
+    "tests/test_architect_concurrency.py::test_architect_blocks_pm_when_combined_concurrency_is_one",
+    "tests/test_architect_concurrency.py::test_partial_publication_is_not_visible_in_an_independent_session",
+    "tests/test_architect_concurrency.py::test_pm_blocks_architect_when_combined_concurrency_is_one",
+    "tests/test_architect_concurrency.py::test_shared_root_lock_prevents_torn_graph_reads",
+    "tests/test_architect_concurrency.py::test_simultaneous_same_request_has_one_provider_call",
+    "tests/test_architect_concurrency.py::test_two_architecture_editors_only_one_revision_commits",
+    "tests/test_architect_migration.py::test_additive_upgrade_preserves_user_project_and_approved_prd_graph",
+    "tests/test_architect_preflight.py::test_fresh_read_only_sql_reconstructs_actual_draft_then_exact_api_approval",
+    "tests/test_architect_preflight.py::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[draft]",
+    "tests/test_architect_preflight.py::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[early_dispatch]",
+    "tests/test_architect_preflight.py::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[missing_sql]",
+    "tests/test_architect_preflight.py::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[no_setup]",
+    "tests/test_architect_preflight.py::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[phase_order]",
+    "tests/test_architect_preflight.py::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[unrelated_dispatch]",
+    "tests/test_architect_preflight.py::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[wrong_revision]",
+    "tests/test_architect_preflight.py::test_preflight_cannot_pass_from_incomplete_or_controlled_success_labels[final_sql]",
+    "tests/test_architect_preflight.py::test_preflight_cannot_pass_from_incomplete_or_controlled_success_labels[generation_budget]",
+    "tests/test_architect_preflight.py::test_preflight_cannot_pass_from_incomplete_or_controlled_success_labels[milestones]",
+    "tests/test_architect_preflight.py::test_preflight_cannot_pass_from_incomplete_or_controlled_success_labels[result]",
+    "tests/test_architect_preflight.py::test_preflight_cannot_pass_from_incomplete_or_controlled_success_labels[server_boundary]",
+    "tests/test_architect_preflight.py::test_sql_audit_does_not_change_persisted_source_or_project",
+    "tests/test_architect_preflight.py::test_sql_audit_rejects_wrong_project_and_unrelated_actor",
+    "tests/test_architect_preflight.py::test_unpaid_factory_refuses_development_database",
+    "tests/test_architect_preflight.py::test_unpaid_factory_refuses_live_opt_in",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[actor_id-approved_by]",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[project_id-project_id]",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[source_hash-content_hash]",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[source_plan_id-plan_id]",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[source_revision-revision]",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[source_version-version]",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[workspace_id-workspace_id]",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_invalid_matching_versions_unit_only[-1]",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_invalid_matching_versions_unit_only[0]",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_invalid_matching_versions_unit_only[None]",
+    "tests/test_architect_preflight.py::test_unpaid_proof_rejects_invalid_matching_versions_unit_only[True]",
+    "tests/test_architect_preflight.py::test_unpaid_runner_failure_is_a_real_nonzero_subprocess_exit",
+    "tests/test_architect_preflight.py::test_unpaid_runner_preserves_child_failure_and_never_runs_next_command",
+    "tests/test_architect_preflight.py::test_unpaid_server_denies_generation_before_provider_or_auth_dependencies[architect-runs/]",
+    "tests/test_architect_preflight.py::test_unpaid_server_denies_generation_before_provider_or_auth_dependencies[architect-runs]",
+    "tests/test_architect_preflight.py::test_unpaid_server_denies_generation_before_provider_or_auth_dependencies[pm-runs/]",
+    "tests/test_architect_preflight.py::test_unpaid_server_denies_generation_before_provider_or_auth_dependencies[pm-runs]",
+    "tests/test_architect_provider.py::test_actual_sdk_architect_contract_using_labeled_synthetic_http[200]",
+    "tests/test_architect_provider.py::test_actual_sdk_architect_contract_using_labeled_synthetic_http[503]",
+    "tests/test_architect_provider.py::test_actual_sdk_architect_contract_using_labeled_synthetic_http[504]",
+    "tests/test_architect_provider.py::test_explicit_reviewed_architect_selection[gemini-3.6-flash-minimal]",
+    "tests/test_architect_provider.py::test_explicit_reviewed_architect_selection[gemini-3.8-flash-low]",
+    "tests/test_architect_provider.py::test_explicit_reviewed_architect_selection[models/gemini-3.5-flash-lite-minimal]",
+    "tests/test_architect_provider.py::test_invalid_selection_rejected_before_dispatch[gemini-3.8-flash-minimal]",
+    "tests/test_architect_provider.py::test_invalid_selection_rejected_before_dispatch[gemini-9-pro-low]",
+    "tests/test_architect_provider.py::test_invalid_selection_rejected_before_dispatch[invented-model-low]",
+    "tests/test_architect_provider.py::test_no_implicit_model_fallback_and_credential_precedence",
+    "tests/test_architect_provider.py::test_shared_transport_uses_architect_prompt_and_bounded_schema",
+    "tests/test_architect_schemas.py::test_all_prerequisite_contributors_are_required",
+    "tests/test_architect_schemas.py::test_complete_contract_and_source_coverage",
+    "tests/test_architect_schemas.py::test_criterion_must_belong_to_referenced_story",
+    "tests/test_architect_schemas.py::test_exception_requires_exact_current_gap_and_human_review",
+    "tests/test_architect_schemas.py::test_inherited_confirmation_cannot_be_erased_by_model",
+    "tests/test_architect_schemas.py::test_invalid_contract_rejected[<lambda>0]",
+    "tests/test_architect_schemas.py::test_invalid_contract_rejected[<lambda>1]",
+    "tests/test_architect_schemas.py::test_invalid_contract_rejected[<lambda>2]",
+    "tests/test_architect_schemas.py::test_invalid_contract_rejected[<lambda>3]",
+    "tests/test_architect_schemas.py::test_invalid_contract_rejected[<lambda>4]",
+    "tests/test_architect_schemas.py::test_invalid_contract_rejected[<lambda>5]",
+    "tests/test_architect_schemas.py::test_invalid_contract_rejected[<lambda>6]",
+    "tests/test_architect_schemas.py::test_invalid_contract_rejected[<lambda>7]",
+    "tests/test_architect_schemas.py::test_missing_links_and_clarification_block_approval",
+    "tests/test_architect_schemas.py::test_source_component_task_trace_chain_cannot_be_omitted",
+    "tests/test_architect_schemas.py::test_source_references_are_authoritative[criterion_refs]",
+    "tests/test_architect_schemas.py::test_source_references_are_authoritative[requirement_refs]",
+    "tests/test_architect_schemas.py::test_source_references_are_authoritative[story_refs]",
+    "tests/test_architect_verification.py::test_architect_gate_a_blanks_every_runtime_alias",
+    "tests/test_architect_verification.py::test_architect_receipt_rejects_false_certification[double]",
+    "tests/test_architect_verification.py::test_architect_receipt_rejects_false_certification[failed]",
+    "tests/test_architect_verification.py::test_architect_receipt_rejects_false_certification[missing_exit]",
+    "tests/test_architect_verification.py::test_architect_receipt_rejects_false_certification[old_stage]",
+    "tests/test_architect_verification.py::test_architect_receipt_rejects_false_certification[stale]",
+    "tests/test_architect_verification.py::test_live_identity_accepts_versioned_labels_but_never_a_flagged_double[gemini-3.6-flash-001]",
+    "tests/test_architect_verification.py::test_live_identity_accepts_versioned_labels_but_never_a_flagged_double[models/gemini-3.6-flash]",
+    "tests/test_architect_verification.py::test_live_identity_rejects_missing_or_controlled_model_labels[123]",
+    "tests/test_architect_verification.py::test_live_identity_rejects_missing_or_controlled_model_labels[None]",
+    "tests/test_architect_verification.py::test_live_identity_rejects_missing_or_controlled_model_labels[]",
+    "tests/test_architect_verification.py::test_live_identity_rejects_missing_or_controlled_model_labels[controlled-double-not-live]",
+    "tests/test_architect_verification.py::test_live_identity_rejects_missing_or_controlled_model_labels[fixture]",
+    "tests/test_architect_verification.py::test_live_runner_propagates_failed_child_without_retry_unit_only",
+    "tests/test_architect_verification.py::test_missing_optin_never_reads_runtime_profile_or_dispatches",
+    "tests/test_architect_verification.py::test_stage04_c_is_partial_without_its_own_real_gate_b",
+    "tests/test_architect_verification.py::test_stage04_runner_propagates_actual_required_child_failure",
+    "tests/test_auth_workspaces.py::test_anonymous_and_csrf_origin_guards",
+    "tests/test_auth_workspaces.py::test_concurrent_final_owner_demotion_is_serialized",
+    "tests/test_auth_workspaces.py::test_concurrent_invitation_acceptance_only_one_membership",
+    "tests/test_auth_workspaces.py::test_duplicate_normalized_email_and_password_policy",
+    "tests/test_auth_workspaces.py::test_final_owner_and_role_changes",
+    "tests/test_auth_workspaces.py::test_invalid_sessions_rejected[expired]",
+    "tests/test_auth_workspaces.py::test_invalid_sessions_rejected[revoked]",
+    "tests/test_auth_workspaces.py::test_invitation_failure_states[expired]",
+    "tests/test_auth_workspaces.py::test_invitation_failure_states[inviter_removed]",
+    "tests/test_auth_workspaces.py::test_invitation_failure_states[revoked]",
+    "tests/test_auth_workspaces.py::test_invitation_failure_states[wrong_email]",
+    "tests/test_auth_workspaces.py::test_invitation_revocation_endpoint",
+    "tests/test_auth_workspaces.py::test_limiter_serializes_independent_app_instances",
+    "tests/test_auth_workspaces.py::test_login_invalid_and_logout_revocation",
+    "tests/test_auth_workspaces.py::test_login_throttle_is_persisted",
+    "tests/test_auth_workspaces.py::test_member_revocation_and_project_write_are_serialized",
+    "tests/test_auth_workspaces.py::test_non_ascii_csrf_is_safely_rejected",
+    "tests/test_auth_workspaces.py::test_permission_matrix[admin]",
+    "tests/test_auth_workspaces.py::test_permission_matrix[member]",
+    "tests/test_auth_workspaces.py::test_permission_matrix[viewer]",
+    "tests/test_auth_workspaces.py::test_private_project_isolation_and_forged_ids",
+    "tests/test_auth_workspaces.py::test_registration_hashes_and_cookie_security",
+    "tests/test_auth_workspaces.py::test_secure_cookie_configuration_and_https",
+    "tests/test_auth_workspaces.py::test_viewer_cannot_edit_and_member_can_edit",
+    "tests/test_auth_workspaces.py::test_workspace_owner_and_invitation_hash_atomic_membership",
+    "tests/test_legacy.py::test_first_registration_does_not_gain_existing_legacy_projects",
+    "tests/test_legacy.py::test_legacy_is_hidden_and_operator_claim_is_explicit",
+    "tests/test_legacy.py::test_populated_stage02_schema_and_records_survive_stage03",
+    "tests/test_legacy.py::test_stage01_migration_preserves_every_original_field",
+    "tests/test_legacy.py::test_upgrade_guard_requires_actual_api_port_to_be_offline",
+    "tests/test_password_policy.py::test_fifteen_lowercase_characters_register_with_real_hash_and_session",
+    "tests/test_password_policy.py::test_fourteen_character_registration_is_rejected_without_rows",
+    "tests/test_password_policy.py::test_future_credential_write_schemas_can_reuse_the_new_password_type",
+    "tests/test_password_policy.py::test_invalid_new_credentials_preserve_existing_user_and_session[empty]",
+    "tests/test_password_policy.py::test_invalid_new_credentials_preserve_existing_user_and_session[legacy-length-new]",
+    "tests/test_password_policy.py::test_invalid_new_credentials_preserve_existing_user_and_session[missing]",
+    "tests/test_password_policy.py::test_invalid_new_credentials_preserve_existing_user_and_session[too-long]",
+    "tests/test_password_policy.py::test_invalid_new_credentials_preserve_existing_user_and_session[whitespace]",
+    "tests/test_password_policy.py::test_invalid_new_credentials_preserve_existing_user_and_session[wrong-type]",
+    "tests/test_password_policy.py::test_legacy_fixture_refuses_a_development_database_before_connection",
+    "tests/test_password_policy.py::test_legacy_twelve_character_login_preserves_hash_and_independent_session",
+    "tests/test_password_policy.py::test_legacy_twelve_character_password_can_receive_normal_argon2_parameter_upgrade",
+    "tests/test_password_policy.py::test_openapi_publishes_new_credential_policy_without_changing_login",
+    "tests/test_password_policy.py::test_passphrases_hash_and_authenticate_the_exact_complete_value[ascii128]",
+    "tests/test_password_policy.py::test_passphrases_hash_and_authenticate_the_exact_complete_value[ascii64]",
+    "tests/test_password_policy.py::test_passphrases_hash_and_authenticate_the_exact_complete_value[astral128]",
+    "tests/test_password_policy.py::test_passphrases_hash_and_authenticate_the_exact_complete_value[combining-sequence]",
+    "tests/test_password_policy.py::test_passphrases_hash_and_authenticate_the_exact_complete_value[surrounding-spaces]",
+    "tests/test_pm_boundaries.py::test_chunked_body_limit_applies_without_content_length[POST-262144]",
+    "tests/test_pm_boundaries.py::test_chunked_body_limit_applies_without_content_length[PUT-524288]",
+    "tests/test_pm_boundaries.py::test_failure_metadata_allowlist_excludes_body_and_secret_headers",
+    "tests/test_pm_boundaries.py::test_raw_provider_envelope_capped_before_buffering",
+    "tests/test_pm_concurrency.py::test_plan_get_holds_one_coherent_revision_during_concurrent_save",
+    "tests/test_pm_concurrency.py::test_racing_approvals_leave_one_current_highest_version",
+    "tests/test_pm_concurrency.py::test_two_editors_same_revision_only_one_save_commits",
+    "tests/test_pm_contract.py::test_additional_instructions_have_exact_source_traceability",
+    "tests/test_pm_contract.py::test_dependency_cycle_is_rejected",
+    "tests/test_pm_contract.py::test_human_edit_provenance_and_blocker_disposition_are_server_owned",
+    "tests/test_pm_contract.py::test_model_cannot_assert_human_authority[human]",
+    "tests/test_pm_contract.py::test_model_cannot_assert_human_authority[resolved]",
+    "tests/test_pm_contract.py::test_model_cannot_assert_human_authority[spoof_actor]",
+    "tests/test_pm_contract.py::test_model_cannot_assert_human_authority[spoof_inheritance]",
+    "tests/test_pm_contract.py::test_rejects_incomplete_or_invalid_graph[dependency]",
+    "tests/test_pm_contract.py::test_rejects_incomplete_or_invalid_graph[duplicate_key]",
+    "tests/test_pm_contract.py::test_rejects_incomplete_or_invalid_graph[empty_criteria]",
+    "tests/test_pm_contract.py::test_rejects_incomplete_or_invalid_graph[empty_epics]",
+    "tests/test_pm_contract.py::test_rejects_incomplete_or_invalid_graph[story_format]",
+    "tests/test_pm_contract.py::test_rejects_incomplete_or_invalid_graph[unknown_field]",
+    "tests/test_pm_contract.py::test_rejects_incomplete_or_invalid_graph[unknown_ref]",
+    "tests/test_pm_contract.py::test_rejects_incomplete_or_invalid_graph[wrong_type]",
+    "tests/test_pm_contract.py::test_unresolved_context_blocker_survives_two_generations_and_omission",
+    "tests/test_pm_contract.py::test_valid_contract_and_exact_source_quote",
+    "tests/test_pm_lifecycle_unit.py::test_isolation_of_run_metadata_uses_real_http_authorization",
+    "tests/test_pm_lifecycle_unit.py::test_real_missing_configuration_endpoint_records_honest_failure",
+    "tests/test_pm_lifecycle_unit.py::test_unit_authority_changes_during_provider_call_prevent_publication[expired_session]",
+    "tests/test_pm_lifecycle_unit.py::test_unit_authority_changes_during_provider_call_prevent_publication[membership_removed]",
+    "tests/test_pm_lifecycle_unit.py::test_unit_authority_changes_during_provider_call_prevent_publication[revoked_session]",
+    "tests/test_pm_lifecycle_unit.py::test_unit_authority_changes_during_provider_call_prevent_publication[viewer]",
+    "tests/test_pm_lifecycle_unit.py::test_unit_concurrent_generation_reserves_one_provider_call",
+    "tests/test_pm_lifecycle_unit.py::test_unit_expired_lease_and_late_failure_remain_interrupted",
+    "tests/test_pm_lifecycle_unit.py::test_unit_failures_cannot_overwrite_committed_success",
+    "tests/test_pm_lifecycle_unit.py::test_unit_global_admission_and_project_lease_are_enforced",
+    "tests/test_pm_lifecycle_unit.py::test_unit_invalid_output_or_provider_failure_never_creates_plan[malformed]",
+    "tests/test_pm_lifecycle_unit.py::test_unit_invalid_output_or_provider_failure_never_creates_plan[rate_limit]",
+    "tests/test_pm_lifecycle_unit.py::test_unit_invalid_output_or_provider_failure_never_creates_plan[timeout]",
+    "tests/test_pm_lifecycle_unit.py::test_unit_new_generation_and_failure_preserve_approved_version",
+    "tests/test_pm_lifecycle_unit.py::test_unit_router_releases_auth_connection_before_dispatch",
+    "tests/test_pm_lifecycle_unit.py::test_unit_session_expiring_during_graph_write_rolls_back_all_children",
+    "tests/test_pm_lifecycle_unit.py::test_unit_uncertain_final_commit_reconciles_actual_persisted_success",
+    "tests/test_pm_lifecycle_unit.py::test_unit_unknown_reservation_commit_never_dispatches_or_resubmits",
+    "tests/test_pm_lifecycle_unit.py::test_unit_valid_lifecycle_persists_graph_and_exact_replay",
+    "tests/test_pm_model_integration.py::test_alternative_sdk_failure_never_replaces_approved_plan[503]",
+    "tests/test_pm_model_integration.py::test_alternative_sdk_failure_never_replaces_approved_plan[504]",
+    "tests/test_pm_model_integration.py::test_alternative_sdk_failure_never_replaces_approved_plan[invalid_schema]",
+    "tests/test_pm_model_integration.py::test_alternative_sdk_failure_never_replaces_approved_plan[malformed_json]",
+    "tests/test_pm_model_integration.py::test_alternative_sdk_failure_never_replaces_approved_plan[truncated]",
+    "tests/test_pm_model_integration.py::test_api_byte_rejection_precedes_admission_and_preserves_rows",
+    "tests/test_pm_model_integration.py::test_exact_boundary_and_replay_after_model_cap_change_preserve_approval",
+    "tests/test_pm_model_integration.py::test_raw_escaped_surrogate_rejected_without_run_or_provider",
+    "tests/test_pm_model_integration.py::test_real_sdk_synthetic_success_validates_and_persists_relational_draft",
+    "tests/test_pm_model_policy.py::test_actual_invalid_api_startup_hides_supplied_values[ORBA_PM_MODEL]",
+    "tests/test_pm_model_policy.py::test_actual_invalid_api_startup_hides_supplied_values[ORBA_PM_THINKING_LEVEL]",
+    "tests/test_pm_model_policy.py::test_copied_invalid_settings_cannot_dispatch[changes0]",
+    "tests/test_pm_model_policy.py::test_copied_invalid_settings_cannot_dispatch[changes1]",
+    "tests/test_pm_model_policy.py::test_each_reviewed_model_metadata_is_one_get_not_generation[gemini-3.5-flash-lite-minimal]",
+    "tests/test_pm_model_policy.py::test_each_reviewed_model_metadata_is_one_get_not_generation[gemini-3.6-flash-minimal]",
+    "tests/test_pm_model_policy.py::test_each_reviewed_model_metadata_is_one_get_not_generation[gemini-3.8-flash-low]",
+    "tests/test_pm_model_policy.py::test_explicit_normalization_has_no_model_default_or_silent_switch",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes0]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes10]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes11]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes12]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes1]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes2]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes3]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes4]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes5]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes6]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes7]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes8]",
+    "tests/test_pm_model_policy.py::test_invalid_configuration_rejects_before_sdk[changes9]",
+    "tests/test_pm_model_policy.py::test_invalid_unicode_cannot_reach_provider",
+    "tests/test_pm_model_policy.py::test_lean_hint_retains_required_fields_and_full_server_contract",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-high-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-high-models/]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-low-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-low-models/]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-medium-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-medium-models/]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-minimal-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-minimal-models/]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-high-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-high-models/]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-low-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-low-models/]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-medium-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-medium-models/]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-minimal-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-minimal-models/]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-high-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-high-models/]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-low-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-low-models/]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-medium-]",
+    "tests/test_pm_model_policy.py::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-medium-models/]",
+    "tests/test_pm_model_policy.py::test_shared_utf8_content_budget_equality_and_one_byte_over",
+    "tests/test_pm_persistence.py::test_approval_exact_revision_copy_history_and_idempotency",
+    "tests/test_pm_persistence.py::test_blocking_confirmations_require_recorded_human_disposition",
+    "tests/test_pm_persistence.py::test_context_requires_same_project_and_exact_saved_revision_before_dispatch",
+    "tests/test_pm_persistence.py::test_corrupt_plan_cannot_be_read_or_approved",
+    "tests/test_pm_persistence.py::test_edit_revision_provenance_validation_and_persistence",
+    "tests/test_pm_persistence.py::test_expired_pending_leases_reconcile_on_get_and_lifespan_sweep",
+    "tests/test_pm_persistence.py::test_human_plan_roundtrip_relational_graph_and_pagination",
+    "tests/test_pm_persistence.py::test_pm_auth_csrf_missing_records_and_size_guards",
+    "tests/test_pm_persistence.py::test_viewer_member_approval_and_cross_workspace_isolation",
+    "tests/test_pm_provider_unit.py::test_outer_deadline_cancellation_is_safe_and_not_retried",
+    "tests/test_pm_provider_unit.py::test_provider_projection_keeps_full_pydantic_validation_and_property_names",
+    "tests/test_pm_provider_unit.py::test_real_sdk_distinct_server_and_transport_deadlines[180]",
+    "tests/test_pm_provider_unit.py::test_real_sdk_distinct_server_and_transport_deadlines[5]",
+    "tests/test_pm_provider_unit.py::test_real_sdk_parses_candidate_and_usage_and_makes_one_bounded_request",
+    "tests/test_pm_provider_unit.py::test_real_sdk_rejection_is_safe_and_never_automatically_retried[400-The specified schema has too many states for serving. secret-provider_request_failed-schema_state_limit]",
+    "tests/test_pm_provider_unit.py::test_real_sdk_rejection_is_safe_and_never_automatically_retried[429-Quota exceeded. secret-provider_rate_limited-None]",
+    "tests/test_pm_provider_unit.py::test_real_sdk_rejection_is_safe_and_never_automatically_retried[500-Internal provider error. secret-provider_unavailable-None]",
+    "tests/test_pm_provider_unit.py::test_real_sdk_rejection_is_safe_and_never_automatically_retried[503-Unavailable. secret-provider_unavailable-None]",
+    "tests/test_pm_provider_unit.py::test_real_sdk_rejection_is_safe_and_never_automatically_retried[504-Provider deadline exceeded. secret-provider_timeout-None]",
+    "tests/test_pm_readiness.py::test_cli_invalid_settings_omit_private_input[args0]",
+    "tests/test_pm_readiness.py::test_cli_invalid_settings_omit_private_input[args1]",
+    "tests/test_pm_readiness.py::test_cli_offline_help_and_invalid_args_never_dispatch",
+    "tests/test_pm_readiness.py::test_exact_model_prefix_is_canonical_without_switching[gemini-3.8-flash]",
+    "tests/test_pm_readiness.py::test_exact_model_prefix_is_canonical_without_switching[models/gemini-3.8-flash]",
+    "tests/test_pm_readiness.py::test_explicit_cli_uses_actual_readiness_result[200-0]",
+    "tests/test_pm_readiness.py::test_explicit_cli_uses_actual_readiness_result[503-2]",
+    "tests/test_pm_readiness.py::test_incomplete_or_incompatible_metadata_is_not_ready[change0-unknown]",
+    "tests/test_pm_readiness.py::test_incomplete_or_incompatible_metadata_is_not_ready[change1-unknown]",
+    "tests/test_pm_readiness.py::test_incomplete_or_incompatible_metadata_is_not_ready[change2-unknown]",
+    "tests/test_pm_readiness.py::test_incomplete_or_incompatible_metadata_is_not_ready[change3-unknown]",
+    "tests/test_pm_readiness.py::test_incomplete_or_incompatible_metadata_is_not_ready[change4-model_not_supported]",
+    "tests/test_pm_readiness.py::test_incomplete_or_incompatible_metadata_is_not_ready[change5-unknown]",
+    "tests/test_pm_readiness.py::test_incomplete_or_incompatible_metadata_is_not_ready[change6-unknown]",
+    "tests/test_pm_readiness.py::test_incomplete_or_incompatible_metadata_is_not_ready[change7-invalid_configuration]",
+    "tests/test_pm_readiness.py::test_incomplete_or_incompatible_metadata_is_not_ready[change8-unknown]",
+    "tests/test_pm_readiness.py::test_metadata_diagnosis_does_not_create_database_runs_or_plans",
+    "tests/test_pm_readiness.py::test_metadata_http_errors_are_safe_and_not_retried[400-credential_error]",
+    "tests/test_pm_readiness.py::test_metadata_http_errors_are_safe_and_not_retried[401-credential_error]",
+    "tests/test_pm_readiness.py::test_metadata_http_errors_are_safe_and_not_retried[403-credential_error]",
+    "tests/test_pm_readiness.py::test_metadata_http_errors_are_safe_and_not_retried[404-model_not_supported]",
+    "tests/test_pm_readiness.py::test_metadata_http_errors_are_safe_and_not_retried[418-unknown]",
+    "tests/test_pm_readiness.py::test_metadata_http_errors_are_safe_and_not_retried[429-rate_limited]",
+    "tests/test_pm_readiness.py::test_metadata_http_errors_are_safe_and_not_retried[500-provider_unavailable]",
+    "tests/test_pm_readiness.py::test_metadata_http_errors_are_safe_and_not_retried[502-provider_unavailable]",
+    "tests/test_pm_readiness.py::test_metadata_http_errors_are_safe_and_not_retried[503-provider_unavailable]",
+    "tests/test_pm_readiness.py::test_metadata_http_errors_are_safe_and_not_retried[504-timeout]",
+    "tests/test_pm_readiness.py::test_metadata_sdk_get_limits_cleanup_and_no_generation",
+    "tests/test_pm_readiness.py::test_metadata_transport_and_decode_errors_are_honest[malformed-unknown-metadata_response]",
+    "tests/test_pm_readiness.py::test_metadata_transport_and_decode_errors_are_honest[network-provider_unavailable-transport_unavailable]",
+    "tests/test_pm_readiness.py::test_metadata_transport_and_decode_errors_are_honest[timeout-timeout-transport_timeout]",
+    "tests/test_pm_readiness.py::test_missing_or_blank_configuration_never_dispatches[change0-not_configured]",
+    "tests/test_pm_readiness.py::test_missing_or_blank_configuration_never_dispatches[change1-not_configured]",
+    "tests/test_pm_readiness.py::test_missing_or_blank_configuration_never_dispatches[change2-invalid_configuration]",
+    "tests/test_pm_readiness.py::test_outer_metadata_cancellation_is_bounded_and_safe",
+    "tests/test_pm_readiness.py::test_real_bounded_transport_rejects_metadata_envelope[False]",
+    "tests/test_pm_readiness.py::test_real_bounded_transport_rejects_metadata_envelope[True]",
+    "tests/test_pm_readiness.py::test_unreviewed_model_metadata_does_not_assert_structured_compatibility",
+    "tests/test_pm_reliability.py::test_actual_phase_measurements_and_explicit_failed_retry",
+    "tests/test_pm_reliability.py::test_controlled_factory_refuses_development_database_before_app_creation",
+    "tests/test_pm_reliability.py::test_flushed_partial_graph_is_invisible_and_rollback_never_publishes",
+    "tests/test_pm_reliability.py::test_sdk_upstream_503_preserves_approval_and_cannot_turn_into_unrelated_success",
+    "tests/test_pm_reliability.py::test_simultaneous_exact_key_http_replay_dispatches_once",
+    "tests/test_pm_reliability.py::test_success_has_precommit_measurements_and_postcommit_log",
+    "tests/test_projects.py::test_creation_persists_in_postgresql",
+    "tests/test_projects.py::test_listing_actual_records_and_pagination",
+    "tests/test_projects.py::test_live_and_ready_with_migrated_database",
+    "tests/test_projects.py::test_malformed_uuid_and_pagination",
+    "tests/test_projects.py::test_nonexistent_project",
+    "tests/test_projects.py::test_real_unavailable_database_returns_503_and_liveness_survives",
+    "tests/test_projects.py::test_retrieval_correct_data",
+    "tests/test_projects.py::test_trims_input",
+    "tests/test_projects.py::test_validation_rejects_without_persisting[payload0]",
+    "tests/test_projects.py::test_validation_rejects_without_persisting[payload1]",
+    "tests/test_projects.py::test_validation_rejects_without_persisting[payload2]",
+    "tests/test_projects.py::test_validation_rejects_without_persisting[payload3]",
+    "tests/test_projects.py::test_validation_rejects_without_persisting[payload4]",
+    "tests/test_projects.py::test_validation_rejects_without_persisting[payload5]",
+    "tests/test_projects.py::test_validation_rejects_without_persisting[payload6]",
+    "tests/test_readiness_evidence.py::test_alternative_metadata_artifact_binds_exact_policy_and_profile[gemini-3.5-flash-lite]",
+    "tests/test_readiness_evidence.py::test_alternative_metadata_artifact_binds_exact_policy_and_profile[gemini-3.6-flash]",
+    "tests/test_readiness_evidence.py::test_gate_b_nonready_metadata_stops_before_browser_with_actual_native_exit",
+    "tests/test_readiness_evidence.py::test_gate_b_preserves_real_native_failure_without_running_followup",
+    "tests/test_readiness_evidence.py::test_metadata_validator_accepts_complete_fixture_but_never_calls_provider",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[a_hash]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[attempt]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[controlled]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[duration]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[excess_output]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[fake_generation]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[missing]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[mutated_cli]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[naive_time]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[no_actions]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[no_get]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[no_limits]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[nonzero_exit]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[not_ready]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[old_time]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[profile]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[source]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[too_late]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[wrong_command]",
+    "tests/test_readiness_evidence.py::test_metadata_validator_rejects_stale_incomplete_or_false_proof[wrong_model]",
+    "tests/test_readiness_evidence.py::test_new_generation_policy_cannot_use_mismatched_readiness[hint_hash]",
+    "tests/test_readiness_evidence.py::test_new_generation_policy_cannot_use_mismatched_readiness[input_limit]",
+    "tests/test_readiness_evidence.py::test_new_generation_policy_cannot_use_mismatched_readiness[thinking]",
+    "tests/test_readiness_evidence.py::test_new_generation_policy_cannot_use_mismatched_readiness[wrong_docs]",
+    "tests/test_task_graph.py::test_clarification_is_not_execution_ready",
+    "tests/test_task_graph.py::test_diamond_order_readiness_and_impact",
+    "tests/test_task_graph.py::test_independent_order_is_explicit_display_order_not_priority",
+    "tests/test_task_graph.py::test_invalid_graphs[edges0-cycle]",
+    "tests/test_task_graph.py::test_invalid_graphs[edges1-cycle]",
+    "tests/test_task_graph.py::test_invalid_graphs[edges2-itself]",
+    "tests/test_task_graph.py::test_invalid_graphs[edges3-missing]",
+    "tests/test_task_graph.py::test_invalid_graphs[edges4-Duplicate]",
+    "tests/test_task_graph.py::test_invalid_graphs[edges5-unique]",
+    "tests/test_verification.py::test_actual_passed_reports_are_validated_not_stdout",
+    "tests/test_verification.py::test_browser_report_rejects_false_success[duplicate]",
+    "tests/test_verification.py::test_browser_report_rejects_false_success[flaky]",
+    "tests/test_verification.py::test_browser_report_rejects_false_success[missing]",
+    "tests/test_verification.py::test_browser_report_rejects_false_success[missing_project]",
+    "tests/test_verification.py::test_browser_report_rejects_false_success[retry]",
+    "tests/test_verification.py::test_browser_report_rejects_false_success[skip]",
+    "tests/test_verification.py::test_browser_report_rejects_false_success[xfail]",
+    "tests/test_verification.py::test_browser_report_rejects_false_success[zero]",
+    "tests/test_verification.py::test_controlled_or_missing_gate_b_cannot_make_stage_verified",
+    "tests/test_verification.py::test_controlled_provider_proof_is_never_live_evidence",
+    "tests/test_verification.py::test_gate_a_empty_overrides_defeat_dotenv_and_selection_filters",
+    "tests/test_verification.py::test_gate_a_runner_stops_after_real_child_assertion_failure",
+    "tests/test_verification.py::test_junit_preserves_literal_parameters_and_rejects_changed_names[docs/a.py::section/b]",
+    "tests/test_verification.py::test_junit_preserves_literal_parameters_and_rejects_changed_names[models.gemini-3.8-flash]",
+    "tests/test_verification.py::test_junit_preserves_literal_parameters_and_rejects_changed_names[models/gemini-3.8-flash]",
+    "tests/test_verification.py::test_junit_rejects_incomplete_or_nonpassing_reports[empty]",
+    "tests/test_verification.py::test_junit_rejects_incomplete_or_nonpassing_reports[error]",
+    "tests/test_verification.py::test_junit_rejects_incomplete_or_nonpassing_reports[failure]",
+    "tests/test_verification.py::test_junit_rejects_incomplete_or_nonpassing_reports[missing_case]",
+    "tests/test_verification.py::test_junit_rejects_incomplete_or_nonpassing_reports[skipped]",
+    "tests/test_verification.py::test_manifest_detects_uncommitted_add_change_delete_but_excludes_secrets",
+    "tests/test_verification.py::test_missing_paid_optin_never_reaches_config_or_commands",
+    "tests/test_verification.py::test_native_failure_launch_error_and_timeout_preserve_nonzero",
+    "tests/test_verification.py::test_receipts_are_create_once_and_local_gate_lock_is_exclusive",
+    "tests/test_verification.py::test_receipts_fail_closed_before_any_live_certification[double]",
+    "tests/test_verification.py::test_receipts_fail_closed_before_any_live_certification[failed]",
+    "tests/test_verification.py::test_receipts_fail_closed_before_any_live_certification[missing_command]",
+    "tests/test_verification.py::test_receipts_fail_closed_before_any_live_certification[missing_exit]",
+    "tests/test_verification.py::test_receipts_fail_closed_before_any_live_certification[mutated_artifact]",
+    "tests/test_verification.py::test_receipts_fail_closed_before_any_live_certification[native_failure]",
+    "tests/test_verification.py::test_receipts_fail_closed_before_any_live_certification[stale]"
+  ],
+  "core_browser": [
+    [
+      "password-policy.spec.ts",
+      "a real legacy twelve-character account signs in and keeps ordinary credential rejection",
+      "chromium"
+    ],
+    [
+      "password-policy.spec.ts",
+      "a real legacy twelve-character account signs in and keeps ordinary credential rejection",
+      "mobile"
+    ],
+    [
+      "password-policy.spec.ts",
+      "a real legacy twelve-character account signs in and keeps ordinary credential rejection",
+      "tablet"
+    ],
+    [
+      "password-policy.spec.ts",
+      "actual clipboard paste preserves over-limit values and full unicode passphrase login",
+      "chromium"
+    ],
+    [
+      "password-policy.spec.ts",
+      "actual clipboard paste preserves over-limit values and full unicode passphrase login",
+      "mobile"
+    ],
+    [
+      "password-policy.spec.ts",
+      "actual clipboard paste preserves over-limit values and full unicode passphrase login",
+      "tablet"
+    ],
+    [
+      "password-policy.spec.ts",
+      "new password boundaries reject fourteen and accept fifteen without composition rules",
+      "chromium"
+    ],
+    [
+      "password-policy.spec.ts",
+      "new password boundaries reject fourteen and accept fifteen without composition rules",
+      "mobile"
+    ],
+    [
+      "password-policy.spec.ts",
+      "new password boundaries reject fourteen and accept fifteen without composition rules",
+      "tablet"
+    ],
+    [
+      "pm.spec.ts",
+      "a save conflict preserves local edits for comparison",
+      "chromium"
+    ],
+    [
+      "pm.spec.ts",
+      "a save conflict preserves local edits for comparison",
+      "mobile"
+    ],
+    [
+      "pm.spec.ts",
+      "a save conflict preserves local edits for comparison",
+      "tablet"
+    ],
+    [
+      "pm.spec.ts",
+      "human-authored fixture: edit criterion, persist, approve exact version, history and isolation",
+      "chromium"
+    ],
+    [
+      "pm.spec.ts",
+      "human-authored fixture: edit criterion, persist, approve exact version, history and isolation",
+      "mobile"
+    ],
+    [
+      "pm.spec.ts",
+      "human-authored fixture: edit criterion, persist, approve exact version, history and isolation",
+      "tablet"
+    ],
+    [
+      "pm.spec.ts",
+      "provider setup and empty state are honest; visiting a project makes no model request",
+      "chromium"
+    ],
+    [
+      "pm.spec.ts",
+      "provider setup and empty state are honest; visiting a project makes no model request",
+      "mobile"
+    ],
+    [
+      "pm.spec.ts",
+      "provider setup and empty state are honest; visiting a project makes no model request",
+      "tablet"
+    ],
+    [
+      "projects.spec.ts",
+      "chat creates a real project, survives reload, and appears in Projects",
+      "chromium"
+    ],
+    [
+      "projects.spec.ts",
+      "chat creates a real project, survives reload, and appears in Projects",
+      "mobile"
+    ],
+    [
+      "projects.spec.ts",
+      "chat creates a real project, survives reload, and appears in Projects",
+      "tablet"
+    ],
+    [
+      "projects.spec.ts",
+      "empty Projects gives a usable first-project action",
+      "chromium"
+    ],
+    [
+      "projects.spec.ts",
+      "empty Projects gives a usable first-project action",
+      "mobile"
+    ],
+    [
+      "projects.spec.ts",
+      "empty Projects gives a usable first-project action",
+      "tablet"
+    ],
+    [
+      "projects.spec.ts",
+      "explicit project form saves title and description",
+      "chromium"
+    ],
+    [
+      "projects.spec.ts",
+      "explicit project form saves title and description",
+      "mobile"
+    ],
+    [
+      "projects.spec.ts",
+      "explicit project form saves title and description",
+      "tablet"
+    ],
+    [
+      "projects.spec.ts",
+      "home layout in both themes",
+      "chromium"
+    ],
+    [
+      "projects.spec.ts",
+      "home layout in both themes",
+      "mobile"
+    ],
+    [
+      "projects.spec.ts",
+      "home layout in both themes",
+      "tablet"
+    ],
+    [
+      "projects.spec.ts",
+      "navigation supports mobile Escape and focus restoration",
+      "chromium"
+    ],
+    [
+      "projects.spec.ts",
+      "navigation supports mobile Escape and focus restoration",
+      "mobile"
+    ],
+    [
+      "projects.spec.ts",
+      "navigation supports mobile Escape and focus restoration",
+      "tablet"
+    ],
+    [
+      "projects.spec.ts",
+      "network failure preserves the draft and permits deliberate retry",
+      "chromium"
+    ],
+    [
+      "projects.spec.ts",
+      "network failure preserves the draft and permits deliberate retry",
+      "mobile"
+    ],
+    [
+      "projects.spec.ts",
+      "network failure preserves the draft and permits deliberate retry",
+      "tablet"
+    ],
+    [
+      "projects.spec.ts",
+      "nonexistent project shows an actual API not-found error",
+      "chromium"
+    ],
+    [
+      "projects.spec.ts",
+      "nonexistent project shows an actual API not-found error",
+      "mobile"
+    ],
+    [
+      "projects.spec.ts",
+      "nonexistent project shows an actual API not-found error",
+      "tablet"
+    ],
+    [
+      "projects.spec.ts",
+      "rapid duplicate submission sends a single creation request",
+      "chromium"
+    ],
+    [
+      "projects.spec.ts",
+      "rapid duplicate submission sends a single creation request",
+      "mobile"
+    ],
+    [
+      "projects.spec.ts",
+      "rapid duplicate submission sends a single creation request",
+      "tablet"
+    ],
+    [
+      "projects.spec.ts",
+      "theme persists, future sections are honest, keyboard navigation works",
+      "chromium"
+    ],
+    [
+      "projects.spec.ts",
+      "theme persists, future sections are honest, keyboard navigation works",
+      "mobile"
+    ],
+    [
+      "projects.spec.ts",
+      "theme persists, future sections are honest, keyboard navigation works",
+      "tablet"
+    ],
+    [
+      "projects.spec.ts",
+      "whitespace cannot create a project",
+      "chromium"
+    ],
+    [
+      "projects.spec.ts",
+      "whitespace cannot create a project",
+      "mobile"
+    ],
+    [
+      "projects.spec.ts",
+      "whitespace cannot create a project",
+      "tablet"
+    ],
+    [
+      "teams.spec.ts",
+      "account menu and signout remain keyboard accessible",
+      "chromium"
+    ],
+    [
+      "teams.spec.ts",
+      "account menu and signout remain keyboard accessible",
+      "mobile"
+    ],
+    [
+      "teams.spec.ts",
+      "account menu and signout remain keyboard accessible",
+      "tablet"
+    ],
+    [
+      "teams.spec.ts",
+      "two people join a real workspace with Viewer restrictions, persistence and logout",
+      "chromium"
+    ],
+    [
+      "teams.spec.ts",
+      "two people join a real workspace with Viewer restrictions, persistence and logout",
+      "mobile"
+    ],
+    [
+      "teams.spec.ts",
+      "two people join a real workspace with Viewer restrictions, persistence and logout",
+      "tablet"
+    ],
+    [
+      "teams.spec.ts",
+      "unconfirmed logout clears protected content without claiming server revocation",
+      "chromium"
+    ],
+    [
+      "teams.spec.ts",
+      "unconfirmed logout clears protected content without claiming server revocation",
+      "mobile"
+    ],
+    [
+      "teams.spec.ts",
+      "unconfirmed logout clears protected content without claiming server revocation",
+      "tablet"
+    ],
+    [
+      "teams.spec.ts",
+      "unrelated exact project UUID stays private and workspace switching clears projects",
+      "chromium"
+    ],
+    [
+      "teams.spec.ts",
+      "unrelated exact project UUID stays private and workspace switching clears projects",
+      "mobile"
+    ],
+    [
+      "teams.spec.ts",
+      "unrelated exact project UUID stays private and workspace switching clears projects",
+      "tablet"
+    ]
+  ],
+  "controlled_browser": [
+    [
+      "pm-recovery.spec.ts",
+      "combined UTF8 input rejection retains context brief and approved plan before explicit recovery",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "combined UTF8 input rejection retains context brief and approved plan before explicit recovery",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "combined UTF8 input rejection retains context brief and approved plan before explicit recovery",
+      "tablet"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled malformed structured response preserves approval and input without repeated-click dispatch",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled malformed structured response preserves approval and input without repeated-click dispatch",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled malformed structured response preserves approval and input without repeated-click dispatch",
+      "tablet"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled provider429 preserves approval and input without repeated-click dispatch",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled provider429 preserves approval and input without repeated-click dispatch",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled provider429 preserves approval and input without repeated-click dispatch",
+      "tablet"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled success retains recovery UUID when the saved-result read fails",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled success retains recovery UUID when the saved-result read fails",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled success retains recovery UUID when the saved-result read fails",
+      "tablet"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt",
+      "tablet"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled upstream503/public502 preserves approval and input without repeated-click dispatch",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled upstream503/public502 preserves approval and input without repeated-click dispatch",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "controlled upstream503/public502 preserves approval and input without repeated-click dispatch",
+      "tablet"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run",
+      "tablet"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "known active-project rejection creates no run and never strands a request reference",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "known active-project rejection creates no run and never strands a request reference",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "known active-project rejection creates no run and never strands a request reference",
+      "tablet"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "live-test allowance aborts a simultaneous second controlled generation before dispatch",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "live-test allowance aborts a simultaneous second controlled generation before dispatch",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "live-test allowance aborts a simultaneous second controlled generation before dispatch",
+      "tablet"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "lost HTTP response stays unknown and GET-only until the exact failed run is confirmed",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "lost HTTP response stays unknown and GET-only until the exact failed run is confirmed",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "lost HTTP response stays unknown and GET-only until the exact failed run is confirmed",
+      "tablet"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "status recovery never advances the revision beneath an open unchanged editor",
+      "chromium"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "status recovery never advances the revision beneath an open unchanged editor",
+      "mobile"
+    ],
+    [
+      "pm-recovery.spec.ts",
+      "status recovery never advances the revision beneath an open unchanged editor",
+      "tablet"
+    ]
+  ],
+  "architect_browser": [
+    [
+      "architect.spec.ts",
+      "controlled architecture persists, graph rejects a cycle, human edit and approval survive reload",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled architecture persists, graph rejects a cycle, human edit and approval survive reload",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled architecture persists, graph rejects a cycle, human edit and approval survive reload",
+      "tablet"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled cycle preserves prior approval and permits only explicit recovery",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled cycle preserves prior approval and permits only explicit recovery",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled cycle preserves prior approval and permits only explicit recovery",
+      "tablet"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled invalid preserves prior approval and permits only explicit recovery",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled invalid preserves prior approval and permits only explicit recovery",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled invalid preserves prior approval and permits only explicit recovery",
+      "tablet"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled rate limited preserves prior approval and permits only explicit recovery",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled rate limited preserves prior approval and permits only explicit recovery",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled rate limited preserves prior approval and permits only explicit recovery",
+      "tablet"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled timeout preserves prior approval and permits only explicit recovery",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled timeout preserves prior approval and permits only explicit recovery",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled timeout preserves prior approval and permits only explicit recovery",
+      "tablet"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled unavailable preserves prior approval and permits only explicit recovery",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled unavailable preserves prior approval and permits only explicit recovery",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "controlled unavailable preserves prior approval and permits only explicit recovery",
+      "tablet"
+    ],
+    [
+      "architect.spec.ts",
+      "draft PRD is not an approved source; no generation is dispatched",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "draft PRD is not an approved source; no generation is dispatched",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "draft PRD is not an approved source; no generation is dispatched",
+      "tablet"
+    ],
+    [
+      "architect.spec.ts",
+      "explicit retry creates a fresh auditable run and unsaved navigation preserves draft",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "explicit retry creates a fresh auditable run and unsaved navigation preserves draft",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "explicit retry creates a fresh auditable run and unsaved navigation preserves draft",
+      "tablet"
+    ],
+    [
+      "architect.spec.ts",
+      "hidden architecture tab retains a visible navigation dialog and rejected graph edits",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "hidden architecture tab retains a visible navigation dialog and rejected graph edits",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "hidden architecture tab retains a visible navigation dialog and rejected graph edits",
+      "tablet"
+    ],
+    [
+      "architect.spec.ts",
+      "unrelated user cannot see architecture or run content",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "unrelated user cannot see architecture or run content",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "unrelated user cannot see architecture or run content",
+      "tablet"
+    ],
+    [
+      "architect.spec.ts",
+      "viewer can inspect saved architecture but cannot generate, edit or approve",
+      "chromium"
+    ],
+    [
+      "architect.spec.ts",
+      "viewer can inspect saved architecture but cannot generate, edit or approve",
+      "mobile"
+    ],
+    [
+      "architect.spec.ts",
+      "viewer can inspect saved architecture but cannot generate, edit or approve",
+      "tablet"
+    ]
+  ],
+  "navigation_browser": [
+    [
+      "navigation.spec.ts",
+      "a delayed second project cannot display the first project as its details",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "a delayed second project cannot display the first project as its details",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "a delayed second project cannot display the first project as its details",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "a real Member cannot approve the Owner source or access another workspace",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "a real Member cannot approve the Owner source or access another workspace",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "a real Member cannot approve the Owner source or access another workspace",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "asynchronous workspace restoration preserves the selected project and hides stale content",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "asynchronous workspace restoration preserves the selected project and hides stale content",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "asynchronous workspace restoration preserves the selected project and hides stale content",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "controlled PRD transport failure stops before approval and Architect entry",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "controlled PRD transport failure stops before approval and Architect entry",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "controlled PRD transport failure stops before approval and Architect entry",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "controlled approval API failure preserves draft and does not claim approval",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "controlled approval API failure preserves draft and does not claim approval",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "controlled approval API failure preserves draft and does not claim approval",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "preflight closes before generation when approval prerequisite fails",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "preflight closes before generation when approval prerequisite fails",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "preflight closes before generation when approval prerequisite fails",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "real session revocation stops approval and leaves the exact PRD draft",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "real session revocation stops approval and leaves the exact PRD draft",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "real session revocation stops approval and leaves the exact PRD draft",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "route confirmation precedes immediate reload even when real Next navigation is held",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "route confirmation precedes immediate reload even when real Next navigation is held",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "route confirmation precedes immediate reload even when real Next navigation is held",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "shared Phase1 approves the exact source, reloads and stops at Architect entry",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "shared Phase1 approves the exact source, reloads and stops at Architect entry",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "shared Phase1 approves the exact source, reloads and stops at Architect entry",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "slow real project API stays on its project route without returning to Chat",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "slow real project API stays on its project route without returning to Chat",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "slow real project API stays on its project route without returning to Chat",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "unpaid browser boundary cannot open generation even with a claimed passing preflight",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "unpaid browser boundary cannot open generation even with a claimed passing preflight",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "unpaid browser boundary cannot open generation even with a claimed passing preflight",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "unpaid server boundary rejects direct model POSTs before creating any run",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "unpaid server boundary rejects direct model POSTs before creating any run",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "unpaid server boundary rejects direct model POSTs before creating any run",
+      "tablet"
+    ],
+    [
+      "navigation.spec.ts",
+      "wrong-route synchronization reports expected identity without approving or generating",
+      "chromium"
+    ],
+    [
+      "navigation.spec.ts",
+      "wrong-route synchronization reports expected identity without approving or generating",
+      "mobile"
+    ],
+    [
+      "navigation.spec.ts",
+      "wrong-route synchronization reports expected identity without approving or generating",
+      "tablet"
+    ]
+  ]
+}

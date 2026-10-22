@@ -1,4 +1,39 @@
-# ORBA Stage 01 test plan
+# ORBA verification plans
+
+## Current Stage04 extension
+
+Run `pwsh -NoProfile -File scripts/verify.ps1` from the repository root. It retains
+all Stage01-03 test identities and adds the Architect suites. Use migrated real
+PostgreSQL `orba_test`; backend and browser suites run sequentially. Model doubles
+are explicitly test-only and never establish real Architect generation.
+
+Required new coverage includes exact approved PRD binding/current-source fencing,
+strict output validation, relational persistence/atomic rollback, workspace roles,
+CSRF/original-session checks, version/revision conflicts, immutable approvals, shared
+admission and idempotency. Pure graph tests cover deterministic ordering, cycles,
+missing/self/duplicate edges, readiness and transitive impact; PostgreSQL tests also
+enforce cross-owner references, exact criterion parentage and structural coverage.
+Controlled 503/504/malformed-output cases must preserve prior approvals and save no
+successful-looking architecture.
+
+The actual browser uses real authentication, API and PostgreSQL on desktop/mobile/
+tablet. Exercise proposal/graph display, dependency edits, real cycle rejection,
+save/reload/approval, Viewer/outsider restrictions and unsaved-navigation recovery
+including a modal opened while the Architecture tab is hidden.
+
+`uv run --directory apps/api python -m scripts.architect_false_success` launches a
+separate deliberately incorrect failed==succeeded assertion. Its child must actually
+exit1; wrapper0 only confirms that expected failure was observed, never a production
+test pass. Normal discovery excludes the experiment.
+
+`scripts/verify-architect-live.ps1 -AllowPaid` is a separate future authorized Gate B,
+not part of this deterministic plan. It must use one real response for independent
+SQL/DAG/coverage, browser/edit/approval/reload/isolation checks. No fresh owner
+authorization means no generation. Gate C remains PARTIAL without matching passing
+Stage04 A and real Architect B. Actual counts, exits and receipts are recorded in
+[VERIFICATION.md](VERIFICATION.md).
+
+## Historical Stage01 plan
 
 All cases below are planned until actual output is recorded in VERIFICATION.md. Use real PostgreSQL and migrated schema. No SQLite, fake API responses, fake AI, or dummy PASS drivers satisfy this plan.
 

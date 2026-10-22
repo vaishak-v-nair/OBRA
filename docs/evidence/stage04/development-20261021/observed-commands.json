@@ -1,0 +1,81 @@
+{
+  "recorded_at": "2026-10-21T12:01:58.300456+00:00",
+  "kind": "development_command_observations_not_live_receipts",
+  "paid_generation_requests": 0,
+  "commands": [
+    {
+      "command": "uv run --directory apps/api pytest tests/test_task_graph.py tests/test_architect_schemas.py -q",
+      "exit_code": 0,
+      "passed": 26
+    },
+    {
+      "command": "uv run --directory apps/api pytest -q --junitxml=.../backend-incremental.xml",
+      "exit_code": 0,
+      "passed": 350
+    },
+    {
+      "command": "first Architect Chromium suite",
+      "exit_code": 1,
+      "passed": 3,
+      "failed": 5,
+      "repair": "Clarify honest post-reload recovery message; scope outsider alert to main content."
+    },
+    {
+      "command": "second Architect Chromium suite",
+      "exit_code": 1,
+      "passed": 7,
+      "failed": 1,
+      "repair": "Use explicit UTF8 reads/writes; reverse the introduced encoding error in three owned files."
+    },
+    {
+      "command": "Architect focused browser proof",
+      "exit_code": 1,
+      "passed": 2,
+      "failed": 1,
+      "repair": "Wait for invitation acceptance response and completed navigation before opening the project."
+    },
+    {
+      "command": "Architect viewer repair",
+      "exit_code": 0,
+      "passed": 1
+    },
+    {
+      "command": "backend persistence/verifier subset before import repair",
+      "exit_code": 1,
+      "passed": 41,
+      "failed": 1,
+      "repair": "Restore the required ProductPlan test import; assertions unchanged."
+    },
+    {
+      "command": "backend persistence/verifier subset after import repair",
+      "exit_code": 0,
+      "passed": 42
+    },
+    {
+      "command": "SDK synthetic transport subset",
+      "exit_code": 1,
+      "passed": 15,
+      "failed": 3,
+      "repair": "Assert MINIMAL through the actual SDK thinking_level wire alias, retaining exact value and request-count assertions."
+    },
+    {
+      "command": "SDK synthetic transport repaired",
+      "exit_code": 0,
+      "passed": 11
+    },
+    {
+      "command": "pwsh -NoProfile -File scripts/verify-architect-live.ps1 (without AllowPaid)",
+      "exit_code": 2,
+      "reason": "Expected authorization guard; zero provider requests."
+    },
+    {
+      "command": "uv run --directory apps/api python -m scripts.check_architect_config",
+      "exit_code": 1,
+      "reason": "Honest missing explicit Architect model; offline, zero metadata and generation requests."
+    }
+  ],
+  "other_repairs": [
+    "Ruff initially reported unused imports, nested with formatting and an undefined test import. Fixed without weakening tests.",
+    "A direct pnpm command failed because no global pnpm executable exists; used the repository documented pinned npm-exec bridge."
+  ]
+}

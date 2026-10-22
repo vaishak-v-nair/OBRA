@@ -16,7 +16,11 @@ class PMBodyLimitMiddleware:
             scope["type"] != "http"
             or scope.get("method") not in {"POST", "PUT"}
             or not (
-                path.startswith("/api/v1/projects/") and ("/pm-runs" in path or "/pm-plans" in path)
+                path.startswith("/api/v1/projects/")
+                and any(
+                    part in path
+                    for part in ("/pm-runs", "/pm-plans", "/architect-runs", "/architectures")
+                )
             )
         ):
             return await self.app(scope, receive, send)

@@ -1,0 +1,285 @@
+{
+  "stage": "stage04.1",
+  "recorded_at": "2026-10-22T05:33:27.256429+00:00",
+  "execution_class": "preserved_development_commands_not_a_verification_gate",
+  "commands": [
+    {
+      "name": "focused-preflight-backend",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "pytest",
+        "tests/test_architect_preflight.py",
+        "tests/test_architect_verification.py",
+        "-q",
+        "--junitxml=C:\\Users\\vaish\\.gstack\\projects\\OBRA\\stage041\\20261021T185326Z\\focused-backend.xml"
+      ],
+      "started_at": "2026-10-21T19:08:44.777549+00:00",
+      "exit_code": 1,
+      "pid": 23828,
+      "duration_seconds": 14.071,
+      "completed_at": "2026-10-21T19:08:58.848377+00:00"
+    },
+    {
+      "name": "focused-typecheck",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "typecheck"
+      ],
+      "started_at": "2026-10-21T19:08:44.785540+00:00",
+      "exit_code": 1,
+      "pid": 26668,
+      "duration_seconds": 8.192,
+      "completed_at": "2026-10-21T19:08:52.977201+00:00"
+    },
+    {
+      "name": "focused-preflight-backend-corrected",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "pytest",
+        "tests/test_architect_preflight.py",
+        "tests/test_architect_verification.py",
+        "-q",
+        "--junitxml=C:\\Users\\vaish\\.gstack\\projects\\OBRA\\stage041\\20261021T185326Z\\focused-backend-corrected.xml"
+      ],
+      "started_at": "2026-10-21T19:10:34.277727+00:00",
+      "exit_code": 0,
+      "pid": 11304,
+      "duration_seconds": 9.789,
+      "completed_at": "2026-10-21T19:10:44.066294+00:00"
+    },
+    {
+      "name": "focused-typecheck-corrected",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "typecheck"
+      ],
+      "started_at": "2026-10-21T19:10:34.277256+00:00",
+      "exit_code": 0,
+      "pid": 24992,
+      "duration_seconds": 4.131,
+      "completed_at": "2026-10-21T19:10:38.408603+00:00"
+    },
+    {
+      "name": "focused-eslint",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-21T19:10:38.410785+00:00",
+      "exit_code": 0,
+      "pid": 18196,
+      "duration_seconds": 22.386,
+      "completed_at": "2026-10-21T19:11:00.796643+00:00"
+    },
+    {
+      "name": "focused-preflight-backend-hardened",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "pytest",
+        "tests/test_architect_preflight.py",
+        "tests/test_architect_verification.py",
+        "-q",
+        "--junitxml=C:\\Users\\vaish\\.gstack\\projects\\OBRA\\stage041\\20261021T185326Z\\focused-backend-hardened.xml"
+      ],
+      "started_at": "2026-10-22T05:09:11.559689+00:00",
+      "exit_code": 1,
+      "pid": 21776,
+      "duration_seconds": 15.418,
+      "completed_at": "2026-10-22T05:09:26.977313+00:00"
+    },
+    {
+      "name": "hardened-typecheck",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "typecheck"
+      ],
+      "started_at": "2026-10-22T05:09:11.559753+00:00",
+      "exit_code": 0,
+      "pid": 22668,
+      "duration_seconds": 18.493,
+      "completed_at": "2026-10-22T05:09:30.052359+00:00"
+    },
+    {
+      "name": "hardened-eslint",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-22T05:09:30.053390+00:00",
+      "exit_code": 0,
+      "pid": 14000,
+      "duration_seconds": 66.139,
+      "completed_at": "2026-10-22T05:10:36.192247+00:00"
+    },
+    {
+      "name": "test-postgres-after-desktop-start",
+      "argv": [
+        "docker",
+        "compose",
+        "-f",
+        "infra/compose.yaml",
+        "--profile",
+        "test",
+        "up",
+        "-d",
+        "--wait",
+        "test-postgres"
+      ],
+      "started_at": "2026-10-22T05:12:22.641684+00:00",
+      "exit_code": 0,
+      "pid": 19816,
+      "duration_seconds": 4.112,
+      "completed_at": "2026-10-22T05:12:26.753702+00:00"
+    },
+    {
+      "name": "focused-backend-after-database-recovery",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "pytest",
+        "tests/test_architect_preflight.py",
+        "tests/test_architect_verification.py",
+        "-q",
+        "--junitxml=C:\\Users\\vaish\\.gstack\\projects\\OBRA\\stage041\\20261021T185326Z\\focused-backend-recovered.xml"
+      ],
+      "started_at": "2026-10-22T05:12:26.753972+00:00",
+      "exit_code": 0,
+      "pid": 5384,
+      "duration_seconds": 6.1,
+      "completed_at": "2026-10-22T05:12:32.854476+00:00"
+    },
+    {
+      "name": "boundary-typecheck",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "typecheck"
+      ],
+      "started_at": "2026-10-22T05:17:36.833857+00:00",
+      "exit_code": 0,
+      "pid": 9396,
+      "duration_seconds": 3.967,
+      "completed_at": "2026-10-22T05:17:40.800606+00:00"
+    },
+    {
+      "name": "boundary-eslint",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-22T05:17:40.800840+00:00",
+      "exit_code": 0,
+      "pid": 23728,
+      "duration_seconds": 8.073,
+      "completed_at": "2026-10-22T05:17:48.873730+00:00"
+    },
+    {
+      "name": "initial-unpaid-preflight",
+      "argv": [
+        "pwsh",
+        "-NoProfile",
+        "-File",
+        "scripts/verify-architect-preflight.ps1"
+      ],
+      "started_at": "2026-10-21T19:11:14.175046+00:00",
+      "exit_code": 0,
+      "pid": 24404,
+      "duration_seconds": 45.602,
+      "completed_at": "2026-10-21T19:11:59.777290+00:00"
+    },
+    {
+      "name": "initial-navigation-regression",
+      "argv": [
+        "pwsh",
+        "-NoProfile",
+        "-File",
+        "scripts/verify-architect-preflight.ps1",
+        "-Mode",
+        "navigation"
+      ],
+      "started_at": "2026-10-21T19:12:54.141247+00:00",
+      "exit_code": 1,
+      "pid": 5528,
+      "duration_seconds": 396.413,
+      "completed_at": "2026-10-21T19:19:30.553906+00:00"
+    }
+  ],
+  "live_generation_requests": 0,
+  "notes": [
+    "Initial failures are preserved, not converted to passes.",
+    "44 passed and7 setup errors during missing Docker dependency are not51 passing tests.",
+    "Recovered focused51, corrected browser4 and boundary3 are targeted evidence, not full Gate A."
+  ],
+  "artifacts": {
+    "boundary-eslint.log": "7e92820bdc1aa1dcdff1e9fd74ade7ea6add666d23546e5c5b4286464dfedd4b",
+    "boundary-static-commands.json": "216e105d9f962889470e4ffc84007f0b96a6e6058f4b5aeb1f353f6cb44f62bc",
+    "boundary-typecheck.log": "6b367217de17b8bbadb5777163d9d3b5390ca5c6613990095aea7327e15f1eff",
+    "database-recovered-focused-commands.json": "8c807ca5676ca89196854099070261f8474aa90059d7e6d4f1f3033082a38f27",
+    "docker-desktop-start.json": "92d9886ca7f6278da90dcdc380e6aa8b6ecb85fec3a86f10bf48ad245642ecc9",
+    "focused-backend-after-database-recovery.log": "45e06de16598e8b9852252a98dda46366d9bdefe1f4f915c150005acb494a8be",
+    "focused-backend-command.json": "a954708f60bf95b99faf9ca05c602ce1f04de2b90bf070470b455a2392a875d4",
+    "focused-backend-corrected-command.json": "08b4a30965e6c0038b9a9cce2e825849705c985c712c66ee220b51642d9286e5",
+    "focused-backend-corrected.log": "573cd89beba6e5a9543d1c4a6cbf8d96cf9339489b6cebac3f0756b5264ea1c1",
+    "focused-backend-hardened-command.json": "648f21b700a3ad21ae9a7408cd61ee5d4c0030288e616bca1ced5957a1f4a81f",
+    "focused-backend-hardened.log": "cf9b63f38a42bc8a7d8221c6deaf145a75d23a6424ae3d7f1afcc0c67f16633c",
+    "focused-backend.log": "0db9919f51e002629be115ca4d8ddfe020015e024d77f5da65125f696d29ecd4",
+    "focused-eslint-command.json": "b2ddc34e59f7ae0331575eaa5cdb99c2569504ab18b5e589227c4671bbf5bba4",
+    "focused-eslint.log": "7e92820bdc1aa1dcdff1e9fd74ade7ea6add666d23546e5c5b4286464dfedd4b",
+    "focused-typecheck-command.json": "a9338fa5fc33fb100a86f921c4e0a6c81b9750da0aa060442e3f23df35da2f5f",
+    "focused-typecheck-corrected-command.json": "8178c9c100e832b84fdf66ba348350af82bf49f0072006f5b91c0710aabb40be",
+    "focused-typecheck-corrected.log": "6b367217de17b8bbadb5777163d9d3b5390ca5c6613990095aea7327e15f1eff",
+    "focused-typecheck.log": "341b526c40931d1f902cc234e4676298f6f76143338642b867e3a253f74b82ca",
+    "hardened-eslint-command.json": "905498771b9cf1e4f3b7d524cc1b56814b991f1f1da0475afe741c4f2335f3b7",
+    "hardened-eslint.log": "7e92820bdc1aa1dcdff1e9fd74ade7ea6add666d23546e5c5b4286464dfedd4b",
+    "hardened-typecheck-command.json": "313e791c9418fc7c9e804e196101d154a57707d4e7680cddeab6dea83cf73b7e",
+    "hardened-typecheck.log": "6b367217de17b8bbadb5777163d9d3b5390ca5c6613990095aea7327e15f1eff",
+    "initial-navigation-regression-command.json": "27b6cea1663a68a88f91b7d9116c8d06bb011aeb37a011a7b21696480bff8338",
+    "initial-unpaid-preflight-command.json": "63ac6dd81c2e440835fb3f11cc590d89e4bcd9e52e4b7eefa2dde5f1dff60724",
+    "test-postgres-after-desktop-start.log": "50e99f1b72fa641a800f374eadb1af3cb76d4ebcec1981d665c08f63b860160f"
+  }
+}

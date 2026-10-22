@@ -39,6 +39,24 @@ class Settings(BaseSettings):
     pm_global_attempts: int = Field(
         default=20, ge=1, le=100, validation_alias="ORBA_PM_GLOBAL_ATTEMPTS_PER_HOUR"
     )
+    architect_api_key: SecretStr | None = Field(
+        default=None, validation_alias="ORBA_ARCHITECT_API_KEY"
+    )
+    architect_model: str | None = Field(
+        default=None, max_length=160, validation_alias="ORBA_ARCHITECT_MODEL"
+    )
+    architect_thinking_level: ThinkingLevel = Field(
+        default="low", validation_alias="ORBA_ARCHITECT_THINKING_LEVEL"
+    )
+    architect_timeout_seconds: int = Field(
+        default=90, ge=5, le=180, validation_alias="ORBA_ARCHITECT_TIMEOUT_SECONDS"
+    )
+    architect_max_output_tokens: int = Field(
+        default=6000, ge=512, le=16000, validation_alias="ORBA_ARCHITECT_MAX_OUTPUT_TOKENS"
+    )
+    architect_max_input_bytes: int = Field(
+        default=96000, ge=8192, le=96000, validation_alias="ORBA_ARCHITECT_MAX_INPUT_BYTES"
+    )
     model_config = SettingsConfigDict(
         env_file=(
             Path(__file__).resolve().parents[3] / ".env",
@@ -49,7 +67,7 @@ class Settings(BaseSettings):
         hide_input_in_errors=True,
     )
 
-    @field_validator("pm_model", mode="before")
+    @field_validator("pm_model", "architect_model", mode="before")
     @classmethod
     def explicit_model(cls, value):
         value = value.strip() or None if isinstance(value, str) else value
@@ -57,7 +75,7 @@ class Settings(BaseSettings):
             raise ValueError("ORBA_PM_MODEL must be an explicit Gemini model identifier")
         return value
 
-    @field_validator("pm_thinking_level", mode="before")
+    @field_validator("pm_thinking_level", "architect_thinking_level", mode="before")
     @classmethod
     def explicit_thinking(cls, value):
         return value.strip().lower() if isinstance(value, str) else value
@@ -65,11 +83,28 @@ class Settings(BaseSettings):
     @model_validator(mode="after")
     def reviewed_pm_configuration(self):
         validate_model_configuration(self.pm_model, self.pm_thinking_level)
+        validate_model_configuration(self.architect_model, self.architect_thinking_level)
         return self
 
     @property
     def pm_configured(self) -> bool:
         return bool(self.pm_api_key and self.pm_api_key.get_secret_value() and self.pm_model)
+
+    def architect_settings(self):
+        """Validated model policy, shared transport shape; never mutate PM selection."""
+        key = self.architect_api_key
+        if not key or not key.get_secret_value():
+            key = self.pm_api_key
+        return self.model_copy(
+            update={
+                "pm_api_key": key,
+                "pm_model": self.architect_model,
+                "pm_thinking_level": self.architect_thinking_level,
+                "pm_timeout_seconds": self.architect_timeout_seconds,
+                "pm_max_output_tokens": self.architect_max_output_tokens,
+                "pm_max_input_bytes": self.architect_max_input_bytes,
+            }
+        )
 
     @model_validator(mode="after")
     def secure_origin(self):

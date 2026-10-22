@@ -1,0 +1,27 @@
+{
+  "name": "architect-viewer-repair",
+  "argv": [
+    "npm",
+    "exec",
+    "--yes",
+    "--package=pnpm@12.14.0",
+    "--",
+    "pnpm",
+    "--filter",
+    "@orba/web",
+    "exec",
+    "playwright",
+    "test",
+    "--config",
+    "playwright.architect-controlled.config.ts",
+    "--project",
+    "chromium",
+    "--grep",
+    "viewer can"
+  ],
+  "started_at": "2026-10-21T11:42:05.470774+00:00",
+  "exit_code": 0,
+  "pid": 19416,
+  "duration_seconds": 19.274,
+  "completed_at": "2026-10-21T11:42:24.744460+00:00"
+}

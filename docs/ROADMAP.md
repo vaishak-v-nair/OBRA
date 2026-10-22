@@ -1,5 +1,12 @@
 # ORBA scope ledger
 
+Current acceptance, 2026-10-22: **Stage04 VERIFIED** on source `f6a3a687995bf53c8ad553a0bc7be2e59d1c1144acc2e7e5f39ced2b700a54cb`.
+The authorized single Gemini3.6/minimal Architect request passed matching-source
+Gate B, including PostgreSQL, task DAG, editing, approval and workspace isolation.
+Gate C exited0. See [actual A/B/C evidence](VERIFICATION_STAGE041_LIVE.md).
+Earlier PARTIAL entries below describe their historical verification boundaries.
+This authorization is consumed; no Stage05 or further paid attempt is authorized.
+
 ## Stage 01: foundation retained
 
 Responsive shell, themes, Chat project creation, PostgreSQL project listing/detail, Alembic and real integration/browser verification. Historical acceptance evidence is in VERIFICATION_STAGE01.md. Original test scenarios remain and now authenticate into a real workspace.
@@ -26,6 +33,51 @@ Explicit offline/read-only metadata CLI, typed safe readiness, one-generation br
 
 Preparation adds a three-model reviewed policy, explicit model-compatible thinking, complete local UTF8 input bounds, lean generation-only hints with unchanged authoritative PRD validation, original-run configuration evidence and current source/profile checks. No paid generation is authorized during preparation. The root3.8 configuration and all prior503/504 receipts remain unchanged. Dated account metadata and model comparison are in STAGE033_PROVIDER_RELIABILITY.md; actual new verification is in VERIFICATION.md. This work cannot change Stage03 from PARTIAL without a separately authorized matching-source liveB.
 
-## Stage 04 and beyond: not implemented
+## Stage03 acceptance checkpoint
 
-Architect/coding/QA agents, autonomous orchestration, multiplayer presence, visual canvas, GitHub OAuth/analysis/contributions, Skills Intelligence/installation, full Model Hub/provider routing and cloud sandbox execution. Do not start automatically.
+Stage03 was subsequently VERIFIED for source661f2828 and explicitly selected
+Gemini3.6/minimal. The actual source-bound A/B/C report and historical failure record
+are preserved in VERIFICATION_STAGE033_LIVE.md and VERIFICATION_STAGE033_CHECKPOINT.md.
+Checkpoint1aeb882 is the reviewed local starting point for Stage04. Earlier PARTIAL
+entries above describe their dated preparation state, not overwritten live receipts.
+
+## Stage04: Architect Agent and task dependency engine
+
+Implemented incrementally: additive relational architecture/run/component/task/edge/
+trace records; exact approved PRD binding; strict proposal schema; real DAG/reference/
+coverage algorithms; shared bounded SDK transport and admission; authenticated APIs;
+editable Architecture/Task Graph views; explicit Owner/Admin approval and immutable
+history. Deterministic verification results belong to VERIFICATION.md, not this ledger.
+Stage04 remains PARTIAL until its own freshly authorized real-model Gate B passes.
+No paid generation or commit is authorized by implementation work.
+
+## Stage05 and later: not implemented
+
+Task scheduling/execution, multi-agent orchestration, coding/QA agents, GitHub automation,
+Skills Intelligence, realtime multiplayer, advanced canvas, full Model Hub and remote
+sandboxes remain deferred. No automatic transition to the next stage.
+
+## Stage04.1: browser navigation and unpaid live-setup preflight
+
+The first live Architect attempt failed before generation. A real-response barrier
+reproduced the test's missing route synchronization: project POST persistence does
+not imply the Next project route committed before reload. Repair adds exact loaded
+project/workspace/PRD identity checks and a shared real UI approval/SQL/reload Phase1.
+No production routing rewrite or model/configuration change is required.
+
+Unpaid browser setup has independent receipts, test-only server/context generation
+denial and zero-run SQL checks. All older regressions remain mandatory. Current
+Gate A, three-viewport navigation coverage and five clean default preflight results
+belong to VERIFICATION.md. They never substitute for a real Architect Gate B.
+Stage04 remains PARTIAL; paid verification needs fresh explicit owner authority.
+
+## Stage04 deterministic acceptance record
+
+Historical initial Stage04 source07bf0deb passed all15 Gate A commands:386 backend,
+60 core browser,33 PM controlled browser and33 Architect controlled browser; zero
+skips/retries. Its first live B failed before generation; that record is preserved.
+Stage04.1 subsequently passed all16 Gate A commands on sourcef6a3a687:420 backend,
+60/33/33/39 browser tests, standalone navigation39, and5/5 clean unpaid preflights.
+Actual commands, failure history and source-bound receipts are in
+[VERIFICATION_STAGE041.md](VERIFICATION_STAGE041.md). Stage04 remains PARTIAL pending
+its own freshly authorized one-request real Architect B. No Stage05 is started.

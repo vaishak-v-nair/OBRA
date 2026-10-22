@@ -1,0 +1,30 @@
+$ pnpm --filter @orba/web typecheck
+$ next typegen && tsc --noEmit
+Generating route types...
+✓ Types generated successfully
+playwright.architect-preflight.config.ts(9,3): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type '({ command: string; url: string; reuseExistingServer: boolean; timeout: number; env: { DATABASE_URL: string; WEB_ORIGIN: string; ORBA_PM_API_KEY: string; GEMINI_API_KEY: string; ORBA_PM_MODEL: string; ORBA_ARCHITECT_API_KEY: string; ORBA_ARCHITECT_MODEL: string; ORBA_ARCHITECT_LIVE_OPT_IN: string; API_URL?: undefine...' is not assignable to type 'TestConfigWebServer | TestConfigWebServer[] | undefined'.
+      Type '({ command: string; url: string; reuseExistingServer: boolean; timeout: number; env: { DATABASE_URL: string; WEB_ORIGIN: string; ORBA_PM_API_KEY: string; GEMINI_API_KEY: string; ORBA_PM_MODEL: string; ORBA_ARCHITECT_API_KEY: string; ORBA_ARCHITECT_MODEL: string; ORBA_ARCHITECT_LIVE_OPT_IN: string; API_URL?: undefine...' is not assignable to type 'TestConfigWebServer[]'.
+        Type '{ command: string; url: string; reuseExistingServer: boolean; timeout: number; env: { DATABASE_URL: string; WEB_ORIGIN: string; ORBA_PM_API_KEY: string; GEMINI_API_KEY: string; ORBA_PM_MODEL: string; ORBA_ARCHITECT_API_KEY: string; ORBA_ARCHITECT_MODEL: string; ORBA_ARCHITECT_LIVE_OPT_IN: string; API_URL?: undefined...' is not assignable to type 'TestConfigWebServer'.
+          Type '{ command: string; url: string; reuseExistingServer: boolean; timeout: number; env: { DATABASE_URL: string; WEB_ORIGIN: string; ORBA_PM_API_KEY: string; GEMINI_API_KEY: string; ORBA_PM_MODEL: string; ORBA_ARCHITECT_API_KEY: string; ORBA_ARCHITECT_MODEL: string; ORBA_ARCHITECT_LIVE_OPT_IN: string; API_URL?: undefined...' is not assignable to type 'TestConfigWebServer'.
+            Types of property 'env' are incompatible.
+              Type '{ DATABASE_URL: string; WEB_ORIGIN: string; ORBA_PM_API_KEY: string; GEMINI_API_KEY: string; ORBA_PM_MODEL: string; ORBA_ARCHITECT_API_KEY: string; ORBA_ARCHITECT_MODEL: string; ORBA_ARCHITECT_LIVE_OPT_IN: string; API_URL?: undefined; }' is not assignable to type '{ [key: string]: string; }'.
+                Property 'API_URL' is incompatible with index signature.
+                  Type 'undefined' is not assignable to type 'string'.
+playwright.navigation.config.ts(12,3): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type '({ command: string; url: string; reuseExistingServer: boolean; timeout: number; env: { DATABASE_URL: string; WEB_ORIGIN: string; ORBA_PM_API_KEY: string; GEMINI_API_KEY: string; ORBA_PM_MODEL: string; ORBA_ARCHITECT_API_KEY: string; ORBA_ARCHITECT_MODEL: string; ORBA_ARCHITECT_LIVE_OPT_IN: string; API_URL?: undefine...' is not assignable to type 'TestConfigWebServer | TestConfigWebServer[] | undefined'.
+      Type '({ command: string; url: string; reuseExistingServer: boolean; timeout: number; env: { DATABASE_URL: string; WEB_ORIGIN: string; ORBA_PM_API_KEY: string; GEMINI_API_KEY: string; ORBA_PM_MODEL: string; ORBA_ARCHITECT_API_KEY: string; ORBA_ARCHITECT_MODEL: string; ORBA_ARCHITECT_LIVE_OPT_IN: string; API_URL?: undefine...' is not assignable to type 'TestConfigWebServer[]'.
+        Type '{ command: string; url: string; reuseExistingServer: boolean; timeout: number; env: { DATABASE_URL: string; WEB_ORIGIN: string; ORBA_PM_API_KEY: string; GEMINI_API_KEY: string; ORBA_PM_MODEL: string; ORBA_ARCHITECT_API_KEY: string; ORBA_ARCHITECT_MODEL: string; ORBA_ARCHITECT_LIVE_OPT_IN: string; API_URL?: undefined...' is not assignable to type 'TestConfigWebServer'.
+          Type '{ command: string; url: string; reuseExistingServer: boolean; timeout: number; env: { DATABASE_URL: string; WEB_ORIGIN: string; ORBA_PM_API_KEY: string; GEMINI_API_KEY: string; ORBA_PM_MODEL: string; ORBA_ARCHITECT_API_KEY: string; ORBA_ARCHITECT_MODEL: string; ORBA_ARCHITECT_LIVE_OPT_IN: string; API_URL?: undefined...' is not assignable to type 'TestConfigWebServer'.
+            Types of property 'env' are incompatible.
+              Type '{ DATABASE_URL: string; WEB_ORIGIN: string; ORBA_PM_API_KEY: string; GEMINI_API_KEY: string; ORBA_PM_MODEL: string; ORBA_ARCHITECT_API_KEY: string; ORBA_ARCHITECT_MODEL: string; ORBA_ARCHITECT_LIVE_OPT_IN: string; API_URL?: undefined; }' is not assignable to type '{ [key: string]: string; }'.
+                Property 'API_URL' is incompatible with index signature.
+                  Type 'undefined' is not assignable to type 'string'.
+[ELIFECYCLE] Command failed with exit code 2.
+Error: ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL
+
+  × "pnpm recursive run" failed in E:\BrosKi\OBRA\apps/web
+
+[ELIFECYCLE] Command failed with exit code 1.

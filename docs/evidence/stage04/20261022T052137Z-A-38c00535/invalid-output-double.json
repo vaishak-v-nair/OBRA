@@ -1,0 +1,107 @@
+{
+  "scenario": "Isolated malformed-output provider DOUBLE; not live model evidence",
+  "database": "real guarded PostgreSQL",
+  "provider_double": true,
+  "status": "failed",
+  "error_category": "invalid_model_response",
+  "run_id": "49948d67-ada9-4440-9ca6-a42fcc2ce68a",
+  "diagnostic_id": "e7844192-a616-4ea8-8665-86658ae4985c",
+  "diagnostic": {
+    "attempt": 1,
+    "stages_ms": {
+      "validation": 0.05,
+      "provider_call": 0.676,
+      "running_transaction": 22.595,
+      "admission_transaction": 84.315
+    },
+    "elapsed_ms": 107.743,
+    "validation": [
+      {
+        "type": "extra_forbidden",
+        "field": "not_a_plan"
+      },
+      {
+        "type": "missing",
+        "field": "schema_version"
+      },
+      {
+        "type": "missing",
+        "field": "product_name"
+      },
+      {
+        "type": "missing",
+        "field": "summary"
+      },
+      {
+        "type": "missing",
+        "field": "problem_statement"
+      },
+      {
+        "type": "missing",
+        "field": "proposed_solution"
+      },
+      {
+        "type": "missing",
+        "field": "target_users"
+      },
+      {
+        "type": "missing",
+        "field": "user_goals"
+      },
+      {
+        "type": "missing",
+        "field": "in_scope"
+      },
+      {
+        "type": "missing",
+        "field": "out_of_scope"
+      },
+      {
+        "type": "missing",
+        "field": "functional_requirements"
+      },
+      {
+        "type": "missing",
+        "field": "nonfunctional_requirements"
+      },
+      {
+        "type": "missing",
+        "field": "prerequisites"
+      },
+      {
+        "type": "missing",
+        "field": "assumptions"
+      },
+      {
+        "type": "missing",
+        "field": "risks"
+      },
+      {
+        "type": "missing",
+        "field": "open_questions"
+      },
+      {
+        "type": "missing",
+        "field": "confirmations"
+      },
+      {
+        "type": "missing",
+        "field": "epics"
+      }
+    ],
+    "exception_type": "ValidationError",
+    "timing_version": 1,
+    "timing_boundary": "before_terminal_commit",
+    "generation_configuration": {
+      "input_bytes": 6274,
+      "prompt_bytes": 2642,
+      "snapshot_bytes": 143,
+      "thinking_level": "low",
+      "max_input_bytes": 48000,
+      "max_output_tokens": 6000,
+      "provider_schema_bytes": 3489,
+      "provider_schema_sha256": "cbe399effdd5289c0511c69237acac349175845776f0450431628049786414c7"
+    }
+  },
+  "persisted_plan_count": 0
+}

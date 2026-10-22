@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-10-22T05:06:07.940540+00:00",
+  "stage": "stage04.1",
+  "navigation_receipt": "../20261021T191254Z-unpaid-navigation-eb1ea901/receipt.json",
+  "actual_browser_counts": {
+    "passed": 9,
+    "failed": 30,
+    "skipped": 0,
+    "retried": 0
+  },
+  "findings": [
+    "first slow-response test held only one request; another real request could complete",
+    "test PostgreSQL exited255 at19:16:36.701Z, OOMKilled false; underlying stop cause unknown",
+    "later source creation timed out without project POST response, remaining tests could not prepare PostgreSQL"
+  ],
+  "recovery": "up -d --wait test-postgres exited0; no volume reset or development DB change",
+  "artifacts": {
+    "navigation-preflight-close-75cc4-approval-prerequisite-fails-chromium.md": "9fd49caf8ba7f2d14e0080f63f9bc56ddacf28e2310db75cbc18a438fef8e551",
+    "navigation-slow-real-proje-7b502-e-without-returning-to-Chat-chromium.md": "570e10e6fd725a55690bfb3c0d5bf4178400b218bd2e608551a802fbef26ad2f",
+    "restore-stopped-test-postgres-command.json": "e1a33b3d6b809701fbfd549698b939747c86be26be65ee720b376eb557436816",
+    "restore-stopped-test-postgres.log": "50e99f1b72fa641a800f374eadb1af3cb76d4ebcec1981d665c08f63b860160f",
+    "test-database-outage-inspect.log": "a3c3eb07dd5d524fe0ec36f08008ca613448ed2c6d754deb8684c3c42f004578",
+    "test-database-outage.json": "f4b1cf8bc61ae424c8c7ac288533f03c5a67f72da7274527575013a8678965dc"
+  }
+}

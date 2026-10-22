@@ -1,8 +1,8 @@
-# ORBA · Stage 03
+# ORBA · Stage 04
 
-A local development workspace with real accounts, workspace permissions, manual invitations, persisted projects and one Product Manager planning agent. Chat creates a project; explicit generation requests use a configured Gemini model to produce a validated, editable product plan. Architecture/coding/QA agents, orchestration, GitHub, multiplayer, Skills installation and cloud execution remain later-stage work. Current verification and blockers are in [docs/VERIFICATION.md](docs/VERIFICATION.md).
+A local development workspace with real accounts, workspace permissions, persisted projects and product/architecture planning. An approved Product Plan can feed an explicit Architect request, producing a technical proposal and a PostgreSQL task dependency DAG for human review. No task is executed. Coding/QA agents, orchestration, GitHub, multiplayer, Skills installation and cloud execution remain later-stage work. Stage04 is **VERIFIED** on source `f6a3a687...`: the authorized single Gemini request and complete browser/SQL review flow passed on 2026-10-22. Current evidence is in [docs/VERIFICATION.md](docs/VERIFICATION.md) and the [live A/B/C report](docs/VERIFICATION_STAGE041_LIVE.md). Further paid attempts require fresh authorization.
 
-Stage03 verdict is **VERIFIED** for source `661f2828...` with the explicitly authorized `gemini-3.6-flash` / `minimal` runtime profile. Gate A passed all 14 commands: **285 backend, 60 regression browser and 33 controlled-provider browser tests**, with zero skips/retries. Gate B passed one genuine model-backed browser flow using exactly one generation: validated PRD, independent PostgreSQL graph/hash checks, draft edit/reload, explicit approval/reload and unrelated-workspace denial. Gate C exited 0/VERIFIED. [Complete A/B/C report, source fingerprint and actual metadata](docs/VERIFICATION_STAGE033_LIVE.md). Historical 503/504 failures remain unchanged. The ignored runtime file still selects 3.8/LOW; this passing live evidence applies to the explicit 3.6/minimal environment overrides. New passwords remain 15-128 Unicode code points, preserving legacy login/sessions. The one paid authorization is consumed; no further paid request, commit or Stage04 is authorized.
+Stage03's historical **VERIFIED** source is `661f2828...`, checkpointed at `1aeb882cf9e788948df5ca5eac52e2a682a1f487`. Its actual285 backend/60 regression/33 controlled browser tests and one genuine Gemini3.6/minimal flow remain documented in the [immutable Stage03 A/B/C report](docs/VERIFICATION_STAGE033_LIVE.md). That evidence does not certify the new Architect implementation. Historical503/504 failures and credentials are preserved. New passwords remain15–128 Unicode code points, preserving legacy login/sessions. No additional paid generation or Stage04 commit is authorized.
 
 ## Prerequisites
 
@@ -149,62 +149,140 @@ uv run --directory apps/api python -m scripts.claim_legacy --workspace WORKSPACE
 
 The first command is a dry run. The second commits only if every selected project is still legacy and the target has that Owner. UUIDs, titles, descriptions, status and timestamps remain unchanged. Mixed/invalid selections fail atomically; already-claimed records cannot be moved again by this command. The local database credentials and terminal access define operator authority, not a web user privilege.
 
+## Architect setup and use
+
+Apply additive migration `7dd7671f9417`, then open an existing project. Approve the
+actual Product Plan first. Architecture and Task Graph share one saved proposal and
+one local editor. Generate is an explicit usage-triggering action. No provider call
+occurs on page load, switching views, graph editing, saving, copying or approval.
+
+Set `ORBA_ARCHITECT_MODEL` explicitly; it never inherits the PM model. The optional
+`ORBA_ARCHITECT_API_KEY` overrides the existing resolved PM/Gemini credential only
+when nonempty. Process environment overrides API dotenv, which overrides root dotenv.
+Keep credentials server-side and preserve existing runtime files. The root template
+lists thinking, timeout, output and complete-input-byte bounds. Offline setup check:
+
+```powershell
+uv run --directory apps/api python -m scripts.check_architect_config
+```
+
+Configured exits0, missing configuration exits1/BLOCKED, invalid settings exits2.
+Only explicit `--check-model` performs one bounded metadata GET; readiness never
+proves generation or quota. Current account access and Architect schema acceptance
+remain unverified until the authorized live flow. Defaults:90s provider,95s transport,
+100s outer;6000 combined output/thinking tokens;96000 UTF8 content bytes including
+prompt, projected schema and full approved source. Oversized sources fail without
+truncation. Existing PM-named concurrency/hourly controls count both planning agents.
+
+Member/Admin/Owner may generate and edit drafts; only Admin/Owner approve exact saved
+versions/revisions. Viewers inspect. Dependencies use prerequisite -> dependent.
+Roots are ready only within the planning model; every task is unexecuted. Cycles,
+missing/self/duplicate/cross-owner edges and invalid source references are rejected.
+Coverage means structural linkage, not semantic completeness. Missing coverage needs
+an exact documented exception and explicit approver disposition. Blocking decisions
+and inherited source confirmations cannot be silently erased. Approved versions are
+immutable; free draft copies retain their original source and do not rebase it.
+
 ## Verification
 
-Stop this checkout's development Next.js server before browser verification: ports3000/3001 share `.next/dev/lock`. Keep development data/volume intact. All backend/browser/fixture/experiment commands share guarded `orba_test` at loopback54330; run them sequentially. Frozen installs/images may need network access, but Gate A never depends on an external AI call.
+Stop this checkout's development Next server first (shared `.next/dev/lock`). All
+backend/browser/fixture/experiment operations use guarded loopback `orba_test` and
+must run sequentially. Development data and credentials are never reset.
 
 ```powershell
-npm exec --yes --package=pnpm@12.14.0 -- pnpm --filter @orba/web exec playwright install chromium
 pwsh -NoProfile -File scripts/verify.ps1
-uv run --directory apps/api python -m scripts.verification summary
+uv run --directory apps/api python -m scripts.architect_verification summary
 ```
 
-**Gate A** is the default normal workflow (`-Scope Core` is an alias). It starts only test-postgres, verifies frozen locks/peers, migrates/checks the guarded test database, runs all backend tests, Ruff, TypeScript, ESLint, production build, and the entire desktop/mobile/tablet regression plus controlled-provider recovery browser suites. Both key aliases/model are explicitly empty in child environments, preventing dotenv fallback. Controlled provider behavior is clearly labeled and test-only; auth/API/PostgreSQL/browser remain real. Test-only authored reports/doubles never count as live model evidence.
+Gate A is unpaid: test PostgreSQL, frozen dependencies/peers, Alembic upgrade/drift,
+all backend tests, Ruff/format, strict TypeScript, ESLint, production build, all prior
+regression and PM controlled browser cases, plus Architect controlled browser cases
+on desktop/mobile/tablet. Every runtime key alias and both model choices are blanked
+before dotenv loading. Test factories replace only their labeled model dependency;
+auth/API/PostgreSQL/browser remain real. No skip, xfail, retry or missing baseline
+identity can pass. Frozen dependency/image acquisition may require network access.
 
-Each gate creates a unique directory under `docs/evidence/stage031`, with command argv/log/exit/duration, create-once receipt, start/end source manifest and artifact hashes. The verifier rejects incomplete/skipped/xfail/retried/flaky reports and missing baseline identities. `latest-A.json`/`latest-B.json` point to receipts without rewriting historical attempts. Source identity includes tracked and relevant nonignored untracked app/test/script/config/lock files; dotenv secrets, build/dependency outputs, docs and evidence are excluded. The live nonsecret execution profile additionally records model/prompt/schema/SDK and timeout/output/admission bounds. Local owner-controlled files are not a hostile-machine attestation.
+Stage04 receipts are create-once under `docs/evidence/stage04`; they bind stage/agent,
+source and prompt/schema policy, commands, actual native exits, reports and artifact
+hashes. The legacy runner/process ownership helpers are reused. Historical Stage03
+receipts and its own live command remain historical and cannot certify Architect.
+The original285 backend/60 regression/33 controlled identities stay mandatory along
+with new tests. Gate C refuses absent, stale, failed or controlled B and exits2/PARTIAL.
 
-**Gate B** requires a current passing A, configured runtime Gemini key/model, and explicit authorization for one paid-capable attempt. Do not run the following until authorized:
+## Unpaid Architect browser preflight (Stage04.1)
+
+The first live Architect attempt failed before generation: project creation had
+persisted, but the test reloaded Chat before confirming the project route. The
+repair waits for the exact route, loaded project/workspace identity, saved PRD
+ID/version/revision, actual UI approval, API and independent read-only SQL evidence,
+then reloads that project and stops at the Architect entry point.
 
 ```powershell
-# Proposed Stage03.3 trial only; these shell overrides do not edit .env.
-# Fresh owner authorization must cover this explicitly selected model.
-$env:ORBA_PM_MODEL = 'gemini-3.6-flash'
-$env:ORBA_PM_THINKING_LEVEL = 'minimal'
-pwsh -NoProfile -File scripts/verify-live.ps1 -AllowPaid
-uv run --directory apps/api python -m scripts.verification summary
+pwsh -NoProfile -File scripts/verify-architect-preflight.ps1
+pwsh -NoProfile -File scripts/verify-architect-preflight.ps1 -Mode navigation
 ```
 
-The existing ignored runtime configuration remains `gemini-3.8-flash` with LOW thinking. The proposed model is a reviewed alternative, not an automatic fallback or a demonstrated reliability fix. See the dated [model comparison and bounded cost calculation](docs/STAGE033_PROVIDER_RELIABILITY.md) before authorizing the trial. Keep the configured 6,000 combined output/thinking tokens, 90s server/model budget, 95s transport, 100s local envelope and one concurrent generation. A model change does not rewrite earlier runs or approved plans.
+Both commands are unpaid. They use the real Next/FastAPI/authentication/CSRF and
+isolated PostgreSQL stack with a **test-only generation-denying API factory**. It
+loads no runtime key. Its labeled configuration sentinel only enables inspection
+of the entry control; it is not provider readiness. Browser context guards,
+server denial before provider dependencies, dependency tripwires and independent
+zero-run SQL checks prevent a successful-looking model operation. No generated
+architecture is fabricated. Every invocation saves a unique receipt; an unexpected
+generation attempt fails, even when blocked. These commands do not update Gate B.
 
-It records two native commands: one fresh read-only metadata readiness check, then one real browser Generate -> draft API/independent SQL -> edit/reload -> approve/reload -> independent SQL -> unrelated404 journey using the same generated plan. Readiness is bound to the exact A receipt/hash, source, profile, attempt and command times; subordinate preflight and Gate C validate without refetching metadata. Non-ready metadata blocks before generation. A test-only browser transport allowance forwards the first generation POST and aborts every second POST before dispatch; any attempted duplicate fails B. This is not a distributed production quota. SDK/transport/continuation retries stay disabled. Missing opt-in/config/A is BLOCKED/nonzero before dispatch. Provider/validation/persistence/browser failure is nonzero and preserved; authorization is consumed by that attempt, with no automatic retry. A wrapper invocation without `-AllowPaid` only records a BLOCKED preflight. `-Scope Full` exits2 with replacement instructions. Low-level live commands require deliberate opt-in/current A and cannot certify B alone. The old real invalid-key diagnostic remains outside A and requires ORBA_EXTERNAL_FAILURE_OPT_IN=1; normal failure tests use labeled doubles.
+Full Gate A includes the new navigation/approval regressions on desktop, mobile
+and tablet alongside every existing test. For repeatability assessment, run five
+separate default preflight commands sequentially, each with its own clean guarded
+test database setup and receipt; a later pass never erases an earlier failure.
+Do not run backend and browser verification simultaneously.
 
-Gate C (`summary`) revalidates required commands, native exits, actual structured test results, source/profile identity and artifact hashes. A PASS+B PASS for current source is eligible for VERIFIED; absent, blocked, failed, stale or controlled B is not. Summary exits2 while unverified. Historical failures and live successes remain historical and are never backfilled with a new fingerprint.
-
-Manual deterministic commands (clear runtime key/model variables in that shell, or prefer Gate A's automatic safe profile):
+**Paid Gate B requires fresh authorization.** Its previous pre-dispatch failure
+remains in [the historical live report](docs/VERIFICATION_STAGE04_LIVE.md). After
+fresh explicit owner authorization only, the proposed bounded profile is:
 
 ```powershell
-$env:ORBA_PM_API_KEY=''; $env:GEMINI_API_KEY=''; $env:ORBA_PM_MODEL=''
-uv run --directory apps/api pytest -q
-npm exec --yes --package=pnpm@12.14.0 -- pnpm test:e2e
-npm exec --yes --package=pnpm@12.14.0 -- pnpm test:e2e:controlled
+$env:ORBA_ARCHITECT_MODEL = 'gemini-3.6-flash'
+$env:ORBA_ARCHITECT_THINKING_LEVEL = 'minimal'
+$env:ORBA_ARCHITECT_TIMEOUT_SECONDS = '90'
+$env:ORBA_ARCHITECT_MAX_OUTPUT_TOKENS = '6000'
+$env:ORBA_PM_MAX_CONCURRENT = '1'
+pwsh -NoProfile -File scripts/verify-architect-live.ps1 -AllowPaid
 ```
 
-Fresh per-attempt test artifacts cannot overwrite earlier Stage03 evidence. Browser traces remain off to avoid credentials/cookies in traces. Chromium desktop/mobile/tablet emulation does not establish native-device or all-browser compatibility. Gate runners use an advisory local lock and bounded owned command trees; manually launched test commands must also respect the shared database boundary.
+No dotenv is edited by these overrides. The command requires current passing A,
+explicit selection/key and one-worker/zero-retry/one-generation limits. It checks
+metadata, creates a clearly human-authored compact source in guarded test storage,
+approves that source through the real UI, and sends ONE Architect request. It reuses
+that response for validation, independent SQL/hash/graph/coverage inspection, browser
+rendering, human criterion editing/reload, exact approval/reload and outsider404.
+Phase1 shares the unpaid setup helper and keeps generation closed until all source
+approval/reload/SQL checks pass. Phase2 permits one Architect POST. Phase3 closes
+generation and reuses that artifact. The source fixture is not PM model evidence.
+Additional PM/Architect generation POSTs
+are blocked before forwarding and fail B. Failure stops the command; no fallback,
+automatic model switch or retry exists. Actual usage is recorded when returned; no
+cost or response metadata is invented. These local receipts are operational evidence,
+not hostile-machine attestation or production security certification.
 
-Run the deliberately incorrect expectation separately:
+The isolated deliberately incorrect assertion is separate from normal discovery:
 
 ```powershell
-uv run --directory apps/api pytest -q tests/experiments/unauthorized_success_experiment.py
-uv run --directory apps/api pytest -q tests/experiments/pm_failed_run_success_experiment.py
+uv run --directory apps/api python -m scripts.architect_false_success
+# Underlying pytest must exit1; the wrapper records and validates that expected failure.
 ```
 
-Both must exit **1**: the first incorrectly expects `404 == 200`; the second incorrectly expects an actually failed, unconfigured PM run to be `succeeded`. These are explicit expected-failure experiments, outside normal discovery. Neither is a passing production test; no xfail/skip/green stub is used.
+The older authorization and PM wrong-success experiments remain unchanged. Browser
+traces stay off to avoid recording secrets. Chromium device emulation does not prove
+native-device or all-browser support. See [current verification](docs/VERIFICATION.md),
+[Architect design/API reference](docs/ARCHITECTURE_STAGE04.md) and the preserved
+[Stage03 checkpoint report](docs/VERIFICATION_STAGE033_CHECKPOINT.md).
 
 ## Limits
 
 Suitable for the current local development scope, **not certified production-secure**. No verified email ownership, password recovery, MFA/passkeys, SSO/OAuth, durable security audit store, production TLS/reverse-proxy configuration, distributed deployment certification, automatic session cleanup worker or penetration test. Registration's duplicate-email response can disclose that an address is registered. No real-time permission push; subsequent protected requests enforce current permissions. Logout clears protected local state immediately; if the server cannot be reached, the UI explicitly warns that revocation is unconfirmed and does not claim the session was revoked. There is no server-side project idempotency guarantee after an uncertain write. Existing TypeScript 6.0.3 / ESLint 9.39.5 compatibility pins remain documented in architecture; 9.x is npm-deprecated until current Next lint plugins support 10.
 
-PM requests are synchronous and bounded (timeout 5–180s, output 512–16000 tokens); the SDK performs one attempt with automatic continuation, retries and function calling disabled. Default local admission: one active run per project, two globally, five attempts/account/hour, twenty globally/hour. The owner's current runtime limits are stricter: one globally, three attempts/account/hour and six globally/hour. PostgreSQL locks coordinate local API workers; this is not a distributed orchestration platform. Lease expiry marks interrupted runs without resuming them. A valid paid response can be discarded after session/permission/lease expiry. Actual dollar costs are not fabricated from missing usage; the dated comparison calculates only the published output-token component and explains billing uncertainty. No cancellation/billing guarantee, semantic truth guarantee, automatic recovery, architect or execution agent is claimed.
+PM requests are synchronous and bounded (timeout 5–180s, output 512–16000 tokens); the SDK performs one attempt with automatic continuation, retries and function calling disabled. Default local admission: one active run per project, two globally, five attempts/account/hour, twenty globally/hour. The owner's current runtime limits are stricter: one globally, three attempts/account/hour and six globally/hour. PostgreSQL locks coordinate local API workers; this is not a distributed orchestration platform. Lease expiry marks interrupted runs without resuming them. A valid paid response can be discarded after session/permission/lease expiry. Actual dollar costs are not fabricated from missing usage; the dated comparison calculates only the published output-token component and explains billing uncertainty. No cancellation/billing guarantee, semantic truth guarantee, automatic recovery, task execution or orchestration is claimed. The Architect proposes technical plans only.
 
-See [architecture](docs/ARCHITECTURE.md), [Stage03 plan](docs/STAGE03_PLAN.md), [test plan](docs/STAGE03_TEST_PLAN.md) and [current verification](docs/VERIFICATION.md). Historical evidence is preserved in `docs/VERIFICATION_STAGE01.md` and `docs/VERIFICATION_STAGE02.md`. Stop after Stage03.
+See [architecture](docs/ARCHITECTURE.md), [Stage03 plan](docs/STAGE03_PLAN.md), [test plan](docs/STAGE03_TEST_PLAN.md) and [current verification](docs/VERIFICATION.md). Historical evidence is preserved in `docs/VERIFICATION_STAGE01.md` and `docs/VERIFICATION_STAGE02.md`. Stop after Stage04; live Architect verification still requires fresh authorization.
 

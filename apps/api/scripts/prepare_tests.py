@@ -31,7 +31,7 @@ def prepare(reset: bool = True):
                 with engine.begin() as connection:
                     connection.execute(
                         text(
-                            "TRUNCATE TABLE product_acceptance_criteria,product_stories,product_epics,product_plans,product_manager_runs,projects,workspace_invitations,workspace_members,sessions,login_attempts,workspaces,users"
+                            "TRUNCATE TABLE requirement_traces,task_dependencies,engineering_tasks,architecture_components,architecture_versions,architect_runs,product_acceptance_criteria,product_stories,product_epics,product_plans,product_manager_runs,projects,workspace_invitations,workspace_members,sessions,login_attempts,workspaces,users"
                         )
                     )
                     connection.execute(

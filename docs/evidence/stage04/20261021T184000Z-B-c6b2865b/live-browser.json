@@ -1,0 +1,189 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\BrosKi\\OBRA\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.architect-live.config.ts"
+    ],
+    "configFile": "E:\\BrosKi\\OBRA\\apps\\web\\playwright.architect-live.config.ts",
+    "rootDir": "E:/BrosKi/OBRA/apps/web/tests-architect-live",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/BrosKi/OBRA/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-architect-live",
+        "name": "chromium-architect-live",
+        "testDir": "E:/BrosKi/OBRA/apps/web/tests-architect-live",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 300000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "E:\\BrosKi\\OBRA\\apps\\web\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium-architect-live",
+        "testDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-architect-live",
+        "snapshotDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-architect-live",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 300000,
+        "use": {
+          "baseURL": "http://localhost:3001",
+          "trace": "off",
+          "screenshot": "off",
+          "actionTimeout": 15000,
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium-architect-live"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "architect-live.spec.ts",
+      "file": "architect-live.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "one real Architect response, persisted DAG, human editing, approval and isolation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-architect-live",
+              "projectName": "chromium-architect-live",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 28866,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Approve plan', exact: true })\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Approve plan', exact: true })\u001b[22m\n\n    at E:\\BrosKi\\OBRA\\apps\\web\\tests-architect-live\\architect-live.spec.ts:27:89",
+                    "location": {
+                      "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests-architect-live\\architect-live.spec.ts",
+                      "column": 89,
+                      "line": 27
+                    },
+                    "snippet": "  25 |     const authored=JSON.parse(command(\"scripts.seed_pm_fixture\",\"--project\",project.id,\"--actor\",user.id));\n  26 |     expect(authored.model_call).toBe(false);expect(authored.origin).toBe(\"human_authored\");\n> 27 |     await page.reload();await page.getByRole(\"button\",{name:\"Approve plan\",exact:true}).click();await page.getByRole(\"button\",{name:\"Confirm approval\",exact:true}).click();await expect(page.getByTestId(\"plan-state\")).toHaveText(\"approved\");\n     |                                                                                         ^\n  28 |     const source=await(await page.request.get(`/api/v1/projects/${project.id}/architect-source`)).json();\n  29 |     Object.assign(proof,{project_id:project.id,initiator_id:user.id,source_plan_id:source.id,source_version:source.version,source_revision:source.revision,source_hash:source.content_hash,source_origin:authored.origin});\n  30 |     await page.getByRole(\"navigation\",{name:\"Project planning views\"}).getByRole(\"button\",{name:\"Architecture\",exact:true}).click();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests-architect-live\\architect-live.spec.ts",
+                        "column": 89,
+                        "line": 27
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Approve plan', exact: true })\u001b[22m\n\n\n  25 |     const authored=JSON.parse(command(\"scripts.seed_pm_fixture\",\"--project\",project.id,\"--actor\",user.id));\n  26 |     expect(authored.model_call).toBe(false);expect(authored.origin).toBe(\"human_authored\");\n> 27 |     await page.reload();await page.getByRole(\"button\",{name:\"Approve plan\",exact:true}).click();await page.getByRole(\"button\",{name:\"Confirm approval\",exact:true}).click();await expect(page.getByTestId(\"plan-state\")).toHaveText(\"approved\");\n     |                                                                                         ^\n  28 |     const source=await(await page.request.get(`/api/v1/projects/${project.id}/architect-source`)).json();\n  29 |     Object.assign(proof,{project_id:project.id,initiator_id:user.id,source_plan_id:source.id,source_version:source.version,source_revision:source.revision,source_hash:source.content_hash,source_origin:authored.origin});\n  30 |     await page.getByRole(\"navigation\",{name:\"Project planning views\"}).getByRole(\"button\",{name:\"Architecture\",exact:true}).click();\n    at E:\\BrosKi\\OBRA\\apps\\web\\tests-architect-live\\architect-live.spec.ts:27:89"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T18:40:21.518Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "E:\\BrosKi\\OBRA\\apps\\web\\test-results\\architect-live-one-real-Ar-22d24-ting-approval-and-isolation-chromium-architect-live\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests-architect-live\\architect-live.spec.ts",
+                    "column": 89,
+                    "line": 27
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e7f6c1df365546866620-526051e6a76f0640d31c",
+          "file": "architect-live.spec.ts",
+          "line": 8,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-21T18:40:12.115Z",
+    "duration": 41587.79,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

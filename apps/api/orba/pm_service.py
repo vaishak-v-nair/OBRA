@@ -86,22 +86,23 @@ def check_session(db, session_id, actor_id):
     return moment
 
 
-def expire_runs(db, project_id=None):
-    query = select(ProductManagerRun).where(
-        ProductManagerRun.status.in_(ACTIVE),
-        ProductManagerRun.deadline_at <= func.clock_timestamp(),
+def expire_runs(db, project_id=None, *, model=ProductManagerRun):
+    query = select(model).where(
+        model.status.in_(ACTIVE),
+        model.deadline_at <= func.clock_timestamp(),
     )
     if project_id is not None:
-        query = query.where(ProductManagerRun.project_id == project_id)
+        query = query.where(model.project_id == project_id)
     for run in db.scalars(
-        query.order_by(ProductManagerRun.deadline_at).limit(100).with_for_update(skip_locked=True)
+        query.order_by(model.deadline_at).limit(100).with_for_update(skip_locked=True)
     ):
         run.status, run.completed_at = "interrupted", db_now(db)
         run.error_category, run.diagnostic_id = "interrupted", uuid4()
         run.diagnostic = dict(run.diagnostic or {}) | {"exception_type": "ExpiredExecutionLease"}
         timing_logger.info(
-            "pm_timing run_id=%s stage=lease_expiration_detected attempt=1 "
+            "%s_timing run_id=%s stage=lease_expiration_detected attempt=1 "
             "proposed_state=interrupted error_category=interrupted",
+            "pm" if model is ProductManagerRun else "architect",
             run.id,
         )
 
@@ -219,29 +220,9 @@ def reserve(engine, config, project_id, actor_id, session_id, payload):
                 "This project already has an active planning request. Your new request was not admitted. Check status.",
                 run_id=active,
             )
-        active_count = db.scalar(
-            select(func.count())
-            .select_from(ProductManagerRun)
-            .where(ProductManagerRun.status.in_(ACTIVE), ProductManagerRun.deadline_at > moment)
-        )
-        recent = ProductManagerRun.created_at >= moment - timedelta(hours=1)
-        account_count = db.scalar(
-            select(func.count())
-            .select_from(ProductManagerRun)
-            .where(recent, ProductManagerRun.initiator_id == actor_id)
-        )
-        global_count = db.scalar(select(func.count()).select_from(ProductManagerRun).where(recent))
-        if (
-            active_count >= config.pm_max_concurrent
-            or account_count >= config.pm_account_attempts
-            or global_count >= config.pm_global_attempts
-        ):
-            raise PMError(
-                429,
-                "generation_admission_limited",
-                "The local planning request limit was reached. Wait before trying again.",
-                retry_after=60,
-            )
+        from orba.planning_admission import check_limits
+
+        check_limits(db, config, actor_id, moment)
         snapshot = _snapshot(db, project, payload, config)
         run = ProductManagerRun(
             id=uuid4(),
@@ -277,13 +258,13 @@ def reserve(engine, config, project_id, actor_id, session_id, payload):
     return run_id, executor_id, snapshot
 
 
-def mark_running(engine, config, run_id, executor_id):
+def mark_running(
+    engine, config, run_id, executor_id, *, model=ProductManagerRun, validate_source=None
+):
     with phase(engine) as db:
-        initial = db.get(ProductManagerRun, run_id)
+        initial = db.get(model, run_id)
         project = lock_project(db, initial.project_id, initial.initiator_id)
-        run = db.scalar(
-            select(ProductManagerRun).where(ProductManagerRun.id == run_id).with_for_update()
-        )
+        run = db.scalar(select(model).where(model.id == run_id).with_for_update())
         moment = check_session(db, run.initiating_session_id, run.initiator_id)
         if (
             run.executor_id != executor_id
@@ -297,6 +278,8 @@ def mark_running(engine, config, run_id, executor_id):
                 "This execution lease is no longer available. Check the run before starting again.",
                 run_id=run_id,
             )
+        if validate_source is not None:
+            validate_source(db, run)
         run.status, run.started_at = "running", moment
         run.deadline_at = moment + timedelta(seconds=config.pm_timeout_seconds + 45)
 
@@ -311,13 +294,13 @@ def _metadata(run, result):
         run.usage = result.usage
 
 
-def record_failure(engine, run_id, category, diagnostic, result=None, status="failed"):
+def record_failure(
+    engine, run_id, category, diagnostic, result=None, status="failed", *, model=ProductManagerRun
+):
     failure_started = monotonic()
     try:
         with phase(engine) as db:
-            run = db.scalar(
-                select(ProductManagerRun).where(ProductManagerRun.id == run_id).with_for_update()
-            )
+            run = db.scalar(select(model).where(model.id == run_id).with_for_update())
             if run is None:
                 raise PMError(
                     503,
@@ -342,8 +325,9 @@ def record_failure(engine, run_id, category, diagnostic, result=None, status="fa
                 _metadata(run, result)
             diagnostic_id, final_state = run.diagnostic_id, run.status
         timing_logger.info(
-            "pm_timing run_id=%s stage=failure_commit_acknowledged stage_duration_ms=%.3f attempt=1 "
+            "%s_timing run_id=%s stage=failure_commit_acknowledged stage_duration_ms=%.3f attempt=1 "
             "final_state=%s error_category=%s provider_http_status=%s",
+            "pm" if model is ProductManagerRun else "architect",
             run_id,
             max(0, monotonic() - failure_started) * 1000,
             final_state,

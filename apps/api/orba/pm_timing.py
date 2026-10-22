@@ -8,7 +8,8 @@ logger = logging.getLogger("uvicorn.error.orba.pm_timing")
 
 
 class RunTiming:
-    def __init__(self):
+    def __init__(self, agent="pm"):
+        self.agent = "architect" if agent == "architect" else "pm"
         self.started = monotonic()
         self.run_id = None
         self.durations = {}
@@ -39,8 +40,9 @@ class RunTiming:
             "publication_commit_acknowledged": "persistence_transaction",
         }.get(stage)
         logger.info(
-            "pm_timing run_id=%s stage=%s elapsed_ms=%.3f stage_duration_ms=%s attempt=1 final_state=%s "
+            "%s_timing run_id=%s stage=%s elapsed_ms=%.3f stage_duration_ms=%s attempt=1 final_state=%s "
             "error_category=%s provider_http_status=%s",
+            self.agent,
             self.run_id or "-",
             stage,
             max(0, monotonic() - self.started) * 1000,

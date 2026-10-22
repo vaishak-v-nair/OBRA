@@ -11,7 +11,11 @@
     "test:e2e": "uv run --directory ../api python -m scripts.prepare_tests && playwright test",
     "test:e2e:negative": "playwright test --config playwright.negative.config.ts",
     "test:e2e:live": "uv run --directory ../api python -m scripts.verification live-preflight && playwright test --config playwright.live.config.ts",
-    "test:e2e:controlled": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.controlled.config.ts"
+    "test:e2e:controlled": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.controlled.config.ts",
+    "test:e2e:architect": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.architect-controlled.config.ts",
+    "test:e2e:architect:live": "uv run --directory ../api python -m scripts.architect_verification live-preflight && playwright test --config playwright.architect-live.config.ts",
+    "test:e2e:navigation": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.navigation.config.ts",
+    "test:e2e:architect:preflight": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.architect-preflight.config.ts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "1.5.0",

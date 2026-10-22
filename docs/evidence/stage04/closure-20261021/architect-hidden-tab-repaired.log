@@ -1,0 +1,107 @@
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.architect-controlled.config.ts --grep 'hidden architecture tab'
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [21516]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:25328) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:23984) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=eb1139de-a581-4d65-9e2b-c4135f2ed9e3 workspace_id=-
+[WebServer] (node:24076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=eb1139de-a581-4d65-9e2b-c4135f2ed9e3 workspace_id=3987f164-bbc3-4417-89d0-02adc209161e
+[WebServer] (node:10492) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12976) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     architect_timing run_id=6503dfc4-8438-4e8e-a1f3-5a599299a70c stage=admission_commit_acknowledged elapsed_ms=115.201 stage_duration_ms=114.799 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6503dfc4-8438-4e8e-a1f3-5a599299a70c stage=running_commit_acknowledged elapsed_ms=176.300 stage_duration_ms=60.703 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6503dfc4-8438-4e8e-a1f3-5a599299a70c stage=provider_response_received elapsed_ms=1204.331 stage_duration_ms=1026.891 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6503dfc4-8438-4e8e-a1f3-5a599299a70c stage=output_validated elapsed_ms=1222.281 stage_duration_ms=17.688 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6503dfc4-8438-4e8e-a1f3-5a599299a70c stage=publication_commit_acknowledged elapsed_ms=1557.162 stage_duration_ms=334.032 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] (node:5140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests-architect-controlled\architect.spec.ts:137:5 › hidden architecture tab retains a visible navigation dialog and rejected graph edits (18.3s)
+(node:25332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=0821d29e-ae81-4129-85b7-71ae53b932c4 workspace_id=-
+[WebServer] (node:8776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0821d29e-ae81-4129-85b7-71ae53b932c4 workspace_id=37122552-28fc-4530-9d55-014c49b3a868
+[WebServer] (node:23884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     architect_timing run_id=bb484cdf-1893-4c87-9b4a-1c187c2e2cdd stage=admission_commit_acknowledged elapsed_ms=82.506 stage_duration_ms=82.474 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bb484cdf-1893-4c87-9b4a-1c187c2e2cdd stage=running_commit_acknowledged elapsed_ms=125.949 stage_duration_ms=43.118 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] (node:25120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     architect_timing run_id=bb484cdf-1893-4c87-9b4a-1c187c2e2cdd stage=provider_response_received elapsed_ms=1142.760 stage_duration_ms=1016.582 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bb484cdf-1893-4c87-9b4a-1c187c2e2cdd stage=output_validated elapsed_ms=1147.065 stage_duration_ms=3.544 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bb484cdf-1893-4c87-9b4a-1c187c2e2cdd stage=publication_commit_acknowledged elapsed_ms=1389.958 stage_duration_ms=242.637 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] (node:5932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [mobile] › tests-architect-controlled\architect.spec.ts:137:5 › hidden architecture tab retains a visible navigation dialog and rejected graph edits (15.7s)
+(node:23148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=98773d35-d237-43a2-8f0a-0b91adf32baf workspace_id=-
+[WebServer] (node:17916) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=98773d35-d237-43a2-8f0a-0b91adf32baf workspace_id=5e6b2c06-f407-4a26-ad2b-94cb9f6e0834
+[WebServer] (node:24424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17652) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     architect_timing run_id=ed162ed8-bad9-4f02-92f4-1610afee1884 stage=admission_commit_acknowledged elapsed_ms=87.092 stage_duration_ms=87.061 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed162ed8-bad9-4f02-92f4-1610afee1884 stage=running_commit_acknowledged elapsed_ms=122.322 stage_duration_ms=34.997 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed162ed8-bad9-4f02-92f4-1610afee1884 stage=provider_response_received elapsed_ms=1134.682 stage_duration_ms=1012.123 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed162ed8-bad9-4f02-92f4-1610afee1884 stage=output_validated elapsed_ms=1138.116 stage_duration_ms=2.997 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed162ed8-bad9-4f02-92f4-1610afee1884 stage=publication_commit_acknowledged elapsed_ms=1306.651 stage_duration_ms=168.161 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] (node:15208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:14956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [tablet] › tests-architect-controlled\architect.spec.ts:137:5 › hidden architecture tab retains a visible navigation dialog and rejected graph edits (16.4s)
+[WebServer] (node:26432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+  3 passed (1.5m)

@@ -1,0 +1,39 @@
+......F..........................                                        [100%]
+================================== FAILURES ===================================
+_ test_fresh_read_only_sql_reconstructs_actual_draft_then_exact_api_approval __
+
+client = <starlette.testclient.TestClient object at 0x000001E3EEE023F0>
+
+    def test_fresh_read_only_sql_reconstructs_actual_draft_then_exact_api_approval(client):
+        project_id, plan_id, actor_id = authored(client)
+        draft = inspect(project_id, plan_id, actor_id)
+        assert draft["state"] == "draft" and draft["approved_at"] is None
+        assert draft["counts"] == {
+            "product_epics": 1,
+            "product_stories": 1,
+            "product_acceptance_criteria": 1,
+        }
+        assert all(count == 0 for count in draft["generation_records"].values())
+        response = client.post(
+            f"/api/v1/projects/{project_id}/pm-plans/{plan_id}/approve",
+            json={"expected_revision": draft["revision"], "version": draft["version"]},
+        )
+        assert response.status_code == 200
+        approved = inspect(
+            project_id, plan_id, actor_id
+        )  # Independent engine/session after API commit.
+        assert approved["state"] == "approved" and approved["approved_at"]
+        assert approved["approved_by"] == str(actor_id)
+>       assert approved["version"] == 1 and approved["revision"] == 2
+E       assert (1 == 1 and 1 == 2)
+
+tests\test_architect_preflight.py:100: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_architect_preflight.py::test_fresh_read_only_sql_reconstructs_actual_draft_then_exact_api_approval
+1 failed, 32 passed, 1 warning in 8.60s

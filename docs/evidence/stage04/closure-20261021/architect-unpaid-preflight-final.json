@@ -1,0 +1,37 @@
+{
+  "kind": "offline-and-optin-rejection-no-provider-requests",
+  "commands": [
+    {
+      "name": "architect-offline-config-final",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "python",
+        "-m",
+        "scripts.check_architect_config"
+      ],
+      "started_at": "2026-10-21T17:48:39.014632+00:00",
+      "exit_code": 1,
+      "pid": 4164,
+      "duration_seconds": 1.459,
+      "completed_at": "2026-10-21T17:48:40.473716+00:00"
+    },
+    {
+      "name": "architect-no-paid-opt-in-final",
+      "argv": [
+        "pwsh",
+        "-NoProfile",
+        "-File",
+        "scripts/verify-architect-live.ps1"
+      ],
+      "started_at": "2026-10-21T17:48:40.474128+00:00",
+      "exit_code": 2,
+      "pid": 22724,
+      "duration_seconds": 0.638,
+      "completed_at": "2026-10-21T17:48:41.112631+00:00"
+    }
+  ],
+  "generation_requests": 0
+}

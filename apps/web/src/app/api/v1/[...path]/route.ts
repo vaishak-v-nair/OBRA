@@ -5,7 +5,7 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
   const { path } = await context.params;
   if (path.some((segment) => !/^[a-zA-Z0-9_-]+$/.test(segment))) return new Response(null, { status: 400 });
   const upstream = new URL(`/api/v1/${path.join("/")}${request.nextUrl.search}`, process.env.API_URL ?? "http://127.0.0.1:8000");
-  const pm = path[0] === "projects" && ["pm-runs", "pm-plans"].includes(path[2]);
+  const pm = path[0] === "projects" && ["pm-runs", "pm-plans", "architect-runs", "architectures"].includes(path[2]);
   const headers = new Headers();
   for (const name of ["cookie", "content-type", "origin", "x-csrf-token"]) {
     const value = request.headers.get(name); if (value) headers.set(name, value);
@@ -31,7 +31,7 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
         body = new TextDecoder().decode(merged);
       } else body = await request.text();
     }
-    upstreamDeadline=AbortSignal.timeout(pm && request.method === "POST" && path[2] === "pm-runs" ? 290000 : 15000);
+    upstreamDeadline=AbortSignal.timeout(pm && request.method === "POST" && ["pm-runs", "architect-runs"].includes(path[2]) ? 290000 : 15000);
     dispatched=true;
     const response = await fetch(upstream, { method: request.method, headers,
       body,

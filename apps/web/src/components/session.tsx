@@ -48,7 +48,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     return () => { active = false; window.removeEventListener("orba-session-expired", expired); };
   }, [apply, failure]);
   const workspace = workspaces.find((space) => space.id === selected) ?? null;
-  function select(id: string) { if (workspaces.some((space) => space.id === id)) { sessionStorage.setItem("orba-workspace", id); setSelected(id); router.push("/projects"); } }
+  function select(id: string) { if (workspaces.some((space) => space.id === id)) { const go=()=>{sessionStorage.setItem("orba-workspace", id); setSelected(id); router.push("/projects");}; if(window.dispatchEvent(new CustomEvent("orba-draft-navigation",{cancelable:true,detail:go})))go(); } }
   async function signout() {
     advanceAuthEpoch();
     generation.current++; setUser(null); setWorkspaces([]); setSelected(""); sessionStorage.removeItem("orba-workspace");

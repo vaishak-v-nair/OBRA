@@ -1,0 +1,59 @@
+{
+  "recorded_at": "2026-10-21T18:20:33.154661+00:00",
+  "gate_a_receipt": "evidence/stage04/20261021T174944Z-A-1ce59ebc/receipt.json",
+  "gate_a_receipt_sha256": "64541615f31e619235fd60a2cecaedf702d6464a04855fab048466ed2bbc22ad",
+  "gate_a_native_exit": 0,
+  "gate_c_native_exit": 2,
+  "gate_c_result": {
+    "stage": "stage04-architect",
+    "recorded_at": "2026-10-21T18:19:41.027753+00:00",
+    "source_sha256": "07bf0deb6c2a0cdaed19a4441619404fbda0f57674a0db9171cb3ea47628eab7",
+    "gates": {
+      "A": {
+        "result": "PASS",
+        "receipt": "20261021T174944Z-A-1ce59ebc\\receipt.json",
+        "sha256": "64541615f31e619235fd60a2cecaedf702d6464a04855fab048466ed2bbc22ad"
+      },
+      "B": {
+        "result": "NOT RUN",
+        "reason": "FileNotFoundError"
+      }
+    },
+    "stage04_verdict": "PARTIAL"
+  },
+  "false_success_receipt": "evidence/stage04/20261021T174932Z-expected-failure-a0c50ff4/receipt.json",
+  "counts": {
+    "backend": 386,
+    "core-browser": 60,
+    "controlled-browser": 33,
+    "architect-browser": 33
+  },
+  "source_sha256": "07bf0deb6c2a0cdaed19a4441619404fbda0f57674a0db9171cb3ea47628eab7",
+  "paid_architect_requests": 0,
+  "report_helper_initial_error": {
+    "exit_code": 1,
+    "actual_error": "SyntaxError: invalid decimal literal",
+    "writes_before_failure": false,
+    "repair": "Remove nested helper quoting; assemble report in a direct script."
+  },
+  "artifacts": {
+    "architect-false-success-final-r2-command.json": "08ae9f693ac77d611e8b71798014ad13c26bdab9ff6b66cfd28b919b20bfd488",
+    "architect-false-success-final-r2.log": "42cf9df09f2112d24eb481af083f94c016dcab4503e2d7b0798635eff3e49bc4",
+    "architect-hidden-tab-regression-command.json": "9b58db896c5c50f23a8fa8b6182b1b90c97d5b541150f3f85a20d0a96d85f1c1",
+    "architect-hidden-tab-regression.log": "0c9cb54dc18553a55153c6e7372f350e83ded31a70775d1ea8ba380a26791eb1",
+    "architect-hidden-tab-repaired-command.json": "e69e69adaa78b3d7bbf9a45ccbd771384f39bcf121eb1fa628a8412150c8b620",
+    "architect-hidden-tab-repaired.log": "e0bdd61eea9a1641842c5dd173baae63494ff1470a31582e332040cf2f58ca4f",
+    "architect-no-paid-opt-in-final.log": "0b3ab76894a7032e90b43a6b71b24171bebfad54dd523dd957bc430a990f1ff7",
+    "architect-offline-config-final.log": "a6513ac8306c6b1b6224b2726ebd027465c5f80f3a85b3608472b1791ab053a4",
+    "architect-unpaid-preflight-final.json": "b19afb8c99c5f3ba9ba7f8b16703951d16039fcd33ae23981d4a34a3c0eb1889",
+    "development-command-artifacts.json": "8a490dce387fc4178aa9cf2432b052b07224ee6197dafaba3c3408ab6e5d5f77",
+    "final-baseline-identity-update.json": "9d0b0caa6469d325510eb5b2cb5e11578955362b20b7f747dd3a13db9c4cdedd",
+    "preservation-audit.json": "15fd4d3c5da7bd000ef65d343f35e6aceb7d2507fc6a180d0f959db2828e0b26",
+    "restore-test-postgres-command.json": "cb69b5d514269d4f8704ec4d273cfb27703feffc603f27eb717a487b432a1bd4",
+    "restore-test-postgres.log": "50e99f1b72fa641a800f374eadb1af3cb76d4ebcec1981d665c08f63b860160f",
+    "stage04-gate-a-final-command.json": "741df1680604116dfe0687886a572abbb25afc9d5ebb0012fa088c0bc221d47a",
+    "stage04-gate-a-final-console.log": "aef0bddb44a053b36b95cdcf83e60d9b323b62d8e8113800d003bc04eb445d72",
+    "stage04-gate-c-command.json": "90050ce91a565c832e003111da7d750cd0ab75c29b5c4cb0f3431268865e847f",
+    "stage04-gate-c-console.log": "c6b5ad17d43d25c6af22c8999209388a20f8b37a16b23b853575efd9aea6ec93"
+  }
+}

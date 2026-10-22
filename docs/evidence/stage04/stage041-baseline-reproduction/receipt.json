@@ -1,0 +1,60 @@
+{
+  "stage": "stage04.1",
+  "execution_class": "controlled_navigation_barrier_real_services",
+  "recorded_at": "2026-10-21T19:14:37.486801+00:00",
+  "source_sha256": "07bf0deb6c2a0cdaed19a4441619404fbda0f57674a0db9171cb3ea47628eab7",
+  "cause": "Missing test route-commit wait; real POST persistence can precede Next route commitment. Historical exact scheduling unrecorded.",
+  "commands": [
+    {
+      "name": "baseline-ordering-probe",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "exec",
+        "playwright",
+        "test",
+        "--config",
+        "C:\\Users\\vaish\\.gstack\\projects\\OBRA\\stage041\\20261021T185326Z\\probe.config.cjs"
+      ],
+      "started_at": "2026-10-21T18:57:06.667495+00:00",
+      "exit_code": 1,
+      "pid": 28244,
+      "duration_seconds": 3.827,
+      "completed_at": "2026-10-21T18:57:10.494368+00:00"
+    },
+    {
+      "name": "baseline-ordering-probe-cwd-correction",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "exec",
+        "playwright",
+        "test",
+        "--config",
+        "C:\\Users\\vaish\\.gstack\\projects\\OBRA\\stage041\\20261021T185326Z\\probe.config.cjs"
+      ],
+      "started_at": "2026-10-21T18:57:33.258055+00:00",
+      "exit_code": 0,
+      "pid": 23888,
+      "duration_seconds": 33.212,
+      "completed_at": "2026-10-21T18:58:06.470117+00:00"
+    }
+  ],
+  "provider_generation_requests": 0,
+  "metadata_requests": 0,
+  "artifacts": {
+    "baseline-ordering-command-cwd-correction.json": "3f786731e7c6e1523d1ea21825733f1ecdd47e33c8e981a04b2909d7ce5c1488",
+    "baseline-ordering-command.json": "76614ba6d45d01e660210f1e8fb427535a62edf3de5502dc682bab41a46b15a5",
+    "baseline-ordering-probe-cwd-correction.log": "126394375eabb7668b301f0a0af7cf8ef629b44afa0619cb2605c4bd1aac0420",
+    "baseline-ordering-probe.log": "26f95e607718368669d57186eb520512d0cf56020a5a132f0d86546210d67ff8",
+    "baseline-ordering-proof.json": "1a696100dc38237c727af9df905258d9ac27c7c9bdb72d2434150520f6271dd8"
+  }
+}

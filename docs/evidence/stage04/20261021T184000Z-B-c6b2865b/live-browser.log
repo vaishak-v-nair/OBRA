@@ -1,0 +1,58 @@
+$ pnpm --filter @orba/web test:e2e:architect:live
+$ uv run --directory ../api python -m scripts.architect_verification live-preflight && playwright test --config playwright.architect-live.config.ts
+[WebServer] INFO:     Started server process [21212]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:24496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:18600) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=session_rotated actor_id=704eca1c-0c50-4fbb-bff2-a9d8282def99 workspace_id=-
+[WebServer] (node:27296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=704eca1c-0c50-4fbb-bff2-a9d8282def99 workspace_id=802d6654-c7b1-4ee2-999c-099b643f0f39
+[WebServer] (node:29448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium-architect-live] › tests-architect-live\architect-live.spec.ts:8:5 › one real Architect response, persisted DAG, human editing, approval and isolation (28.9s)
+
+
+  1) [chromium-architect-live] › tests-architect-live\architect-live.spec.ts:8:5 › one real Architect response, persisted DAG, human editing, approval and isolation 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Approve plan', exact: true })
+
+
+      25 |     const authored=JSON.parse(command("scripts.seed_pm_fixture","--project",project.id,"--actor",user.id));
+      26 |     expect(authored.model_call).toBe(false);expect(authored.origin).toBe("human_authored");
+    > 27 |     await page.reload();await page.getByRole("button",{name:"Approve plan",exact:true}).click();await page.getByRole("button",{name:"Confirm approval",exact:true}).click();await expect(page.getByTestId("plan-state")).toHaveText("approved");
+         |                                                                                         ^
+      28 |     const source=await(await page.request.get(`/api/v1/projects/${project.id}/architect-source`)).json();
+      29 |     Object.assign(proof,{project_id:project.id,initiator_id:user.id,source_plan_id:source.id,source_version:source.version,source_revision:source.revision,source_hash:source.content_hash,source_origin:authored.origin});
+      30 |     await page.getByRole("navigation",{name:"Project planning views"}).getByRole("button",{name:"Architecture",exact:true}).click();
+        at E:\BrosKi\OBRA\apps\web\tests-architect-live\architect-live.spec.ts:27:89
+
+    Error Context: test-results\architect-live-one-real-Ar-22d24-ting-approval-and-isolation-chromium-architect-live\error-context.md
+
+  1 failed
+    [chromium-architect-live] › tests-architect-live\architect-live.spec.ts:8:5 › one real Architect response, persisted DAG, human editing, approval and isolation 
+[ELIFECYCLE] Command failed with exit code 1.
+Error: ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL
+
+  × "pnpm recursive run" failed in E:\BrosKi\OBRA\apps/web
+
+[ELIFECYCLE] Command failed with exit code 1.

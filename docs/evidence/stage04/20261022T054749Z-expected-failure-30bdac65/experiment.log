@@ -1,0 +1,50 @@
+ACTUAL_EVIDENCE run_id=a80925d4-eff6-43f0-8568-1ec96ab9d6af status=failed architectures=0 provider_double=True
+F
+================================== FAILURES ===================================
+________________________ test_incorrect_success_claim _________________________
+
+client = <starlette.testclient.TestClient object at 0x0000021081CBAE40>
+
+    def test_incorrect_success_claim(client):
+        project_id, source = approved_source(client)
+        response, _ = generate(
+            client,
+            project_id,
+            source,
+            ControlledProvider(
+                failure=ProviderFailure(
+                    "provider_unavailable",
+                    "Clearly labeled controlled HTTP503",
+                    502,
+                    diagnostic={"provider_double": True, "provider_http_status": 503},
+                )
+            ),
+        )
+        assert response.status_code == 502
+        run_id = UUID(response.json()["error"]["run_id"])
+        with Session(client.app.state.engine) as db:
+            run = db.get(ArchitectRun, run_id)
+            assert db.scalar(select(func.count()).select_from(ArchitectureVersion)) == 0
+            assert run.completed_at is not None
+            print(
+                f"ACTUAL_EVIDENCE run_id={run.id} status={run.status} architectures=0 provider_double=True"
+            )
+>           assert run.status == "succeeded", (
+                "DELIBERATELY INCORRECT: a failed Architect run must not count as success"
+            )
+E           AssertionError: DELIBERATELY INCORRECT: a failed Architect run must not count as success
+E           assert 'failed' == 'succeeded'
+E             
+E             - succeeded
+E             + failed
+
+tests\experiments\architect_failed_run_success_experiment.py:37: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/experiments/architect_failed_run_success_experiment.py::test_incorrect_success_claim
+1 failed, 1 warning in 0.64s

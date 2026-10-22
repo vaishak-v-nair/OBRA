@@ -1,0 +1,8 @@
+{
+  "actual_shell_exit_code": 1,
+  "actual_error": "AssertionError",
+  "cause": "The initial aggregate audit included the mutable runtime gate.lock alongside historical evidence.",
+  "exact_mutable_path": "docs\\evidence\\stage04\\gate.lock",
+  "code_evidence": "scripts.verification.gate_lock opens a+b and writes b0 on each invocation before acquiring the OS lock.",
+  "repair": "Require every other preexisting evidence file to remain byte-identical; record this exact runtime-control file separately. No receipt/artifact assertion was weakened."
+}

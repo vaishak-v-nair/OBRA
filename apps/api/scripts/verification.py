@@ -57,6 +57,7 @@ def source_manifest(root=ROOT):
             or name
             in {
                 ".gitignore",
+                ".env.example",
                 "package.json",
                 "pnpm-lock.yaml",
                 "pnpm-workspace.yaml",
@@ -88,7 +89,7 @@ def source_manifest(root=ROOT):
     ).hexdigest()
     return {
         "version": VERSION,
-        "policy": "git-relevant-source-v1",
+        "policy": "git-relevant-source-v2-including-root-template",
         "sha256": identity,
         "files": files,
     }
@@ -99,6 +100,7 @@ def deterministic_env(inherited=None):
     for name in list(env):
         if name.startswith(("PYTEST_", "PLAYWRIGHT_")) or name in {
             "ORBA_LIVE_OPT_IN",
+            "ORBA_ARCHITECT_LIVE_OPT_IN",
             "ORBA_GATE_ATTEMPT",
             "ORBA_GATE_A_RECEIPT",
             "ORBA_TEST_EVIDENCE_DIR",
@@ -111,6 +113,10 @@ def deterministic_env(inherited=None):
         ORBA_PM_MODEL="",
         ORBA_PM_THINKING_LEVEL="low",
         ORBA_PM_MAX_INPUT_BYTES="48000",
+        ORBA_ARCHITECT_API_KEY="",
+        ORBA_ARCHITECT_MODEL="",
+        ORBA_ARCHITECT_THINKING_LEVEL="low",
+        ORBA_ARCHITECT_MAX_INPUT_BYTES="96000",
         PYTHONIOENCODING="utf-8",
     )
     from scripts.prepare_tests import TEST_URL
@@ -672,7 +678,7 @@ def ports_available():
         )
 
 
-def execute_gate(gate, *, allow_paid=False):
+def execute_gate(gate, *, allow_paid=False, context=None):
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     attempt = EVIDENCE / (
         datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ") + f"-{gate}-" + uuid4().hex[:8]
@@ -687,6 +693,7 @@ def execute_gate(gate, *, allow_paid=False):
         "result": "BLOCKED",
         "exit_code": 2,
     }
+    value.update(context or {})
     write_new(attempt / "attempt.json", value)
     try:
         with gate_lock():
@@ -732,7 +739,7 @@ def execute_gate(gate, *, allow_paid=False):
                 value.update(result="PASS", exit_code=0)
     except KeyboardInterrupt:
         value.update(result="FAIL", exit_code=130, reason="interrupted")
-    except (EvidenceError, OSError, ValueError, KeyError, ET.ParseError) as exc:
+    except (EvidenceError, OSError, ValueError, KeyError, TypeError, ET.ParseError) as exc:
         value.update(
             result="BLOCKED" if value["result"] == "BLOCKED" else "FAIL",
             exit_code=value["exit_code"] or 1,

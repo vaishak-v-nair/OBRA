@@ -1,0 +1,8 @@
+{
+  "operation": "independent read-only SQL audit after failed B",
+  "actual_shell_exit_code": 1,
+  "actual_error": "psycopg.errors.UndefinedColumn: column \"created_by\" does not exist",
+  "statement": "SELECT id, project_id, version, revision, state, content_hash, created_by, approved_by, approved_at FROM product_plans ORDER BY created_at",
+  "database_mutated": false,
+  "repair": "Use the existing ProductPlan.creator_id column; no implementation changes."
+}

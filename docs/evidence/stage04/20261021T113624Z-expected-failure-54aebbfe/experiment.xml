@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.635" timestamp="2026-10-21T17:06:27.245743+05:30" hostname="Vaishak-MSI"><testcase classname="tests.experiments.architect_failed_run_success_experiment" name="test_incorrect_success_claim" time="0.500"><failure message="AssertionError: DELIBERATELY INCORRECT: a failed Architect run must not count as success&#10;assert 'failed' == 'succeeded'&#10;  &#10;  - succeeded&#10;  + failed">client = &lt;starlette.testclient.TestClient object at 0x00000289533DEF90&gt;
+
+    def test_incorrect_success_claim(client):
+        project_id, source = approved_source(client)
+        response, _ = generate(
+            client,
+            project_id,
+            source,
+            ControlledProvider(
+                failure=ProviderFailure(
+                    "provider_unavailable",
+                    "Clearly labeled controlled HTTP503",
+                    502,
+                    diagnostic={"provider_double": True, "provider_http_status": 503},
+                )
+            ),
+        )
+        assert response.status_code == 502
+        run_id = UUID(response.json()["error"]["run_id"])
+        with Session(client.app.state.engine) as db:
+            run = db.get(ArchitectRun, run_id)
+            assert db.scalar(select(func.count()).select_from(ArchitectureVersion)) == 0
+            assert run.completed_at is not None
+            print(
+                f"ACTUAL_EVIDENCE run_id={run.id} status={run.status} architectures=0 provider_double=True"
+            )
+&gt;           assert run.status == "succeeded", (
+                "DELIBERATELY INCORRECT: a failed Architect run must not count as success"
+            )
+E           AssertionError: DELIBERATELY INCORRECT: a failed Architect run must not count as success
+E           assert 'failed' == 'succeeded'
+E             
+E             - succeeded
+E             + failed
+
+tests\experiments\architect_failed_run_success_experiment.py:37: AssertionError</failure></testcase></testsuite></testsuites>

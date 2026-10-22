@@ -1,6 +1,6 @@
-# ORBA Stage 03 architecture
+# ORBA architecture: Stage04 planning extension
 
-The existing Next.js/FastAPI/PostgreSQL monorepo, authentication and workspace authorization are retained. Stage03 adds one real Product Manager planning agent. The scope remains local development; passing tests do not certify production security. Current verified and blocked scope is in VERIFICATION.md.
+The existing Next.js/FastAPI/PostgreSQL monorepo, authentication, workspace authorization and Product Manager remain. Stage04 adds an Architect proposal and task dependency engine; it executes no tasks. [Stage04 data model, algorithms, API and lifecycle](ARCHITECTURE_STAGE04.md) describes the additive extension. The Stage03 sections below retain their historical design context. Current verification is in VERIFICATION.md; no production security certification is claimed.
 
 ```text
 Browser localhost:3000
@@ -158,3 +158,30 @@ The SDK server deadline is T, transport T+5 and asyncio T+10, inside existing le
 A browser/proxy disconnect can leave bounded synchronous provider work running. Unknown requests retain a scoped nonsecret UUID, with GET-only status checks. A fresh exact own failed/interrupted run permits one new deliberate request; authoritative pre-admission rejection is separate from unknown outcomes. Input stays in page memory, with explicit authorized snapshot restoration after reload. Saved-result/copy references are cleared only after required result reads succeed. An open editor retains its exact original revision even before local changes; status refresh cannot attach a newer revision to older draft content. An active-project rejection identifies an existing run and clears only the rejected new request reference. Setup/empty states require successful reads; uncertainty notices are neutral. Existing approval, provenance, authorization and revision checks remain authoritative.
 
 Official references: [Google GenAI SDK](https://googleapis.github.io/python-genai/) and [Gemini structured outputs](https://ai.google.dev/gemini-api/docs/structured-output). The locked SDK is2.31.0; its source was inspected for timeout/retry behavior. No Architect Agent, tool execution, orchestration, other provider or production-security certification has been added.
+# Stage04.1 browser verification boundary
+
+Project POST persistence and Next router commitment are separate events. Browser
+setup awaits `/projects/{exact UUID}`, the loaded server-returned project/workspace
+identity and selected authorized workspace before reload. Product Plan approval
+binds the saved version/revision; approval itself does not increment the content
+revision. UI state is checked against the exact API response and a fresh PostgreSQL
+repeatable-read, read-only transaction after approval and reload. Existing AuthGate
+remounts on account/workspace/path changes; the repair does not replace that guard.
+
+The shared Architect Phase1 performs actual registration/workspace/project/source
+setup and human approval without generation. Its human-authored test draft has no
+fake PM run. The unpaid-only factory lives in tests, refuses any database except
+loopback54330/orba_test and refuses live opt-in. It reads no dotenv/key. A labeled
+non-runtime sentinel enables control inspection, while both model-generation POST
+routes are rejected before dependency construction. Dependency tripwires and safe
+counters provide another check; SQL independently verifies zero runs/artifacts.
+It does not return a controlled model response or establish provider readiness.
+
+The future production live browser flow shares Phase1. A context-wide transport
+boundary starts closed, opens only after exact approval/reload/source verification
+and explicit live opt-in, forwards at most one Architect request, then closes for
+all post-generation checks. PM generation remains forbidden. Direct API denial is
+tested separately in the unpaid factory. No production bypass flag is introduced.
+Receipts distinguish unpaid navigation proof from real-model Gate B. Safe milestone
+timelines record paths/status/UUIDs/timestamps; full secret-bearing network traces
+remain off. Missing/failed live Architect B keeps Stage04 PARTIAL.

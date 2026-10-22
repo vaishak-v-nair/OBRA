@@ -1,0 +1,27 @@
+{
+  "name": "architect-focused-browser",
+  "argv": [
+    "npm",
+    "exec",
+    "--yes",
+    "--package=pnpm@12.14.0",
+    "--",
+    "pnpm",
+    "--filter",
+    "@orba/web",
+    "exec",
+    "playwright",
+    "test",
+    "--config",
+    "playwright.architect-controlled.config.ts",
+    "--project",
+    "chromium",
+    "--grep",
+    "controlled architecture persists|viewer can|explicit retry"
+  ],
+  "started_at": "2026-10-21T11:36:46.774860+00:00",
+  "exit_code": 1,
+  "pid": 22808,
+  "duration_seconds": 229.404,
+  "completed_at": "2026-10-21T11:40:36.179278+00:00"
+}
