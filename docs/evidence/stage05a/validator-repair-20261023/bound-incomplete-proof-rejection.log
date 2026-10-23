@@ -1,0 +1,18 @@
+{"experiment": "isolated bound invalid proof, not actual Gate B", "complete_saved_B_accepted_first": true, "disk_mutations": 0, "database_operations": 0, "model_requests": 0}
+Traceback (most recent call last):
+  File "C:\Users\vaish\.gstack\projects\OBRA\checkpoints\stage05a-validator-repair-20261023\reject_incomplete_bound_proof.py", line 47, in <module>
+    gates.validate(receipt_path, 'B')  # Must raise EvidenceError and native exit1.
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\scripts\orchestration_verification.py", line 157, in validate
+    results_for(gate, path.parent), sort_keys=True
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\scripts\orchestration_verification.py", line 74, in results_for
+    "local-proof": live_local_proof(attempt),
+                   ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\scripts\orchestration_verification.py", line 63, in live_local_proof
+    return validate_proof(proof)
+  File "E:\BrosKi\OBRA\apps\api\scripts\orchestration_proof.py", line 474, in validate_proof
+    raise EvidenceError(
+    ...<2 lines>...
+    ) from None
+scripts.verification.EvidenceError: Local B proof has a missing or invalid required field at run_id. Recreate complete local Gate B evidence; see docs/VERIFICATION_STAGE05A.md.

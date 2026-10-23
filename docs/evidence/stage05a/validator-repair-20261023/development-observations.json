@@ -1,0 +1,30 @@
+{
+  "type": "observed_development_command_results_not_gate_evidence",
+  "observations": [
+    {
+      "command": "uv run --directory apps/api ruff check scripts/orchestration_proof.py scripts/orchestration_verification.py scripts/inspect_orchestration.py tests/orchestration_proof_support.py tests/test_orchestration_proof.py",
+      "exit_code": 1,
+      "issues": [
+        "C408: four dict constructor style findings",
+        "I001: one import ordering finding"
+      ],
+      "resolution": "explicit dictionary literals and sorted import; final checks0"
+    },
+    {
+      "command": "same focused Ruff check after additional tests",
+      "exit_code": 1,
+      "issues": [
+        "I001: import ordering",
+        "PIE807: useless lambda",
+        "PLW1510: explicit subprocess check argument"
+      ],
+      "resolution": "sorted imports, all=list, check=False; final checks0"
+    },
+    {
+      "command": "uv run --directory apps/api pytest -q tests/test_orchestration_proof.py tests/test_orchestration_verification.py --junitxml=private/targeted.xml",
+      "exit_code": 0,
+      "passed": 217,
+      "note": "prior targeted source; not a full gate"
+    }
+  ]
+}

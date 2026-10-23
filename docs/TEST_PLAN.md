@@ -1,5 +1,19 @@
 # ORBA verification plans
 
+## Current Stage05A extension
+
+Normal scripts/verify.ps1 retains every Stage01–04 check and adds orchestration
+backend and desktop/mobile/tablet cases. A separate
+scripts/verify-orchestration-local.ps1 verifies actual local services, source UI
+approval, run creation, immutable task/edge snapshots, SQL checksum/ledger audit,
+reload, idempotency and isolation. No model call or executor response is used.
+See PLAN_STAGE05A.md, ARCHITECTURE_STAGE05A.md and VERIFICATION_STAGE05A.md for the
+exact lifecycle, failure matrix and executed evidence. Backend and browser tests
+remain sequential against guarded orba_test. The deliberately incorrect completion
+assertion is outside normal discovery and must genuinely exit1 when explicitly run.
+
+The Stage04 section below describes the preserved planning-agent regression scope.
+
 ## Current Stage04 extension
 
 Run `pwsh -NoProfile -File scripts/verify.ps1` from the repository root. It retains
@@ -89,3 +103,13 @@ Exact runnable commands must match generated package names and scripts in README
 
 Record actual test counts, command outputs, mocks/stubs if any, API/browser/database process scope, DB isolation details, negative failure handling, remaining blockers and exact reproduction commands. Stage verdict is VERIFIED only when every mandatory definition-of-done item passes; otherwise PARTIAL, BLOCKED or FAILED. Do not automatically start Stage 02.
 
+
+## Stage05A proof-v2 repair regression
+
+Preserve all478 previous backend identities and all186 browser cases. Add205
+backend adversarial/integration cases for missing/null/empty/malformed/contradictory
+proof, strict UUID/counter/hash types, raw normalization and bool/int differences,
+API/SQL/graph/source reconciliation, full edge/event records, zero-edge validity,
+native empty-task-query rejection and python -O integrity guards. Current required
+backend total683. Real SQL positives and independent local Gate B remain distinct
+from explicitly synthetic unit inputs. See VERIFICATION_STAGE05A_REPAIR.md.

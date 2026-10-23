@@ -1,0 +1,230 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: pm.spec.ts >> human-authored fixture: edit criterion, persist, approve exact version, history and isolation
+- Location: tests\pm.spec.ts:32:5
+
+# Error details
+
+```
+Test timeout of 30000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - link "Skip to content" [ref=f4e3] [cursor=pointer]:
+      - /url: "#main"
+    - complementary "Workspace navigation" [ref=f4e4]:
+      - link "orba ." [ref=f4e6] [cursor=pointer]:
+        - /url: /
+        - generic [aria-hidden] [ref=f4e7]: o
+        - text: orba
+        - generic [ref=f4e8]: .
+      - generic [ref=f4e9]:
+        - generic [ref=f4e10]: P
+        - generic [ref=f4e11]:
+          - generic [ref=f4e12]: Workspace
+          - combobox "Workspace" [ref=f4e13]:
+            - option "Select workspace" [disabled]
+            - option "Product planning" [selected]
+      - link "New project" [ref=f4e14] [cursor=pointer]:
+        - /url: /projects/new
+      - paragraph [ref=f4e16]: WORKSPACE
+      - navigation "Main navigation" [ref=f4e17]:
+        - link "Chat" [ref=f4e18] [cursor=pointer]:
+          - /url: /
+        - link "Projects" [ref=f4e22] [cursor=pointer]:
+          - /url: /projects
+        - link "Skills" [ref=f4e28] [cursor=pointer]:
+          - /url: /skills
+        - link "Contribute" [ref=f4e33] [cursor=pointer]:
+          - /url: /contribute
+        - link "Workspaces" [ref=f4e39] [cursor=pointer]:
+          - /url: /workspaces
+        - link "Activity" [ref=f4e44] [cursor=pointer]:
+          - /url: /activity
+      - generic [ref=f4e48]:
+        - link "Settings" [ref=f4e49] [cursor=pointer]:
+          - /url: /settings
+        - generic [ref=f4e53]:
+          - generic [ref=f4e54]: O
+          - group [ref=f4e55]:
+            - generic "Account · ORBA Tester" [ref=f4e56] [cursor=pointer]
+    - generic [ref=f4e57]:
+      - banner [ref=f4e58]:
+        - generic [ref=f4e59]:
+          - generic [ref=f4e60]: Workspace
+          - strong [ref=f4e63]: Projects
+        - generic [ref=f4e64]:
+          - generic [ref=f4e65]: Product planning
+          - button "Toggle color theme" [active] [ref=f4e66] [cursor=pointer]
+      - main [ref=f4e69]:
+        - generic [ref=f4e71]:
+          - link "All projects" [ref=f4e72] [cursor=pointer]:
+            - /url: /projects
+          - generic [ref=f4e75]:
+            - generic [ref=f4e79]:
+              - paragraph [ref=f4e80]: PROJECT OVERVIEW
+              - heading "A personal habit journal with daily check-ins." [level=1] [ref=f4e81]
+            - generic [ref=f4e82]: Created
+          - generic [ref=f4e86]:
+            - text: Created
+            - time [ref=f4e87]: 10/23/2026, 9:33:15 AM
+          - generic [ref=f4e88]:
+            - heading "Where it begins" [level=2] [ref=f4e89]
+            - paragraph [ref=f4e90]: Your original project description
+            - paragraph [ref=f4e91]: A personal habit journal with daily check-ins.
+            - button "Edit project" [ref=f4e92] [cursor=pointer]
+          - generic [ref=f4e93]:
+            - navigation "Project planning views" [ref=f4e94]:
+              - button "Product Plan" [ref=f4e95] [cursor=pointer]
+              - button "Architecture" [ref=f4e96] [cursor=pointer]
+              - button "Task Graph" [ref=f4e97] [cursor=pointer]
+              - button "Execution Plan" [ref=f4e98] [cursor=pointer]
+            - region [ref=f4e100]:
+              - generic [ref=f4e101]:
+                - generic [ref=f4e102]:
+                  - paragraph [ref=f4e103]: PRODUCT MANAGER
+                  - heading "Product Plan" [level=2] [ref=f4e104]
+                - generic [ref=f4e108]: One planning agent
+              - paragraph [ref=f4e109]: Turn your idea into reviewable requirements. Generation uses your configured AI provider and may incur usage.
+              - complementary [ref=f4e110]:
+                - heading "Configure the Product Manager" [level=3] [ref=f4e111]
+                - paragraph [ref=f4e112]: Set GEMINI_API_KEY and ORBA_PM_MODEL in the root .env, then restart the API. Configuration does not prove provider access.
+                - paragraph [ref=f4e113]: Keep credentials on the API server. Set an explicit supported Gemini model. A configured key does not guarantee model access.
+              - group [ref=f4e114]:
+                - generic "Generate another product plan" [ref=f4e115] [cursor=pointer]
+              - button "Check status" [ref=f4e117] [cursor=pointer]
+              - generic [ref=f4e118]:
+                - generic [ref=f4e119]:
+                  - generic [ref=f4e120]:
+                    - text: Plan version
+                    - combobox "Plan version" [ref=f4e121]:
+                      - option "Version 2 · draft · revision 1"
+                      - option "Version 1 · approved · revision 2" [selected]
+                  - generic [ref=f4e122]: approved
+                - paragraph [ref=f4e123]: Version 1 · revision 2 · Human-authored plan
+                - paragraph [ref=f4e124]: Approved 10/23/2026, 9:33:33 AM by 6341fd4b-e012-4544-a871-32f012ca4ae4. This version is immutable.
+                - generic [ref=f4e125]:
+                  - generic [ref=f4e126]:
+                    - generic [ref=f4e127]:
+                      - heading "Product name" [level=3] [ref=f4e128]
+                      - paragraph [ref=f4e129]: Habit journal — human-authored test fixture
+                      - group [ref=f4e130]:
+                        - generic "Human edited" [ref=f4e131] [cursor=pointer]
+                    - generic [ref=f4e132]:
+                      - heading "Summary" [level=3] [ref=f4e133]
+                      - paragraph [ref=f4e134]: Track a personal daily habit.
+                      - group [ref=f4e135]:
+                        - generic "Human edited" [ref=f4e136] [cursor=pointer]
+                    - generic [ref=f4e137]:
+                      - heading "Problem statement" [level=3] [ref=f4e138]
+                      - paragraph [ref=f4e139]: A person needs a record of daily check-ins.
+                      - group [ref=f4e140]:
+                        - generic "Human edited" [ref=f4e141] [cursor=pointer]
+                    - generic [ref=f4e142]:
+                      - heading "Proposed solution" [level=3] [ref=f4e143]
+                      - paragraph [ref=f4e144]: A dated check-in journal.
+                      - group [ref=f4e145]:
+                        - generic "Human edited" [ref=f4e146] [cursor=pointer]
+                  - generic [ref=f4e147]:
+                    - heading "Target users" [level=3] [ref=f4e148]
+                    - list [ref=f4e149]:
+                      - listitem [ref=f4e150]:
+                        - text: One person tracking a habit
+                        - group [ref=f4e151]:
+                          - generic "Human edited" [ref=f4e152] [cursor=pointer]
+                  - generic [ref=f4e153]:
+                    - heading "User goals" [level=3] [ref=f4e154]
+                    - list [ref=f4e155]:
+                      - listitem [ref=f4e156]:
+                        - text: See whether today's habit is complete
+                        - group [ref=f4e157]:
+                          - generic "Human edited" [ref=f4e158] [cursor=pointer]
+                  - generic [ref=f4e159]:
+                    - heading "In scope" [level=3] [ref=f4e160]
+                    - list [ref=f4e161]:
+                      - listitem [ref=f4e162]:
+                        - text: Daily check-ins
+                        - group [ref=f4e163]:
+                          - generic "Human edited" [ref=f4e164] [cursor=pointer]
+                  - generic [ref=f4e165]:
+                    - heading "Out of scope" [level=3] [ref=f4e166]
+                    - list [ref=f4e167]:
+                      - listitem [ref=f4e168]:
+                        - text: Social sharing
+                        - group [ref=f4e169]:
+                          - generic "Human edited" [ref=f4e170] [cursor=pointer]
+                  - generic [ref=f4e171]:
+                    - heading "Functional requirements" [level=3] [ref=f4e172]
+                    - list [ref=f4e173]:
+                      - listitem [ref=f4e174]:
+                        - text: Record one check-in per local day
+                        - group [ref=f4e175]:
+                          - generic "Human edited" [ref=f4e176] [cursor=pointer]
+                  - generic [ref=f4e177]:
+                    - heading "Assumptions" [level=3] [ref=f4e178]
+                    - list [ref=f4e179]:
+                      - listitem [ref=f4e180]:
+                        - text: A single local user is sufficient initially
+                        - group [ref=f4e181]:
+                          - generic "Human edited" [ref=f4e182] [cursor=pointer]
+                  - generic [ref=f4e183]:
+                    - heading "Epics and user stories" [level=3] [ref=f4e184]
+                    - article [ref=f4e185]:
+                      - generic [ref=f4e186]:
+                        - heading "Daily journal" [level=4] [ref=f4e187]
+                        - generic [ref=f4e188]: P1
+                      - paragraph [ref=f4e189]: Record a daily habit
+                      - group [ref=f4e190]:
+                        - generic "Human edited" [ref=f4e191] [cursor=pointer]
+                      - article [ref=f4e192]:
+                        - heading "Record today's check-in P1" [level=5] [ref=f4e193]
+                        - paragraph [ref=f4e194]: As a habit tracker, I want to record a daily check-in, so that I can review my progress.
+                        - paragraph [ref=f4e195]: Keep the saved date and completion state.
+                        - group [ref=f4e196]:
+                          - generic "Human edited" [ref=f4e197] [cursor=pointer]
+                        - paragraph [ref=f4e198]: "Requirements: fr_checkin"
+                        - heading "Acceptance criteria" [level=6] [ref=f4e199]
+                        - list [ref=f4e200]:
+                          - listitem [ref=f4e201]:
+                            - paragraph [ref=f4e202]:
+                              - strong [ref=f4e203]: Given
+                              - text: Today's habit is incomplete
+                            - paragraph [ref=f4e204]:
+                              - strong [ref=f4e205]: When
+                              - text: I record today's check-in
+                            - paragraph [ref=f4e206]:
+                              - strong [ref=f4e207]: Then
+                              - text: The check-in stays complete after reloading the journal.
+                            - group [ref=f4e208]:
+                              - generic "Human edited" [ref=f4e209] [cursor=pointer]
+                  - generic [ref=f4e210]:
+                    - heading "Items requiring confirmation" [level=3] [ref=f4e211]
+                    - article [ref=f4e212]:
+                      - strong [ref=f4e213]: Blocking · deferred
+                      - paragraph [ref=f4e214]: Confirm the first-release platform.
+                      - paragraph [ref=f4e215]: "Reason: The test owner defers the platform decision until architecture review."
+                      - paragraph [ref=f4e216]: Recorded 10/23/2026, 9:33:29 AM by 6341fd4b-e012-4544-a871-32f012ca4ae4
+                      - group [ref=f4e217]:
+                        - generic "Human edited" [ref=f4e218] [cursor=pointer]
+                - button "Create draft copy" [ref=f4e220] [cursor=pointer]
+              - group [ref=f4e221]:
+                - generic "Planning run history (0)" [ref=f4e222] [cursor=pointer]
+          - generic [ref=f4e228]:
+            - heading "Room for what comes next" [level=2] [ref=f4e229]
+            - paragraph [ref=f4e230]: Task execution, additional agents, and delivery evidence belong to later stages.
+            - generic [ref=f4e231]: Coming in a later stage
+      - contentinfo [ref=f4e235]:
+        - generic [ref=f4e236]: Built for the way you think.
+        - generic [ref=f4e237]: Local development workspace
+  - alert [ref=f4e238]
+```

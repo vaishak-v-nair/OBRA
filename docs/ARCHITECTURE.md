@@ -1,4 +1,17 @@
-# ORBA architecture: Stage04 planning extension
+# ORBA architecture: planning and orchestration foundation
+
+Stage05A's local verification uses a strict evidence-only proof-v2 contract. It
+requires actual SQL task/edge/event records from a separate read-only repeatable-read
+transaction and reconciles API identities, DAG evaluation and the raw canonical
+source checksum. Missing/null/coerced/normalized evidence fails closed. Tasks must
+be nonempty; zero edges are valid. Public application behavior is unchanged. See
+[validator repair](VERIFICATION_STAGE05A_REPAIR.md) for source/history boundaries.
+
+Stage05A adds a deterministic orchestration control plane, described in
+[ARCHITECTURE_STAGE05A.md](ARCHITECTURE_STAGE05A.md). It preserves approved source
+artifacts, snapshots their tasks and DAG, records transactional events and
+separates eligibility from execution. No executor or scheduler is implemented.
+The Stage04 sections below remain the planning-agent architecture baseline.
 
 The existing Next.js/FastAPI/PostgreSQL monorepo, authentication, workspace authorization and Product Manager remain. Stage04 adds an Architect proposal and task dependency engine; it executes no tasks. [Stage04 data model, algorithms, API and lifecycle](ARCHITECTURE_STAGE04.md) describes the additive extension. The Stage03 sections below retain their historical design context. Current verification is in VERIFICATION.md; no production security certification is claimed.
 

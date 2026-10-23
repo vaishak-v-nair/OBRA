@@ -1,4 +1,25 @@
-# ORBA Stage04 — VERIFIED
+# ORBA current verification
+
+The focused proof-v2 repair is **VERIFIED** against fresh passing A/B/C:
+683 backend tests;60 core,33 PM controlled,33 Architect controlled,39 navigation
+and21 orchestration browser tests;1 independent local control-plane browser flow.
+All17 A commands and local B/C exited0 with zero skips, xfails or retries.
+Source: `6c21f5d8534403c93be7feaa9b232aa57e62a6686d49084bc09dbd808e56e705`.
+See [the repair record](VERIFICATION_STAGE05A_REPAIR.md). No paid model, executor,
+commit or later-stage work occurred. Overall Stage05 is IN PROGRESS.
+
+The historical pre-repair results below remain unchanged:
+
+Stage05A orchestration foundation is **VERIFIED** on2026-10-23, source
+`daff99b31e5db1156011058eed168e0c04136bb840dcb75f7de2d928fe7d3f62`. Gate A passed478 backend and186 browser tests (all17 commands); independent
+local Gate B passed1 real browser/API/PostgreSQL control-plane flow. Gate C exited0.
+No mandatory skips/retries, model generation or executor simulation. Actual
+commands, failures/repairs, source bindings and receipts are in
+[VERIFICATION_STAGE05A.md](VERIFICATION_STAGE05A.md).
+**Overall Stage05: IN PROGRESS.** No execution or software-delivery completion
+is claimed. Historical Stage04 evidence follows and is not reused for this verdict.
+
+## ORBA Stage04 — VERIFIED historical baseline
 
 2026-10-22: the owner's single authorized Gemini Architect request passed the complete
 live browser and independent PostgreSQL verification. No implementation code changed.

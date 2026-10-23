@@ -27,6 +27,9 @@ export async function request<T>(path: string, options?: RequestInit & { timeout
     response = await fetch(path, { ...init, headers, credentials: "same-origin", cache: "no-store", signal });
   } catch {
     if (init.signal?.aborted) throw new DOMException("Request cancelled", "AbortError");
+    if (path.includes("/orchestration-runs")) throw new ApiError(dispatched
+      ? "Could not reach ORBA. The saved run's outcome is unconfirmed. Use Check creation status or Refresh execution plans before another action. No execution is certified."
+      : "ORBA could not prepare the request. No orchestration request was sent. Reconnect before trying again.", 0, dispatched ? "run_outcome_unknown" : "request_not_dispatched");
     if (path.includes("/pm-") || path.includes("/architect")) throw new ApiError(dispatched
       ? "Could not reach ORBA. The operation's outcome is unconfirmed. Use Check status before explicitly trying again. Your draft stays here."
       : "ORBA could not prepare the request. No generation request was sent. Your input stays here; reconnect before trying again.", 0, dispatched ? "run_outcome_unknown" : "request_not_dispatched");

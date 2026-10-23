@@ -1,0 +1,137 @@
+{
+  "execution_class": "real_local_control_plane",
+  "audit": {
+    "run_id": "498a1cb0-faeb-4784-a998-66d51e2adb26",
+    "project_id": "25726c1e-6acd-4ce1-a525-6980f70d87ab",
+    "workspace_id": "fd894319-a0a7-4014-bb21-4e2d2edc1a47",
+    "creator_id": "7b9479e9-095a-4d13-80dd-b1dbf7b04ae7",
+    "client_request_id": "70f4f8ec-657d-4ec4-aaab-cfc07d7640d9",
+    "architecture_id": "68f6484a-46e8-4e21-897a-0b237f604929",
+    "architecture_version": 1,
+    "architecture_revision": 1,
+    "architecture_hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e",
+    "source_plan_id": "c9403250-99f7-42e6-80c2-f4d6a47e4e8e",
+    "source_version": 1,
+    "source_revision": 1,
+    "source_hash": "9ffe63b44dc31fe6e54193c5e3e245899d2bc1375ea437ca447a982f3899ac8a",
+    "source_approved_by": "7b9479e9-095a-4d13-80dd-b1dbf7b04ae7",
+    "source_approved_at": "2026-10-23T07:08:49.640674+00:00",
+    "snapshot_hash": "a658e9851ae5ef64e2dc3e32d6379143a360a6bb76d6cdfa3fd4a227be0b6bcb",
+    "hash_valid": true,
+    "relational_snapshot_valid": true,
+    "status": "awaiting_executor",
+    "revision": 2,
+    "created_at": "2026-10-23T07:08:50.093777+00:00",
+    "cancelled_at": null,
+    "counts": {
+      "tasks": 2,
+      "dependencies": 1,
+      "events": 2,
+      "traces": 3
+    },
+    "graph": {
+      "valid": true,
+      "edge_convention": "prerequisite -> dependent",
+      "topological_order": [
+        "storage",
+        "screen"
+      ],
+      "roots": [
+        "storage"
+      ],
+      "eligible": [
+        "storage"
+      ],
+      "blocked": [
+        "screen"
+      ],
+      "nodes": [
+        {
+          "key": "storage",
+          "prerequisites": [],
+          "dependents": [
+            "screen"
+          ],
+          "ancestors": [],
+          "impact": [
+            "screen"
+          ],
+          "eligibility": "eligible",
+          "execution_status": "awaiting_executor",
+          "explanation": "No unmet prerequisites. Eligible for future dispatch; awaiting an execution agent. No code has been run."
+        },
+        {
+          "key": "screen",
+          "prerequisites": [
+            "storage"
+          ],
+          "dependents": [],
+          "ancestors": [
+            "storage"
+          ],
+          "impact": [],
+          "eligibility": "waiting_prerequisites",
+          "execution_status": "awaiting_executor",
+          "explanation": "Waiting for storage to complete with verified evidence."
+        }
+      ],
+      "edges": [
+        {
+          "prerequisite": "storage",
+          "dependent": "screen"
+        }
+      ],
+      "execution_performed": false
+    },
+    "tasks": [
+      {
+        "id": "7683dab6-348f-4e52-83f3-1593c0047491",
+        "key": "storage",
+        "source_task_id": "558ecbcf-eef7-41e4-8868-0a417f9fd84f",
+        "eligibility": "eligible",
+        "execution_status": "awaiting_executor"
+      },
+      {
+        "id": "fcfdcb13-fa24-4f47-a09b-17e31b4d1329",
+        "key": "screen",
+        "source_task_id": "ee2a9303-8980-4f57-b008-e89778a3e016",
+        "eligibility": "waiting_prerequisites",
+        "execution_status": "awaiting_executor"
+      }
+    ],
+    "events": [
+      {
+        "id": "47099172-d90f-47f7-9157-43e57ee03d07",
+        "sequence": 1,
+        "event_type": "run_created",
+        "actor_type": "user",
+        "actor_id": "7b9479e9-095a-4d13-80dd-b1dbf7b04ae7",
+        "run_revision": 1,
+        "occurred_at": "2026-10-23T07:08:50.093777+00:00"
+      },
+      {
+        "id": "2ce55bdc-f8d0-4e9b-9cd3-4c767e15388c",
+        "sequence": 2,
+        "event_type": "run_awaiting_executor",
+        "actor_type": "system",
+        "actor_id": null,
+        "run_revision": 2,
+        "occurred_at": "2026-10-23T07:08:50.093777+00:00"
+      }
+    ],
+    "generation_records": {
+      "product_manager_runs": 0,
+      "architect_runs": 0
+    },
+    "audit_model_requests": 0,
+    "execution_performed": false,
+    "execution_class": "real_local_control_plane"
+  },
+  "posts": 1,
+  "boundary": {
+    "execution_class": "no_generation_test_boundary",
+    "provider_readiness_verified": false,
+    "blocked_generation_posts": 0,
+    "provider_dependency_entries": 0
+  }
+}

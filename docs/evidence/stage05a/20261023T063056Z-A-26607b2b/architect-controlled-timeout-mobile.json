@@ -1,0 +1,68 @@
+{
+  "execution_class": "controlled_provider_double",
+  "provider_double": true,
+  "posts": 1,
+  "database": {
+    "id": "8d5c9b9c-1c7c-49f2-9ac5-b6337c25a1cb",
+    "project_id": "8612b33e-5a0f-4222-84c0-f25e888c553b",
+    "workspace_id": "810808ac-7b21-4a6a-ba0b-a30c01c0966c",
+    "initiator_id": "13213f32-ee6e-4f73-8e83-96a5d7b20e34",
+    "client_request_id": "b972f744-dccd-4dcd-98c4-d3fa95e44f75",
+    "source_plan_id": "86da2def-0642-4e4c-b0cc-548004a1d69b",
+    "source_version": 1,
+    "source_revision": 1,
+    "source_hash": "bbd3549896108f2f330abc28a78162aec2cae19aadfe390fd1511a70a9836aa9",
+    "status": "failed",
+    "provider": "google-gemini",
+    "requested_model": "gemini-3.6-flash",
+    "returned_model": null,
+    "prompt_version": "architect-v1",
+    "created_at": "2026-10-23 06:54:02.870320+00:00",
+    "started_at": "2026-10-23 06:54:02.967945+00:00",
+    "completed_at": "2026-10-23 06:54:04.001090+00:00",
+    "deadline_at": "2026-10-23 06:56:17.967945+00:00",
+    "provider_response_id": null,
+    "provider_request_id": null,
+    "usage": null,
+    "error_category": "provider_timeout",
+    "diagnostic_id": "c2c8811c-7f7e-4988-aeb3-1c3bea1c6f3f",
+    "architecture_id": null,
+    "snapshot_sha256": "977fbd4c16408dc11bdf73213055666c13d5f72e9e1fc2879028c34dfbae1a45",
+    "prompt_sha256": "b05f3df028026489ca760894a1cbba96ab69ea37d7979f1c8a756c69466400a8",
+    "diagnostic": {
+      "agent": "architect",
+      "attempt": 1,
+      "stages_ms": {
+        "provider_call": 1003.463,
+        "running_transaction": 46.855,
+        "admission_transaction": 70.643
+      },
+      "elapsed_ms": 1121.341,
+      "error_origin": "controlled_double",
+      "timing_version": 1,
+      "provider_double": true,
+      "timing_boundary": "before_terminal_commit",
+      "provider_http_status": 504,
+      "generation_configuration": {
+        "input_bytes": 13695,
+        "prompt_bytes": 2686,
+        "snapshot_bytes": 3474,
+        "thinking_level": "minimal",
+        "max_input_bytes": 96000,
+        "timeout_seconds": 90,
+        "max_output_tokens": 6000,
+        "provider_schema_bytes": 7535,
+        "provider_schema_sha256": "a1ec4422648e2e80f7528a6ba935f0d687c89dfd7c7f1b072e7d759773ac396c"
+      }
+    },
+    "project_architectures": [
+      {
+        "id": "de2adca2-2b42-4558-ab87-a1a24bb87453",
+        "state": "approved",
+        "content_hash": "4e1ac860a5444b1b5f062db83d6a707cf68793c81ae31361950bd91fa33f2d57",
+        "version": 1,
+        "revision": 1
+      }
+    ]
+  }
+}

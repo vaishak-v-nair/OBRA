@@ -1,0 +1,61 @@
+{
+  "execution_class": "controlled_provider_double",
+  "provider_double": true,
+  "posts": 2,
+  "database": {
+    "source": "fresh SQLAlchemy session against guarded PostgreSQL",
+    "run_id": "fd4178cc-3cb1-4cc8-9f17-c0dbf7424394",
+    "project_id": "088521a1-1491-4b6c-a807-1a811ccfb80f",
+    "status": "failed",
+    "provider": "google-gemini",
+    "workspace_id": "0d059ff3-0600-42de-91f9-c9789581c2a5",
+    "initiator_id": "de04155e-8df5-4036-9b13-43bc4a224551",
+    "provider_response_id": null,
+    "provider_request_id": null,
+    "usage": null,
+    "prompt_version": "pm-v2",
+    "prompt_hash": "c7b8aac189085ca73a281633265461c7327dfb3a5e531d61b7e3c51f42a29056",
+    "hash_version": "orba-pm-canonical-json-v1",
+    "started_at": "2026-10-23T09:29:38.654759+00:00",
+    "completed_at": "2026-10-23T09:29:40.166756+00:00",
+    "requested_model": "gemini-3.8-flash",
+    "returned_model": null,
+    "error_category": "provider_timeout",
+    "diagnostic_id": "5598dcb4-535d-45e3-8e30-8505f8602334",
+    "diagnostic": {
+      "attempt": 1,
+      "stages_ms": {
+        "provider_call": 1502.81,
+        "running_transaction": 20.573,
+        "admission_transaction": 39.349
+      },
+      "elapsed_ms": 1563.068,
+      "error_origin": "controlled_double",
+      "dispatch_phase": "provider_call",
+      "exception_type": "ControlledProviderTimeout",
+      "timing_version": 1,
+      "provider_double": true,
+      "timing_boundary": "before_terminal_commit",
+      "generation_configuration": {
+        "input_bytes": 6339,
+        "prompt_bytes": 2642,
+        "snapshot_bytes": 208,
+        "thinking_level": "low",
+        "max_input_bytes": 48000,
+        "max_output_tokens": 6000,
+        "provider_schema_bytes": 3489,
+        "provider_schema_sha256": "cbe399effdd5289c0511c69237acac349175845776f0450431628049786414c7"
+      }
+    },
+    "project_plans": [
+      {
+        "id": "62e037aa-7994-4c39-950a-1fb1a01329a4",
+        "version": 1,
+        "state": "approved",
+        "generating_run_id": null,
+        "content_hash": "7c501913edd9ddc8c91b33d9136c11186e8dfc770cc8504ed6bcef14c977c64a",
+        "approved_at": "2026-10-23T09:29:35.555055+00:00"
+      }
+    ]
+  }
+}

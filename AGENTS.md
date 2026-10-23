@@ -1,5 +1,41 @@
 # ORBA engineering contract
 
+## Stage05A authority (supersedes older stage stop boundaries below)
+
+- Owner authorizes the deterministic orchestration foundation only. Preserve
+  Stage04 checkpoint bb880486bf7d8441cc6415f4dc6d6085a731151b, historical evidence
+  and the nine excluded untracked files. No commit/push/discard or paid model call.
+- No scheduler, executor registration/claim, handoff, task execution, QA or
+  completion API. Overall Stage05 remains IN PROGRESS. Do not start05B or06.
+- Runs bind exact approved architecture/PRD IDs, versions, revisions and hashes;
+  revalidate current approval, strict source/coverage/DAG and human dispositions
+  under existing workspace/project locks. Canonical snapshots are immutable.
+- Edges remain prerequisite -> dependent. Reuse task_graph.analyze. Root
+  eligibility is separate from execution_status=awaiting_executor. No task may
+  become running, successful or verified-complete in05A. Cancelled is terminal.
+- Creation and task/edge/event publication share one transaction. Idempotency is
+  project+actor+request UUID; conflicting inputs409, exact replay200, creation201.
+  Resolve authorized replay before new-source checks. No automatic POST retry.
+- Central guarded transitions increment revision; run lock serializes event
+  sequence. Definitions/edges and events are immutable via DB triggers. No event
+  writer API. Original session and current workspace roles fence every mutation.
+- SessionStorage may retain account/workspace/project-scoped nonsecret request
+  UUID and exact architecture ID/version/revision references for GET recovery
+  and explicitly requested same-key retry. Never credentials, briefs or snapshots.
+- Normal scripts/verify.ps1 runs Stage05A Gate A, retaining every Stage01–04
+  regression. Separate scripts/verify-orchestration-local.ps1 runs local Gate B;
+  no AI or fake executor is required or permitted. Both bind the same source and
+  local contract under docs/evidence/stage05a. Stage04's excluded gate.lock stays
+  untouched. Controlled source fixtures are authored data, not generation proof.
+- Local Gate B proof-v2 requires strict UUID/integer/hash/record types and actual
+  nonempty SQL tasks, dependencies (zero edges allowed), canonical source and full
+  lifecycle events. Reconcile SQL/API/graph/source identities and checksum; absent
+  values, coercion, normalization or claimed counts never substitute for records.
+  Historical proof-v1 receipts stay immutable and cannot certify repaired source.
+- The isolated orchestration_completion_experiment.py intentionally asserts
+  verified completion; actual pytest exit1 is required, outside normal discovery.
+  Never run backend and browser suites concurrently against orba_test.
+
 Stage authority is the owner's request. Stage04 is authorized: preserve the Product Manager and add one Architect planning agent plus a persisted task DAG, using the official Google GenAI SDK. Preserve Stage01/02 project data, authentication and workspace isolation. Do not start Stage05, task execution or other agents automatically. Stage04 paid generation requires fresh explicit owner authorization. No public deployment, destructive operations, credential changes, or external messages without owner authorization.
 
 ## Stage04 current authority (supersedes older stage stop boundaries below)

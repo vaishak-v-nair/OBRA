@@ -1,0 +1,127 @@
+{
+  "stage": "stage05a-orchestration",
+  "recorded_at": "2026-10-23T03:50:19.493767+00:00",
+  "execution_class": "development_diagnostics_not_a_passing_gate",
+  "source_sha256": "b22c1d00db5fcfd38172f022a17538919c9a97da0e298732a5d3da851c8604d5",
+  "commands": [
+    {
+      "name": "stage05a-gate-a-corrected",
+      "argv": [
+        "pwsh",
+        "-NoProfile",
+        "-File",
+        "scripts/verify.ps1"
+      ],
+      "started_at": "2026-10-22T13:16:42.427153+00:00",
+      "exit_code": 1,
+      "pid": 29796,
+      "duration_seconds": 553.049,
+      "completed_at": "2026-10-22T13:25:55.476021+00:00"
+    },
+    {
+      "name": "stage05a-gate-a-resumed",
+      "argv": [
+        "pwsh",
+        "-NoProfile",
+        "-File",
+        "scripts/verify.ps1"
+      ],
+      "started_at": "2026-10-23T03:30:50.540714+00:00",
+      "exit_code": 124,
+      "pid": 24756,
+      "duration_seconds": 801.859,
+      "completed_at": "2026-10-23T03:44:12.400063+00:00"
+    },
+    {
+      "name": "gate-receipt-finalization-tests",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "pytest",
+        "tests/test_orchestration_verification.py",
+        "-q",
+        "--junitxml=C:\\Users\\vaish\\.gstack\\projects\\OBRA\\stage05a\\20261022T122138Z\\receipt-hardening.xml"
+      ],
+      "started_at": "2026-10-23T03:30:05.619939+00:00",
+      "exit_code": 0,
+      "pid": 10296,
+      "duration_seconds": 18.397,
+      "completed_at": "2026-10-23T03:30:24.017113+00:00"
+    },
+    {
+      "name": "pnpm-bootstrap-normal",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "--version"
+      ],
+      "started_at": "2026-10-23T03:45:17.155367+00:00",
+      "exit_code": 0,
+      "pid": 17744,
+      "duration_seconds": 5.729,
+      "completed_at": "2026-10-23T03:45:22.884066+00:00"
+    },
+    {
+      "name": "pnpm-bootstrap-cached-offline",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "--version"
+      ],
+      "started_at": "2026-10-23T03:45:22.886750+00:00",
+      "exit_code": 0,
+      "pid": 26040,
+      "duration_seconds": 6.451,
+      "completed_at": "2026-10-23T03:45:29.337946+00:00"
+    },
+    {
+      "name": "eslint-diagnostic",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-23T03:46:40.801563+00:00",
+      "exit_code": 0,
+      "pid": 4120,
+      "duration_seconds": 114.347,
+      "completed_at": "2026-10-23T03:48:35.148249+00:00"
+    }
+  ],
+  "notes": [
+    "The earlier incomplete Gate A has no final receipt. Outer exit 1 and controlled-browser exit 1073807364 remain failures.",
+    "The resumed Gate A receipt records ESLint command_deadline exit 124, native termination exit 1, with an empty ESLint log.",
+    "npm completed its package metadata GET in 413ms before the stalled launch; a network root cause is not established.",
+    "The exact ESLint command subsequently exited 0 without changed source, assertions or per-command deadlines. This diagnostic does not substitute for a full Gate A."
+  ],
+  "artifacts": {
+    "eslint-diagnostic-command.json": "d73aefb496c28e64f300d9652008f1c375810308b56f7be6d7f2bef8f448f872",
+    "eslint-diagnostic.log": "7e92820bdc1aa1dcdff1e9fd74ade7ea6add666d23546e5c5b4286464dfedd4b",
+    "failed-bootstrap-npm-debug.log": "b49d3b3fc64a470b5e7565b0444777849f0ade8a2a62d234717f5ac9a8d8f477",
+    "gate-a-corrected-outer-command.json": "55a0b7643d937133ceaa21c3b0e79ef9356684970338b3c0427b07c13053152b",
+    "gate-a-corrected-outer.log": "f2d309ed99234fb1ddc0f3c574206b09cf212617e03d8cea0bdb07139ae68ec1",
+    "gate-a-resumed-outer-command.json": "fcb277a09471fee53c8ff830c9b768be5ca0f9c6871866b07f2f53305b4df786",
+    "gate-a-resumed-outer.log": "87640de19273aca7d8d430c315a804da534fb064367a1ab817090310013c1655",
+    "pnpm-bootstrap-cached-offline-command.json": "749530cbf42409609719459424fe12f0ec19b834c3b5232f92a99a30868d8cbe",
+    "pnpm-bootstrap-cached-offline.log": "40548e291b51a24f5947ddb2b8191b541bc7697eae6dd29f31a89a791188a1bc",
+    "pnpm-bootstrap-normal-command.json": "3f4c2dfa9505657381ba397b5ab652f131d548593134c323f17cafe32fe27d45",
+    "pnpm-bootstrap-normal.log": "40548e291b51a24f5947ddb2b8191b541bc7697eae6dd29f31a89a791188a1bc",
+    "receipt-hardening-command.json": "477887d9d49610f4b59fe3d40b0cc67852cb49aabfda2bcc0cf7b4599b1802f7",
+    "receipt-hardening.log": "4edbe65ac13241738134666c934db2a4f2cbccbb02dd9e272cda8345506a72e2",
+    "receipt-hardening.xml": "4b81d9065ed080e0c4656ea4975d265ebbae4a2355e529812855a0870d2add3b"
+  }
+}

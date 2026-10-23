@@ -1,0 +1,138 @@
+{
+  "execution_class": "controlled_provider_double",
+  "provider_double": true,
+  "posts": 1,
+  "database": {
+    "source": "fresh SQLAlchemy session against guarded PostgreSQL",
+    "run_id": "1f70c127-e728-41a6-93ee-43ca99991813",
+    "project_id": "79c576c2-b04c-4c68-b50c-6e3374399feb",
+    "status": "failed",
+    "provider": "google-gemini",
+    "workspace_id": "e55e3577-b795-4693-b009-3b2298f4dcaa",
+    "initiator_id": "4c09d87a-1e3b-44cb-a93d-6af387bf9632",
+    "provider_response_id": null,
+    "provider_request_id": null,
+    "usage": null,
+    "prompt_version": "pm-v2",
+    "prompt_hash": "c7b8aac189085ca73a281633265461c7327dfb3a5e531d61b7e3c51f42a29056",
+    "hash_version": "orba-pm-canonical-json-v1",
+    "started_at": "2026-10-23T09:30:52.691042+00:00",
+    "completed_at": "2026-10-23T09:30:54.235507+00:00",
+    "requested_model": "gemini-3.8-flash",
+    "returned_model": "controlled-double-not-live",
+    "error_category": "invalid_model_response",
+    "diagnostic_id": "782f3a63-3673-4285-ab0a-2d589b90b2d6",
+    "diagnostic": {
+      "attempt": 1,
+      "stages_ms": {
+        "validation": 0.094,
+        "provider_call": 1502.842,
+        "running_transaction": 21.595,
+        "admission_transaction": 39.774
+      },
+      "elapsed_ms": 1565.075,
+      "validation": [
+        {
+          "type": "extra_forbidden",
+          "field": "not_a_product_document"
+        },
+        {
+          "type": "missing",
+          "field": "schema_version"
+        },
+        {
+          "type": "missing",
+          "field": "product_name"
+        },
+        {
+          "type": "missing",
+          "field": "summary"
+        },
+        {
+          "type": "missing",
+          "field": "problem_statement"
+        },
+        {
+          "type": "missing",
+          "field": "proposed_solution"
+        },
+        {
+          "type": "missing",
+          "field": "target_users"
+        },
+        {
+          "type": "missing",
+          "field": "user_goals"
+        },
+        {
+          "type": "missing",
+          "field": "in_scope"
+        },
+        {
+          "type": "missing",
+          "field": "out_of_scope"
+        },
+        {
+          "type": "missing",
+          "field": "functional_requirements"
+        },
+        {
+          "type": "missing",
+          "field": "nonfunctional_requirements"
+        },
+        {
+          "type": "missing",
+          "field": "prerequisites"
+        },
+        {
+          "type": "missing",
+          "field": "assumptions"
+        },
+        {
+          "type": "missing",
+          "field": "risks"
+        },
+        {
+          "type": "missing",
+          "field": "open_questions"
+        },
+        {
+          "type": "missing",
+          "field": "confirmations"
+        },
+        {
+          "type": "missing",
+          "field": "epics"
+        }
+      ],
+      "exception_type": "ValidationError",
+      "timing_version": 1,
+      "timing_boundary": "before_terminal_commit",
+      "generation_configuration": {
+        "input_bytes": 6360,
+        "prompt_bytes": 2642,
+        "snapshot_bytes": 229,
+        "thinking_level": "low",
+        "max_input_bytes": 48000,
+        "max_output_tokens": 6000,
+        "provider_schema_bytes": 3489,
+        "provider_schema_sha256": "cbe399effdd5289c0511c69237acac349175845776f0450431628049786414c7"
+      }
+    },
+    "project_plans": [
+      {
+        "id": "ac3616aa-1645-4c2e-a6c8-6966d9c141ca",
+        "version": 1,
+        "state": "approved",
+        "generating_run_id": null,
+        "content_hash": "717ca5f0e31981ddb1124ba68a74f0316430c53c206cf6d77815af12ef7b0ced",
+        "approved_at": "2026-10-23T09:30:52.352046+00:00"
+      }
+    ]
+  },
+  "preservation": {
+    "content_hash": "717ca5f0e31981ddb1124ba68a74f0316430c53c206cf6d77815af12ef7b0ced",
+    "approved_by": "4c09d87a-1e3b-44cb-a93d-6af387bf9632",
+    "approved_at": "2026-10-23T09:30:52.352046Z"
+  }
+}

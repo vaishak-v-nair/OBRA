@@ -1,8 +1,34 @@
-# ORBA · Stage 04
+# ORBA · Stage 05A
 
-A local development workspace with real accounts, workspace permissions, persisted projects and product/architecture planning. An approved Product Plan can feed an explicit Architect request, producing a technical proposal and a PostgreSQL task dependency DAG for human review. No task is executed. Coding/QA agents, orchestration, GitHub, multiplayer, Skills installation and cloud execution remain later-stage work. Stage04 is **VERIFIED** on source `f6a3a687...`: the authorized single Gemini request and complete browser/SQL review flow passed on 2026-10-22. Current evidence is in [docs/VERIFICATION.md](docs/VERIFICATION.md) and the [live A/B/C report](docs/VERIFICATION_STAGE041_LIVE.md). Further paid attempts require fresh authorization.
+**Stage05A VERIFIED after the focused evidence-validator repair:**683 backend
+tests,186 Gate A browser cases and1 independent local control-plane browser flow.
+All17 Gate A commands and local Gate B/C exited0; zero skips or retries. See
+[new source-bound results](docs/VERIFICATION_STAGE05A_REPAIR.md).
+Overall Stage05 remains IN PROGRESS; no engineering task has executed.
 
-Stage03's historical **VERIFIED** source is `661f2828...`, checkpointed at `1aeb882cf9e788948df5ca5eac52e2a682a1f487`. Its actual285 backend/60 regression/33 controlled browser tests and one genuine Gemini3.6/minimal flow remain documented in the [immutable Stage03 A/B/C report](docs/VERIFICATION_STAGE033_LIVE.md). That evidence does not certify the new Architect implementation. Historical503/504 failures and credentials are preserved. New passwords remain15–128 Unicode code points, preserving legacy login/sessions. No additional paid generation or Stage04 commit is authorized.
+The prior pre-repair verification record follows for history:
+
+**Stage05A VERIFIED**:478 backend tests,186 Gate A browser cases and1 independent
+local control-plane Gate B flow passed on2026-10-23, with matching source/contract
+evidence. [Actual A/B/C report](docs/VERIFICATION_STAGE05A.md).
+
+Stage05A adds a persistent orchestration control plane to this existing workspace.
+From an approved Architecture, open **Execution Plan**, create a run, inspect its
+saved task snapshots, dependency eligibility and event history, then reload.
+No model credential or model request is needed for this deterministic flow.
+No code is run: eligible root tasks await an executor, and dependent tasks wait
+for verified prerequisite evidence which this stage cannot produce. Cancellation
+preserves snapshots and audit events. **Overall Stage05: IN PROGRESS.**
+
+Current Stage05A verification is tracked in [VERIFICATION_STAGE05A.md](docs/VERIFICATION_STAGE05A.md).
+The schema, API, state machine, idempotency and future boundaries are documented
+in [ARCHITECTURE_STAGE05A.md](docs/ARCHITECTURE_STAGE05A.md).
+Do not commit or start05B without the owner's authorization. No paid generation
+is authorized by this stage.
+
+A local development workspace with real accounts, workspace permissions, persisted projects and product/architecture planning. An approved Product Plan can feed an explicit Architect request, producing a technical proposal and a PostgreSQL task dependency DAG for human review. No task is executed. Coding/QA agents, durable scheduling, GitHub, multiplayer, Skills installation and cloud execution remain later-stage work. Stage04 is **VERIFIED** on source `f6a3a687...`: the authorized single Gemini request and complete browser/SQL review flow passed on 2026-10-22. Current evidence is in [docs/VERIFICATION.md](docs/VERIFICATION.md) and the [live A/B/C report](docs/VERIFICATION_STAGE041_LIVE.md). Further paid attempts require fresh authorization.
+
+Stage03's historical **VERIFIED** source is `661f2828...`, checkpointed at `1aeb882cf9e788948df5ca5eac52e2a682a1f487`. Its actual285 backend/60 regression/33 controlled browser tests and one genuine Gemini3.6/minimal flow remain documented in the [immutable Stage03 A/B/C report](docs/VERIFICATION_STAGE033_LIVE.md). That evidence does not certify the new Architect implementation. Historical503/504 failures and credentials are preserved. New passwords remain15–128 Unicode code points, preserving legacy login/sessions. Stage04 is checkpointed at `bb880486bf7d8441cc6415f4dc6d6085a731151b`. Further paid generation or commits require owner authorization.
 
 ## Prerequisites
 
@@ -191,23 +217,32 @@ must run sequentially. Development data and credentials are never reset.
 
 ```powershell
 pwsh -NoProfile -File scripts/verify.ps1
-uv run --directory apps/api python -m scripts.architect_verification summary
+pwsh -NoProfile -File scripts/verify-orchestration-local.ps1
+uv run --directory apps/api python -m scripts.orchestration_verification C
+uv run --directory apps/api python -m scripts.orchestration_false_success
 ```
 
 Gate A is unpaid: test PostgreSQL, frozen dependencies/peers, Alembic upgrade/drift,
 all backend tests, Ruff/format, strict TypeScript, ESLint, production build, all prior
-regression and PM controlled browser cases, plus Architect controlled browser cases
-on desktop/mobile/tablet. Every runtime key alias and both model choices are blanked
+regression, PM/Architect controlled cases, navigation and new orchestration browser
+cases on desktop/mobile/tablet. Every runtime key alias and both model choices are blanked
 before dotenv loading. Test factories replace only their labeled model dependency;
 auth/API/PostgreSQL/browser remain real. No skip, xfail, retry or missing baseline
 identity can pass. Frozen dependency/image acquisition may require network access.
 
-Stage04 receipts are create-once under `docs/evidence/stage04`; they bind stage/agent,
-source and prompt/schema policy, commands, actual native exits, reports and artifact
-hashes. The legacy runner/process ownership helpers are reused. Historical Stage03
-receipts and its own live command remain historical and cannot certify Architect.
-The original285 backend/60 regression/33 controlled identities stay mandatory along
-with new tests. Gate C refuses absent, stale, failed or controlled B and exits2/PARTIAL.
+Stage05A receipts are create-once under `docs/evidence/stage05a`; they bind source,
+snapshot/state/schema contract, commands, actual native exits, reports and artifact
+hashes. All420 Stage04 backend and165 browser identities remain mandatory, plus
+new tests. Independent local B uses real auth/UI approvals/API/PostgreSQL, with
+authored source fixtures and no provider or executor response. It verifies the
+same run through browser reload, independent SQL/hash/ledger/graph checks, exact
+replay and workspace isolation. B requires the applicable passing A. Gate C exits0
+only for matching passing A+B; otherwise1/PARTIAL. Overall Stage05 stays IN PROGRESS.
+
+Historical Stage01–04 receipts are preserved and cannot certify changed Stage05A
+code. The isolated wrong-completion experiment must genuinely fail pytest with
+exit1; its wrapper records that expected negative result separately. It is never
+a passing production test. No new paid AI verification is required in05A.
 
 ## Unpaid Architect browser preflight (Stage04.1)
 
@@ -282,7 +317,7 @@ native-device or all-browser support. See [current verification](docs/VERIFICATI
 
 Suitable for the current local development scope, **not certified production-secure**. No verified email ownership, password recovery, MFA/passkeys, SSO/OAuth, durable security audit store, production TLS/reverse-proxy configuration, distributed deployment certification, automatic session cleanup worker or penetration test. Registration's duplicate-email response can disclose that an address is registered. No real-time permission push; subsequent protected requests enforce current permissions. Logout clears protected local state immediately; if the server cannot be reached, the UI explicitly warns that revocation is unconfirmed and does not claim the session was revoked. There is no server-side project idempotency guarantee after an uncertain write. Existing TypeScript 6.0.3 / ESLint 9.39.5 compatibility pins remain documented in architecture; 9.x is npm-deprecated until current Next lint plugins support 10.
 
-PM requests are synchronous and bounded (timeout 5–180s, output 512–16000 tokens); the SDK performs one attempt with automatic continuation, retries and function calling disabled. Default local admission: one active run per project, two globally, five attempts/account/hour, twenty globally/hour. The owner's current runtime limits are stricter: one globally, three attempts/account/hour and six globally/hour. PostgreSQL locks coordinate local API workers; this is not a distributed orchestration platform. Lease expiry marks interrupted runs without resuming them. A valid paid response can be discarded after session/permission/lease expiry. Actual dollar costs are not fabricated from missing usage; the dated comparison calculates only the published output-token component and explains billing uncertainty. No cancellation/billing guarantee, semantic truth guarantee, automatic recovery, task execution or orchestration is claimed. The Architect proposes technical plans only.
+PM requests are synchronous and bounded (timeout 5–180s, output 512–16000 tokens); the SDK performs one attempt with automatic continuation, retries and function calling disabled. Default local admission: one active run per project, two globally, five attempts/account/hour, twenty globally/hour. The owner's current runtime limits are stricter: one globally, three attempts/account/hour and six globally/hour. PostgreSQL locks coordinate local API workers; this is not a distributed orchestration platform. Lease expiry marks interrupted runs without resuming them. A valid paid response can be discarded after session/permission/lease expiry. Actual dollar costs are not fabricated from missing usage; the dated comparison calculates only the published output-token component and explains billing uncertainty. No cancellation/billing guarantee, semantic truth guarantee, automatic recovery, task execution or durable scheduling is claimed. The Architect proposes technical plans only.
 
-See [architecture](docs/ARCHITECTURE.md), [Stage03 plan](docs/STAGE03_PLAN.md), [test plan](docs/STAGE03_TEST_PLAN.md) and [current verification](docs/VERIFICATION.md). Historical evidence is preserved in `docs/VERIFICATION_STAGE01.md` and `docs/VERIFICATION_STAGE02.md`. Stop after Stage04; live Architect verification still requires fresh authorization.
+See [architecture](docs/ARCHITECTURE.md), [Stage03 plan](docs/STAGE03_PLAN.md), [test plan](docs/STAGE03_TEST_PLAN.md) and [current verification](docs/VERIFICATION.md). Historical evidence is preserved in `docs/VERIFICATION_STAGE01.md` and `docs/VERIFICATION_STAGE02.md`. Stop after Stage05A. Later-stage work and further live Architect generation require fresh authorization.
 

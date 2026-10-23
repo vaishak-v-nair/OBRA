@@ -19,6 +19,7 @@ from orba.auth import router as auth_router
 from orba.config import Settings
 from orba.db import get_session, make_engine
 from orba.models import Project
+from orba.orchestration import router as orchestration_router
 from orba.pm import router as pm_router
 from orba.pm_errors import PMError
 from orba.pm_middleware import PMBodyLimitMiddleware
@@ -69,6 +70,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(workspace_router)
     app.include_router(pm_router)
     app.include_router(architect_router)
+    app.include_router(orchestration_router)
     app.add_middleware(PMBodyLimitMiddleware)
 
     @app.exception_handler(PMError)
@@ -147,6 +149,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         session.execute(
             text(
                 "SELECT ar.source_plan_id,av.revision,ac.architecture_id,t.planning_state,d.prerequisite_id,tr.story_id FROM architect_runs ar CROSS JOIN architecture_versions av CROSS JOIN architecture_components ac CROSS JOIN engineering_tasks t CROSS JOIN task_dependencies d CROSS JOIN requirement_traces tr LIMIT 0"
+            )
+        )
+        session.execute(
+            text(
+                "SELECT r.snapshot_hash,t.execution_status,d.prerequisite_id,e.sequence FROM orchestration_runs r CROSS JOIN orchestration_tasks t CROSS JOIN orchestration_dependencies d CROSS JOIN orchestration_events e LIMIT 0"
             )
         )
         return {"status": "ready"}

@@ -1,0 +1,14 @@
+{
+  "name": "readonly-host-restart-evidence",
+  "argv": [
+    "pwsh",
+    "-NoProfile",
+    "-Command",
+    "[pscustomobject]@{observed_at=[DateTimeOffset]::Now.ToString('o');last_boot=(Get-CimInstance Win32_OperatingSystem).LastBootUpTime.ToString('o');events=@(Get-WinEvent -FilterHashtable @{LogName='System';Id=41,1074,6008;StartTime=[datetime]'2026-10-23T08:00:00'} -MaxEvents 12 -ErrorAction SilentlyContinue | Select-Object Id,TimeCreated,ProviderName)} | ConvertTo-Json -Depth 4"
+  ],
+  "started_at": "2026-10-23T06:29:40.897320+00:00",
+  "exit_code": 0,
+  "pid": 11632,
+  "duration_seconds": 2.085,
+  "completed_at": "2026-10-23T06:29:42.982700+00:00"
+}

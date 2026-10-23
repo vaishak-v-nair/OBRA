@@ -1,0 +1,30 @@
+{
+  "stage": "stage05a-orchestration",
+  "gate": "A",
+  "execution_class": "deterministic",
+  "verification_contract": {
+    "stage": "stage05a-orchestration",
+    "hash_version": "orba-orchestration-canonical-json-v1",
+    "edge_convention": "prerequisite -> dependent",
+    "transitions": {
+      "created": [
+        "awaiting_executor"
+      ],
+      "awaiting_executor": [
+        "cancelled"
+      ],
+      "cancelled": []
+    },
+    "schema_sha256": "cdee704beeff62b0ff76ee247303ea971a0759b217c3d8544f257ec8c050d30b",
+    "model_generation_requests": 0,
+    "executor_available": false,
+    "execution_performed": false,
+    "database": "guarded local orba_test",
+    "workers": 1,
+    "automatic_retries": 0
+  },
+  "started_at": "2026-10-23T06:31:05.442365+00:00",
+  "commands": [],
+  "result": "BLOCKED",
+  "exit_code": 2
+}

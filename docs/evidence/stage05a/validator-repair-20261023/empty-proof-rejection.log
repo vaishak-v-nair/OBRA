@@ -1,0 +1,10 @@
+NEGATIVE INPUT EXPERIMENT: empty proof; no DB or model operation.
+Traceback (most recent call last):
+  File "C:\Users\vaish\.gstack\projects\OBRA\checkpoints\stage05a-validator-repair-20261023\reject_empty_proof.py", line 9, in <module>
+    validate_proof({})
+    ~~~~~~~~~~~~~~^^^^
+  File "E:\BrosKi\OBRA\apps\api\scripts\orchestration_proof.py", line 474, in validate_proof
+    raise EvidenceError(
+    ...<2 lines>...
+    ) from None
+scripts.verification.EvidenceError: Local B proof has a missing or invalid required field at proof_version. Recreate complete local Gate B evidence; see docs/VERIFICATION_STAGE05A.md.

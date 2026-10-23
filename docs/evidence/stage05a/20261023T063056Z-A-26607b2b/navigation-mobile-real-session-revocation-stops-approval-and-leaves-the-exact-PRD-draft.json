@@ -1,0 +1,131 @@
+{
+  "result": "FAIL",
+  "approved_source_reloaded": false,
+  "step": "authored_draft_persisted",
+  "milestones": [
+    {
+      "at": "2026-10-23T07:02:45.612Z",
+      "event": "route_committed",
+      "path": "/signup"
+    },
+    {
+      "at": "2026-10-23T07:02:45.823Z",
+      "event": "route_committed",
+      "path": "/signup"
+    },
+    {
+      "at": "2026-10-23T07:02:46.226Z",
+      "event": "route_committed",
+      "path": "/"
+    },
+    {
+      "at": "2026-10-23T07:02:46.236Z",
+      "event": "authenticated",
+      "path": "/"
+    },
+    {
+      "at": "2026-10-23T07:02:46.283Z",
+      "event": "route_committed",
+      "path": "/workspaces/new"
+    },
+    {
+      "at": "2026-10-23T07:02:46.381Z",
+      "event": "route_committed",
+      "path": "/workspaces/new"
+    },
+    {
+      "at": "2026-10-23T07:02:46.662Z",
+      "event": "route_committed",
+      "path": "/"
+    },
+    {
+      "at": "2026-10-23T07:02:46.736Z",
+      "event": "workspace_selected",
+      "path": "/"
+    },
+    {
+      "at": "2026-10-23T07:02:46.882Z",
+      "event": "project_post_received",
+      "path": "/",
+      "project_id": "d4f8a5df-a571-45a0-a649-64bafb424044",
+      "workspace_id": "9094ed6d-f61b-4942-a143-d01139b61e67",
+      "status": 201
+    },
+    {
+      "at": "2026-10-23T07:02:47.003Z",
+      "event": "route_committed",
+      "path": "/projects/d4f8a5df-a571-45a0-a649-64bafb424044"
+    },
+    {
+      "at": "2026-10-23T07:02:47.133Z",
+      "event": "exact_project_loaded",
+      "path": "/projects/d4f8a5df-a571-45a0-a649-64bafb424044",
+      "project_id": "d4f8a5df-a571-45a0-a649-64bafb424044",
+      "workspace_id": "9094ed6d-f61b-4942-a143-d01139b61e67"
+    },
+    {
+      "at": "2026-10-23T07:02:49.504Z",
+      "event": "authored_draft_persisted",
+      "path": "/projects/d4f8a5df-a571-45a0-a649-64bafb424044",
+      "plan_id": "1299175f-d764-492e-846a-0c89e8854043",
+      "version": 1
+    },
+    {
+      "at": "2026-10-23T07:02:49.619Z",
+      "event": "route_committed",
+      "path": "/projects/d4f8a5df-a571-45a0-a649-64bafb424044"
+    },
+    {
+      "at": "2026-10-23T07:02:49.741Z",
+      "event": "route_committed",
+      "path": "/projects/d4f8a5df-a571-45a0-a649-64bafb424044"
+    }
+  ],
+  "execution_class": "no_generation_navigation_regression",
+  "generation_budget": {
+    "attempted": 0,
+    "forwarded": 0,
+    "blocked": 0
+  },
+  "project_id": "d4f8a5df-a571-45a0-a649-64bafb424044",
+  "workspace_id": "9094ed6d-f61b-4942-a143-d01139b61e67",
+  "actor_id": "b7a13d68-ab16-432e-9ca5-3e2d5ba1698e",
+  "source_plan_id": "1299175f-d764-492e-846a-0c89e8854043",
+  "source_origin": "human_authored",
+  "sql_after_revocation": {
+    "source": "independent PostgreSQL repeatable-read read-only transaction",
+    "project_id": "d4f8a5df-a571-45a0-a649-64bafb424044",
+    "workspace_id": "9094ed6d-f61b-4942-a143-d01139b61e67",
+    "actor_id": "b7a13d68-ab16-432e-9ca5-3e2d5ba1698e",
+    "role": "owner",
+    "plan_id": "1299175f-d764-492e-846a-0c89e8854043",
+    "version": 1,
+    "revision": 1,
+    "state": "draft",
+    "content_hash": "6004d1c0edb76434c2f2df3a41c18ff148b671f00bdb4650c452855276f61a39",
+    "origin": "human_authored",
+    "approved_by": null,
+    "approved_at": null,
+    "current_approved_plan_id": null,
+    "document_validated": true,
+    "counts": {
+      "product_epics": 1,
+      "product_stories": 1,
+      "product_acceptance_criteria": 1
+    },
+    "generation_records": {
+      "product_manager_runs": 0,
+      "architect_runs": 0,
+      "architecture_versions": 0,
+      "engineering_tasks": 0,
+      "task_dependencies": 0
+    }
+  },
+  "case_result": "PASS",
+  "server_boundary": {
+    "execution_class": "no_generation_test_boundary",
+    "provider_readiness_verified": false,
+    "blocked_generation_posts": 2,
+    "provider_dependency_entries": 0
+  }
+}

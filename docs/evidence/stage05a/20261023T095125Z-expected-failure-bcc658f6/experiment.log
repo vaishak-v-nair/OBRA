@@ -1,0 +1,33 @@
+ACTUAL_EVIDENCE run_id=5f9f10cb-069f-4383-8698-fd65ce21f4f5 task_id=c6e2fc46-e888-451e-828b-f8c459106ec3 execution_status=awaiting_executor execution_performed=False
+F
+================================== FAILURES ===================================
+_______________________ test_incorrect_completion_claim _______________________
+
+client = <starlette.testclient.TestClient object at 0x00000198C804DD30>
+
+    def test_incorrect_completion_claim(client):
+        _, _, _, run = initialize(client)
+        with Session(client.app.state.engine) as db:
+            task = db.get(OrchestrationTask, UUID(run["tasks"][0]["id"]))
+            print(
+                f"ACTUAL_EVIDENCE run_id={task.run_id} task_id={task.id} execution_status={task.execution_status} execution_performed=False"
+            )
+>           assert task.execution_status == "verified_complete", (
+                "DELIBERATELY INCORRECT: eligibility is not verified execution completion"
+            )
+E           AssertionError: DELIBERATELY INCORRECT: eligibility is not verified execution completion
+E           assert 'awaiting_executor' == 'verified_complete'
+E             
+E             - verified_complete
+E             + awaiting_executor
+
+tests\experiments\orchestration_completion_experiment.py:18: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/experiments/orchestration_completion_experiment.py::test_incorrect_completion_claim
+1 failed, 1 warning in 0.77s

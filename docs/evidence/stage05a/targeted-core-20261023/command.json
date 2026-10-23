@@ -1,0 +1,24 @@
+{
+  "name": "targeted-multi-user-prd",
+  "argv": [
+    "npm",
+    "exec",
+    "--yes",
+    "--package=pnpm@12.14.0",
+    "--",
+    "pnpm",
+    "--filter",
+    "@orba/web",
+    "exec",
+    "playwright",
+    "test",
+    "tests/pm.spec.ts",
+    "--grep",
+    "human-authored fixture"
+  ],
+  "started_at": "2026-10-23T04:12:03.002117+00:00",
+  "exit_code": 0,
+  "pid": 9916,
+  "duration_seconds": 128.025,
+  "completed_at": "2026-10-23T04:14:11.026884+00:00"
+}

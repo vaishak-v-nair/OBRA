@@ -1,0 +1,42 @@
+database: exit 0 (0.897s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\database.log
+python-lock: exit 0 (0.032s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\python-lock.log
+frontend-lock: exit 0 (1.151s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\frontend-lock.log
+peers: exit 0 (1.041s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\peers.log
+migration: exit 0 (1.414s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\migration.log
+schema-drift: exit 0 (1.555s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\schema-drift.log
+backend: exit 0 (119.337s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\backend.log
+ruff: exit 0 (0.099s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\ruff.log
+format: exit 0 (0.065s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\format.log
+typecheck: exit 0 (3.577s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\typecheck.log
+eslint: exit 0 (7.217s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\eslint.log
+build: exit 0 (7.296s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\build.log
+core-browser: exit 0 (177.479s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\core-browser.log
+controlled-browser: exit 1073807364 (225.496s); E:\BrosKi\OBRA\docs\evidence\stage05a\20261022T131642Z-A-b4b8fa90\controlled-browser.log
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "E:\BrosKi\OBRA\apps\api\scripts\orchestration_verification.py", line 356, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\scripts\orchestration_verification.py", line 352, in main
+    return summary() if args.gate == "C" else execute(args.gate)
+                                              ~~~~~~~^^^^^^^^^^^
+  File "E:\BrosKi\OBRA\apps\api\scripts\orchestration_verification.py", line 287, in execute
+    value.update(completed_at=base.utc(), source_end=base.source_manifest())
+                                                     ~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\BrosKi\OBRA\apps\api\scripts\verification.py", line 47, in source_manifest
+    subprocess.check_output(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=root
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\vaish\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\vaish\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z']' returned non-zero exit status 3221226091.

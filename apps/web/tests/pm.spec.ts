@@ -30,6 +30,9 @@ test("provider setup and empty state are honest; visiting a project makes no mod
 });
 
 test("human-authored fixture: edit criterion, persist, approve exact version, history and isolation",async({page,browser})=>{
+  // Two accounts, repeated reloads, editing, approval and version history need a
+  // bounded journey budget; retain every assertion and the per-expect deadlines.
+  test.setTimeout(90000);
   const {project,user}=await setup(page);
   const fixture=JSON.parse(execFileSync("uv",["run","--directory","../api","python","-m","scripts.seed_pm_fixture","--project",project.id,"--actor",user.id,"--blocking-confirmation"],{encoding:"utf8",stdio:["ignore","pipe","pipe"]}));
   expect(fixture.origin).toBe("human_authored");expect(fixture.model_call).toBe(false);

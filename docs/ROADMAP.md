@@ -1,11 +1,25 @@
 # ORBA scope ledger
 
+**Stage05A VERIFIED** on2026-10-23 through matching deterministic Gate A and real
+local control-plane Gate B evidence. See VERIFICATION_STAGE05A.md. This does not
+verify the rest of Stage05.
+
+Stage05A is authorized: persistent orchestration snapshots, dependency eligibility,
+guarded cancellation, idempotency and an append-only event ledger. No executor,
+task claiming/scheduling, handoff or verified task completion exists. Current
+Stage05A evidence is in VERIFICATION_STAGE05A.md. **Overall Stage05: IN PROGRESS.**
+Stage05B scheduling/handoffs,05C human execution approvals,05D Mission Control
+and Stage06 remain outside this implementation. No paid call or commit authorized.
+
+Historical Stage04 acceptance follows (preserved baseline, not Stage05A evidence).
+
 Current acceptance, 2026-10-22: **Stage04 VERIFIED** on source `f6a3a687995bf53c8ad553a0bc7be2e59d1c1144acc2e7e5f39ced2b700a54cb`.
 The authorized single Gemini3.6/minimal Architect request passed matching-source
 Gate B, including PostgreSQL, task DAG, editing, approval and workspace isolation.
 Gate C exited0. See [actual A/B/C evidence](VERIFICATION_STAGE041_LIVE.md).
 Earlier PARTIAL entries below describe their historical verification boundaries.
-This authorization is consumed; no Stage05 or further paid attempt is authorized.
+That paid authorization is consumed. Stage05A alone is authorized above; no further
+paid attempt or later-stage implementation is authorized.
 
 ## Stage 01: foundation retained
 
@@ -69,7 +83,8 @@ Unpaid browser setup has independent receipts, test-only server/context generati
 denial and zero-run SQL checks. All older regressions remain mandatory. Current
 Gate A, three-viewport navigation coverage and five clean default preflight results
 belong to VERIFICATION.md. They never substitute for a real Architect Gate B.
-Stage04 remains PARTIAL; paid verification needs fresh explicit owner authority.
+That preflight-only phase remained PARTIAL until the later authorized live attempt.
+Current Stage04 acceptance is VERIFIED; its historical failures remain unchanged.
 
 ## Stage04 deterministic acceptance record
 
@@ -79,5 +94,6 @@ skips/retries. Its first live B failed before generation; that record is preserv
 Stage04.1 subsequently passed all16 Gate A commands on sourcef6a3a687:420 backend,
 60/33/33/39 browser tests, standalone navigation39, and5/5 clean unpaid preflights.
 Actual commands, failure history and source-bound receipts are in
-[VERIFICATION_STAGE041.md](VERIFICATION_STAGE041.md). Stage04 remains PARTIAL pending
-its own freshly authorized one-request real Architect B. No Stage05 is started.
+[VERIFICATION_STAGE041.md](VERIFICATION_STAGE041.md). Its subsequent matching live B
+passed as recorded in VERIFICATION_STAGE041_LIVE.md. Stage04 is VERIFIED and
+checkpointed; current Stage05A work is separately gated and does not start05B.

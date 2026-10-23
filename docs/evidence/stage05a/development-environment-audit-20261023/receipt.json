@@ -1,0 +1,48 @@
+{
+  "stage": "stage05a-orchestration",
+  "recorded_at": "2026-10-23T06:29:43.035956+00:00",
+  "execution_class": "environment_diagnostics_not_a_gate",
+  "command": {
+    "name": "readonly-host-restart-evidence",
+    "argv": [
+      "pwsh",
+      "-NoProfile",
+      "-Command",
+      "[pscustomobject]@{observed_at=[DateTimeOffset]::Now.ToString('o');last_boot=(Get-CimInstance Win32_OperatingSystem).LastBootUpTime.ToString('o');events=@(Get-WinEvent -FilterHashtable @{LogName='System';Id=41,1074,6008;StartTime=[datetime]'2026-10-23T08:00:00'} -MaxEvents 12 -ErrorAction SilentlyContinue | Select-Object Id,TimeCreated,ProviderName)} | ConvertTo-Json -Depth 4"
+    ],
+    "started_at": "2026-10-23T06:29:40.897320+00:00",
+    "exit_code": 0,
+    "pid": 11632,
+    "duration_seconds": 2.085,
+    "completed_at": "2026-10-23T06:29:42.982700+00:00"
+  },
+  "actual_host": {
+    "observed_at": "2026-10-23T11:59:41.8606235+05:30",
+    "last_boot": "2026-10-23T11:46:58.5000000+05:30",
+    "events": [
+      {
+        "Id": 41,
+        "TimeCreated": "2026-10-23T11:47:11.7617396+05:30",
+        "ProviderName": "Microsoft-Windows-Kernel-Power"
+      },
+      {
+        "Id": 6008,
+        "TimeCreated": "2026-10-23T11:47:32.3062118+05:30",
+        "ProviderName": "EventLog"
+      },
+      {
+        "Id": 1074,
+        "TimeCreated": "2026-10-23T09:54:08.363044+05:30",
+        "ProviderName": "User32"
+      }
+    ]
+  },
+  "correction_of": "docs\\evidence\\stage05a\\development-daemon-interruption-20261023\\receipt.json",
+  "correction_of_sha256": "e66d50b22f8d418afcbc70d81c7dca60dbca0bd97f5371feebd59d9b228a442d",
+  "correction": "The prior diagnostic reused the boot time observed at 11:45, before another restart. Its claim that the boot time remained unchanged was not established at that later observation. Current native output confirms 11:46:58.5+05:30. Preserve the prior record; do not use its boot-time sentence as evidence.",
+  "root_cause_limit": "Kernel-Power41 and EventLog6008 record unexpected shutdown; these events alone do not establish the underlying cause.",
+  "artifacts": {
+    "command.json": "bfb71bd4bc2f7ba820c3c6cd2bbcca1bb7d743911ffd677452da9f8a8e9ec84f",
+    "host.log": "cd9a954bf4e507948118bf284686dfa39b64e642b49f2c653c60fb9ab72cdba2"
+  }
+}

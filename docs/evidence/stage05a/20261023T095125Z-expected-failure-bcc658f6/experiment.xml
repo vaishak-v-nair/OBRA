@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.768" timestamp="2026-10-23T15:21:29.182574+05:30" hostname="Vaishak-MSI"><testcase classname="tests.experiments.orchestration_completion_experiment" name="test_incorrect_completion_claim" time="0.627"><failure message="AssertionError: DELIBERATELY INCORRECT: eligibility is not verified execution completion&#10;assert 'awaiting_executor' == 'verified_complete'&#10;  &#10;  - verified_complete&#10;  + awaiting_executor">client = &lt;starlette.testclient.TestClient object at 0x00000198C804DD30&gt;
+
+    def test_incorrect_completion_claim(client):
+        _, _, _, run = initialize(client)
+        with Session(client.app.state.engine) as db:
+            task = db.get(OrchestrationTask, UUID(run["tasks"][0]["id"]))
+            print(
+                f"ACTUAL_EVIDENCE run_id={task.run_id} task_id={task.id} execution_status={task.execution_status} execution_performed=False"
+            )
+&gt;           assert task.execution_status == "verified_complete", (
+                "DELIBERATELY INCORRECT: eligibility is not verified execution completion"
+            )
+E           AssertionError: DELIBERATELY INCORRECT: eligibility is not verified execution completion
+E           assert 'awaiting_executor' == 'verified_complete'
+E             
+E             - verified_complete
+E             + awaiting_executor
+
+tests\experiments\orchestration_completion_experiment.py:18: AssertionError</failure></testcase></testsuite></testsuites>

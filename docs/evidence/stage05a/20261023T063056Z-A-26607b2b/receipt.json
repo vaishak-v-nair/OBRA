@@ -1,0 +1,2330 @@
+{
+  "stage": "stage05a-orchestration",
+  "gate": "A",
+  "execution_class": "deterministic",
+  "verification_contract": {
+    "stage": "stage05a-orchestration",
+    "hash_version": "orba-orchestration-canonical-json-v1",
+    "edge_convention": "prerequisite -> dependent",
+    "transitions": {
+      "created": [
+        "awaiting_executor"
+      ],
+      "awaiting_executor": [
+        "cancelled"
+      ],
+      "cancelled": []
+    },
+    "schema_sha256": "cdee704beeff62b0ff76ee247303ea971a0759b217c3d8544f257ec8c050d30b",
+    "model_generation_requests": 0,
+    "executor_available": false,
+    "execution_performed": false,
+    "database": "guarded local orba_test",
+    "workers": 1,
+    "automatic_retries": 0
+  },
+  "started_at": "2026-10-23T06:31:05.442365+00:00",
+  "commands": [
+    {
+      "name": "database",
+      "argv": [
+        "docker",
+        "compose",
+        "-f",
+        "infra/compose.yaml",
+        "--profile",
+        "test",
+        "up",
+        "-d",
+        "--wait",
+        "test-postgres"
+      ],
+      "started_at": "2026-10-23T06:31:10.648405+00:00",
+      "exit_code": 0,
+      "pid": 11800,
+      "duration_seconds": 1.355,
+      "completed_at": "2026-10-23T06:31:12.003236+00:00"
+    },
+    {
+      "name": "python-lock",
+      "argv": [
+        "uv",
+        "sync",
+        "--locked",
+        "--directory",
+        "apps/api"
+      ],
+      "started_at": "2026-10-23T06:31:12.006482+00:00",
+      "exit_code": 0,
+      "pid": 8788,
+      "duration_seconds": 0.099,
+      "completed_at": "2026-10-23T06:31:12.105342+00:00"
+    },
+    {
+      "name": "frontend-lock",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "install",
+        "--frozen-lockfile"
+      ],
+      "started_at": "2026-10-23T06:31:12.106368+00:00",
+      "exit_code": 0,
+      "pid": 20732,
+      "duration_seconds": 21.499,
+      "completed_at": "2026-10-23T06:31:33.605822+00:00"
+    },
+    {
+      "name": "peers",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "peers",
+        "check"
+      ],
+      "started_at": "2026-10-23T06:31:33.606588+00:00",
+      "exit_code": 0,
+      "pid": 22696,
+      "duration_seconds": 2.084,
+      "completed_at": "2026-10-23T06:31:35.690550+00:00"
+    },
+    {
+      "name": "migration",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "alembic",
+        "upgrade",
+        "head"
+      ],
+      "started_at": "2026-10-23T06:31:35.691547+00:00",
+      "exit_code": 0,
+      "pid": 3544,
+      "duration_seconds": 3.744,
+      "completed_at": "2026-10-23T06:31:39.435750+00:00"
+    },
+    {
+      "name": "schema-drift",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "alembic",
+        "check"
+      ],
+      "started_at": "2026-10-23T06:31:39.437287+00:00",
+      "exit_code": 0,
+      "pid": 12924,
+      "duration_seconds": 2.299,
+      "completed_at": "2026-10-23T06:31:41.735906+00:00"
+    },
+    {
+      "name": "backend",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "pytest",
+        "-q",
+        "--junitxml=E:\\BrosKi\\OBRA\\docs\\evidence\\stage05a\\20261023T063056Z-A-26607b2b\\backend.xml"
+      ],
+      "started_at": "2026-10-23T06:31:41.739021+00:00",
+      "exit_code": 0,
+      "pid": 22388,
+      "duration_seconds": 163.753,
+      "completed_at": "2026-10-23T06:34:25.491750+00:00"
+    },
+    {
+      "name": "ruff",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "ruff",
+        "check",
+        "."
+      ],
+      "started_at": "2026-10-23T06:34:25.494892+00:00",
+      "exit_code": 0,
+      "pid": 21260,
+      "duration_seconds": 3.338,
+      "completed_at": "2026-10-23T06:34:28.832410+00:00"
+    },
+    {
+      "name": "format",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "started_at": "2026-10-23T06:34:28.834878+00:00",
+      "exit_code": 0,
+      "pid": 21992,
+      "duration_seconds": 0.095,
+      "completed_at": "2026-10-23T06:34:28.930163+00:00"
+    },
+    {
+      "name": "typecheck",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "typecheck"
+      ],
+      "started_at": "2026-10-23T06:34:28.930734+00:00",
+      "exit_code": 0,
+      "pid": 21440,
+      "duration_seconds": 31.149,
+      "completed_at": "2026-10-23T06:35:00.080368+00:00"
+    },
+    {
+      "name": "eslint",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-23T06:35:00.081430+00:00",
+      "exit_code": 0,
+      "pid": 16716,
+      "duration_seconds": 97.947,
+      "completed_at": "2026-10-23T06:36:38.028642+00:00"
+    },
+    {
+      "name": "build",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "build"
+      ],
+      "started_at": "2026-10-23T06:36:38.029359+00:00",
+      "exit_code": 0,
+      "pid": 2996,
+      "duration_seconds": 19.895,
+      "completed_at": "2026-10-23T06:36:57.924112+00:00"
+    },
+    {
+      "name": "core-browser",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "test:e2e"
+      ],
+      "started_at": "2026-10-23T06:36:57.924719+00:00",
+      "exit_code": 0,
+      "pid": 9456,
+      "duration_seconds": 317.639,
+      "completed_at": "2026-10-23T06:42:15.564126+00:00"
+    },
+    {
+      "name": "controlled-browser",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "test:e2e:controlled"
+      ],
+      "started_at": "2026-10-23T06:42:15.565968+00:00",
+      "exit_code": 0,
+      "pid": 2340,
+      "duration_seconds": 450.39,
+      "completed_at": "2026-10-23T06:49:45.956492+00:00"
+    },
+    {
+      "name": "architect-browser",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "test:e2e:architect"
+      ],
+      "started_at": "2026-10-23T06:49:45.960453+00:00",
+      "exit_code": 0,
+      "pid": 21056,
+      "duration_seconds": 607.563,
+      "completed_at": "2026-10-23T06:59:53.523883+00:00"
+    },
+    {
+      "name": "navigation-browser",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "test:e2e:navigation"
+      ],
+      "started_at": "2026-10-23T06:59:53.525245+00:00",
+      "exit_code": 0,
+      "pid": 18408,
+      "duration_seconds": 313.898,
+      "completed_at": "2026-10-23T07:05:07.423736+00:00"
+    },
+    {
+      "name": "orchestration-browser",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "test:e2e:orchestration"
+      ],
+      "started_at": "2026-10-23T07:05:07.424829+00:00",
+      "exit_code": 0,
+      "pid": 26508,
+      "duration_seconds": 309.688,
+      "completed_at": "2026-10-23T07:10:17.112670+00:00"
+    }
+  ],
+  "result": "PASS",
+  "exit_code": 0,
+  "source_start": {
+    "version": 1,
+    "policy": "git-relevant-source-v2-including-root-template",
+    "sha256": "daff99b31e5db1156011058eed168e0c04136bb840dcb75f7de2d928fe7d3f62",
+    "files": {
+      ".env.example": "451eb6ada6853dfe2ced21a9adfb5a4847983330888626ee88fdf7480323401f",
+      ".gitignore": "00fa81e1e924669f0856da223cc586833ef72844cae0cefea46a50b6594db7a5",
+      "apps/api/.env.example": "251fe824f7b11187d02bdd5249a36c656499a114e847d70cfb6ed889860d174f",
+      "apps/api/alembic.ini": "55f6227b037e8558031bdca3ace12a01bd14b7fea0df8d7285d35a508c04a671",
+      "apps/api/migrations/env.py": "4725647fbcdd554788f83241bcb513869f6f1f89cb53f1fff2e1a0232df9e16d",
+      "apps/api/migrations/script.py.mako": "ee5dd9a388ee59fd3d089670c2f60db5f5904da6f21cfe3bfc44d7f567ee1546",
+      "apps/api/migrations/versions/0001_projects.py": "afd31c934b3b28bb471ddaa3b0a4b5249b006446d550c0a45bffc1f5922409c2",
+      "apps/api/migrations/versions/0febbe526f54_auth_workspaces.py": "7a463ba5c0b3e79959a276b9a7496f069785be744a81b8aee59e24147fb2cc47",
+      "apps/api/migrations/versions/7dd7671f9417_architect_planning.py": "be0cebe80b0801d2543c181bc7a3da8afe1b6d8fca5a7d79df43a87f112edc7d",
+      "apps/api/migrations/versions/ab3987da8961_product_manager_plans.py": "b1b13b4de935b7a9511983c0d24c36be10d1f792f1f6759f064bc0d7261ba17d",
+      "apps/api/migrations/versions/f9e997d59bb4_orchestration_foundation.py": "92779f2c35a8af0dabdc8e1b7fa2345292afe01f579c7714081317592ff26347",
+      "apps/api/orba/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "apps/api/orba/architect.py": "9776ea80ea61fd26f9dadf73ddff290574cf2bc442ae8618e0a69e42b8776958",
+      "apps/api/orba/architect_models.py": "3fbcae3e439c1e85e956db33563d4845cfa482917d9034361bc950e8c68b584e",
+      "apps/api/orba/architect_provider.py": "67d62b093eac3fa07c7dff5b90d891d2f0fa4ee0cc16e6d687fee42346eb8336",
+      "apps/api/orba/architect_repository.py": "710f7d02601a42b6df01674c30738b577af8b3209e8923361b335c19cfb25947",
+      "apps/api/orba/architect_schemas.py": "cc121bf70ed920206464c13d02af97a20b40d9462d6a91b49e18e4afca0ac6a9",
+      "apps/api/orba/architect_service.py": "e6ff5d329cb795fb9ae5930996adc67ed46ac7120a4c7de72daa5688a477b8fc",
+      "apps/api/orba/architect_traceability.py": "2fa975e444a1b31f67a9234efae04aa94c53a078555f0a99c616d349a58a5c03",
+      "apps/api/orba/auth.py": "b9777bf99338576cafc52bc30d15cde6db0815606cbc492735c7c68a219f4c25",
+      "apps/api/orba/config.py": "8bbba047a2b4c3922176410e9af27e94edbfc04360a150cfa57b115ec2128bee",
+      "apps/api/orba/db.py": "5660e401376f6f2614678c7e5763dce7d52674aceeb59413f0ae28f2864b6bf6",
+      "apps/api/orba/main.py": "dc4f797943ca7425b18fb0aa1f8c5321cd4902f697821db7f943a2c581b65fd7",
+      "apps/api/orba/migration_safety.py": "1257766657aa8d8f58bbe49447ed8730da927fbf5acda6f4f6f9c818ab677588",
+      "apps/api/orba/models.py": "61239dcebb5f642353f632577476cacc89de0e861f56b81820630ca25af733ae",
+      "apps/api/orba/orchestration.py": "ef58ecaf50dddd900c4c5df21cbf8199f01ff6ce338fc25299e88ac200417208",
+      "apps/api/orba/orchestration_graph.py": "c9021130b940e7eeb082653387298736c68cf3e5bf18add31e04da86a5bd7299",
+      "apps/api/orba/orchestration_models.py": "44e31a0bbf61802dafe82b089acc224e3c333de90a0bad371403babf43aace98",
+      "apps/api/orba/orchestration_schemas.py": "c3b68ae23653e1195c847bc2882816723f514798e7ef2ecaf2883f0e8043e306",
+      "apps/api/orba/orchestration_service.py": "50adbd63c3b4d1249b7a147cfc377f9e477ea477ae709082e98d4a798e8860cf",
+      "apps/api/orba/planning_admission.py": "0e91ae5f5dae9c78ad6d2474f5343661bdeedf84d1248f59c2539dbdbed973b5",
+      "apps/api/orba/pm.py": "b1969ab1ef97c71faa305e8c9cebe61f497333755f31f630b52184b86d9aae0c",
+      "apps/api/orba/pm_errors.py": "e85eb27b5ed1431119dcc89ccd3259a9f9bd9a210555e67c6df6ab79d3302c79",
+      "apps/api/orba/pm_middleware.py": "6bb02b57e8a839acd1b5952a2bab34d21957c1d403f27c75d73a0a583b05e2c3",
+      "apps/api/orba/pm_models.py": "832f4d620a1434a367b9b0d72c9f95652337acc30d7bf972329a7063c797381d",
+      "apps/api/orba/pm_models_policy.py": "4a449e4d7c187ab7055afa72f511ac5f53268d5f8f8ad71d141098f854635c7e",
+      "apps/api/orba/pm_provider.py": "3264212276b6af3a07d329f2e1d09afe217fbb4ddfee9492c5ed5751298586c5",
+      "apps/api/orba/pm_readiness.py": "47b77748c80ddfa8bf53a3df9100a1306c3230c0a324d7daf5e60434e4ac3e91",
+      "apps/api/orba/pm_repository.py": "5dd8b72bbb6a9959e099eb400e7ed36a1527d6a017cbc780550400bf781b5121",
+      "apps/api/orba/pm_schemas.py": "bfaf16a984ce27cf2a849d42740da86e6e9bb8ae6e85a157a40408e2fd99675e",
+      "apps/api/orba/pm_service.py": "bddf2d8a3dd421875cec63752b459de68ea8a60efc6f911215f659faeb1e3f82",
+      "apps/api/orba/pm_timing.py": "8e2c5deeddabc0ad95eafd5e5eb16848e396472501275161bb265d3e5aba288f",
+      "apps/api/orba/prompts/architect_v1.txt": "b05f3df028026489ca760894a1cbba96ab69ea37d7979f1c8a756c69466400a8",
+      "apps/api/orba/prompts/product_manager_v1.txt": "268749ec7f6f7527b7950889b51efae43dcd18a60f5140a51bae4c9a918e40ac",
+      "apps/api/orba/prompts/product_manager_v2.txt": "c7b8aac189085ca73a281633265461c7327dfb3a5e531d61b7e3c51f42a29056",
+      "apps/api/orba/schemas.py": "248c39d97c571bb549bd9d2e20339cae68cbabca733bfccd934b699493b45448",
+      "apps/api/orba/security.py": "58ebd495dbf67af6eaadb234aad509365655fbdc4d641e1cc78cbcfe8d613315",
+      "apps/api/orba/task_graph.py": "924cff4d6ca98afe489c889d5c0f00cd91f5cec9a8e88dd9eae531bf7a9f5d60",
+      "apps/api/orba/workspaces.py": "f63b9d35bda271359640df83550d93a357e776b272fb530fd3c42c3c2e2cb593",
+      "apps/api/pyproject.toml": "90711ee61b67e92d068489050e0eefd33c4b5aaf33f18e9b816a4d1c1eb3f7d6",
+      "apps/api/scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "apps/api/scripts/architect_false_success.py": "f3e81da8e13771515263ed5c3a5d71827a2d0d4ec982cf09d10fc061b5a7b9e9",
+      "apps/api/scripts/architect_preflight.py": "f7238b71e9817ce5819f9b60bf0b1467b50909d56f2c7e0ba4c03898c9c1c512",
+      "apps/api/scripts/architect_sample.py": "0aeced8c0bc1c031f8b150310bae9e591b81a07de17019b137bf9eb98107d767",
+      "apps/api/scripts/architect_verification.py": "c0ebf50d9d2e164a0e24d909031ef82940e68de110dc855b71a9bed76fdcf1b0",
+      "apps/api/scripts/architect_verification_baseline.json": "a3efb148eae167ebbe8961825468be9031e5ad18fee13f4036d676aef789226f",
+      "apps/api/scripts/check_architect_config.py": "79994383cc7d9de6ed9516313e8dd230e970f590f21a35af44c5af756f0e9cce",
+      "apps/api/scripts/check_pm_config.py": "c677b4152e9fdccf54b3f9ecebb5a1f7c1b585d110bd246ac88f321c37227c7e",
+      "apps/api/scripts/claim_legacy.py": "a78df44d8abade19b7d8270e7b3731dc2e6113fa3b271393c3a030f928c18c67",
+      "apps/api/scripts/inspect_architect_preflight.py": "31ad750d6248359455194a43d7310ecb7a064e83547f2aa5a50be2c8f8076bfb",
+      "apps/api/scripts/inspect_architect_run.py": "5244a9eef6ee80585bb3f043ea7b79e40a43ea5a9e30f08181b269b82826d97c",
+      "apps/api/scripts/inspect_orchestration.py": "cde8822cf9f44f217089fd373f4c2ff1fea0183b765088d08345a456d5e791a6",
+      "apps/api/scripts/inspect_pm_run.py": "b127f154d3faf21f5f12fb624d06ec75a0d04e07f3717293d54a52b313d3e3f8",
+      "apps/api/scripts/orchestration_false_success.py": "fa10590233984ef0ca871446c2995f882cd601889ee100c1777e442abb41c07a",
+      "apps/api/scripts/orchestration_verification.py": "fe37fbb5b75fed71c740401b2b3dd66fb87b01993c15895bb0ba483ad55883fb",
+      "apps/api/scripts/orchestration_verification_baseline.json": "ee4d1b927ccc62ccd8bc1eff4c9789ffffa6c069fed76d03b0f125fb11f730a5",
+      "apps/api/scripts/owned_process.py": "d7cdd7c232e4907c9f022cdae0093fecfd37ba8d9ca8d690f3d4e0a0f6f60b40",
+      "apps/api/scripts/pm_sample.py": "d184a021f7235a8c5bbe94321adb558d3b19790e584e1c1f9a4b95fa2726af2f",
+      "apps/api/scripts/prepare_tests.py": "47dfc48394c9e92c51c7dd60c7dfd98fbd2bf716e006385aa8c166afa5711e06",
+      "apps/api/scripts/seed_orchestration_fixture.py": "519dcb51e5383edd7e4d5f247279d7a0f5b34050f86231b8a896d91b16553d1c",
+      "apps/api/scripts/seed_pm_fixture.py": "eddbf07901b4ba660df50a19a0ed585ddd8c3ef267716c8e8d8ce7095d743544",
+      "apps/api/scripts/test_database.py": "88ff31b9dce00a2e0abc8f9c3f66ce92ae895a794753943db99376b62157317e",
+      "apps/api/scripts/test_evidence.py": "9db6662d9f0229511c5e35bae127933c67f457bb405ac3f9f5ad576e9a52fd56",
+      "apps/api/scripts/verification.py": "ce87b828f3d2dc8482af7847311524a39f69b277129220c37bb445090c308c87",
+      "apps/api/scripts/verification_baseline.json": "2e2d83e325ae07061159842f2a7ffec75919528696a56ba79f073863ddb2978b",
+      "apps/api/scripts/verify_false_success.py": "75b37665fe3d283f516e6065567ae0b879fb23adeaef34107c4434fb7887fdc1",
+      "apps/api/scripts/verify_pm_live.py": "bb09b029eb54b0fdbd9a583abc71563e6b5b80beca4e8d69c9f80e507707cf0f",
+      "apps/api/tests/architect_controlled_app.py": "f93830b320c59e0ab76c37b67140b7c71903712259058c4733f0845a750a4477",
+      "apps/api/tests/architect_support.py": "1855a15ba2b76a74d031bb30d826b1413eba69caa8550aea994e4ecd19f0bdbb",
+      "apps/api/tests/conftest.py": "519ca06c0e1c52e22ecd3cc765fbe12a2f870e742cbcdc44d3765a56ce21674c",
+      "apps/api/tests/controlled_app.py": "4aa7623bf3a856bf2019b0a22bf1fa3b28922bb6e250f1b001ed91048ced0903",
+      "apps/api/tests/experiments/architect_failed_run_success_experiment.py": "46fa15e7a371c7d73fe3550e50780e1ed927096d4e1914e86c67f68c045cda46",
+      "apps/api/tests/experiments/orchestration_completion_experiment.py": "60a5f73d55d74fb4f89601f43f29c720fc43e424e8d5d274703765d820fd867d",
+      "apps/api/tests/experiments/pm_failed_run_success_experiment.py": "75ae15934c5cab3f8b8891e7c2ad7e6e7878b84fe52801722e101b2cb94af43e",
+      "apps/api/tests/experiments/unauthorized_success_experiment.py": "44bb6e89b444e517af5414c7fdd7ed60c6e712ec76bc042dd5bf382f6ff4fd1a",
+      "apps/api/tests/no_generation_app.py": "88cab4ba82173a10cb73f0bfc990756653ec90f187714e14a0da6557c865fb0b",
+      "apps/api/tests/orchestration_support.py": "30cde3455f4eac25ae77c36e1ed60335d0abc55c5e52b6a76e8a79e20a22548f",
+      "apps/api/tests/password_support.py": "4fd03df5db9af2ce628f327bdd73bebb23124e67d2286442397d3e5d640ded3c",
+      "apps/api/tests/pm_support.py": "d2cb7a5e6b01b9996dbeab4082fe76852097af4a566c3a72ec8d2be1871e26e1",
+      "apps/api/tests/test_architect.py": "72ed489d08d54ff68e0b154cbc55f71b76e57f7297a9729ede517fe076c85d88",
+      "apps/api/tests/test_architect_concurrency.py": "98acaf4819a3cbb5116b1e96a9a8804e4b71492be125b17e32ce2c94069fb53f",
+      "apps/api/tests/test_architect_migration.py": "77eac5571d8e599df0874a677e61125278b6dd524c76a8eb3edb81404ab6edc0",
+      "apps/api/tests/test_architect_preflight.py": "16684db1c862959a4d63e52c009d6bee24e54da1bc5afa88ba989809142c2257",
+      "apps/api/tests/test_architect_provider.py": "f99050a93c3185032c392da731468a8e7a46d9a02b2fadd246d29c0fff04e84a",
+      "apps/api/tests/test_architect_schemas.py": "07529f7143bf89a2d86b55b7806af014b8f2559e7d795d1cd0acb6c995ac85f7",
+      "apps/api/tests/test_architect_verification.py": "ba32a67cfab2840b0766e2763fe2b51f21b315603f8a32056db22dda3d1fd1de",
+      "apps/api/tests/test_auth_workspaces.py": "439aebf1a3ed4c8a91e176f922d933399eb6d1275ae5a925bb8113c5e9152736",
+      "apps/api/tests/test_legacy.py": "be83b1e8aef1f61e014a74e3abda0537264f266fe230297a3f34c69c8cf9e540",
+      "apps/api/tests/test_orchestration.py": "97a9fb9575bac2033aaebc2032ce5d3e06e7af0a62ab91c17e8778d23e124e09",
+      "apps/api/tests/test_orchestration_migration.py": "7daf619c186d912c91f53b3f0068af2d1223f56b0a77f46995c0cbbe6f6166a1",
+      "apps/api/tests/test_orchestration_verification.py": "f405e7ecea5e888edac8734d4e4032ee599a5891dd925ff3c8b275360ec49597",
+      "apps/api/tests/test_password_policy.py": "3a3dd29d4c7972be0994c093147ccd80b3f3c424b44b151049f234529c6dd8b8",
+      "apps/api/tests/test_pm_boundaries.py": "467978304071e5a668b4cbdf2510da74b78705271214ff7eaabc404fc017c28c",
+      "apps/api/tests/test_pm_concurrency.py": "e5293c1f5f99bbd17cad1a0bc37bcd84b1bf0881575b38128b8cc75bbcebf21d",
+      "apps/api/tests/test_pm_contract.py": "5091907b077e3390bbb1b7eca6a1292c8fe40f19ec54f5de9f68205d1609db6b",
+      "apps/api/tests/test_pm_lifecycle_unit.py": "ac09b448b354ae559b6698250ee541d32adcd218ffe5c0b274daba0868c6c235",
+      "apps/api/tests/test_pm_model_integration.py": "714995f2fafdff323d8d4b67a0c578dfa3dbee921e13b45faf9a588701803ce3",
+      "apps/api/tests/test_pm_model_policy.py": "0095fcb538cc0760f5d90357e011f1f1a9e3c267420b05f03f8869ac053d82ea",
+      "apps/api/tests/test_pm_persistence.py": "da39f78d85b50d32ad610f543951e1bb361e70c4217b45840299ff1766b75110",
+      "apps/api/tests/test_pm_provider_unit.py": "6377cfd2e5e6b70508be4efad06e030c814fa81a8cdbfd51eed161c0786f2a83",
+      "apps/api/tests/test_pm_readiness.py": "774d3b9f2587762f1d5c487ccd7e9cbbe587ecb6f5f597bff24e9ef1a753e069",
+      "apps/api/tests/test_pm_reliability.py": "4c295041986bf0b4c0760276eff130b8f94eec69ba44f8dfbccbd2f243f90f21",
+      "apps/api/tests/test_projects.py": "52c11db77b91068ad74a3a0a8cec1f5124378f5a04ad098071bac16f08c99997",
+      "apps/api/tests/test_readiness_evidence.py": "a0264e10cd97989c1cf1628c402d7702c9084851bc6e3edb6917ba08853328a2",
+      "apps/api/tests/test_task_graph.py": "3af54cf021cc454566223e830273aa8f09cf2fe90ca9f2846bc3a2fc3fbb118b",
+      "apps/api/tests/test_verification.py": "f80f4d7df2302f23f23d156d7c9b184add72880873ba8b5da9cfc896a40e1478",
+      "apps/api/uv.lock": "caeb0d985de3bfb9aa4d3f298dd164ae773e17d0936cc3a85547187332845f42",
+      "apps/web/.env.example": "c659f9eb8cad91b87d992b9b6bd8ff27c56f9d7ec4e950f212bd19f19ba46e9d",
+      "apps/web/AGENTS.md": "063098f6cb31bb44c6f8fbea25b3876de7ee1e5f7d00a50dbab506f6415eb7f0",
+      "apps/web/components.json": "0c60033cff764977ad34938d50558c0a3d7a8433b6f11c3607339a4f85559e49",
+      "apps/web/eslint.config.mjs": "202af1f79ca6cce81076deb0823cf3dd9bbffc843030bbf6a1e1962a67973cf1",
+      "apps/web/next.config.ts": "fbf171389d52bee2aba853200353c59e38e3c3d9e6ce3f778e419acde9026241",
+      "apps/web/package.json": "d574327dcfc0ea9f525e8f594187c6c1d79b8405f5f03f83f08e32599f3606ed",
+      "apps/web/playwright.architect-controlled.config.ts": "45b30b2b29fb8b727ba3f0734b78b089ac24318ec814298635b8cf22eab6dc83",
+      "apps/web/playwright.architect-live.config.ts": "c8480b71ccf1501a33ba74c15ee23fd87c5f789c490f928e0c0a16eb475e1300",
+      "apps/web/playwright.architect-preflight.config.ts": "027115bf52f79bcdc1040de01a6fb24206b1781adc8d88d95afd4a5cafcf380c",
+      "apps/web/playwright.config.ts": "9adb1e7addb22b08fb258ba0336627f83eaf4fb41e948ea2b0fbea2e6ae124b3",
+      "apps/web/playwright.controlled.config.ts": "0c646141b33ee2cae424bb4f8c06439e0aa22953ccc0dc0b6e10ad97a22e1ced",
+      "apps/web/playwright.live.config.ts": "0eb82848bc442532049c4f879dbf230b29aace4c6f32202987993e8d696d6f36",
+      "apps/web/playwright.navigation.config.ts": "e3aa2833efafb025bbe46113a74024cbb7abb7da7ecbcbc7769069c363734799",
+      "apps/web/playwright.negative.config.ts": "a0d7dcd3dfb81e922568eccb6390c9fbed1cb595f82cab951a31116e679691b3",
+      "apps/web/playwright.orchestration-local.config.ts": "d6625c1206c5b6b3d1a55890cc5b51c0bc93422a1ea9707feaa2634d2fb2a941",
+      "apps/web/playwright.orchestration.config.ts": "ae2a845448ca8038d14f6f004671eaa3b62806c0e53b27854144c8d41874cdc0",
+      "apps/web/postcss.config.mjs": "b783348d5618047d0f37e12acd15c5a2c5f02809d8711e0764c9cea52750346c",
+      "apps/web/src/app/[section]/page.tsx": "84a5b5cee75e94a3f34feb9c9ec1ea7952775792b61c8db4d7de071f80090585",
+      "apps/web/src/app/api/v1/[...path]/route.ts": "4f3f48b3736762def75122e6beec2c530421f672e40dc3930ff8750bb17a0b60",
+      "apps/web/src/app/error.tsx": "0965067b6e7a0498b918330ba4e8cc3a10e5d0de2d68a09bf597d7c8933287f4",
+      "apps/web/src/app/globals.css": "a2ed50c9d2e4ddbbcec81cf72c8f634c92eb7a87c0e745cf5b393395740feb04",
+      "apps/web/src/app/invitations/accept/page.tsx": "e539870fe6ad48fd61f94941274d2e6b18a1aa99b4e226f2ce5c8a75df22a962",
+      "apps/web/src/app/layout.tsx": "5b1777ebe1162dff6dc78d40ca3139a72608a2228de9c5492d6623210aff6ef4",
+      "apps/web/src/app/not-found.tsx": "d9835d367e86060fab4fae6fa1f4daf54ce39237dc12a8ba5640e39d36637070",
+      "apps/web/src/app/page.tsx": "c9c5b0cba5fee233442b76659d8bc9d0bba9319f24fe6e93bca23be960222c42",
+      "apps/web/src/app/projects/[id]/page.tsx": "30f616534a52649aa2a942696ad235d2a1a9e29e75559164e67ebf98b01c8c1f",
+      "apps/web/src/app/projects/new/page.tsx": "67f4100188f44fbb0b8175019cfe7e4984d7826bbcaeedee1c0b51f15a0b5486",
+      "apps/web/src/app/projects/page.tsx": "73587a7ed7fe795b4c5d3c954c6ff32705b04a1e256f1853c00e7bc00217daef",
+      "apps/web/src/app/settings/page.tsx": "90fc21b4fa6f3fbe28ff1a1b00189141bf19316cf8f8636f2c0e1b0cb956b2b4",
+      "apps/web/src/app/signin/page.tsx": "f61a7db2b172ce8d150380ffd6432a54e7bf5d98057dfd3a230804b0e4193e74",
+      "apps/web/src/app/signup/page.tsx": "5de6cb426991620bc4c3c7217635f749087d02c12eb20adafc60f9ad7413a7fd",
+      "apps/web/src/app/workspaces/[id]/page.tsx": "c72f5296bc74faadda60c55c265eb372c896a2fa0f6c95f2a1936a4e0e3aeeab",
+      "apps/web/src/app/workspaces/new/page.tsx": "12e8dcd4697efb434234a7aba2317349ff139f1f9cc0c688dddbbb036dcf3963",
+      "apps/web/src/app/workspaces/page.tsx": "52e8bb6eccb8808daa3cbd83a088918f9b5f26fcf15516dda64523b8a120a759",
+      "apps/web/src/components/architecture-editor.tsx": "be6dba584234f0768de9bb3269feb1a2b7f40114006a4d963c526e320172fe32",
+      "apps/web/src/components/architecture.tsx": "16afd7a65dab5260c207f9769f7d062d12463802f6bcc8680652fb445a0fe183",
+      "apps/web/src/components/auth-form.tsx": "9b95de3f035ba7f254b8cdc401b15b93e81e941fe6de20d2ff378ee35c944a57",
+      "apps/web/src/components/execution-graph.tsx": "245cea018b364767de1c145d6649058bdfb289c353658ecca7fa136d37327ede",
+      "apps/web/src/components/execution-plan.tsx": "1308f218479df2dcc57759f985f8d2f2f9badcbd53b78778ff17c383f4eb9e32",
+      "apps/web/src/components/plan-editor.tsx": "90500245e4c5f92a045e78e77cd3716b223ddd09d675ce2e9b2b081c7d717ecd",
+      "apps/web/src/components/product-plan.tsx": "90577d7378f1769c7881993ba7d1a6bb2376bdd4377cf7e7f2e965383ecbde12",
+      "apps/web/src/components/project-editor.tsx": "3cad48354a1bf89429a6d19b7e50997822bb60f969e8d1a7d863613029732116",
+      "apps/web/src/components/project-form.tsx": "5783ad1d5333fcab05424a9ac5c418da057daa654c5504b958f062f706b99079",
+      "apps/web/src/components/project-planning.tsx": "9dd797b7fa1c316421be8e0943aaaee3b90f3a7651dcdcfa251f4b8bcf62ce75",
+      "apps/web/src/components/providers.tsx": "8704eb803954d3a0b57edf7d61d6b0f961f192944ea7257bf91cd2bdea764868",
+      "apps/web/src/components/session.tsx": "592ee427349f76b2b564b714a78785c9aa2bfe8e613a13e16212289b375feaa7",
+      "apps/web/src/components/shell.tsx": "90f2fe5a98c4ec2b2182cc1e60d00a54b2f627980a84fb82051a16cfd880eda3",
+      "apps/web/src/components/task-graph.tsx": "fa3d0db14b31b66f04cab9c148b12a881b58bfb864716f5210c9511c82fa498b",
+      "apps/web/src/components/ui/button.tsx": "6a90ed22d612bbec20d68f4c9fbbe6e5d99333fcd456f1cfbcd92244600eeea8",
+      "apps/web/src/lib/api.ts": "7704f2b5ac1c78b4fee1ee4f0edf1e19ba7f0a3852b054f51e6646622157876b",
+      "apps/web/src/lib/architect.ts": "084a732e6d258f40fc97ad4cd5a29d4c7a900c30d8e8a1e9f05a54abbb3b4454",
+      "apps/web/src/lib/orchestration.ts": "4758e0f9cea04a11f4edac7f2735827cdb19ab32fab72d296bd9b60f4255dce6",
+      "apps/web/src/lib/pm.ts": "e403749550ec60cc2808d4cfaf39830e2022407ecded476e67ce24a01fb64dfe",
+      "apps/web/src/lib/use-hash.ts": "921003e933f181665b0f85348018fa932972d1855607555be84a9b77ac76d617",
+      "apps/web/src/lib/utils.ts": "64fc84c1be627f0d586fb4ba64d824a1604f44282381f5bae68cdf86e10bb6ec",
+      "apps/web/tests-architect-controlled/architect.spec.ts": "d6b32356b8e0cc7c6ce4c534c111e36af3813c578233fb0c08c10ce9730331bc",
+      "apps/web/tests-architect-live/architect-live.spec.ts": "3b1989b7c416a1711c508077c77d82101856f944d296a7172bb92ef52c232bb0",
+      "apps/web/tests-architect-preflight/preflight.spec.ts": "d5c73bbd8621de23fde29de89f256585994bd6d817c09a4383881f5cbc08184e",
+      "apps/web/tests-controlled/pm-recovery.spec.ts": "e6c369d77aeb8eeacea77cc07cac7e4a31b08a6e6ed3ea51b8af418eac6da38a",
+      "apps/web/tests-live/pm-live.spec.ts": "c8203b73952a81ddf81ded7dd5d1cb88a99caa0f035eaacc7ecc517ead8d124e",
+      "apps/web/tests-navigation/navigation.spec.ts": "8b5b0b3c7b185deef7847fa81e8c6b63c100c00f6b396ab243f2b18fcb5b98b3",
+      "apps/web/tests-negative/provider-failure.spec.ts": "ff8e6ff9be055a578a3b68b1fdd27250f427310b6f6de7466cbd3dd65c635ea5",
+      "apps/web/tests-orchestration-local/control-plane.spec.ts": "df7ad887cfd18d665b13135479557da7193c95c75bad59e3da35f3f00a449ea1",
+      "apps/web/tests-orchestration/orchestration.spec.ts": "22be3ad3f2567078454364972d3b29f1ad72ced9d12ab3098064ef224f0b75ba",
+      "apps/web/tests/architect-boundary.ts": "1614b070ce7ebc552bf9aa290dc5cc48d5e4fde817128a082b79873d75fa0bdb",
+      "apps/web/tests/architect-preflight.ts": "7b03ac90fe4572fefeff3fa0a6bea049102f172f3432b723c580e2186db426f2",
+      "apps/web/tests/evidence.ts": "056f733e65d4f5b078821264e99062cd7c23b59d0f7af05a4ebd615ed238a43d",
+      "apps/web/tests/generation-budget.ts": "9658345d787023805db881fcdace7fc007400bbf4c80f7cd0228171e05cf7a47",
+      "apps/web/tests/helpers.ts": "90546a4d09f699278822a623acedee18f9e248040bf4e114cca6a0c92d1c0885",
+      "apps/web/tests/no-generation-config.ts": "14e311bae3b7dce886a810e374c2a870850b00a0353e210bf527e09d0c07e7bb",
+      "apps/web/tests/orchestration-setup.ts": "48ae5d9e3955550d8d92f5ef29662f3d4c6d37eb8e08a4bf2a8ce238770566cb",
+      "apps/web/tests/password-policy.spec.ts": "34ab140131f011956980c7c492027125894e386f2e970b5d5b19caadbf4e4b6e",
+      "apps/web/tests/pm.spec.ts": "f89b9591ee6dc990ad7178580ddbe3028d6c411405a5251628cc1cdf0a3e0133",
+      "apps/web/tests/projects.spec.ts": "d0d5e5a571f5ec4b1897114dc79eb7429d92251ff98c82cea72e83d7ce27eb40",
+      "apps/web/tests/teams.spec.ts": "533095eb95134b5cf73279a424e422c76da97923f04948f43245b39e9627d9d4",
+      "apps/web/tsconfig.json": "93277bb06d21418d49db8ce2a4f7a4fcd4bef70de9fdee8838af4b8f7a360513",
+      "infra/compose.yaml": "224f6a21cc0d0f41d0c7f7b81eb7f6d1873620b88bf24f198833c1950f131a53",
+      "package.json": "705019fa624af8caffe10eeffe86dd73eb22c2f31dcaa9b7dfc1dba7f01dd953",
+      "pnpm-lock.yaml": "9f135b01bfa345acae6f2fdb9154a7976e6f16da54813f38d542a0fdfb43b64d",
+      "pnpm-workspace.yaml": "9f215e6e25291b49e0537ca1a87020c61ef4b9a5f0305ec15456e82814cf0d1e",
+      "scripts/verify-architect-live.ps1": "13edb9266d5eefced82baa10009fefba9cd566c11201e54632c1e5b4fe37128f",
+      "scripts/verify-architect-preflight.ps1": "a0ec88aace11276991c20f6e731cd5b74884942111861398d4bca917dc48f8e7",
+      "scripts/verify-live.ps1": "c7eacc8bf556d51f4f9913a9f6458b4facca675ebe485444d4fba74ec29073a0",
+      "scripts/verify-orchestration-local.ps1": "f3003c388e8c41ccd33a19c867211d3114f273c45f5d35b7bd6b2a784ee4b5d1",
+      "scripts/verify.ps1": "cace1937384c50b419e20c82d871e788d56e3d559934ad32ffc0b51deb2a94e3"
+    }
+  },
+  "git_head": "bb880486bf7d8441cc6415f4dc6d6085a731151b",
+  "results": {
+    "backend": {
+      "passed": 478,
+      "skipped": 0,
+      "identities": [
+        "tests.test_architect::test_approved_architecture_and_prd_survive_failed_regeneration",
+        "tests.test_architect::test_architect_mutations_reject_invalid_authority_or_input_before_dispatch[csrf]",
+        "tests.test_architect::test_architect_mutations_reject_invalid_authority_or_input_before_dispatch[forged_owner]",
+        "tests.test_architect::test_architect_mutations_reject_invalid_authority_or_input_before_dispatch[origin]",
+        "tests.test_architect::test_architect_mutations_reject_invalid_authority_or_input_before_dispatch[oversized]",
+        "tests.test_architect::test_database_rejects_self_and_cross_architecture_edges",
+        "tests.test_architect::test_edit_revision_approval_history_and_stale_editor",
+        "tests.test_architect::test_exact_human_obligation_disposition_is_required_and_persisted",
+        "tests.test_architect::test_expired_execution_lease_cannot_publish_and_is_reconciled",
+        "tests.test_architect::test_generation_persists_relational_proposal_and_source",
+        "tests.test_architect::test_generation_requires_exact_current_approved_source[draft]",
+        "tests.test_architect::test_generation_requires_exact_current_approved_source[foreign]",
+        "tests.test_architect::test_generation_requires_exact_current_approved_source[missing]",
+        "tests.test_architect::test_generation_requires_exact_current_approved_source[wrong_revision]",
+        "tests.test_architect::test_generation_requires_exact_current_approved_source[wrong_version]",
+        "tests.test_architect::test_graph_tampering_cannot_be_approved_even_when_diagram_could_render",
+        "tests.test_architect::test_incomplete_coverage_draft_cannot_be_approved",
+        "tests.test_architect::test_invalid_edits_roll_back_saved_graph[<lambda>0]",
+        "tests.test_architect::test_invalid_edits_roll_back_saved_graph[<lambda>1]",
+        "tests.test_architect::test_invalid_edits_roll_back_saved_graph[<lambda>2]",
+        "tests.test_architect::test_invalid_edits_roll_back_saved_graph[<lambda>3]",
+        "tests.test_architect::test_invalid_edits_roll_back_saved_graph[<lambda>4]",
+        "tests.test_architect::test_invalid_model_output_never_persists[not JSON]",
+        "tests.test_architect::test_invalid_model_output_never_persists[{\"schema_version\":1,\"overview\":null}]",
+        "tests.test_architect::test_invalid_model_output_never_persists[{}]",
+        "tests.test_architect::test_missing_configuration_records_honest_failure",
+        "tests.test_architect::test_new_unapproved_prd_does_not_stale_current_architecture",
+        "tests.test_architect::test_provider_failures_are_terminal_without_artifact[failure0]",
+        "tests.test_architect::test_provider_failures_are_terminal_without_artifact[failure1]",
+        "tests.test_architect::test_provider_failures_are_terminal_without_artifact[failure2]",
+        "tests.test_architect::test_real_sql_failure_rolls_back_every_artifact_and_records_failure",
+        "tests.test_architect::test_replay_and_explicit_failed_retry_are_auditable",
+        "tests.test_architect::test_roles_enforced_server_side[member]",
+        "tests.test_architect::test_roles_enforced_server_side[viewer]",
+        "tests.test_architect::test_source_approval_change_during_call_fences_publication",
+        "tests.test_architect::test_source_or_original_session_change_during_call_blocks_publication",
+        "tests.test_architect::test_success_replay_survives_source_supersession_and_new_caps",
+        "tests.test_architect::test_tenant_denials_return_no_content_and_rows_remain",
+        "tests.test_architect::test_unauthenticated_architect_reads_and_generation_are_rejected",
+        "tests.test_architect_concurrency::test_architect_blocks_pm_when_combined_concurrency_is_one",
+        "tests.test_architect_concurrency::test_partial_publication_is_not_visible_in_an_independent_session",
+        "tests.test_architect_concurrency::test_pm_blocks_architect_when_combined_concurrency_is_one",
+        "tests.test_architect_concurrency::test_shared_root_lock_prevents_torn_graph_reads",
+        "tests.test_architect_concurrency::test_simultaneous_same_request_has_one_provider_call",
+        "tests.test_architect_concurrency::test_two_architecture_editors_only_one_revision_commits",
+        "tests.test_architect_migration::test_additive_upgrade_preserves_user_project_and_approved_prd_graph",
+        "tests.test_architect_preflight::test_fresh_read_only_sql_reconstructs_actual_draft_then_exact_api_approval",
+        "tests.test_architect_preflight::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[draft]",
+        "tests.test_architect_preflight::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[early_dispatch]",
+        "tests.test_architect_preflight::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[missing_sql]",
+        "tests.test_architect_preflight::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[no_setup]",
+        "tests.test_architect_preflight::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[phase_order]",
+        "tests.test_architect_preflight::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[unrelated_dispatch]",
+        "tests.test_architect_preflight::test_live_verdict_rejects_missing_or_inconsistent_preflight_unit_only[wrong_revision]",
+        "tests.test_architect_preflight::test_preflight_cannot_pass_from_incomplete_or_controlled_success_labels[final_sql]",
+        "tests.test_architect_preflight::test_preflight_cannot_pass_from_incomplete_or_controlled_success_labels[generation_budget]",
+        "tests.test_architect_preflight::test_preflight_cannot_pass_from_incomplete_or_controlled_success_labels[milestones]",
+        "tests.test_architect_preflight::test_preflight_cannot_pass_from_incomplete_or_controlled_success_labels[result]",
+        "tests.test_architect_preflight::test_preflight_cannot_pass_from_incomplete_or_controlled_success_labels[server_boundary]",
+        "tests.test_architect_preflight::test_sql_audit_does_not_change_persisted_source_or_project",
+        "tests.test_architect_preflight::test_sql_audit_rejects_wrong_project_and_unrelated_actor",
+        "tests.test_architect_preflight::test_unpaid_factory_refuses_development_database",
+        "tests.test_architect_preflight::test_unpaid_factory_refuses_live_opt_in",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[actor_id-approved_by]",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[project_id-project_id]",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[source_hash-content_hash]",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[source_plan_id-plan_id]",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[source_revision-revision]",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[source_version-version]",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_identity_absent_on_both_sides_unit_only[workspace_id-workspace_id]",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_invalid_matching_versions_unit_only[-1]",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_invalid_matching_versions_unit_only[0]",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_invalid_matching_versions_unit_only[None]",
+        "tests.test_architect_preflight::test_unpaid_proof_rejects_invalid_matching_versions_unit_only[True]",
+        "tests.test_architect_preflight::test_unpaid_runner_failure_is_a_real_nonzero_subprocess_exit",
+        "tests.test_architect_preflight::test_unpaid_runner_preserves_child_failure_and_never_runs_next_command",
+        "tests.test_architect_preflight::test_unpaid_server_denies_generation_before_provider_or_auth_dependencies[architect-runs/]",
+        "tests.test_architect_preflight::test_unpaid_server_denies_generation_before_provider_or_auth_dependencies[architect-runs]",
+        "tests.test_architect_preflight::test_unpaid_server_denies_generation_before_provider_or_auth_dependencies[pm-runs/]",
+        "tests.test_architect_preflight::test_unpaid_server_denies_generation_before_provider_or_auth_dependencies[pm-runs]",
+        "tests.test_architect_provider::test_actual_sdk_architect_contract_using_labeled_synthetic_http[200]",
+        "tests.test_architect_provider::test_actual_sdk_architect_contract_using_labeled_synthetic_http[503]",
+        "tests.test_architect_provider::test_actual_sdk_architect_contract_using_labeled_synthetic_http[504]",
+        "tests.test_architect_provider::test_explicit_reviewed_architect_selection[gemini-3.6-flash-minimal]",
+        "tests.test_architect_provider::test_explicit_reviewed_architect_selection[gemini-3.8-flash-low]",
+        "tests.test_architect_provider::test_explicit_reviewed_architect_selection[models/gemini-3.5-flash-lite-minimal]",
+        "tests.test_architect_provider::test_invalid_selection_rejected_before_dispatch[gemini-3.8-flash-minimal]",
+        "tests.test_architect_provider::test_invalid_selection_rejected_before_dispatch[gemini-9-pro-low]",
+        "tests.test_architect_provider::test_invalid_selection_rejected_before_dispatch[invented-model-low]",
+        "tests.test_architect_provider::test_no_implicit_model_fallback_and_credential_precedence",
+        "tests.test_architect_provider::test_shared_transport_uses_architect_prompt_and_bounded_schema",
+        "tests.test_architect_schemas::test_all_prerequisite_contributors_are_required",
+        "tests.test_architect_schemas::test_complete_contract_and_source_coverage",
+        "tests.test_architect_schemas::test_criterion_must_belong_to_referenced_story",
+        "tests.test_architect_schemas::test_exception_requires_exact_current_gap_and_human_review",
+        "tests.test_architect_schemas::test_inherited_confirmation_cannot_be_erased_by_model",
+        "tests.test_architect_schemas::test_invalid_contract_rejected[<lambda>0]",
+        "tests.test_architect_schemas::test_invalid_contract_rejected[<lambda>1]",
+        "tests.test_architect_schemas::test_invalid_contract_rejected[<lambda>2]",
+        "tests.test_architect_schemas::test_invalid_contract_rejected[<lambda>3]",
+        "tests.test_architect_schemas::test_invalid_contract_rejected[<lambda>4]",
+        "tests.test_architect_schemas::test_invalid_contract_rejected[<lambda>5]",
+        "tests.test_architect_schemas::test_invalid_contract_rejected[<lambda>6]",
+        "tests.test_architect_schemas::test_invalid_contract_rejected[<lambda>7]",
+        "tests.test_architect_schemas::test_missing_links_and_clarification_block_approval",
+        "tests.test_architect_schemas::test_source_component_task_trace_chain_cannot_be_omitted",
+        "tests.test_architect_schemas::test_source_references_are_authoritative[criterion_refs]",
+        "tests.test_architect_schemas::test_source_references_are_authoritative[requirement_refs]",
+        "tests.test_architect_schemas::test_source_references_are_authoritative[story_refs]",
+        "tests.test_architect_verification::test_architect_gate_a_blanks_every_runtime_alias",
+        "tests.test_architect_verification::test_architect_receipt_rejects_false_certification[double]",
+        "tests.test_architect_verification::test_architect_receipt_rejects_false_certification[failed]",
+        "tests.test_architect_verification::test_architect_receipt_rejects_false_certification[missing_exit]",
+        "tests.test_architect_verification::test_architect_receipt_rejects_false_certification[old_stage]",
+        "tests.test_architect_verification::test_architect_receipt_rejects_false_certification[stale]",
+        "tests.test_architect_verification::test_live_identity_accepts_versioned_labels_but_never_a_flagged_double[gemini-3.6-flash-001]",
+        "tests.test_architect_verification::test_live_identity_accepts_versioned_labels_but_never_a_flagged_double[models/gemini-3.6-flash]",
+        "tests.test_architect_verification::test_live_identity_rejects_missing_or_controlled_model_labels[123]",
+        "tests.test_architect_verification::test_live_identity_rejects_missing_or_controlled_model_labels[None]",
+        "tests.test_architect_verification::test_live_identity_rejects_missing_or_controlled_model_labels[]",
+        "tests.test_architect_verification::test_live_identity_rejects_missing_or_controlled_model_labels[controlled-double-not-live]",
+        "tests.test_architect_verification::test_live_identity_rejects_missing_or_controlled_model_labels[fixture]",
+        "tests.test_architect_verification::test_live_runner_propagates_failed_child_without_retry_unit_only",
+        "tests.test_architect_verification::test_missing_optin_never_reads_runtime_profile_or_dispatches",
+        "tests.test_architect_verification::test_stage04_c_is_partial_without_its_own_real_gate_b",
+        "tests.test_architect_verification::test_stage04_runner_propagates_actual_required_child_failure",
+        "tests.test_auth_workspaces::test_anonymous_and_csrf_origin_guards",
+        "tests.test_auth_workspaces::test_concurrent_final_owner_demotion_is_serialized",
+        "tests.test_auth_workspaces::test_concurrent_invitation_acceptance_only_one_membership",
+        "tests.test_auth_workspaces::test_duplicate_normalized_email_and_password_policy",
+        "tests.test_auth_workspaces::test_final_owner_and_role_changes",
+        "tests.test_auth_workspaces::test_invalid_sessions_rejected[expired]",
+        "tests.test_auth_workspaces::test_invalid_sessions_rejected[revoked]",
+        "tests.test_auth_workspaces::test_invitation_failure_states[expired]",
+        "tests.test_auth_workspaces::test_invitation_failure_states[inviter_removed]",
+        "tests.test_auth_workspaces::test_invitation_failure_states[revoked]",
+        "tests.test_auth_workspaces::test_invitation_failure_states[wrong_email]",
+        "tests.test_auth_workspaces::test_invitation_revocation_endpoint",
+        "tests.test_auth_workspaces::test_limiter_serializes_independent_app_instances",
+        "tests.test_auth_workspaces::test_login_invalid_and_logout_revocation",
+        "tests.test_auth_workspaces::test_login_throttle_is_persisted",
+        "tests.test_auth_workspaces::test_member_revocation_and_project_write_are_serialized",
+        "tests.test_auth_workspaces::test_non_ascii_csrf_is_safely_rejected",
+        "tests.test_auth_workspaces::test_permission_matrix[admin]",
+        "tests.test_auth_workspaces::test_permission_matrix[member]",
+        "tests.test_auth_workspaces::test_permission_matrix[viewer]",
+        "tests.test_auth_workspaces::test_private_project_isolation_and_forged_ids",
+        "tests.test_auth_workspaces::test_registration_hashes_and_cookie_security",
+        "tests.test_auth_workspaces::test_secure_cookie_configuration_and_https",
+        "tests.test_auth_workspaces::test_viewer_cannot_edit_and_member_can_edit",
+        "tests.test_auth_workspaces::test_workspace_owner_and_invitation_hash_atomic_membership",
+        "tests.test_legacy::test_first_registration_does_not_gain_existing_legacy_projects",
+        "tests.test_legacy::test_legacy_is_hidden_and_operator_claim_is_explicit",
+        "tests.test_legacy::test_populated_stage02_schema_and_records_survive_stage03",
+        "tests.test_legacy::test_stage01_migration_preserves_every_original_field",
+        "tests.test_legacy::test_upgrade_guard_requires_actual_api_port_to_be_offline",
+        "tests.test_orchestration::test_approved_source_creates_durable_bound_snapshot_and_truthful_events",
+        "tests.test_orchestration::test_auth_csrf_original_session_and_input_guards",
+        "tests.test_orchestration::test_cancel_is_atomic_revisioned_and_events_are_ordered",
+        "tests.test_orchestration::test_central_transition_service_rejects_unsupported_execution_states[blocked]",
+        "tests.test_orchestration::test_central_transition_service_rejects_unsupported_execution_states[created]",
+        "tests.test_orchestration::test_central_transition_service_rejects_unsupported_execution_states[running]",
+        "tests.test_orchestration::test_central_transition_service_rejects_unsupported_execution_states[succeeded]",
+        "tests.test_orchestration::test_central_transition_service_rejects_unsupported_execution_states[verified_complete]",
+        "tests.test_orchestration::test_concurrent_cancellations_allow_one_revision_and_one_atomic_ledger",
+        "tests.test_orchestration::test_database_prevents_rewriting_published_snapshots_and_ledger[append_edge]",
+        "tests.test_orchestration::test_database_prevents_rewriting_published_snapshots_and_ledger[append_task]",
+        "tests.test_orchestration::test_database_prevents_rewriting_published_snapshots_and_ledger[edge]",
+        "tests.test_orchestration::test_database_prevents_rewriting_published_snapshots_and_ledger[event_delete]",
+        "tests.test_orchestration::test_database_prevents_rewriting_published_snapshots_and_ledger[event_update]",
+        "tests.test_orchestration::test_database_prevents_rewriting_published_snapshots_and_ledger[run_snapshot]",
+        "tests.test_orchestration::test_database_prevents_rewriting_published_snapshots_and_ledger[task_definition]",
+        "tests.test_orchestration::test_database_rejects_missing_human_approval_before_it_can_authorize_a_run[approved_at]",
+        "tests.test_orchestration::test_database_rejects_missing_human_approval_before_it_can_authorize_a_run[approved_by]",
+        "tests.test_orchestration::test_dependency_evaluator_uses_real_dag_and_never_accepts_completion_input",
+        "tests.test_orchestration::test_evaluator_rejects_missing_self_duplicate_dependencies[dependencies0]",
+        "tests.test_orchestration::test_evaluator_rejects_missing_self_duplicate_dependencies[dependencies1]",
+        "tests.test_orchestration::test_evaluator_rejects_missing_self_duplicate_dependencies[dependencies2]",
+        "tests.test_orchestration::test_historical_snapshot_survives_new_architecture_approval_and_old_key_replay",
+        "tests.test_orchestration::test_idempotency_replay_and_conflict_are_persisted_not_in_memory",
+        "tests.test_orchestration::test_initialization_failure_rolls_back_all_records",
+        "tests.test_orchestration::test_invalid_sources_are_rejected_without_orphans[approval_disposition]",
+        "tests.test_orchestration::test_invalid_sources_are_rejected_without_orphans[cycle]",
+        "tests.test_orchestration::test_invalid_sources_are_rejected_without_orphans[draft]",
+        "tests.test_orchestration::test_invalid_sources_are_rejected_without_orphans[foreign]",
+        "tests.test_orchestration::test_invalid_sources_are_rejected_without_orphans[missing]",
+        "tests.test_orchestration::test_invalid_sources_are_rejected_without_orphans[missing_edge]",
+        "tests.test_orchestration::test_invalid_sources_are_rejected_without_orphans[revision]",
+        "tests.test_orchestration::test_invalid_sources_are_rejected_without_orphans[source_hash]",
+        "tests.test_orchestration::test_invalid_sources_are_rejected_without_orphans[stale_prd]",
+        "tests.test_orchestration::test_invalid_sources_are_rejected_without_orphans[version]",
+        "tests.test_orchestration::test_no_public_endpoint_can_forge_execution_or_system_events",
+        "tests.test_orchestration::test_real_postgresql_edge_ownership_self_and_unique_constraints[cross_project]",
+        "tests.test_orchestration::test_real_postgresql_edge_ownership_self_and_unique_constraints[cross_run]",
+        "tests.test_orchestration::test_real_postgresql_edge_ownership_self_and_unique_constraints[duplicate]",
+        "tests.test_orchestration::test_real_postgresql_edge_ownership_self_and_unique_constraints[self]",
+        "tests.test_orchestration::test_request_recovery_is_scoped_to_original_actor_even_with_shared_workspace",
+        "tests.test_orchestration::test_two_concurrent_identical_creations_have_one_run_and_event_sequence",
+        "tests.test_orchestration::test_unrelated_workspace_and_wrong_project_do_not_reveal_run",
+        "tests.test_orchestration::test_viewer_reads_but_cannot_create_or_cancel",
+        "tests.test_orchestration_migration::test_stage04_source_rows_survive_additive_orchestration_migration",
+        "tests.test_orchestration_verification::test_actual_failed_required_command_cannot_become_passing_gate[A-7]",
+        "tests.test_orchestration_verification::test_actual_failed_required_command_cannot_become_passing_gate[B-9]",
+        "tests.test_orchestration_verification::test_final_fingerprint_failure_preserves_native_exit_and_cannot_pass[0]",
+        "tests.test_orchestration_verification::test_final_fingerprint_failure_preserves_native_exit_and_cannot_pass[7]",
+        "tests.test_orchestration_verification::test_gate_a_retains_every_previous_command_and_adds_orchestration",
+        "tests.test_orchestration_verification::test_gate_c_cannot_certify_missing_local_or_controlled_evidence",
+        "tests.test_orchestration_verification::test_local_b_without_matching_gate_a_dispatches_nothing",
+        "tests.test_orchestration_verification::test_orchestration_gate_environment_cannot_inherit_runtime_credentials",
+        "tests.test_orchestration_verification::test_receipt_contract_rejects_fake_stale_incomplete_and_failed_evidence[controlled]",
+        "tests.test_orchestration_verification::test_receipt_contract_rejects_fake_stale_incomplete_and_failed_evidence[failed]",
+        "tests.test_orchestration_verification::test_receipt_contract_rejects_fake_stale_incomplete_and_failed_evidence[missing_commands]",
+        "tests.test_orchestration_verification::test_receipt_contract_rejects_fake_stale_incomplete_and_failed_evidence[stale]",
+        "tests.test_orchestration_verification::test_receipt_contract_rejects_fake_stale_incomplete_and_failed_evidence[wrong_stage]",
+        "tests.test_password_policy::test_fifteen_lowercase_characters_register_with_real_hash_and_session",
+        "tests.test_password_policy::test_fourteen_character_registration_is_rejected_without_rows",
+        "tests.test_password_policy::test_future_credential_write_schemas_can_reuse_the_new_password_type",
+        "tests.test_password_policy::test_invalid_new_credentials_preserve_existing_user_and_session[empty]",
+        "tests.test_password_policy::test_invalid_new_credentials_preserve_existing_user_and_session[legacy-length-new]",
+        "tests.test_password_policy::test_invalid_new_credentials_preserve_existing_user_and_session[missing]",
+        "tests.test_password_policy::test_invalid_new_credentials_preserve_existing_user_and_session[too-long]",
+        "tests.test_password_policy::test_invalid_new_credentials_preserve_existing_user_and_session[whitespace]",
+        "tests.test_password_policy::test_invalid_new_credentials_preserve_existing_user_and_session[wrong-type]",
+        "tests.test_password_policy::test_legacy_fixture_refuses_a_development_database_before_connection",
+        "tests.test_password_policy::test_legacy_twelve_character_login_preserves_hash_and_independent_session",
+        "tests.test_password_policy::test_legacy_twelve_character_password_can_receive_normal_argon2_parameter_upgrade",
+        "tests.test_password_policy::test_openapi_publishes_new_credential_policy_without_changing_login",
+        "tests.test_password_policy::test_passphrases_hash_and_authenticate_the_exact_complete_value[ascii128]",
+        "tests.test_password_policy::test_passphrases_hash_and_authenticate_the_exact_complete_value[ascii64]",
+        "tests.test_password_policy::test_passphrases_hash_and_authenticate_the_exact_complete_value[astral128]",
+        "tests.test_password_policy::test_passphrases_hash_and_authenticate_the_exact_complete_value[combining-sequence]",
+        "tests.test_password_policy::test_passphrases_hash_and_authenticate_the_exact_complete_value[surrounding-spaces]",
+        "tests.test_pm_boundaries::test_chunked_body_limit_applies_without_content_length[POST-262144]",
+        "tests.test_pm_boundaries::test_chunked_body_limit_applies_without_content_length[PUT-524288]",
+        "tests.test_pm_boundaries::test_failure_metadata_allowlist_excludes_body_and_secret_headers",
+        "tests.test_pm_boundaries::test_raw_provider_envelope_capped_before_buffering",
+        "tests.test_pm_concurrency::test_plan_get_holds_one_coherent_revision_during_concurrent_save",
+        "tests.test_pm_concurrency::test_racing_approvals_leave_one_current_highest_version",
+        "tests.test_pm_concurrency::test_two_editors_same_revision_only_one_save_commits",
+        "tests.test_pm_contract::test_additional_instructions_have_exact_source_traceability",
+        "tests.test_pm_contract::test_dependency_cycle_is_rejected",
+        "tests.test_pm_contract::test_human_edit_provenance_and_blocker_disposition_are_server_owned",
+        "tests.test_pm_contract::test_model_cannot_assert_human_authority[human]",
+        "tests.test_pm_contract::test_model_cannot_assert_human_authority[resolved]",
+        "tests.test_pm_contract::test_model_cannot_assert_human_authority[spoof_actor]",
+        "tests.test_pm_contract::test_model_cannot_assert_human_authority[spoof_inheritance]",
+        "tests.test_pm_contract::test_rejects_incomplete_or_invalid_graph[dependency]",
+        "tests.test_pm_contract::test_rejects_incomplete_or_invalid_graph[duplicate_key]",
+        "tests.test_pm_contract::test_rejects_incomplete_or_invalid_graph[empty_criteria]",
+        "tests.test_pm_contract::test_rejects_incomplete_or_invalid_graph[empty_epics]",
+        "tests.test_pm_contract::test_rejects_incomplete_or_invalid_graph[story_format]",
+        "tests.test_pm_contract::test_rejects_incomplete_or_invalid_graph[unknown_field]",
+        "tests.test_pm_contract::test_rejects_incomplete_or_invalid_graph[unknown_ref]",
+        "tests.test_pm_contract::test_rejects_incomplete_or_invalid_graph[wrong_type]",
+        "tests.test_pm_contract::test_unresolved_context_blocker_survives_two_generations_and_omission",
+        "tests.test_pm_contract::test_valid_contract_and_exact_source_quote",
+        "tests.test_pm_lifecycle_unit::test_isolation_of_run_metadata_uses_real_http_authorization",
+        "tests.test_pm_lifecycle_unit::test_real_missing_configuration_endpoint_records_honest_failure",
+        "tests.test_pm_lifecycle_unit::test_unit_authority_changes_during_provider_call_prevent_publication[expired_session]",
+        "tests.test_pm_lifecycle_unit::test_unit_authority_changes_during_provider_call_prevent_publication[membership_removed]",
+        "tests.test_pm_lifecycle_unit::test_unit_authority_changes_during_provider_call_prevent_publication[revoked_session]",
+        "tests.test_pm_lifecycle_unit::test_unit_authority_changes_during_provider_call_prevent_publication[viewer]",
+        "tests.test_pm_lifecycle_unit::test_unit_concurrent_generation_reserves_one_provider_call",
+        "tests.test_pm_lifecycle_unit::test_unit_expired_lease_and_late_failure_remain_interrupted",
+        "tests.test_pm_lifecycle_unit::test_unit_failures_cannot_overwrite_committed_success",
+        "tests.test_pm_lifecycle_unit::test_unit_global_admission_and_project_lease_are_enforced",
+        "tests.test_pm_lifecycle_unit::test_unit_invalid_output_or_provider_failure_never_creates_plan[malformed]",
+        "tests.test_pm_lifecycle_unit::test_unit_invalid_output_or_provider_failure_never_creates_plan[rate_limit]",
+        "tests.test_pm_lifecycle_unit::test_unit_invalid_output_or_provider_failure_never_creates_plan[timeout]",
+        "tests.test_pm_lifecycle_unit::test_unit_new_generation_and_failure_preserve_approved_version",
+        "tests.test_pm_lifecycle_unit::test_unit_router_releases_auth_connection_before_dispatch",
+        "tests.test_pm_lifecycle_unit::test_unit_session_expiring_during_graph_write_rolls_back_all_children",
+        "tests.test_pm_lifecycle_unit::test_unit_uncertain_final_commit_reconciles_actual_persisted_success",
+        "tests.test_pm_lifecycle_unit::test_unit_unknown_reservation_commit_never_dispatches_or_resubmits",
+        "tests.test_pm_lifecycle_unit::test_unit_valid_lifecycle_persists_graph_and_exact_replay",
+        "tests.test_pm_model_integration::test_alternative_sdk_failure_never_replaces_approved_plan[503]",
+        "tests.test_pm_model_integration::test_alternative_sdk_failure_never_replaces_approved_plan[504]",
+        "tests.test_pm_model_integration::test_alternative_sdk_failure_never_replaces_approved_plan[invalid_schema]",
+        "tests.test_pm_model_integration::test_alternative_sdk_failure_never_replaces_approved_plan[malformed_json]",
+        "tests.test_pm_model_integration::test_alternative_sdk_failure_never_replaces_approved_plan[truncated]",
+        "tests.test_pm_model_integration::test_api_byte_rejection_precedes_admission_and_preserves_rows",
+        "tests.test_pm_model_integration::test_exact_boundary_and_replay_after_model_cap_change_preserve_approval",
+        "tests.test_pm_model_integration::test_raw_escaped_surrogate_rejected_without_run_or_provider",
+        "tests.test_pm_model_integration::test_real_sdk_synthetic_success_validates_and_persists_relational_draft",
+        "tests.test_pm_model_policy::test_actual_invalid_api_startup_hides_supplied_values[ORBA_PM_MODEL]",
+        "tests.test_pm_model_policy::test_actual_invalid_api_startup_hides_supplied_values[ORBA_PM_THINKING_LEVEL]",
+        "tests.test_pm_model_policy::test_copied_invalid_settings_cannot_dispatch[changes0]",
+        "tests.test_pm_model_policy::test_copied_invalid_settings_cannot_dispatch[changes1]",
+        "tests.test_pm_model_policy::test_each_reviewed_model_metadata_is_one_get_not_generation[gemini-3.5-flash-lite-minimal]",
+        "tests.test_pm_model_policy::test_each_reviewed_model_metadata_is_one_get_not_generation[gemini-3.6-flash-minimal]",
+        "tests.test_pm_model_policy::test_each_reviewed_model_metadata_is_one_get_not_generation[gemini-3.8-flash-low]",
+        "tests.test_pm_model_policy::test_explicit_normalization_has_no_model_default_or_silent_switch",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes0]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes10]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes11]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes12]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes1]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes2]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes3]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes4]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes5]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes6]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes7]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes8]",
+        "tests.test_pm_model_policy::test_invalid_configuration_rejects_before_sdk[changes9]",
+        "tests.test_pm_model_policy::test_invalid_unicode_cannot_reach_provider",
+        "tests.test_pm_model_policy::test_lean_hint_retains_required_fields_and_full_server_contract",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-high-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-high-models/]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-low-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-low-models/]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-medium-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-medium-models/]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-minimal-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.5-flash-lite-minimal-models/]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-high-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-high-models/]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-low-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-low-models/]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-medium-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-medium-models/]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-minimal-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.6-flash-minimal-models/]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-high-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-high-models/]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-low-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-low-models/]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-medium-]",
+        "tests.test_pm_model_policy::test_reviewed_model_and_level_reach_real_sdk_once[gemini-3.8-flash-medium-models/]",
+        "tests.test_pm_model_policy::test_shared_utf8_content_budget_equality_and_one_byte_over",
+        "tests.test_pm_persistence::test_approval_exact_revision_copy_history_and_idempotency",
+        "tests.test_pm_persistence::test_blocking_confirmations_require_recorded_human_disposition",
+        "tests.test_pm_persistence::test_context_requires_same_project_and_exact_saved_revision_before_dispatch",
+        "tests.test_pm_persistence::test_corrupt_plan_cannot_be_read_or_approved",
+        "tests.test_pm_persistence::test_edit_revision_provenance_validation_and_persistence",
+        "tests.test_pm_persistence::test_expired_pending_leases_reconcile_on_get_and_lifespan_sweep",
+        "tests.test_pm_persistence::test_human_plan_roundtrip_relational_graph_and_pagination",
+        "tests.test_pm_persistence::test_pm_auth_csrf_missing_records_and_size_guards",
+        "tests.test_pm_persistence::test_viewer_member_approval_and_cross_workspace_isolation",
+        "tests.test_pm_provider_unit::test_outer_deadline_cancellation_is_safe_and_not_retried",
+        "tests.test_pm_provider_unit::test_provider_projection_keeps_full_pydantic_validation_and_property_names",
+        "tests.test_pm_provider_unit::test_real_sdk_distinct_server_and_transport_deadlines[180]",
+        "tests.test_pm_provider_unit::test_real_sdk_distinct_server_and_transport_deadlines[5]",
+        "tests.test_pm_provider_unit::test_real_sdk_parses_candidate_and_usage_and_makes_one_bounded_request",
+        "tests.test_pm_provider_unit::test_real_sdk_rejection_is_safe_and_never_automatically_retried[400-The specified schema has too many states for serving. secret-provider_request_failed-schema_state_limit]",
+        "tests.test_pm_provider_unit::test_real_sdk_rejection_is_safe_and_never_automatically_retried[429-Quota exceeded. secret-provider_rate_limited-None]",
+        "tests.test_pm_provider_unit::test_real_sdk_rejection_is_safe_and_never_automatically_retried[500-Internal provider error. secret-provider_unavailable-None]",
+        "tests.test_pm_provider_unit::test_real_sdk_rejection_is_safe_and_never_automatically_retried[503-Unavailable. secret-provider_unavailable-None]",
+        "tests.test_pm_provider_unit::test_real_sdk_rejection_is_safe_and_never_automatically_retried[504-Provider deadline exceeded. secret-provider_timeout-None]",
+        "tests.test_pm_readiness::test_cli_invalid_settings_omit_private_input[args0]",
+        "tests.test_pm_readiness::test_cli_invalid_settings_omit_private_input[args1]",
+        "tests.test_pm_readiness::test_cli_offline_help_and_invalid_args_never_dispatch",
+        "tests.test_pm_readiness::test_exact_model_prefix_is_canonical_without_switching[gemini-3.8-flash]",
+        "tests.test_pm_readiness::test_exact_model_prefix_is_canonical_without_switching[models/gemini-3.8-flash]",
+        "tests.test_pm_readiness::test_explicit_cli_uses_actual_readiness_result[200-0]",
+        "tests.test_pm_readiness::test_explicit_cli_uses_actual_readiness_result[503-2]",
+        "tests.test_pm_readiness::test_incomplete_or_incompatible_metadata_is_not_ready[change0-unknown]",
+        "tests.test_pm_readiness::test_incomplete_or_incompatible_metadata_is_not_ready[change1-unknown]",
+        "tests.test_pm_readiness::test_incomplete_or_incompatible_metadata_is_not_ready[change2-unknown]",
+        "tests.test_pm_readiness::test_incomplete_or_incompatible_metadata_is_not_ready[change3-unknown]",
+        "tests.test_pm_readiness::test_incomplete_or_incompatible_metadata_is_not_ready[change4-model_not_supported]",
+        "tests.test_pm_readiness::test_incomplete_or_incompatible_metadata_is_not_ready[change5-unknown]",
+        "tests.test_pm_readiness::test_incomplete_or_incompatible_metadata_is_not_ready[change6-unknown]",
+        "tests.test_pm_readiness::test_incomplete_or_incompatible_metadata_is_not_ready[change7-invalid_configuration]",
+        "tests.test_pm_readiness::test_incomplete_or_incompatible_metadata_is_not_ready[change8-unknown]",
+        "tests.test_pm_readiness::test_metadata_diagnosis_does_not_create_database_runs_or_plans",
+        "tests.test_pm_readiness::test_metadata_http_errors_are_safe_and_not_retried[400-credential_error]",
+        "tests.test_pm_readiness::test_metadata_http_errors_are_safe_and_not_retried[401-credential_error]",
+        "tests.test_pm_readiness::test_metadata_http_errors_are_safe_and_not_retried[403-credential_error]",
+        "tests.test_pm_readiness::test_metadata_http_errors_are_safe_and_not_retried[404-model_not_supported]",
+        "tests.test_pm_readiness::test_metadata_http_errors_are_safe_and_not_retried[418-unknown]",
+        "tests.test_pm_readiness::test_metadata_http_errors_are_safe_and_not_retried[429-rate_limited]",
+        "tests.test_pm_readiness::test_metadata_http_errors_are_safe_and_not_retried[500-provider_unavailable]",
+        "tests.test_pm_readiness::test_metadata_http_errors_are_safe_and_not_retried[502-provider_unavailable]",
+        "tests.test_pm_readiness::test_metadata_http_errors_are_safe_and_not_retried[503-provider_unavailable]",
+        "tests.test_pm_readiness::test_metadata_http_errors_are_safe_and_not_retried[504-timeout]",
+        "tests.test_pm_readiness::test_metadata_sdk_get_limits_cleanup_and_no_generation",
+        "tests.test_pm_readiness::test_metadata_transport_and_decode_errors_are_honest[malformed-unknown-metadata_response]",
+        "tests.test_pm_readiness::test_metadata_transport_and_decode_errors_are_honest[network-provider_unavailable-transport_unavailable]",
+        "tests.test_pm_readiness::test_metadata_transport_and_decode_errors_are_honest[timeout-timeout-transport_timeout]",
+        "tests.test_pm_readiness::test_missing_or_blank_configuration_never_dispatches[change0-not_configured]",
+        "tests.test_pm_readiness::test_missing_or_blank_configuration_never_dispatches[change1-not_configured]",
+        "tests.test_pm_readiness::test_missing_or_blank_configuration_never_dispatches[change2-invalid_configuration]",
+        "tests.test_pm_readiness::test_outer_metadata_cancellation_is_bounded_and_safe",
+        "tests.test_pm_readiness::test_real_bounded_transport_rejects_metadata_envelope[False]",
+        "tests.test_pm_readiness::test_real_bounded_transport_rejects_metadata_envelope[True]",
+        "tests.test_pm_readiness::test_unreviewed_model_metadata_does_not_assert_structured_compatibility",
+        "tests.test_pm_reliability::test_actual_phase_measurements_and_explicit_failed_retry",
+        "tests.test_pm_reliability::test_controlled_factory_refuses_development_database_before_app_creation",
+        "tests.test_pm_reliability::test_flushed_partial_graph_is_invisible_and_rollback_never_publishes",
+        "tests.test_pm_reliability::test_sdk_upstream_503_preserves_approval_and_cannot_turn_into_unrelated_success",
+        "tests.test_pm_reliability::test_simultaneous_exact_key_http_replay_dispatches_once",
+        "tests.test_pm_reliability::test_success_has_precommit_measurements_and_postcommit_log",
+        "tests.test_projects::test_creation_persists_in_postgresql",
+        "tests.test_projects::test_listing_actual_records_and_pagination",
+        "tests.test_projects::test_live_and_ready_with_migrated_database",
+        "tests.test_projects::test_malformed_uuid_and_pagination",
+        "tests.test_projects::test_nonexistent_project",
+        "tests.test_projects::test_real_unavailable_database_returns_503_and_liveness_survives",
+        "tests.test_projects::test_retrieval_correct_data",
+        "tests.test_projects::test_trims_input",
+        "tests.test_projects::test_validation_rejects_without_persisting[payload0]",
+        "tests.test_projects::test_validation_rejects_without_persisting[payload1]",
+        "tests.test_projects::test_validation_rejects_without_persisting[payload2]",
+        "tests.test_projects::test_validation_rejects_without_persisting[payload3]",
+        "tests.test_projects::test_validation_rejects_without_persisting[payload4]",
+        "tests.test_projects::test_validation_rejects_without_persisting[payload5]",
+        "tests.test_projects::test_validation_rejects_without_persisting[payload6]",
+        "tests.test_readiness_evidence::test_alternative_metadata_artifact_binds_exact_policy_and_profile[gemini-3.5-flash-lite]",
+        "tests.test_readiness_evidence::test_alternative_metadata_artifact_binds_exact_policy_and_profile[gemini-3.6-flash]",
+        "tests.test_readiness_evidence::test_gate_b_nonready_metadata_stops_before_browser_with_actual_native_exit",
+        "tests.test_readiness_evidence::test_gate_b_preserves_real_native_failure_without_running_followup",
+        "tests.test_readiness_evidence::test_metadata_validator_accepts_complete_fixture_but_never_calls_provider",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[a_hash]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[attempt]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[controlled]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[duration]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[excess_output]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[fake_generation]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[missing]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[mutated_cli]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[naive_time]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[no_actions]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[no_get]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[no_limits]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[nonzero_exit]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[not_ready]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[old_time]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[profile]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[source]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[too_late]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[wrong_command]",
+        "tests.test_readiness_evidence::test_metadata_validator_rejects_stale_incomplete_or_false_proof[wrong_model]",
+        "tests.test_readiness_evidence::test_new_generation_policy_cannot_use_mismatched_readiness[hint_hash]",
+        "tests.test_readiness_evidence::test_new_generation_policy_cannot_use_mismatched_readiness[input_limit]",
+        "tests.test_readiness_evidence::test_new_generation_policy_cannot_use_mismatched_readiness[thinking]",
+        "tests.test_readiness_evidence::test_new_generation_policy_cannot_use_mismatched_readiness[wrong_docs]",
+        "tests.test_task_graph::test_clarification_is_not_execution_ready",
+        "tests.test_task_graph::test_diamond_order_readiness_and_impact",
+        "tests.test_task_graph::test_independent_order_is_explicit_display_order_not_priority",
+        "tests.test_task_graph::test_invalid_graphs[edges0-cycle]",
+        "tests.test_task_graph::test_invalid_graphs[edges1-cycle]",
+        "tests.test_task_graph::test_invalid_graphs[edges2-itself]",
+        "tests.test_task_graph::test_invalid_graphs[edges3-missing]",
+        "tests.test_task_graph::test_invalid_graphs[edges4-Duplicate]",
+        "tests.test_task_graph::test_invalid_graphs[edges5-unique]",
+        "tests.test_verification::test_actual_passed_reports_are_validated_not_stdout",
+        "tests.test_verification::test_browser_report_rejects_false_success[duplicate]",
+        "tests.test_verification::test_browser_report_rejects_false_success[flaky]",
+        "tests.test_verification::test_browser_report_rejects_false_success[missing]",
+        "tests.test_verification::test_browser_report_rejects_false_success[missing_project]",
+        "tests.test_verification::test_browser_report_rejects_false_success[retry]",
+        "tests.test_verification::test_browser_report_rejects_false_success[skip]",
+        "tests.test_verification::test_browser_report_rejects_false_success[xfail]",
+        "tests.test_verification::test_browser_report_rejects_false_success[zero]",
+        "tests.test_verification::test_controlled_or_missing_gate_b_cannot_make_stage_verified",
+        "tests.test_verification::test_controlled_provider_proof_is_never_live_evidence",
+        "tests.test_verification::test_gate_a_empty_overrides_defeat_dotenv_and_selection_filters",
+        "tests.test_verification::test_gate_a_runner_stops_after_real_child_assertion_failure",
+        "tests.test_verification::test_junit_preserves_literal_parameters_and_rejects_changed_names[docs/a.py::section/b]",
+        "tests.test_verification::test_junit_preserves_literal_parameters_and_rejects_changed_names[models.gemini-3.8-flash]",
+        "tests.test_verification::test_junit_preserves_literal_parameters_and_rejects_changed_names[models/gemini-3.8-flash]",
+        "tests.test_verification::test_junit_rejects_incomplete_or_nonpassing_reports[empty]",
+        "tests.test_verification::test_junit_rejects_incomplete_or_nonpassing_reports[error]",
+        "tests.test_verification::test_junit_rejects_incomplete_or_nonpassing_reports[failure]",
+        "tests.test_verification::test_junit_rejects_incomplete_or_nonpassing_reports[missing_case]",
+        "tests.test_verification::test_junit_rejects_incomplete_or_nonpassing_reports[skipped]",
+        "tests.test_verification::test_manifest_detects_uncommitted_add_change_delete_but_excludes_secrets",
+        "tests.test_verification::test_missing_paid_optin_never_reaches_config_or_commands",
+        "tests.test_verification::test_native_failure_launch_error_and_timeout_preserve_nonzero",
+        "tests.test_verification::test_receipts_are_create_once_and_local_gate_lock_is_exclusive",
+        "tests.test_verification::test_receipts_fail_closed_before_any_live_certification[double]",
+        "tests.test_verification::test_receipts_fail_closed_before_any_live_certification[failed]",
+        "tests.test_verification::test_receipts_fail_closed_before_any_live_certification[missing_command]",
+        "tests.test_verification::test_receipts_fail_closed_before_any_live_certification[missing_exit]",
+        "tests.test_verification::test_receipts_fail_closed_before_any_live_certification[mutated_artifact]",
+        "tests.test_verification::test_receipts_fail_closed_before_any_live_certification[native_failure]",
+        "tests.test_verification::test_receipts_fail_closed_before_any_live_certification[stale]"
+      ]
+    },
+    "core-browser": {
+      "passed": 60,
+      "skipped": 0,
+      "identities": [
+        [
+          "password-policy.spec.ts",
+          "a real legacy twelve-character account signs in and keeps ordinary credential rejection",
+          "chromium"
+        ],
+        [
+          "password-policy.spec.ts",
+          "a real legacy twelve-character account signs in and keeps ordinary credential rejection",
+          "mobile"
+        ],
+        [
+          "password-policy.spec.ts",
+          "a real legacy twelve-character account signs in and keeps ordinary credential rejection",
+          "tablet"
+        ],
+        [
+          "password-policy.spec.ts",
+          "actual clipboard paste preserves over-limit values and full unicode passphrase login",
+          "chromium"
+        ],
+        [
+          "password-policy.spec.ts",
+          "actual clipboard paste preserves over-limit values and full unicode passphrase login",
+          "mobile"
+        ],
+        [
+          "password-policy.spec.ts",
+          "actual clipboard paste preserves over-limit values and full unicode passphrase login",
+          "tablet"
+        ],
+        [
+          "password-policy.spec.ts",
+          "new password boundaries reject fourteen and accept fifteen without composition rules",
+          "chromium"
+        ],
+        [
+          "password-policy.spec.ts",
+          "new password boundaries reject fourteen and accept fifteen without composition rules",
+          "mobile"
+        ],
+        [
+          "password-policy.spec.ts",
+          "new password boundaries reject fourteen and accept fifteen without composition rules",
+          "tablet"
+        ],
+        [
+          "pm.spec.ts",
+          "a save conflict preserves local edits for comparison",
+          "chromium"
+        ],
+        [
+          "pm.spec.ts",
+          "a save conflict preserves local edits for comparison",
+          "mobile"
+        ],
+        [
+          "pm.spec.ts",
+          "a save conflict preserves local edits for comparison",
+          "tablet"
+        ],
+        [
+          "pm.spec.ts",
+          "human-authored fixture: edit criterion, persist, approve exact version, history and isolation",
+          "chromium"
+        ],
+        [
+          "pm.spec.ts",
+          "human-authored fixture: edit criterion, persist, approve exact version, history and isolation",
+          "mobile"
+        ],
+        [
+          "pm.spec.ts",
+          "human-authored fixture: edit criterion, persist, approve exact version, history and isolation",
+          "tablet"
+        ],
+        [
+          "pm.spec.ts",
+          "provider setup and empty state are honest; visiting a project makes no model request",
+          "chromium"
+        ],
+        [
+          "pm.spec.ts",
+          "provider setup and empty state are honest; visiting a project makes no model request",
+          "mobile"
+        ],
+        [
+          "pm.spec.ts",
+          "provider setup and empty state are honest; visiting a project makes no model request",
+          "tablet"
+        ],
+        [
+          "projects.spec.ts",
+          "chat creates a real project, survives reload, and appears in Projects",
+          "chromium"
+        ],
+        [
+          "projects.spec.ts",
+          "chat creates a real project, survives reload, and appears in Projects",
+          "mobile"
+        ],
+        [
+          "projects.spec.ts",
+          "chat creates a real project, survives reload, and appears in Projects",
+          "tablet"
+        ],
+        [
+          "projects.spec.ts",
+          "empty Projects gives a usable first-project action",
+          "chromium"
+        ],
+        [
+          "projects.spec.ts",
+          "empty Projects gives a usable first-project action",
+          "mobile"
+        ],
+        [
+          "projects.spec.ts",
+          "empty Projects gives a usable first-project action",
+          "tablet"
+        ],
+        [
+          "projects.spec.ts",
+          "explicit project form saves title and description",
+          "chromium"
+        ],
+        [
+          "projects.spec.ts",
+          "explicit project form saves title and description",
+          "mobile"
+        ],
+        [
+          "projects.spec.ts",
+          "explicit project form saves title and description",
+          "tablet"
+        ],
+        [
+          "projects.spec.ts",
+          "home layout in both themes",
+          "chromium"
+        ],
+        [
+          "projects.spec.ts",
+          "home layout in both themes",
+          "mobile"
+        ],
+        [
+          "projects.spec.ts",
+          "home layout in both themes",
+          "tablet"
+        ],
+        [
+          "projects.spec.ts",
+          "navigation supports mobile Escape and focus restoration",
+          "chromium"
+        ],
+        [
+          "projects.spec.ts",
+          "navigation supports mobile Escape and focus restoration",
+          "mobile"
+        ],
+        [
+          "projects.spec.ts",
+          "navigation supports mobile Escape and focus restoration",
+          "tablet"
+        ],
+        [
+          "projects.spec.ts",
+          "network failure preserves the draft and permits deliberate retry",
+          "chromium"
+        ],
+        [
+          "projects.spec.ts",
+          "network failure preserves the draft and permits deliberate retry",
+          "mobile"
+        ],
+        [
+          "projects.spec.ts",
+          "network failure preserves the draft and permits deliberate retry",
+          "tablet"
+        ],
+        [
+          "projects.spec.ts",
+          "nonexistent project shows an actual API not-found error",
+          "chromium"
+        ],
+        [
+          "projects.spec.ts",
+          "nonexistent project shows an actual API not-found error",
+          "mobile"
+        ],
+        [
+          "projects.spec.ts",
+          "nonexistent project shows an actual API not-found error",
+          "tablet"
+        ],
+        [
+          "projects.spec.ts",
+          "rapid duplicate submission sends a single creation request",
+          "chromium"
+        ],
+        [
+          "projects.spec.ts",
+          "rapid duplicate submission sends a single creation request",
+          "mobile"
+        ],
+        [
+          "projects.spec.ts",
+          "rapid duplicate submission sends a single creation request",
+          "tablet"
+        ],
+        [
+          "projects.spec.ts",
+          "theme persists, future sections are honest, keyboard navigation works",
+          "chromium"
+        ],
+        [
+          "projects.spec.ts",
+          "theme persists, future sections are honest, keyboard navigation works",
+          "mobile"
+        ],
+        [
+          "projects.spec.ts",
+          "theme persists, future sections are honest, keyboard navigation works",
+          "tablet"
+        ],
+        [
+          "projects.spec.ts",
+          "whitespace cannot create a project",
+          "chromium"
+        ],
+        [
+          "projects.spec.ts",
+          "whitespace cannot create a project",
+          "mobile"
+        ],
+        [
+          "projects.spec.ts",
+          "whitespace cannot create a project",
+          "tablet"
+        ],
+        [
+          "teams.spec.ts",
+          "account menu and signout remain keyboard accessible",
+          "chromium"
+        ],
+        [
+          "teams.spec.ts",
+          "account menu and signout remain keyboard accessible",
+          "mobile"
+        ],
+        [
+          "teams.spec.ts",
+          "account menu and signout remain keyboard accessible",
+          "tablet"
+        ],
+        [
+          "teams.spec.ts",
+          "two people join a real workspace with Viewer restrictions, persistence and logout",
+          "chromium"
+        ],
+        [
+          "teams.spec.ts",
+          "two people join a real workspace with Viewer restrictions, persistence and logout",
+          "mobile"
+        ],
+        [
+          "teams.spec.ts",
+          "two people join a real workspace with Viewer restrictions, persistence and logout",
+          "tablet"
+        ],
+        [
+          "teams.spec.ts",
+          "unconfirmed logout clears protected content without claiming server revocation",
+          "chromium"
+        ],
+        [
+          "teams.spec.ts",
+          "unconfirmed logout clears protected content without claiming server revocation",
+          "mobile"
+        ],
+        [
+          "teams.spec.ts",
+          "unconfirmed logout clears protected content without claiming server revocation",
+          "tablet"
+        ],
+        [
+          "teams.spec.ts",
+          "unrelated exact project UUID stays private and workspace switching clears projects",
+          "chromium"
+        ],
+        [
+          "teams.spec.ts",
+          "unrelated exact project UUID stays private and workspace switching clears projects",
+          "mobile"
+        ],
+        [
+          "teams.spec.ts",
+          "unrelated exact project UUID stays private and workspace switching clears projects",
+          "tablet"
+        ]
+      ]
+    },
+    "controlled-browser": {
+      "passed": 33,
+      "skipped": 0,
+      "identities": [
+        [
+          "pm-recovery.spec.ts",
+          "combined UTF8 input rejection retains context brief and approved plan before explicit recovery",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "combined UTF8 input rejection retains context brief and approved plan before explicit recovery",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "combined UTF8 input rejection retains context brief and approved plan before explicit recovery",
+          "tablet"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled malformed structured response preserves approval and input without repeated-click dispatch",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled malformed structured response preserves approval and input without repeated-click dispatch",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled malformed structured response preserves approval and input without repeated-click dispatch",
+          "tablet"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled provider429 preserves approval and input without repeated-click dispatch",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled provider429 preserves approval and input without repeated-click dispatch",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled provider429 preserves approval and input without repeated-click dispatch",
+          "tablet"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled success retains recovery UUID when the saved-result read fails",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled success retains recovery UUID when the saved-result read fails",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled success retains recovery UUID when the saved-result read fails",
+          "tablet"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt",
+          "tablet"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled upstream503/public502 preserves approval and input without repeated-click dispatch",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled upstream503/public502 preserves approval and input without repeated-click dispatch",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "controlled upstream503/public502 preserves approval and input without repeated-click dispatch",
+          "tablet"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run",
+          "tablet"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "known active-project rejection creates no run and never strands a request reference",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "known active-project rejection creates no run and never strands a request reference",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "known active-project rejection creates no run and never strands a request reference",
+          "tablet"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "live-test allowance aborts a simultaneous second controlled generation before dispatch",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "live-test allowance aborts a simultaneous second controlled generation before dispatch",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "live-test allowance aborts a simultaneous second controlled generation before dispatch",
+          "tablet"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "lost HTTP response stays unknown and GET-only until the exact failed run is confirmed",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "lost HTTP response stays unknown and GET-only until the exact failed run is confirmed",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "lost HTTP response stays unknown and GET-only until the exact failed run is confirmed",
+          "tablet"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "status recovery never advances the revision beneath an open unchanged editor",
+          "chromium"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "status recovery never advances the revision beneath an open unchanged editor",
+          "mobile"
+        ],
+        [
+          "pm-recovery.spec.ts",
+          "status recovery never advances the revision beneath an open unchanged editor",
+          "tablet"
+        ]
+      ]
+    },
+    "architect-browser": {
+      "passed": 33,
+      "skipped": 0,
+      "identities": [
+        [
+          "architect.spec.ts",
+          "controlled architecture persists, graph rejects a cycle, human edit and approval survive reload",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled architecture persists, graph rejects a cycle, human edit and approval survive reload",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled architecture persists, graph rejects a cycle, human edit and approval survive reload",
+          "tablet"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled cycle preserves prior approval and permits only explicit recovery",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled cycle preserves prior approval and permits only explicit recovery",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled cycle preserves prior approval and permits only explicit recovery",
+          "tablet"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled invalid preserves prior approval and permits only explicit recovery",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled invalid preserves prior approval and permits only explicit recovery",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled invalid preserves prior approval and permits only explicit recovery",
+          "tablet"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled rate limited preserves prior approval and permits only explicit recovery",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled rate limited preserves prior approval and permits only explicit recovery",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled rate limited preserves prior approval and permits only explicit recovery",
+          "tablet"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled timeout preserves prior approval and permits only explicit recovery",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled timeout preserves prior approval and permits only explicit recovery",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled timeout preserves prior approval and permits only explicit recovery",
+          "tablet"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled unavailable preserves prior approval and permits only explicit recovery",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled unavailable preserves prior approval and permits only explicit recovery",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "controlled unavailable preserves prior approval and permits only explicit recovery",
+          "tablet"
+        ],
+        [
+          "architect.spec.ts",
+          "draft PRD is not an approved source; no generation is dispatched",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "draft PRD is not an approved source; no generation is dispatched",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "draft PRD is not an approved source; no generation is dispatched",
+          "tablet"
+        ],
+        [
+          "architect.spec.ts",
+          "explicit retry creates a fresh auditable run and unsaved navigation preserves draft",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "explicit retry creates a fresh auditable run and unsaved navigation preserves draft",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "explicit retry creates a fresh auditable run and unsaved navigation preserves draft",
+          "tablet"
+        ],
+        [
+          "architect.spec.ts",
+          "hidden architecture tab retains a visible navigation dialog and rejected graph edits",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "hidden architecture tab retains a visible navigation dialog and rejected graph edits",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "hidden architecture tab retains a visible navigation dialog and rejected graph edits",
+          "tablet"
+        ],
+        [
+          "architect.spec.ts",
+          "unrelated user cannot see architecture or run content",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "unrelated user cannot see architecture or run content",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "unrelated user cannot see architecture or run content",
+          "tablet"
+        ],
+        [
+          "architect.spec.ts",
+          "viewer can inspect saved architecture but cannot generate, edit or approve",
+          "chromium"
+        ],
+        [
+          "architect.spec.ts",
+          "viewer can inspect saved architecture but cannot generate, edit or approve",
+          "mobile"
+        ],
+        [
+          "architect.spec.ts",
+          "viewer can inspect saved architecture but cannot generate, edit or approve",
+          "tablet"
+        ]
+      ]
+    },
+    "navigation-browser": {
+      "passed": 39,
+      "skipped": 0,
+      "identities": [
+        [
+          "navigation.spec.ts",
+          "a delayed second project cannot display the first project as its details",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "a delayed second project cannot display the first project as its details",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "a delayed second project cannot display the first project as its details",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "a real Member cannot approve the Owner source or access another workspace",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "a real Member cannot approve the Owner source or access another workspace",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "a real Member cannot approve the Owner source or access another workspace",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "asynchronous workspace restoration preserves the selected project and hides stale content",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "asynchronous workspace restoration preserves the selected project and hides stale content",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "asynchronous workspace restoration preserves the selected project and hides stale content",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "controlled PRD transport failure stops before approval and Architect entry",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "controlled PRD transport failure stops before approval and Architect entry",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "controlled PRD transport failure stops before approval and Architect entry",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "controlled approval API failure preserves draft and does not claim approval",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "controlled approval API failure preserves draft and does not claim approval",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "controlled approval API failure preserves draft and does not claim approval",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "preflight closes before generation when approval prerequisite fails",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "preflight closes before generation when approval prerequisite fails",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "preflight closes before generation when approval prerequisite fails",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "real session revocation stops approval and leaves the exact PRD draft",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "real session revocation stops approval and leaves the exact PRD draft",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "real session revocation stops approval and leaves the exact PRD draft",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "route confirmation precedes immediate reload even when real Next navigation is held",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "route confirmation precedes immediate reload even when real Next navigation is held",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "route confirmation precedes immediate reload even when real Next navigation is held",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "shared Phase1 approves the exact source, reloads and stops at Architect entry",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "shared Phase1 approves the exact source, reloads and stops at Architect entry",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "shared Phase1 approves the exact source, reloads and stops at Architect entry",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "slow real project API stays on its project route without returning to Chat",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "slow real project API stays on its project route without returning to Chat",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "slow real project API stays on its project route without returning to Chat",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "unpaid browser boundary cannot open generation even with a claimed passing preflight",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "unpaid browser boundary cannot open generation even with a claimed passing preflight",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "unpaid browser boundary cannot open generation even with a claimed passing preflight",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "unpaid server boundary rejects direct model POSTs before creating any run",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "unpaid server boundary rejects direct model POSTs before creating any run",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "unpaid server boundary rejects direct model POSTs before creating any run",
+          "tablet"
+        ],
+        [
+          "navigation.spec.ts",
+          "wrong-route synchronization reports expected identity without approving or generating",
+          "chromium"
+        ],
+        [
+          "navigation.spec.ts",
+          "wrong-route synchronization reports expected identity without approving or generating",
+          "mobile"
+        ],
+        [
+          "navigation.spec.ts",
+          "wrong-route synchronization reports expected identity without approving or generating",
+          "tablet"
+        ]
+      ]
+    },
+    "orchestration-browser": {
+      "passed": 21,
+      "skipped": 0,
+      "identities": [
+        [
+          "orchestration.spec.ts",
+          "approved source creates one persisted snapshot with roots, blockers, real events and reload",
+          "chromium"
+        ],
+        [
+          "orchestration.spec.ts",
+          "approved source creates one persisted snapshot with roots, blockers, real events and reload",
+          "mobile"
+        ],
+        [
+          "orchestration.spec.ts",
+          "approved source creates one persisted snapshot with roots, blockers, real events and reload",
+          "tablet"
+        ],
+        [
+          "orchestration.spec.ts",
+          "cancellation requires confirmation and persists ordered events with no execution",
+          "chromium"
+        ],
+        [
+          "orchestration.spec.ts",
+          "cancellation requires confirmation and persists ordered events with no execution",
+          "mobile"
+        ],
+        [
+          "orchestration.spec.ts",
+          "cancellation requires confirmation and persists ordered events with no execution",
+          "tablet"
+        ],
+        [
+          "orchestration.spec.ts",
+          "pre-dispatch connection failure requires explicit original-key retry",
+          "chromium"
+        ],
+        [
+          "orchestration.spec.ts",
+          "pre-dispatch connection failure requires explicit original-key retry",
+          "mobile"
+        ],
+        [
+          "orchestration.spec.ts",
+          "pre-dispatch connection failure requires explicit original-key retry",
+          "tablet"
+        ],
+        [
+          "orchestration.spec.ts",
+          "unapproved architecture is rejected without run snapshots or false success",
+          "chromium"
+        ],
+        [
+          "orchestration.spec.ts",
+          "unapproved architecture is rejected without run snapshots or false success",
+          "mobile"
+        ],
+        [
+          "orchestration.spec.ts",
+          "unapproved architecture is rejected without run snapshots or false success",
+          "tablet"
+        ],
+        [
+          "orchestration.spec.ts",
+          "unknown committed creation recovers by exact request ID without repeating POST",
+          "chromium"
+        ],
+        [
+          "orchestration.spec.ts",
+          "unknown committed creation recovers by exact request ID without repeating POST",
+          "mobile"
+        ],
+        [
+          "orchestration.spec.ts",
+          "unknown committed creation recovers by exact request ID without repeating POST",
+          "tablet"
+        ],
+        [
+          "orchestration.spec.ts",
+          "unrelated workspace cannot inspect or forge completion of a persisted run",
+          "chromium"
+        ],
+        [
+          "orchestration.spec.ts",
+          "unrelated workspace cannot inspect or forge completion of a persisted run",
+          "mobile"
+        ],
+        [
+          "orchestration.spec.ts",
+          "unrelated workspace cannot inspect or forge completion of a persisted run",
+          "tablet"
+        ],
+        [
+          "orchestration.spec.ts",
+          "viewer can inspect real snapshots but cannot create or cancel",
+          "chromium"
+        ],
+        [
+          "orchestration.spec.ts",
+          "viewer can inspect real snapshots but cannot create or cancel",
+          "mobile"
+        ],
+        [
+          "orchestration.spec.ts",
+          "viewer can inspect real snapshots but cannot create or cancel",
+          "tablet"
+        ]
+      ]
+    }
+  },
+  "completed_at": "2026-10-23T07:10:17.272884+00:00",
+  "source_end": {
+    "version": 1,
+    "policy": "git-relevant-source-v2-including-root-template",
+    "sha256": "daff99b31e5db1156011058eed168e0c04136bb840dcb75f7de2d928fe7d3f62",
+    "files": {
+      ".env.example": "451eb6ada6853dfe2ced21a9adfb5a4847983330888626ee88fdf7480323401f",
+      ".gitignore": "00fa81e1e924669f0856da223cc586833ef72844cae0cefea46a50b6594db7a5",
+      "apps/api/.env.example": "251fe824f7b11187d02bdd5249a36c656499a114e847d70cfb6ed889860d174f",
+      "apps/api/alembic.ini": "55f6227b037e8558031bdca3ace12a01bd14b7fea0df8d7285d35a508c04a671",
+      "apps/api/migrations/env.py": "4725647fbcdd554788f83241bcb513869f6f1f89cb53f1fff2e1a0232df9e16d",
+      "apps/api/migrations/script.py.mako": "ee5dd9a388ee59fd3d089670c2f60db5f5904da6f21cfe3bfc44d7f567ee1546",
+      "apps/api/migrations/versions/0001_projects.py": "afd31c934b3b28bb471ddaa3b0a4b5249b006446d550c0a45bffc1f5922409c2",
+      "apps/api/migrations/versions/0febbe526f54_auth_workspaces.py": "7a463ba5c0b3e79959a276b9a7496f069785be744a81b8aee59e24147fb2cc47",
+      "apps/api/migrations/versions/7dd7671f9417_architect_planning.py": "be0cebe80b0801d2543c181bc7a3da8afe1b6d8fca5a7d79df43a87f112edc7d",
+      "apps/api/migrations/versions/ab3987da8961_product_manager_plans.py": "b1b13b4de935b7a9511983c0d24c36be10d1f792f1f6759f064bc0d7261ba17d",
+      "apps/api/migrations/versions/f9e997d59bb4_orchestration_foundation.py": "92779f2c35a8af0dabdc8e1b7fa2345292afe01f579c7714081317592ff26347",
+      "apps/api/orba/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "apps/api/orba/architect.py": "9776ea80ea61fd26f9dadf73ddff290574cf2bc442ae8618e0a69e42b8776958",
+      "apps/api/orba/architect_models.py": "3fbcae3e439c1e85e956db33563d4845cfa482917d9034361bc950e8c68b584e",
+      "apps/api/orba/architect_provider.py": "67d62b093eac3fa07c7dff5b90d891d2f0fa4ee0cc16e6d687fee42346eb8336",
+      "apps/api/orba/architect_repository.py": "710f7d02601a42b6df01674c30738b577af8b3209e8923361b335c19cfb25947",
+      "apps/api/orba/architect_schemas.py": "cc121bf70ed920206464c13d02af97a20b40d9462d6a91b49e18e4afca0ac6a9",
+      "apps/api/orba/architect_service.py": "e6ff5d329cb795fb9ae5930996adc67ed46ac7120a4c7de72daa5688a477b8fc",
+      "apps/api/orba/architect_traceability.py": "2fa975e444a1b31f67a9234efae04aa94c53a078555f0a99c616d349a58a5c03",
+      "apps/api/orba/auth.py": "b9777bf99338576cafc52bc30d15cde6db0815606cbc492735c7c68a219f4c25",
+      "apps/api/orba/config.py": "8bbba047a2b4c3922176410e9af27e94edbfc04360a150cfa57b115ec2128bee",
+      "apps/api/orba/db.py": "5660e401376f6f2614678c7e5763dce7d52674aceeb59413f0ae28f2864b6bf6",
+      "apps/api/orba/main.py": "dc4f797943ca7425b18fb0aa1f8c5321cd4902f697821db7f943a2c581b65fd7",
+      "apps/api/orba/migration_safety.py": "1257766657aa8d8f58bbe49447ed8730da927fbf5acda6f4f6f9c818ab677588",
+      "apps/api/orba/models.py": "61239dcebb5f642353f632577476cacc89de0e861f56b81820630ca25af733ae",
+      "apps/api/orba/orchestration.py": "ef58ecaf50dddd900c4c5df21cbf8199f01ff6ce338fc25299e88ac200417208",
+      "apps/api/orba/orchestration_graph.py": "c9021130b940e7eeb082653387298736c68cf3e5bf18add31e04da86a5bd7299",
+      "apps/api/orba/orchestration_models.py": "44e31a0bbf61802dafe82b089acc224e3c333de90a0bad371403babf43aace98",
+      "apps/api/orba/orchestration_schemas.py": "c3b68ae23653e1195c847bc2882816723f514798e7ef2ecaf2883f0e8043e306",
+      "apps/api/orba/orchestration_service.py": "50adbd63c3b4d1249b7a147cfc377f9e477ea477ae709082e98d4a798e8860cf",
+      "apps/api/orba/planning_admission.py": "0e91ae5f5dae9c78ad6d2474f5343661bdeedf84d1248f59c2539dbdbed973b5",
+      "apps/api/orba/pm.py": "b1969ab1ef97c71faa305e8c9cebe61f497333755f31f630b52184b86d9aae0c",
+      "apps/api/orba/pm_errors.py": "e85eb27b5ed1431119dcc89ccd3259a9f9bd9a210555e67c6df6ab79d3302c79",
+      "apps/api/orba/pm_middleware.py": "6bb02b57e8a839acd1b5952a2bab34d21957c1d403f27c75d73a0a583b05e2c3",
+      "apps/api/orba/pm_models.py": "832f4d620a1434a367b9b0d72c9f95652337acc30d7bf972329a7063c797381d",
+      "apps/api/orba/pm_models_policy.py": "4a449e4d7c187ab7055afa72f511ac5f53268d5f8f8ad71d141098f854635c7e",
+      "apps/api/orba/pm_provider.py": "3264212276b6af3a07d329f2e1d09afe217fbb4ddfee9492c5ed5751298586c5",
+      "apps/api/orba/pm_readiness.py": "47b77748c80ddfa8bf53a3df9100a1306c3230c0a324d7daf5e60434e4ac3e91",
+      "apps/api/orba/pm_repository.py": "5dd8b72bbb6a9959e099eb400e7ed36a1527d6a017cbc780550400bf781b5121",
+      "apps/api/orba/pm_schemas.py": "bfaf16a984ce27cf2a849d42740da86e6e9bb8ae6e85a157a40408e2fd99675e",
+      "apps/api/orba/pm_service.py": "bddf2d8a3dd421875cec63752b459de68ea8a60efc6f911215f659faeb1e3f82",
+      "apps/api/orba/pm_timing.py": "8e2c5deeddabc0ad95eafd5e5eb16848e396472501275161bb265d3e5aba288f",
+      "apps/api/orba/prompts/architect_v1.txt": "b05f3df028026489ca760894a1cbba96ab69ea37d7979f1c8a756c69466400a8",
+      "apps/api/orba/prompts/product_manager_v1.txt": "268749ec7f6f7527b7950889b51efae43dcd18a60f5140a51bae4c9a918e40ac",
+      "apps/api/orba/prompts/product_manager_v2.txt": "c7b8aac189085ca73a281633265461c7327dfb3a5e531d61b7e3c51f42a29056",
+      "apps/api/orba/schemas.py": "248c39d97c571bb549bd9d2e20339cae68cbabca733bfccd934b699493b45448",
+      "apps/api/orba/security.py": "58ebd495dbf67af6eaadb234aad509365655fbdc4d641e1cc78cbcfe8d613315",
+      "apps/api/orba/task_graph.py": "924cff4d6ca98afe489c889d5c0f00cd91f5cec9a8e88dd9eae531bf7a9f5d60",
+      "apps/api/orba/workspaces.py": "f63b9d35bda271359640df83550d93a357e776b272fb530fd3c42c3c2e2cb593",
+      "apps/api/pyproject.toml": "90711ee61b67e92d068489050e0eefd33c4b5aaf33f18e9b816a4d1c1eb3f7d6",
+      "apps/api/scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "apps/api/scripts/architect_false_success.py": "f3e81da8e13771515263ed5c3a5d71827a2d0d4ec982cf09d10fc061b5a7b9e9",
+      "apps/api/scripts/architect_preflight.py": "f7238b71e9817ce5819f9b60bf0b1467b50909d56f2c7e0ba4c03898c9c1c512",
+      "apps/api/scripts/architect_sample.py": "0aeced8c0bc1c031f8b150310bae9e591b81a07de17019b137bf9eb98107d767",
+      "apps/api/scripts/architect_verification.py": "c0ebf50d9d2e164a0e24d909031ef82940e68de110dc855b71a9bed76fdcf1b0",
+      "apps/api/scripts/architect_verification_baseline.json": "a3efb148eae167ebbe8961825468be9031e5ad18fee13f4036d676aef789226f",
+      "apps/api/scripts/check_architect_config.py": "79994383cc7d9de6ed9516313e8dd230e970f590f21a35af44c5af756f0e9cce",
+      "apps/api/scripts/check_pm_config.py": "c677b4152e9fdccf54b3f9ecebb5a1f7c1b585d110bd246ac88f321c37227c7e",
+      "apps/api/scripts/claim_legacy.py": "a78df44d8abade19b7d8270e7b3731dc2e6113fa3b271393c3a030f928c18c67",
+      "apps/api/scripts/inspect_architect_preflight.py": "31ad750d6248359455194a43d7310ecb7a064e83547f2aa5a50be2c8f8076bfb",
+      "apps/api/scripts/inspect_architect_run.py": "5244a9eef6ee80585bb3f043ea7b79e40a43ea5a9e30f08181b269b82826d97c",
+      "apps/api/scripts/inspect_orchestration.py": "cde8822cf9f44f217089fd373f4c2ff1fea0183b765088d08345a456d5e791a6",
+      "apps/api/scripts/inspect_pm_run.py": "b127f154d3faf21f5f12fb624d06ec75a0d04e07f3717293d54a52b313d3e3f8",
+      "apps/api/scripts/orchestration_false_success.py": "fa10590233984ef0ca871446c2995f882cd601889ee100c1777e442abb41c07a",
+      "apps/api/scripts/orchestration_verification.py": "fe37fbb5b75fed71c740401b2b3dd66fb87b01993c15895bb0ba483ad55883fb",
+      "apps/api/scripts/orchestration_verification_baseline.json": "ee4d1b927ccc62ccd8bc1eff4c9789ffffa6c069fed76d03b0f125fb11f730a5",
+      "apps/api/scripts/owned_process.py": "d7cdd7c232e4907c9f022cdae0093fecfd37ba8d9ca8d690f3d4e0a0f6f60b40",
+      "apps/api/scripts/pm_sample.py": "d184a021f7235a8c5bbe94321adb558d3b19790e584e1c1f9a4b95fa2726af2f",
+      "apps/api/scripts/prepare_tests.py": "47dfc48394c9e92c51c7dd60c7dfd98fbd2bf716e006385aa8c166afa5711e06",
+      "apps/api/scripts/seed_orchestration_fixture.py": "519dcb51e5383edd7e4d5f247279d7a0f5b34050f86231b8a896d91b16553d1c",
+      "apps/api/scripts/seed_pm_fixture.py": "eddbf07901b4ba660df50a19a0ed585ddd8c3ef267716c8e8d8ce7095d743544",
+      "apps/api/scripts/test_database.py": "88ff31b9dce00a2e0abc8f9c3f66ce92ae895a794753943db99376b62157317e",
+      "apps/api/scripts/test_evidence.py": "9db6662d9f0229511c5e35bae127933c67f457bb405ac3f9f5ad576e9a52fd56",
+      "apps/api/scripts/verification.py": "ce87b828f3d2dc8482af7847311524a39f69b277129220c37bb445090c308c87",
+      "apps/api/scripts/verification_baseline.json": "2e2d83e325ae07061159842f2a7ffec75919528696a56ba79f073863ddb2978b",
+      "apps/api/scripts/verify_false_success.py": "75b37665fe3d283f516e6065567ae0b879fb23adeaef34107c4434fb7887fdc1",
+      "apps/api/scripts/verify_pm_live.py": "bb09b029eb54b0fdbd9a583abc71563e6b5b80beca4e8d69c9f80e507707cf0f",
+      "apps/api/tests/architect_controlled_app.py": "f93830b320c59e0ab76c37b67140b7c71903712259058c4733f0845a750a4477",
+      "apps/api/tests/architect_support.py": "1855a15ba2b76a74d031bb30d826b1413eba69caa8550aea994e4ecd19f0bdbb",
+      "apps/api/tests/conftest.py": "519ca06c0e1c52e22ecd3cc765fbe12a2f870e742cbcdc44d3765a56ce21674c",
+      "apps/api/tests/controlled_app.py": "4aa7623bf3a856bf2019b0a22bf1fa3b28922bb6e250f1b001ed91048ced0903",
+      "apps/api/tests/experiments/architect_failed_run_success_experiment.py": "46fa15e7a371c7d73fe3550e50780e1ed927096d4e1914e86c67f68c045cda46",
+      "apps/api/tests/experiments/orchestration_completion_experiment.py": "60a5f73d55d74fb4f89601f43f29c720fc43e424e8d5d274703765d820fd867d",
+      "apps/api/tests/experiments/pm_failed_run_success_experiment.py": "75ae15934c5cab3f8b8891e7c2ad7e6e7878b84fe52801722e101b2cb94af43e",
+      "apps/api/tests/experiments/unauthorized_success_experiment.py": "44bb6e89b444e517af5414c7fdd7ed60c6e712ec76bc042dd5bf382f6ff4fd1a",
+      "apps/api/tests/no_generation_app.py": "88cab4ba82173a10cb73f0bfc990756653ec90f187714e14a0da6557c865fb0b",
+      "apps/api/tests/orchestration_support.py": "30cde3455f4eac25ae77c36e1ed60335d0abc55c5e52b6a76e8a79e20a22548f",
+      "apps/api/tests/password_support.py": "4fd03df5db9af2ce628f327bdd73bebb23124e67d2286442397d3e5d640ded3c",
+      "apps/api/tests/pm_support.py": "d2cb7a5e6b01b9996dbeab4082fe76852097af4a566c3a72ec8d2be1871e26e1",
+      "apps/api/tests/test_architect.py": "72ed489d08d54ff68e0b154cbc55f71b76e57f7297a9729ede517fe076c85d88",
+      "apps/api/tests/test_architect_concurrency.py": "98acaf4819a3cbb5116b1e96a9a8804e4b71492be125b17e32ce2c94069fb53f",
+      "apps/api/tests/test_architect_migration.py": "77eac5571d8e599df0874a677e61125278b6dd524c76a8eb3edb81404ab6edc0",
+      "apps/api/tests/test_architect_preflight.py": "16684db1c862959a4d63e52c009d6bee24e54da1bc5afa88ba989809142c2257",
+      "apps/api/tests/test_architect_provider.py": "f99050a93c3185032c392da731468a8e7a46d9a02b2fadd246d29c0fff04e84a",
+      "apps/api/tests/test_architect_schemas.py": "07529f7143bf89a2d86b55b7806af014b8f2559e7d795d1cd0acb6c995ac85f7",
+      "apps/api/tests/test_architect_verification.py": "ba32a67cfab2840b0766e2763fe2b51f21b315603f8a32056db22dda3d1fd1de",
+      "apps/api/tests/test_auth_workspaces.py": "439aebf1a3ed4c8a91e176f922d933399eb6d1275ae5a925bb8113c5e9152736",
+      "apps/api/tests/test_legacy.py": "be83b1e8aef1f61e014a74e3abda0537264f266fe230297a3f34c69c8cf9e540",
+      "apps/api/tests/test_orchestration.py": "97a9fb9575bac2033aaebc2032ce5d3e06e7af0a62ab91c17e8778d23e124e09",
+      "apps/api/tests/test_orchestration_migration.py": "7daf619c186d912c91f53b3f0068af2d1223f56b0a77f46995c0cbbe6f6166a1",
+      "apps/api/tests/test_orchestration_verification.py": "f405e7ecea5e888edac8734d4e4032ee599a5891dd925ff3c8b275360ec49597",
+      "apps/api/tests/test_password_policy.py": "3a3dd29d4c7972be0994c093147ccd80b3f3c424b44b151049f234529c6dd8b8",
+      "apps/api/tests/test_pm_boundaries.py": "467978304071e5a668b4cbdf2510da74b78705271214ff7eaabc404fc017c28c",
+      "apps/api/tests/test_pm_concurrency.py": "e5293c1f5f99bbd17cad1a0bc37bcd84b1bf0881575b38128b8cc75bbcebf21d",
+      "apps/api/tests/test_pm_contract.py": "5091907b077e3390bbb1b7eca6a1292c8fe40f19ec54f5de9f68205d1609db6b",
+      "apps/api/tests/test_pm_lifecycle_unit.py": "ac09b448b354ae559b6698250ee541d32adcd218ffe5c0b274daba0868c6c235",
+      "apps/api/tests/test_pm_model_integration.py": "714995f2fafdff323d8d4b67a0c578dfa3dbee921e13b45faf9a588701803ce3",
+      "apps/api/tests/test_pm_model_policy.py": "0095fcb538cc0760f5d90357e011f1f1a9e3c267420b05f03f8869ac053d82ea",
+      "apps/api/tests/test_pm_persistence.py": "da39f78d85b50d32ad610f543951e1bb361e70c4217b45840299ff1766b75110",
+      "apps/api/tests/test_pm_provider_unit.py": "6377cfd2e5e6b70508be4efad06e030c814fa81a8cdbfd51eed161c0786f2a83",
+      "apps/api/tests/test_pm_readiness.py": "774d3b9f2587762f1d5c487ccd7e9cbbe587ecb6f5f597bff24e9ef1a753e069",
+      "apps/api/tests/test_pm_reliability.py": "4c295041986bf0b4c0760276eff130b8f94eec69ba44f8dfbccbd2f243f90f21",
+      "apps/api/tests/test_projects.py": "52c11db77b91068ad74a3a0a8cec1f5124378f5a04ad098071bac16f08c99997",
+      "apps/api/tests/test_readiness_evidence.py": "a0264e10cd97989c1cf1628c402d7702c9084851bc6e3edb6917ba08853328a2",
+      "apps/api/tests/test_task_graph.py": "3af54cf021cc454566223e830273aa8f09cf2fe90ca9f2846bc3a2fc3fbb118b",
+      "apps/api/tests/test_verification.py": "f80f4d7df2302f23f23d156d7c9b184add72880873ba8b5da9cfc896a40e1478",
+      "apps/api/uv.lock": "caeb0d985de3bfb9aa4d3f298dd164ae773e17d0936cc3a85547187332845f42",
+      "apps/web/.env.example": "c659f9eb8cad91b87d992b9b6bd8ff27c56f9d7ec4e950f212bd19f19ba46e9d",
+      "apps/web/AGENTS.md": "063098f6cb31bb44c6f8fbea25b3876de7ee1e5f7d00a50dbab506f6415eb7f0",
+      "apps/web/components.json": "0c60033cff764977ad34938d50558c0a3d7a8433b6f11c3607339a4f85559e49",
+      "apps/web/eslint.config.mjs": "202af1f79ca6cce81076deb0823cf3dd9bbffc843030bbf6a1e1962a67973cf1",
+      "apps/web/next.config.ts": "fbf171389d52bee2aba853200353c59e38e3c3d9e6ce3f778e419acde9026241",
+      "apps/web/package.json": "d574327dcfc0ea9f525e8f594187c6c1d79b8405f5f03f83f08e32599f3606ed",
+      "apps/web/playwright.architect-controlled.config.ts": "45b30b2b29fb8b727ba3f0734b78b089ac24318ec814298635b8cf22eab6dc83",
+      "apps/web/playwright.architect-live.config.ts": "c8480b71ccf1501a33ba74c15ee23fd87c5f789c490f928e0c0a16eb475e1300",
+      "apps/web/playwright.architect-preflight.config.ts": "027115bf52f79bcdc1040de01a6fb24206b1781adc8d88d95afd4a5cafcf380c",
+      "apps/web/playwright.config.ts": "9adb1e7addb22b08fb258ba0336627f83eaf4fb41e948ea2b0fbea2e6ae124b3",
+      "apps/web/playwright.controlled.config.ts": "0c646141b33ee2cae424bb4f8c06439e0aa22953ccc0dc0b6e10ad97a22e1ced",
+      "apps/web/playwright.live.config.ts": "0eb82848bc442532049c4f879dbf230b29aace4c6f32202987993e8d696d6f36",
+      "apps/web/playwright.navigation.config.ts": "e3aa2833efafb025bbe46113a74024cbb7abb7da7ecbcbc7769069c363734799",
+      "apps/web/playwright.negative.config.ts": "a0d7dcd3dfb81e922568eccb6390c9fbed1cb595f82cab951a31116e679691b3",
+      "apps/web/playwright.orchestration-local.config.ts": "d6625c1206c5b6b3d1a55890cc5b51c0bc93422a1ea9707feaa2634d2fb2a941",
+      "apps/web/playwright.orchestration.config.ts": "ae2a845448ca8038d14f6f004671eaa3b62806c0e53b27854144c8d41874cdc0",
+      "apps/web/postcss.config.mjs": "b783348d5618047d0f37e12acd15c5a2c5f02809d8711e0764c9cea52750346c",
+      "apps/web/src/app/[section]/page.tsx": "84a5b5cee75e94a3f34feb9c9ec1ea7952775792b61c8db4d7de071f80090585",
+      "apps/web/src/app/api/v1/[...path]/route.ts": "4f3f48b3736762def75122e6beec2c530421f672e40dc3930ff8750bb17a0b60",
+      "apps/web/src/app/error.tsx": "0965067b6e7a0498b918330ba4e8cc3a10e5d0de2d68a09bf597d7c8933287f4",
+      "apps/web/src/app/globals.css": "a2ed50c9d2e4ddbbcec81cf72c8f634c92eb7a87c0e745cf5b393395740feb04",
+      "apps/web/src/app/invitations/accept/page.tsx": "e539870fe6ad48fd61f94941274d2e6b18a1aa99b4e226f2ce5c8a75df22a962",
+      "apps/web/src/app/layout.tsx": "5b1777ebe1162dff6dc78d40ca3139a72608a2228de9c5492d6623210aff6ef4",
+      "apps/web/src/app/not-found.tsx": "d9835d367e86060fab4fae6fa1f4daf54ce39237dc12a8ba5640e39d36637070",
+      "apps/web/src/app/page.tsx": "c9c5b0cba5fee233442b76659d8bc9d0bba9319f24fe6e93bca23be960222c42",
+      "apps/web/src/app/projects/[id]/page.tsx": "30f616534a52649aa2a942696ad235d2a1a9e29e75559164e67ebf98b01c8c1f",
+      "apps/web/src/app/projects/new/page.tsx": "67f4100188f44fbb0b8175019cfe7e4984d7826bbcaeedee1c0b51f15a0b5486",
+      "apps/web/src/app/projects/page.tsx": "73587a7ed7fe795b4c5d3c954c6ff32705b04a1e256f1853c00e7bc00217daef",
+      "apps/web/src/app/settings/page.tsx": "90fc21b4fa6f3fbe28ff1a1b00189141bf19316cf8f8636f2c0e1b0cb956b2b4",
+      "apps/web/src/app/signin/page.tsx": "f61a7db2b172ce8d150380ffd6432a54e7bf5d98057dfd3a230804b0e4193e74",
+      "apps/web/src/app/signup/page.tsx": "5de6cb426991620bc4c3c7217635f749087d02c12eb20adafc60f9ad7413a7fd",
+      "apps/web/src/app/workspaces/[id]/page.tsx": "c72f5296bc74faadda60c55c265eb372c896a2fa0f6c95f2a1936a4e0e3aeeab",
+      "apps/web/src/app/workspaces/new/page.tsx": "12e8dcd4697efb434234a7aba2317349ff139f1f9cc0c688dddbbb036dcf3963",
+      "apps/web/src/app/workspaces/page.tsx": "52e8bb6eccb8808daa3cbd83a088918f9b5f26fcf15516dda64523b8a120a759",
+      "apps/web/src/components/architecture-editor.tsx": "be6dba584234f0768de9bb3269feb1a2b7f40114006a4d963c526e320172fe32",
+      "apps/web/src/components/architecture.tsx": "16afd7a65dab5260c207f9769f7d062d12463802f6bcc8680652fb445a0fe183",
+      "apps/web/src/components/auth-form.tsx": "9b95de3f035ba7f254b8cdc401b15b93e81e941fe6de20d2ff378ee35c944a57",
+      "apps/web/src/components/execution-graph.tsx": "245cea018b364767de1c145d6649058bdfb289c353658ecca7fa136d37327ede",
+      "apps/web/src/components/execution-plan.tsx": "1308f218479df2dcc57759f985f8d2f2f9badcbd53b78778ff17c383f4eb9e32",
+      "apps/web/src/components/plan-editor.tsx": "90500245e4c5f92a045e78e77cd3716b223ddd09d675ce2e9b2b081c7d717ecd",
+      "apps/web/src/components/product-plan.tsx": "90577d7378f1769c7881993ba7d1a6bb2376bdd4377cf7e7f2e965383ecbde12",
+      "apps/web/src/components/project-editor.tsx": "3cad48354a1bf89429a6d19b7e50997822bb60f969e8d1a7d863613029732116",
+      "apps/web/src/components/project-form.tsx": "5783ad1d5333fcab05424a9ac5c418da057daa654c5504b958f062f706b99079",
+      "apps/web/src/components/project-planning.tsx": "9dd797b7fa1c316421be8e0943aaaee3b90f3a7651dcdcfa251f4b8bcf62ce75",
+      "apps/web/src/components/providers.tsx": "8704eb803954d3a0b57edf7d61d6b0f961f192944ea7257bf91cd2bdea764868",
+      "apps/web/src/components/session.tsx": "592ee427349f76b2b564b714a78785c9aa2bfe8e613a13e16212289b375feaa7",
+      "apps/web/src/components/shell.tsx": "90f2fe5a98c4ec2b2182cc1e60d00a54b2f627980a84fb82051a16cfd880eda3",
+      "apps/web/src/components/task-graph.tsx": "fa3d0db14b31b66f04cab9c148b12a881b58bfb864716f5210c9511c82fa498b",
+      "apps/web/src/components/ui/button.tsx": "6a90ed22d612bbec20d68f4c9fbbe6e5d99333fcd456f1cfbcd92244600eeea8",
+      "apps/web/src/lib/api.ts": "7704f2b5ac1c78b4fee1ee4f0edf1e19ba7f0a3852b054f51e6646622157876b",
+      "apps/web/src/lib/architect.ts": "084a732e6d258f40fc97ad4cd5a29d4c7a900c30d8e8a1e9f05a54abbb3b4454",
+      "apps/web/src/lib/orchestration.ts": "4758e0f9cea04a11f4edac7f2735827cdb19ab32fab72d296bd9b60f4255dce6",
+      "apps/web/src/lib/pm.ts": "e403749550ec60cc2808d4cfaf39830e2022407ecded476e67ce24a01fb64dfe",
+      "apps/web/src/lib/use-hash.ts": "921003e933f181665b0f85348018fa932972d1855607555be84a9b77ac76d617",
+      "apps/web/src/lib/utils.ts": "64fc84c1be627f0d586fb4ba64d824a1604f44282381f5bae68cdf86e10bb6ec",
+      "apps/web/tests-architect-controlled/architect.spec.ts": "d6b32356b8e0cc7c6ce4c534c111e36af3813c578233fb0c08c10ce9730331bc",
+      "apps/web/tests-architect-live/architect-live.spec.ts": "3b1989b7c416a1711c508077c77d82101856f944d296a7172bb92ef52c232bb0",
+      "apps/web/tests-architect-preflight/preflight.spec.ts": "d5c73bbd8621de23fde29de89f256585994bd6d817c09a4383881f5cbc08184e",
+      "apps/web/tests-controlled/pm-recovery.spec.ts": "e6c369d77aeb8eeacea77cc07cac7e4a31b08a6e6ed3ea51b8af418eac6da38a",
+      "apps/web/tests-live/pm-live.spec.ts": "c8203b73952a81ddf81ded7dd5d1cb88a99caa0f035eaacc7ecc517ead8d124e",
+      "apps/web/tests-navigation/navigation.spec.ts": "8b5b0b3c7b185deef7847fa81e8c6b63c100c00f6b396ab243f2b18fcb5b98b3",
+      "apps/web/tests-negative/provider-failure.spec.ts": "ff8e6ff9be055a578a3b68b1fdd27250f427310b6f6de7466cbd3dd65c635ea5",
+      "apps/web/tests-orchestration-local/control-plane.spec.ts": "df7ad887cfd18d665b13135479557da7193c95c75bad59e3da35f3f00a449ea1",
+      "apps/web/tests-orchestration/orchestration.spec.ts": "22be3ad3f2567078454364972d3b29f1ad72ced9d12ab3098064ef224f0b75ba",
+      "apps/web/tests/architect-boundary.ts": "1614b070ce7ebc552bf9aa290dc5cc48d5e4fde817128a082b79873d75fa0bdb",
+      "apps/web/tests/architect-preflight.ts": "7b03ac90fe4572fefeff3fa0a6bea049102f172f3432b723c580e2186db426f2",
+      "apps/web/tests/evidence.ts": "056f733e65d4f5b078821264e99062cd7c23b59d0f7af05a4ebd615ed238a43d",
+      "apps/web/tests/generation-budget.ts": "9658345d787023805db881fcdace7fc007400bbf4c80f7cd0228171e05cf7a47",
+      "apps/web/tests/helpers.ts": "90546a4d09f699278822a623acedee18f9e248040bf4e114cca6a0c92d1c0885",
+      "apps/web/tests/no-generation-config.ts": "14e311bae3b7dce886a810e374c2a870850b00a0353e210bf527e09d0c07e7bb",
+      "apps/web/tests/orchestration-setup.ts": "48ae5d9e3955550d8d92f5ef29662f3d4c6d37eb8e08a4bf2a8ce238770566cb",
+      "apps/web/tests/password-policy.spec.ts": "34ab140131f011956980c7c492027125894e386f2e970b5d5b19caadbf4e4b6e",
+      "apps/web/tests/pm.spec.ts": "f89b9591ee6dc990ad7178580ddbe3028d6c411405a5251628cc1cdf0a3e0133",
+      "apps/web/tests/projects.spec.ts": "d0d5e5a571f5ec4b1897114dc79eb7429d92251ff98c82cea72e83d7ce27eb40",
+      "apps/web/tests/teams.spec.ts": "533095eb95134b5cf73279a424e422c76da97923f04948f43245b39e9627d9d4",
+      "apps/web/tsconfig.json": "93277bb06d21418d49db8ce2a4f7a4fcd4bef70de9fdee8838af4b8f7a360513",
+      "infra/compose.yaml": "224f6a21cc0d0f41d0c7f7b81eb7f6d1873620b88bf24f198833c1950f131a53",
+      "package.json": "705019fa624af8caffe10eeffe86dd73eb22c2f31dcaa9b7dfc1dba7f01dd953",
+      "pnpm-lock.yaml": "9f135b01bfa345acae6f2fdb9154a7976e6f16da54813f38d542a0fdfb43b64d",
+      "pnpm-workspace.yaml": "9f215e6e25291b49e0537ca1a87020c61ef4b9a5f0305ec15456e82814cf0d1e",
+      "scripts/verify-architect-live.ps1": "13edb9266d5eefced82baa10009fefba9cd566c11201e54632c1e5b4fe37128f",
+      "scripts/verify-architect-preflight.ps1": "a0ec88aace11276991c20f6e731cd5b74884942111861398d4bca917dc48f8e7",
+      "scripts/verify-live.ps1": "c7eacc8bf556d51f4f9913a9f6458b4facca675ebe485444d4fba74ec29073a0",
+      "scripts/verify-orchestration-local.ps1": "f3003c388e8c41ccd33a19c867211d3114f273c45f5d35b7bd6b2a784ee4b5d1",
+      "scripts/verify.ps1": "cace1937384c50b419e20c82d871e788d56e3d559934ad32ffc0b51deb2a94e3"
+    }
+  },
+  "artifacts": {
+    "architect-browser-command.json": "f1114714769920e2e0956d8c8f865174687405c36c896757f163a481d6e7c6d6",
+    "architect-browser.json": "79b73c94ac90a20e3f2f93f9faa8f56d83b58e4cff7e9d8152718a4b519668a1",
+    "architect-browser.log": "99fc98a7e98f61811b09838efafdbb12907692d200ca99bb11eb77e61d27bdae",
+    "architect-controlled-cycle-chromium.json": "819daf7587a8580dc7bde19a4900ccce24dfd508e3e4a50983d776319557585a",
+    "architect-controlled-cycle-mobile.json": "abc639130e4bfce62e4148a7f6b51d34c055312955eb8ef0c87f2334312def15",
+    "architect-controlled-cycle-tablet.json": "7d4f18584d4651194eeba4c3832cf01da8a9acdeb90ec6565e20dfb726606222",
+    "architect-controlled-invalid-chromium.json": "ec736523a6a392fc083863c043dbe10766a34dae1956e17d96c26dfe6e48debe",
+    "architect-controlled-invalid-mobile.json": "f6c68892c131a61572ed8cb732cf3244ede0eeafe229e60b9d0c66c255748fc7",
+    "architect-controlled-invalid-tablet.json": "481ba9f79d8aad837372331185585d1253d57a930eae2c858991cb953d4171a5",
+    "architect-controlled-rate-limited-chromium.json": "c9424bc8fd5c20bfeab81f1acc996dc72700caacef9408a26c20bec50351d691",
+    "architect-controlled-rate-limited-mobile.json": "35245c275e5e3dc35daffb2d41664579182f93e1fce54b707d6de69f9fc84497",
+    "architect-controlled-rate-limited-tablet.json": "2b732b3fb4e8af6d03ff780ed0317abfe7f693c76fe1af1246781d14205d1373",
+    "architect-controlled-success-chromium.json": "e3591c2b2fe4ec6ef245ac8f07da8c1edc48f38ced7f3166488867aed0666484",
+    "architect-controlled-success-mobile.json": "170862845d64fb1584947014f567d6cb9fae684a1f126094ed282fbcfa7b7073",
+    "architect-controlled-success-tablet.json": "dae0ba278c53bb74bcd197cca00c3832c0cf383f77b1443a5a2f8cecf5a3e2a3",
+    "architect-controlled-timeout-chromium.json": "5c75bd0237da2d0a0ded673051e023e5a110b15ec6b95688c6f018ee3276e237",
+    "architect-controlled-timeout-mobile.json": "7b7b9d8170ad0d28eb39c1c876d9099a3ef02967a9b91391db1d190abda69e51",
+    "architect-controlled-timeout-tablet.json": "4ba0cd570e9e9301539e723a1fc7125bab5024a9ba9f34cdc0dc033ab1763145",
+    "architect-controlled-unavailable-chromium.json": "aa172724b791cf89c87ed74b28faacde19a3b1cc5aebcb4732b58f270c3f5373",
+    "architect-controlled-unavailable-mobile.json": "5b1ac10e6e084e1b534792b2e4b4bf4d441c14950531c02c0a1da6aa0963149e",
+    "architect-controlled-unavailable-tablet.json": "a16b6c2ca239a7fd74d1cc6466a0b9dfe3a9452eb1d13704f41ba8a4e4b9b6a2",
+    "architect-graph-chromium.png": "4bef1ca388a4b33f2a1a61120cc528dd52df9483f8e8ad6440334c89841a3095",
+    "architect-graph-mobile.png": "6ee94f8f6f52e30fcd9751e24664d8322370a0aa2fe73e6f3a8a574f8801961e",
+    "architect-graph-tablet.png": "2663d300c3241b93bb9b2cbd5bae5a4f551b6842d998964960fb0d34488c3933",
+    "attempt.json": "00fe281df2ea374b9b054b23a1c1e118d90c14a8458e2ca16d6a0a6fabd74d57",
+    "authorization.json": "9bb335ea4d1e1f4c5402345a670ac61a09545d4abb9d32284f3a734fed4f4208",
+    "backend-command.json": "9b29bbd2d2f01186a7a16109a7764db13eb13275244edabe13f3bf6f270a83d2",
+    "backend.log": "0ee8814f9eb4c992f7c80cc92e89382efdf543b0d0ec8134181b8f98d9499f3a",
+    "backend.xml": "cc1962729434c46324a840152a5cdcf0b53f60abba8277d0840923c501737d95",
+    "build-command.json": "98a7311e20fa1e38d2daaf8dc687600c24ae6291374053e4a015a1293c4585cf",
+    "build.log": "48fe1127af313948d8f9e058972e047178037ea324181b816a4975556957d9e8",
+    "chromium-home-alternate.png": "3a34c0955cd4e95ed56b785b37ef9911c3d0865ac5f157797aa749af4539970e",
+    "chromium-home.png": "08128fd91339a88fb8d7ebdde25baa00e7ac13af84875d177d6669d38d488aad",
+    "chromium-human-plan.png": "1e54792701ad0dd676a7be27e7dcab06e7d5037a9a19fc503328cd48de8b61a4",
+    "controlled-browser-command.json": "e39f8090187e0480cddcf5b0e0aa41990401f6a38e7dafb2e0949e426a620f94",
+    "controlled-browser.json": "04e453378b1e6bb43b90026a1c282c3f79c281cffce489aaef21578d1a850f69",
+    "controlled-browser.log": "95e5059610e074928ccccebba8a711451c7668f1edf308d5e90ab3b7da5c19a8",
+    "controlled-invalid_model_response-chromium.json": "35b771f6dc86127c3039fad0b18c2edf43e2997fdea8b4b1458d32392e62c5f2",
+    "controlled-invalid_model_response-mobile.json": "9d89fd99ef945d6d2cced20d635bd049558957fd9931e51b0cf278a261fe636b",
+    "controlled-invalid_model_response-tablet.json": "26e9453fe04467bb5ee1c4d74b39394b7210a8f0e0a05f6e217121347d7f3f3f",
+    "controlled-live-budget-chromium.json": "08c47c5144f6f98f3534a3131cf926602ae2bbe48b84f7ac1508a2951db60bd3",
+    "controlled-live-budget-mobile.json": "32cc23de25219b65cda5578607af09a26c0bf0e1b3776cadea57a5abd9cb24e7",
+    "controlled-live-budget-tablet.json": "095e8156a3f9f8e1ed59345a3017884961d5bb1a0e27fe4d5e4daf0cf846a9ca",
+    "controlled-provider_rate_limited-chromium.json": "683c23c8dd3f637f9782bacf3a4eac259f2a69e8d0741ba7e8b98b806446cf80",
+    "controlled-provider_rate_limited-mobile.json": "924c01ad8160edb3d6c410fdc211ee928114602bed326fee71b2369993d9cbf0",
+    "controlled-provider_rate_limited-tablet.json": "61c66ceb01cd40844958ac73d9ffbae48f08055fd5609105d3215ad5f4194480",
+    "controlled-provider_unavailable-chromium.json": "7a8e5537c5bb758e1551a2aadae19b47c255ef024ff82fde189f25872f33c124",
+    "controlled-provider_unavailable-mobile.json": "d047f94023b579f3e792c22f7954bca852027f287bce05c5157cc82ebb392b7d",
+    "controlled-provider_unavailable-tablet.json": "e41a61ee4dcf5ba6fd8785bf0d10dbea3bd4f303a8e9630de95d69d095882ad0",
+    "controlled-timeout-chromium.json": "625359b0d2ed6816d1b2de9a9c073c9648eb03c4ea00e5db5a8624f59d6df9ac",
+    "controlled-timeout-mobile.json": "4c31aa69b0e6afaafb8324d3be59cea66f29aa366cccacf550fbb0b7eb716cd2",
+    "controlled-timeout-tablet.json": "930197368ef39877245fe880c88f80dc2b49447b2a9cea07545c8a38b2abab82",
+    "core-browser-command.json": "2458e64a689c680b14a0688fc0813561897372186383ff6ce3e773a0f96edf1b",
+    "core-browser.json": "e0efd118a3fc744d5f2bcc1727cc6dbceb796c44566730e1844c861fed9584a0",
+    "core-browser.log": "403024e50b07f1132fa02b4a7d72e5e72441d6a7bb4d6d56e781a0ddee066212",
+    "database-command.json": "0c0dfe32399e59d61783e4666a1e3e7b740d41bbee250a906f1c20c9caf5a778",
+    "database.log": "ed90f2a09e6e6b90bd10be4f9a349f15632dac2b388d7ea24ca107b2b4cb5851",
+    "editor-revision-chromium.json": "b15b15849a49aad7257bfeb241e01be71443916831b3ecdca2ce2ad40990774f",
+    "editor-revision-mobile.json": "559544bd730cf94c1c0fcf8ba5092efe00d3a660eb7adc0da793917d30c6b394",
+    "editor-revision-tablet.json": "9d9ffa3cf62bf224ff3801734e93e1779a9ac77ca6ea1f348110acde60fa1f7c",
+    "eslint-command.json": "899de24dd5f565128bdd2dd552f046cd4f8b450fdd961b349ec0b8d1ec76144a",
+    "eslint.log": "7e92820bdc1aa1dcdff1e9fd74ade7ea6add666d23546e5c5b4286464dfedd4b",
+    "format-command.json": "86da836757c86f23b6e8e3fac3ee1e9ed32109084cdca8f6b7e53009aa322e71",
+    "format.log": "54073445325370522f5e8514f811bc815389f5402f1e4358dc9ec12dc81a0a61",
+    "frontend-lock-command.json": "cfb6a70d26e02a7c58cd355385a7a066ea14107728a7da0e17ff0d7c04ab5820",
+    "frontend-lock.log": "105030f4fe2a6bb233b80e838709e8142a844293776024cce3a74a02d5990c6c",
+    "input-byte-recovery-chromium.json": "c029871a64cf102394464e06b9feddec38fd4bd757e9f71bc5468835937b7099",
+    "input-byte-recovery-mobile.json": "a9650af049207ba3453e5dd617e6615c841d3e5cc42e6aa31ba0d3660192cdb7",
+    "input-byte-recovery-tablet.json": "797a91e4222cd2d20258cd7b4ca0261509ea9f95a97e1eca22ef1c2fcedad7d0",
+    "invalid-output-double.json": "445bf768762736d57d970943f6ad020a8c36a9703bcb5db444d7a2a1d7c8b325",
+    "migration-command.json": "b41e794e449e97b96c9b93d4f7a611c3490742fcee76b4b40ba6193161b268ec",
+    "migration.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mobile-home-alternate.png": "3c4d883b49d2d2591a23b8a4abacde540b6317ef3f4aee8ed61afa2198c19b59",
+    "mobile-home.png": "05f93a35c02d2e335b369a3dfc1385381bcee6bb0429b111ba1554a79a681468",
+    "mobile-human-plan.png": "bb429dc4cdaa20b936fc703b8c648599f9a962bc428531d6c029fd1610f24d6c",
+    "navigation-browser-command.json": "f3ed542b168257b022dc3e90aa0a898502510f9199ac6e8a8fc0d71fd8fcd352",
+    "navigation-browser.json": "20f80f7319197abb10bc2fd617935c2fe5ca195c6be8364d85f9770b08c0b417",
+    "navigation-browser.log": "9685939e41938a42092bed2debd1317a99a4a9fc5e4b2f07860e047e342595db",
+    "navigation-chromium-a-delayed-second-project-cannot-display-the-first-project-as-its-details.json": "f64bf8a9a37e0600550bfaa1230c7fbf3d6176b661d2e5ddfb40f2167565c108",
+    "navigation-chromium-a-real-Member-cannot-approve-the-Owner-source-or-access-another-workspace.json": "9468fc577e6420f608891c3c06b7489f57072c87a78a2511d68e422d6fc5c655",
+    "navigation-chromium-asynchronous-workspace-restoration-preserves-the-selected-project-and-hides-stale-content.json": "4a1e7471851f4013706bfb0aeef0fe820d35bba7a323d0674fda15ec03130199",
+    "navigation-chromium-controlled-approval-API-failure-preserves-draft-and-does-not-claim-approval.json": "9802b2e7cf6567a03356bcd9e010f69ead30af51f8b617e0ded132cc0f5ac89a",
+    "navigation-chromium-controlled-PRD-transport-failure-stops-before-approval-and-Architect-entry.json": "e5ccd09ae3c3b208b3a5fdb9dee2ea9b8ed49f4d61932e3ac3f2edc349490aa7",
+    "navigation-chromium-preflight-closes-before-generation-when-approval-prerequisite-fails.json": "2dae68c1818fd66bf5686c78988c353b4ea14b91649f545446b2d042941430a9",
+    "navigation-chromium-real-session-revocation-stops-approval-and-leaves-the-exact-PRD-draft.json": "873729acdf083606263dd82f680ce7d52f80cd37bf7b06bd93f88f53f86beac9",
+    "navigation-chromium-route-confirmation-precedes-immediate-reload-even-when-real-Next-navigation-is-held.json": "a60ce03f9b2c459539cfe738dbfa6be9bb0c912140452bc2aefb4491c72ede73",
+    "navigation-chromium-shared-Phase1-approves-the-exact-source-reloads-and-stops-at-Architect-entry.json": "7138a673793fec368c756cba44c08a23a8d4cc4a141df4013481bcb753b9b99f",
+    "navigation-chromium-slow-real-project-API-stays-on-its-project-route-without-returning-to-Chat.json": "95926089646fc60ddce651be6b121373c2248827851cd3cfe6fed1b84e143699",
+    "navigation-chromium-unpaid-browser-boundary-cannot-open-generation-even-with-a-claimed-passing-preflight.json": "8fd6dc107ca90aea8ed6defbfc4c58fb2172e9eb56279e36a6eac3234b37df12",
+    "navigation-chromium-unpaid-server-boundary-rejects-direct-model-POSTs-before-creating-any-run.json": "e74d1c114e29fa27e462e3e5aa759403755f3b85478547699a1861650eeeef02",
+    "navigation-chromium-wrong-route-synchronization-reports-expected-identity-without-approving-or-generating.json": "d92ce742d343e0d452087b0f8e3e934b6e4593841bbbd6da6456c6636770315a",
+    "navigation-mobile-a-delayed-second-project-cannot-display-the-first-project-as-its-details.json": "49481e772b11862460263b7f9498aed9adf566191707d091863618376ce28354",
+    "navigation-mobile-a-real-Member-cannot-approve-the-Owner-source-or-access-another-workspace.json": "7ec7484fae4df29d844da99a87ea03dd2f6a6ed493ad79ce038cb9047f5e97ca",
+    "navigation-mobile-asynchronous-workspace-restoration-preserves-the-selected-project-and-hides-stale-content.json": "7ac49d30e2629b835b3b9078970588981a32a8614720db9dea3ce3c13d39cfe2",
+    "navigation-mobile-controlled-approval-API-failure-preserves-draft-and-does-not-claim-approval.json": "ef4f5d8577bb54d99a24c8d0f1c6a95cc5b971d7c89317fe6deeee2b058f5eed",
+    "navigation-mobile-controlled-PRD-transport-failure-stops-before-approval-and-Architect-entry.json": "6490b6fce1f6541e76bfad428ba79331f19273d2cc0e4e2a54da75d97b55e702",
+    "navigation-mobile-preflight-closes-before-generation-when-approval-prerequisite-fails.json": "cb03cc514ac81d1f24f1db23269de1d925195db4e5b467d5c61005b3df799d41",
+    "navigation-mobile-real-session-revocation-stops-approval-and-leaves-the-exact-PRD-draft.json": "02b1b13e4c804178d7c5b1ad5b679b403810e80e89d9ec94c99fd3d9a1e0820c",
+    "navigation-mobile-route-confirmation-precedes-immediate-reload-even-when-real-Next-navigation-is-held.json": "c87c18dcfb75e18262cd9bcc7866de0263b958eb12d1da08afb51333f072f478",
+    "navigation-mobile-shared-Phase1-approves-the-exact-source-reloads-and-stops-at-Architect-entry.json": "9de64e3d801a58140a46a5a187d936069fd9f0e15a9d66e8bef3f2c4d6c46d6a",
+    "navigation-mobile-slow-real-project-API-stays-on-its-project-route-without-returning-to-Chat.json": "3e0b2e6ceb1852282f20db5039e13991226fbb78f55ca8da2604f0628c7e8fa8",
+    "navigation-mobile-unpaid-browser-boundary-cannot-open-generation-even-with-a-claimed-passing-preflight.json": "6589aab873dcb7af3e67ed8729f199e7dfe413b27e70730811a72e324f574b7b",
+    "navigation-mobile-unpaid-server-boundary-rejects-direct-model-POSTs-before-creating-any-run.json": "5ac06a54aaf790707b7e94e7b66725bbd852aff672c40bca345b7976abf1ada6",
+    "navigation-mobile-wrong-route-synchronization-reports-expected-identity-without-approving-or-generating.json": "61dcb5188a48b312f634e3d388e4a7c08c74aa5c73442b2f2cc334f52e449402",
+    "navigation-tablet-a-delayed-second-project-cannot-display-the-first-project-as-its-details.json": "e126e3efbdba525586318086aec184fe3ce87cbaff6efbe4274c1c26196c67c1",
+    "navigation-tablet-a-real-Member-cannot-approve-the-Owner-source-or-access-another-workspace.json": "1286b99351f0595e59c39c208497a11841d1282810c19cab9f50ee9f5b24b762",
+    "navigation-tablet-asynchronous-workspace-restoration-preserves-the-selected-project-and-hides-stale-content.json": "b31032ed120bbfa8386d27148dd2c6731ef1d8dfccccb6cfa8b38e8f0ef957e6",
+    "navigation-tablet-controlled-approval-API-failure-preserves-draft-and-does-not-claim-approval.json": "f99deff643b18a75043f1e820672e973e76cfdec11aa05acdeb8ad2c4c1578bf",
+    "navigation-tablet-controlled-PRD-transport-failure-stops-before-approval-and-Architect-entry.json": "b8078d87606265aaa29f2aa75f515eccc70492018119134700e9a45707d31a6c",
+    "navigation-tablet-preflight-closes-before-generation-when-approval-prerequisite-fails.json": "00e51e6cf6e9d22dd13d53f39d394ba02d14132ca7058f0ef328711216e638d3",
+    "navigation-tablet-real-session-revocation-stops-approval-and-leaves-the-exact-PRD-draft.json": "7d995e31d99dab54f5d0bff2de12b36be819c4dfb6da231e1814b9c9e0b41cb0",
+    "navigation-tablet-route-confirmation-precedes-immediate-reload-even-when-real-Next-navigation-is-held.json": "e1cf695baa8c5aff87da06bd3222aaeeceb1b55dc277047b3c95072af17b29f8",
+    "navigation-tablet-shared-Phase1-approves-the-exact-source-reloads-and-stops-at-Architect-entry.json": "ca3af4bec7fec2300a567ebe21506b53658e0024a1fac2032578d0237f9e505b",
+    "navigation-tablet-slow-real-project-API-stays-on-its-project-route-without-returning-to-Chat.json": "29dd0bc2421f802a5a41906b3c5cb059876acff02f14c7447f2540839ae8f8f4",
+    "navigation-tablet-unpaid-browser-boundary-cannot-open-generation-even-with-a-claimed-passing-preflight.json": "208f2f0dba9a19704e5a40cb9f30462e1e7f9e62722dfa203c728e958aa214a4",
+    "navigation-tablet-unpaid-server-boundary-rejects-direct-model-POSTs-before-creating-any-run.json": "0b819c04b8bb27827b4a260b844accfb82b7b3b636224715bf4717ec1079a2b9",
+    "navigation-tablet-wrong-route-synchronization-reports-expected-identity-without-approving-or-generating.json": "ef5417414b342f0ca8cb7dbd1c37dcab1244a0027b3a8d9a69a1934f0936bb76",
+    "orchestration-browser-command.json": "fb7bfbc88fec0e76a77420a792e47a24287c4b0f5f9f87877e11454733aa83c0",
+    "orchestration-browser.json": "d7aa32b1e28a70f6416f838335d4677888a1c1ed0fb788367b399710a83a9659",
+    "orchestration-browser.log": "c564988506031ea849642a5f9c2bfbb407b93900092d950f3806f78ba58ab3bc",
+    "orchestration-chromium.json": "9fccdb42ece06144c3f373019ff96941b17478f0a6aa37aeb9abf77888c5c4a3",
+    "orchestration-chromium.png": "ee58f76844d661e6226bf5ec3ba56eff996f4668dc1fbcae5a00c2e677354469",
+    "orchestration-mobile.json": "75e84aedc2709a2b6ec20a90fbbd5b58958721faef02c0595f75607b11b27e06",
+    "orchestration-mobile.png": "b8ec5a5b2933a6f887a6dcef2daedb1676374d7f1e354ae51eaa248d41320ae7",
+    "orchestration-tablet.json": "1d24da9fdad7d1894e74e1c1b8d128df09d1a40505a18b5c4f74aa163032683b",
+    "orchestration-tablet.png": "c06f3571f243947ca22dfbe1c98bc5a0445362e72563a854196ae8ac97f26f01",
+    "peers-command.json": "396ecffaabee5996c86d75a2a1bdf7ed448c459198885283a1e11a996aabe323",
+    "peers.log": "5ecf82a3fc1f9007eeea79ce3bf0d9c587150219ef245bb5a5a23609cdb562fb",
+    "python-lock-command.json": "53690a5d21b7745d4cd145e97b809095306e49fbe233e6002ecae7f9bc230f7b",
+    "python-lock.log": "9de9b70c722ef568b0af35661bd3735f312aac91d1661b93940524f8af43d065",
+    "ruff-command.json": "95a3c092856af310e39c5a4785c25928ccc06e3c149e9a80411250729590c0f6",
+    "ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "schema-drift-command.json": "874c79ecea5392a42934864726bb34d5332dc4d00f37295169a8f8f9cc213034",
+    "schema-drift.log": "adfdf8c417ef31380a4dd8a695b7d2707cdf16a67225a06157898f271b6421e1",
+    "tablet-home-alternate.png": "edf702fff4395964e025de06330a8526868fa53e4bfb3ea8a39b6980d7a0ba11",
+    "tablet-home.png": "7b5d837df1e65703aa6776255a8fe1769a8951ec130f763fc423abf4fe3f9b7e",
+    "tablet-human-plan.png": "0840f5a708560c5ceabc1a6b1db40e200405a8759b67b4e9df0fa505dc24a698",
+    "typecheck-command.json": "7394e5a4b0fa4ccb4bd886d34d6097251ca32282a98fe9d381eee8533c4059cd",
+    "typecheck.log": "6b367217de17b8bbadb5777163d9d3b5390ca5c6613990095aea7327e15f1eff"
+  }
+}
