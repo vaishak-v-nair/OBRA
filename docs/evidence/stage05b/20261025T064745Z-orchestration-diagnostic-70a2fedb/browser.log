@@ -1,0 +1,22 @@
+$ pnpm --filter @orba/web test:e2e:orchestration
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.orchestration.config.ts
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [13856]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 21 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=c4c22007-3dda-4102-b6ef-d2fb043cc76e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c4c22007-3dda-4102-b6ef-d2fb043cc76e workspace_id=ffb344da-3834-460f-9d55-f43d6f700344
+  x   1 [chromium] › tests-orchestration\orchestration.spec.ts:10:5 › approved source creates one persisted snapshot with roots, blockers, real events and reload (1.6m)
+[WebServer] INFO:     security_event=session_rotated actor_id=7214f6b8-f6d8-4c78-a2cf-8c0df5c36c0f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7214f6b8-f6d8-4c78-a2cf-8c0df5c36c0f workspace_id=708f6440-fa13-4f99-9c12-517fcf7e1293
+  x   2 [chromium] › tests-orchestration\orchestration.spec.ts:36:5 › unapproved architecture is rejected without run snapshots or false success (1.5m)
+[WebServer] INFO:     security_event=session_rotated actor_id=79265508-9afe-4dbc-aa7b-554264bd928d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=79265508-9afe-4dbc-aa7b-554264bd928d workspace_id=2b53de31-fbde-455e-b989-ea93d4fc5ea5
+  x   3 [chromium] › tests-orchestration\orchestration.spec.ts:46:5 › unknown committed creation recovers by exact request ID without repeating POST (1.8m)
+[WebServer] INFO:     security_event=session_rotated actor_id=9cc5d7df-71af-4d36-9928-8206d3788c74 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9cc5d7df-71af-4d36-9928-8206d3788c74 workspace_id=e7dfedcd-a350-4650-a9be-e6136778d6fc
+  ok  4 [chromium] › tests-orchestration\orchestration.spec.ts:67:5 › pre-dispatch connection failure requires explicit original-key retry (1.0m)

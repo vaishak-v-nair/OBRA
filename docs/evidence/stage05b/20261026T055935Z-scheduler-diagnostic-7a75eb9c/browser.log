@@ -1,0 +1,48 @@
+[WebServer] INFO:     Started server process [26308]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 15 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=30e31a29-d8b8-4fdb-8044-aec45454afed workspace_id=-
+  ok  1 [chromium] › tests-scheduler\auth-readiness.spec.ts:5:5 › registration controls wait for client initialization (2.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b715b202-f905-4c9c-8d48-fb1556977edf workspace_id=-
+  ok  2 [chromium] › tests-scheduler\auth-readiness.spec.ts:35:5 › registration waits for the initial authoritative session check (1.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=54740e5a-fa62-4b17-866b-e943afc4cab1 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=54740e5a-fa62-4b17-866b-e943afc4cab1 workspace_id=ccf1d229-a313-41b7-a9e7-ec41fb86deb0
+  ok  3 [chromium] › tests-scheduler\scheduler.spec.ts:6:5 › durable queue and real protocol acknowledgment remain separate from execution (19.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=cc8afb30-1509-4017-a0e1-dd14ce517950 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=cc8afb30-1509-4017-a0e1-dd14ce517950 workspace_id=5b931d34-81d4-4b6f-85ff-6b06431b2b47
+  ok  4 [chromium] › tests-scheduler\scheduler.spec.ts:30:5 › browser session cannot impersonate a worker or forge completion (12.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=acbb318b-75fb-4b2f-971f-4f9746243e4c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=acbb318b-75fb-4b2f-971f-4f9746243e4c workspace_id=ac467f72-fb41-4273-8fd8-3d83fd1f0b73
+  ok  5 [chromium] › tests-scheduler\scheduler.spec.ts:41:5 › scheduling errors preserve the immutable task graph and do not invent success (12.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=9dd36d17-a63f-44cf-b2b1-5c2a2e0cb003 workspace_id=-
+  ok  6 [mobile] › tests-scheduler\auth-readiness.spec.ts:5:5 › registration controls wait for client initialization (3.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5efa613e-d61a-4b3e-bd25-328c3a913fd9 workspace_id=-
+  ok  7 [mobile] › tests-scheduler\auth-readiness.spec.ts:35:5 › registration waits for the initial authoritative session check (3.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=4a3bac41-a46e-4e61-ab25-184535163ced workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=4a3bac41-a46e-4e61-ab25-184535163ced workspace_id=3a1a2ddb-e84b-4fa3-8ce0-80f7c94e6766
+  ok  8 [mobile] › tests-scheduler\scheduler.spec.ts:6:5 › durable queue and real protocol acknowledgment remain separate from execution (23.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=8c9d3094-3ca9-47f1-96ba-1a9504ea92dc workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=8c9d3094-3ca9-47f1-96ba-1a9504ea92dc workspace_id=56ec9b52-e3b0-4c6b-acac-a7a990532429
+  ok  9 [mobile] › tests-scheduler\scheduler.spec.ts:30:5 › browser session cannot impersonate a worker or forge completion (16.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=4021a3f3-b425-450f-9f61-5e5f0a07666b workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=4021a3f3-b425-450f-9f61-5e5f0a07666b workspace_id=182ea9ed-7e83-45e4-be1f-2331b7ea467d
+  ok 10 [mobile] › tests-scheduler\scheduler.spec.ts:41:5 › scheduling errors preserve the immutable task graph and do not invent success (16.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=731df12f-e05f-4dc3-8e1b-c7b2c6574f6c workspace_id=-
+  ok 11 [tablet] › tests-scheduler\auth-readiness.spec.ts:5:5 › registration controls wait for client initialization (3.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=a6d21766-9eac-4dbd-b373-37e38cf4ae23 workspace_id=-
+  ok 12 [tablet] › tests-scheduler\auth-readiness.spec.ts:35:5 › registration waits for the initial authoritative session check (3.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=61e73927-baa2-404e-933d-f0dc600c83b4 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=61e73927-baa2-404e-933d-f0dc600c83b4 workspace_id=802a7d45-8cfc-4e71-a5e5-4067edd5f515
+  ok 13 [tablet] › tests-scheduler\scheduler.spec.ts:6:5 › durable queue and real protocol acknowledgment remain separate from execution (23.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b67b0b1c-2b10-4eb3-ae94-2332979b86b6 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b67b0b1c-2b10-4eb3-ae94-2332979b86b6 workspace_id=e09b5a7a-79b2-480f-8ec9-61e22ef4d7ab
+  ok 14 [tablet] › tests-scheduler\scheduler.spec.ts:30:5 › browser session cannot impersonate a worker or forge completion (16.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=ce6b98a9-35a4-423f-a90c-f9c7588a236f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ce6b98a9-35a4-423f-a90c-f9c7588a236f workspace_id=787f7703-5fd2-4fe2-b388-b84ce38ee61d
+  ok 15 [tablet] › tests-scheduler\scheduler.spec.ts:41:5 › scheduling errors preserve the immutable task graph and do not invent success (16.8s)
+
+  15 passed (3.1m)

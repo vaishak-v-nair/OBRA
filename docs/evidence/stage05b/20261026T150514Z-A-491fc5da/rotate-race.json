@@ -1,0 +1,89 @@
+{
+  "scenario": "operator_rotate",
+  "holder_pid": 10184,
+  "claim_pid": 10193,
+  "wait_event_type": "Lock",
+  "wait_event": "transactionid",
+  "lock_observed_at": "2026-10-26T15:09:21.755414+00:00",
+  "response_status": 401,
+  "before_sql": {
+    "dispatch": {
+      "id": "f2972777-d771-4f5d-8e8b-baf112d05561",
+      "state": "queued",
+      "attempts": 0,
+      "fence_epoch": 0
+    },
+    "leases": 0,
+    "handoffs": 0,
+    "claim_receipts": 0,
+    "events": [
+      [
+        1,
+        "run_created",
+        1
+      ],
+      [
+        2,
+        "run_awaiting_executor",
+        2
+      ],
+      [
+        3,
+        "dispatch_queued",
+        3
+      ]
+    ],
+    "execution_statuses": [
+      "awaiting_executor",
+      "awaiting_executor"
+    ],
+    "runs": [
+      [
+        "80827c70-46dd-4134-9d6f-4fe4c9416a14",
+        "awaiting_executor",
+        3,
+        3
+      ]
+    ]
+  },
+  "after_sql": {
+    "dispatch": {
+      "id": "f2972777-d771-4f5d-8e8b-baf112d05561",
+      "state": "queued",
+      "attempts": 0,
+      "fence_epoch": 0
+    },
+    "leases": 0,
+    "handoffs": 0,
+    "claim_receipts": 0,
+    "events": [
+      [
+        1,
+        "run_created",
+        1
+      ],
+      [
+        2,
+        "run_awaiting_executor",
+        2
+      ],
+      [
+        3,
+        "dispatch_queued",
+        3
+      ]
+    ],
+    "execution_statuses": [
+      "awaiting_executor",
+      "awaiting_executor"
+    ],
+    "runs": [
+      [
+        "80827c70-46dd-4134-9d6f-4fe4c9416a14",
+        "awaiting_executor",
+        3,
+        3
+      ]
+    ]
+  }
+}

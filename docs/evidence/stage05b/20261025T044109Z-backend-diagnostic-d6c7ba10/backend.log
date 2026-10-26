@@ -1,0 +1,136 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.7.0 -- E:\BrosKi\OBRA\apps\api\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: E:\BrosKi\OBRA\apps\api
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collecting ... collected 93 items
+
+tests/test_scheduler_api_restart.py::test_actual_api_process_restart_preserves_claim_and_acknowledgment PASSED [  1%]
+tests/test_scheduler_imports.py::test_scheduler_and_protocol_client_do_not_load_model_sdk PASSED [  2%]
+tests/test_scheduler_migration.py::test_stage05a_snapshot_and_events_survive_scheduler_migration PASSED [  3%]
+tests/test_scheduler_proof.py::test_complete_sql_backed_protocol_proof_and_adversarial_changes PASSED [  4%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[proof_version] PASSED [  5%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[stage] PASSED [  6%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[result] PASSED [  7%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[execution_class] PASSED [  8%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[started_at] PASSED [  9%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[completed_at] PASSED [ 10%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[foundation] PASSED [ 11%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[worker] PASSED [ 12%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[acknowledged_api] PASSED [ 13%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[heartbeat_api] PASSED [ 15%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[final_api] PASSED [ 16%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[independent_sql] PASSED [ 17%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[process_commands] PASSED [ 18%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[stale_epoch_status] PASSED [ 19%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[foreign_worker_status] PASSED [ 20%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[unauthorized_user_status] PASSED [ 21%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[revoked_worker_status] PASSED [ 22%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[model_generation_requests] PASSED [ 23%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[executed_tasks] PASSED [ 24%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[browser_rendered] PASSED [ 25%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[reload_persisted] PASSED [ 26%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[protected_ui_hidden] PASSED [ 27%]
+tests/test_scheduler_proof.py::test_missing_mandatory_protocol_proof_cannot_pass[incomplete_proof_rejected] PASSED [ 29%]
+tests/test_scheduler_proof.py::test_empty_and_forged_proofs_fail_closed[value0] PASSED [ 30%]
+tests/test_scheduler_proof.py::test_empty_and_forged_proofs_fail_closed[None] PASSED [ 31%]
+tests/test_scheduler_proof.py::test_empty_and_forged_proofs_fail_closed[value2] PASSED [ 32%]
+tests/test_scheduler_proof.py::test_empty_and_forged_proofs_fail_closed[value3] PASSED [ 33%]
+tests/test_scheduler_proof.py::test_empty_and_forged_proofs_fail_closed[value4] PASSED [ 34%]
+tests/test_scheduler_protocol.py::test_real_claim_manifest_acknowledgment_and_read PASSED [ 35%]
+tests/test_scheduler_protocol.py::test_worker_auth_is_separate_from_browser_session[None] PASSED [ 36%]
+tests/test_scheduler_protocol.py::test_worker_auth_is_separate_from_browser_session[Bearer bad] PASSED [ 37%]
+tests/test_scheduler_protocol.py::test_worker_auth_is_separate_from_browser_session[Bearer orba_wkr_bad.token] PASSED [ 38%]
+tests/test_scheduler_protocol.py::test_worker_auth_is_separate_from_browser_session[Basic not-a-worker] PASSED [ 39%]
+tests/test_scheduler_protocol.py::test_same_key_replay_conflict_capacity_and_recovery PASSED [ 40%]
+tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[disable] PASSED [ 41%]
+tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[revoke] PASSED [ 43%]
+tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[rotate] PASSED [ 44%]
+tests/test_scheduler_protocol.py::test_forged_ownership_is_rejected_with_persisted_event[change0] PASSED [ 45%]
+tests/test_scheduler_protocol.py::test_forged_ownership_is_rejected_with_persisted_event[change1] PASSED [ 46%]
+tests/test_scheduler_protocol.py::test_strict_worker_inputs_reject_coercion_and_completion[change0] PASSED [ 47%]
+tests/test_scheduler_protocol.py::test_strict_worker_inputs_reject_coercion_and_completion[change1] PASSED [ 48%]
+tests/test_scheduler_protocol.py::test_strict_worker_inputs_reject_coercion_and_completion[change2] PASSED [ 49%]
+tests/test_scheduler_protocol.py::test_strict_worker_inputs_reject_coercion_and_completion[change3] PASSED [ 50%]
+tests/test_scheduler_protocol.py::test_strict_worker_inputs_reject_coercion_and_completion[change4] PASSED [ 51%]
+tests/test_scheduler_protocol.py::test_other_worker_cannot_ack_or_read_claim PASSED [ 52%]
+tests/test_scheduler_recovery.py::test_preack_expiration_fences_old_worker_and_new_owner PASSED [ 53%]
+tests/test_scheduler_recovery.py::test_postack_crash_requires_reconciliation_never_redispatch PASSED [ 54%]
+tests/test_scheduler_recovery.py::test_real_heartbeat_receipt_duplicate_and_hard_bound PASSED [ 55%]
+tests/test_scheduler_recovery.py::test_concurrent_workers_one_task_have_one_valid_owner PASSED [ 56%]
+tests/test_scheduler_recovery.py::test_concurrent_same_key_network_replay_has_one_lease PASSED [ 58%]
+tests/test_scheduler_recovery.py::test_heartbeat_vs_expiration_cannot_revive_stale_ownership PASSED [ 59%]
+tests/test_scheduler_recovery.py::test_cancel_vs_claim_invalidates_all_ownership PASSED [ 60%]
+tests/test_scheduler_recovery.py::test_failed_claim_transaction_has_no_orphaned_lease PASSED [ 61%]
+tests/test_scheduler_recovery.py::test_explicit_release_preserves_acknowledgment_uncertainty[False-withdrawn] PASSED [ 62%]
+tests/test_scheduler_recovery.py::test_explicit_release_preserves_acknowledgment_uncertainty[True-needs_reconciliation] PASSED [ 63%]
+tests/test_scheduler_recovery.py::test_scheduler_restart_and_deterministic_dispatch_preserve_sources PASSED [ 64%]
+tests/test_scheduler_recovery.py::test_mismatched_scheduler_policy_fails_closed PASSED [ 65%]
+tests/test_scheduler_recovery.py::test_stale_worker_withdraws_reservation_without_forging_liveness PASSED [ 66%]
+tests/test_scheduler_recovery.py::test_audit_records_are_append_only_in_postgresql[handoff_records-checksum] PASSED [ 67%]
+tests/test_scheduler_recovery.py::test_audit_records_are_append_only_in_postgresql[orchestration_events-event_type] PASSED [ 68%]
+tests/test_scheduler_recovery.py::test_no_unregistered_capability_or_cross_workspace_claim PASSED [ 69%]
+tests/test_scheduler_recovery.py::test_preack_redispatch_is_bounded_and_terminal_replay_never_claims_new_task PASSED [ 70%]
+tests/test_scheduler_recovery.py::test_postgresql_unique_constraint_independently_rejects_competing_active_lease PASSED [ 72%]
+tests/test_scheduler_recovery.py::test_capacity_reservations_are_global_and_per_run PASSED [ 73%]
+tests/test_scheduler_recovery.py::test_revocation_racing_claim_rechecks_authority_after_lock_wait PASSED [ 74%]
+tests/test_scheduler_report_safety.py::test_worker_headers_keep_actual_authorization_but_redact_rendering PASSED [ 75%]
+tests/test_scheduler_report_safety.py::test_failed_pytest_report_remains_failed_after_exact_credential_redaction PASSED [ 76%]
+tests/test_scheduler_report_safety.py::test_ordinary_diagnostics_and_identifiers_remain_unchanged PASSED [ 77%]
+tests/test_scheduler_security.py::test_invalid_scheduler_policy_fails_before_dispatch[value0] PASSED [ 78%]
+tests/test_scheduler_security.py::test_invalid_scheduler_policy_fails_before_dispatch[value1] PASSED [ 79%]
+tests/test_scheduler_security.py::test_invalid_scheduler_policy_fails_before_dispatch[value2] PASSED [ 80%]
+tests/test_scheduler_security.py::test_invalid_scheduler_policy_fails_before_dispatch[value3] PASSED [ 81%]
+tests/test_scheduler_security.py::test_invalid_scheduler_policy_fails_before_dispatch[value4] PASSED [ 82%]
+tests/test_scheduler_security.py::test_invalid_scheduler_policy_fails_before_dispatch[value5] PASSED [ 83%]
+tests/test_scheduler_security.py::test_invalid_scheduler_policy_fails_before_dispatch[value6] PASSED [ 84%]
+tests/test_scheduler_security.py::test_invalid_scheduler_policy_fails_before_dispatch[value7] PASSED [ 86%]
+tests/test_scheduler_security.py::test_source_supersession_prevents_claim_and_withdraws_queue PASSED [ 87%]
+tests/test_scheduler_security.py::test_source_supersession_prevents_unacknowledged_handoff_acceptance PASSED [ 88%]
+tests/test_scheduler_security.py::test_viewer_can_inspect_but_browser_cannot_administer_workers PASSED [ 89%]
+tests/test_scheduler_security.py::test_unrelated_user_cannot_inspect_scheduling_state PASSED [ 90%]
+tests/test_scheduler_security.py::test_expired_worker_credential_rejects_real_authentication PASSED [ 91%]
+tests/test_scheduler_security.py::test_malformed_persisted_policy_cannot_pass_equal_value_comparison[missing] PASSED [ 92%]
+tests/test_scheduler_security.py::test_malformed_persisted_policy_cannot_pass_equal_value_comparison[boolean] PASSED [ 93%]
+tests/test_scheduler_security.py::test_malformed_persisted_policy_cannot_pass_equal_value_comparison[numeric_string] PASSED [ 94%]
+tests/test_scheduler_verification.py::test_stage05b_retains_all_previous_commands_and_browser_baselines PASSED [ 95%]
+tests/test_scheduler_verification.py::test_required_native_command_failure_preserves_real_exit[A-7] PASSED [ 96%]
+tests/test_scheduler_verification.py::test_required_native_command_failure_preserves_real_exit[B-9] PASSED [ 97%]
+tests/test_scheduler_verification.py::test_local_gate_b_requires_applicable_gate_a_before_starting_processes PASSED [ 98%]
+tests/test_scheduler_verification.py::test_controlled_or_empty_proof_cannot_verify_stage05b PASSED [100%]
+
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: E:\BrosKi\OBRA\docs\evidence\stage05b\20261025T044109Z-backend-diagnostic-d6c7ba10\backend.xml -
+============================ slowest 25 durations =============================
+33.46s call     tests/test_scheduler_api_restart.py::test_actual_api_process_restart_preserves_claim_and_acknowledgment
+12.72s call     tests/test_scheduler_proof.py::test_complete_sql_backed_protocol_proof_and_adversarial_changes
+9.15s call     tests/test_scheduler_imports.py::test_scheduler_and_protocol_client_do_not_load_model_sdk
+8.71s call     tests/test_scheduler_recovery.py::test_postack_crash_requires_reconciliation_never_redispatch
+8.10s call     tests/test_scheduler_recovery.py::test_heartbeat_vs_expiration_cannot_revive_stale_ownership
+7.56s call     tests/test_scheduler_recovery.py::test_preack_expiration_fences_old_worker_and_new_owner
+6.53s call     tests/test_scheduler_recovery.py::test_preack_redispatch_is_bounded_and_terminal_replay_never_claims_new_task
+5.72s call     tests/test_scheduler_recovery.py::test_real_heartbeat_receipt_duplicate_and_hard_bound
+5.40s call     tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[rotate]
+4.71s call     tests/test_scheduler_recovery.py::test_explicit_release_preserves_acknowledgment_uncertainty[True-needs_reconciliation]
+4.44s call     tests/test_scheduler_migration.py::test_stage05a_snapshot_and_events_survive_scheduler_migration
+4.42s call     tests/test_scheduler_protocol.py::test_real_claim_manifest_acknowledgment_and_read
+4.40s call     tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[revoke]
+4.36s call     tests/test_scheduler_security.py::test_source_supersession_prevents_unacknowledged_handoff_acceptance
+4.23s call     tests/test_scheduler_security.py::test_source_supersession_prevents_claim_and_withdraws_queue
+4.19s call     tests/test_scheduler_protocol.py::test_same_key_replay_conflict_capacity_and_recovery
+4.17s call     tests/test_scheduler_protocol.py::test_other_worker_cannot_ack_or_read_claim
+4.17s call     tests/test_scheduler_recovery.py::test_scheduler_restart_and_deterministic_dispatch_preserve_sources
+4.13s call     tests/test_scheduler_protocol.py::test_forged_ownership_is_rejected_with_persisted_event[change0]
+4.07s call     tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[disable]
+3.95s call     tests/test_scheduler_protocol.py::test_forged_ownership_is_rejected_with_persisted_event[change1]
+3.85s call     tests/test_scheduler_recovery.py::test_concurrent_same_key_network_replay_has_one_lease
+3.81s call     tests/test_scheduler_security.py::test_unrelated_user_cannot_inspect_scheduling_state
+3.77s call     tests/test_scheduler_recovery.py::test_capacity_reservations_are_global_and_per_run
+3.73s call     tests/test_scheduler_protocol.py::test_strict_worker_inputs_reject_coercion_and_completion[change3]
+================== 93 passed, 1 warning in 315.02s (0:05:15) ==================

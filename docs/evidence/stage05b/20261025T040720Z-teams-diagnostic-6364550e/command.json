@@ -1,0 +1,26 @@
+{
+  "name": "teams-browser",
+  "argv": [
+    "npm",
+    "exec",
+    "--yes",
+    "--package=pnpm@12.14.0",
+    "--",
+    "pnpm",
+    "--filter",
+    "@orba/web",
+    "exec",
+    "playwright",
+    "test",
+    "tests/teams.spec.ts",
+    "--grep",
+    "two people join",
+    "--workers=1",
+    "--retries=0"
+  ],
+  "started_at": "2026-10-25T04:07:31.982984+00:00",
+  "exit_code": 0,
+  "pid": 25792,
+  "duration_seconds": 334.635,
+  "completed_at": "2026-10-25T04:13:06.618923+00:00"
+}

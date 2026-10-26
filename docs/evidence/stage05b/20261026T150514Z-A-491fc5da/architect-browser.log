@@ -1,0 +1,339 @@
+$ pnpm --filter @orba/web test:e2e:architect
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.architect-controlled.config.ts
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [30380]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 33 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=e87cb3cb-f364-4b8b-8250-fd86f105240d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e87cb3cb-f364-4b8b-8250-fd86f105240d workspace_id=678a80a5-61f4-4a94-b861-bd494f491353
+  ok  1 [chromium] › tests-architect-controlled\architect.spec.ts:32:5 › draft PRD is not an approved source; no generation is dispatched (7.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=1390f2f0-abfc-4ea4-9d73-7d52859f5bd7 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1390f2f0-abfc-4ea4-9d73-7d52859f5bd7 workspace_id=3f5b718d-6764-423c-888b-fd14de856819
+[WebServer] INFO:     architect_timing run_id=d25e2139-8b24-400b-9237-040eff980bc1 stage=admission_commit_acknowledged elapsed_ms=78.662 stage_duration_ms=78.634 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=d25e2139-8b24-400b-9237-040eff980bc1 stage=running_commit_acknowledged elapsed_ms=113.447 stage_duration_ms=34.655 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=d25e2139-8b24-400b-9237-040eff980bc1 stage=provider_response_received elapsed_ms=1128.462 stage_duration_ms=1014.87 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=d25e2139-8b24-400b-9237-040eff980bc1 stage=output_validated elapsed_ms=1129.990 stage_duration_ms=1.314 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=d25e2139-8b24-400b-9237-040eff980bc1 stage=publication_commit_acknowledged elapsed_ms=1224.227 stage_duration_ms=93.975 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok  2 [chromium] › tests-architect-controlled\architect.spec.ts:38:5 › controlled architecture persists, graph rejects a cycle, human edit and approval survive reload (14.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=0b45cbfb-63f1-46d9-a02a-8b5d816a392c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0b45cbfb-63f1-46d9-a02a-8b5d816a392c workspace_id=282707e7-8b37-497a-99fe-7d52655c824d
+[WebServer] INFO:     architect_timing run_id=a2747b06-7b39-4cb1-aecd-3f396332fe61 stage=admission_commit_acknowledged elapsed_ms=67.840 stage_duration_ms=67.815 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a2747b06-7b39-4cb1-aecd-3f396332fe61 stage=running_commit_acknowledged elapsed_ms=97.690 stage_duration_ms=29.578 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a2747b06-7b39-4cb1-aecd-3f396332fe61 stage=provider_response_received elapsed_ms=1112.970 stage_duration_ms=1015.158 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a2747b06-7b39-4cb1-aecd-3f396332fe61 stage=output_validated elapsed_ms=1114.289 stage_duration_ms=1.115 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a2747b06-7b39-4cb1-aecd-3f396332fe61 stage=publication_commit_acknowledged elapsed_ms=1190.649 stage_duration_ms=76.144 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=573de192-6ca4-4144-aff5-1bca5e95a60a stage=admission_commit_acknowledged elapsed_ms=65.688 stage_duration_ms=65.672 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=573de192-6ca4-4144-aff5-1bca5e95a60a stage=running_commit_acknowledged elapsed_ms=101.574 stage_duration_ms=35.768 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=573de192-6ca4-4144-aff5-1bca5e95a60a stage=failure_commit_acknowledged stage_duration_ms=8.573 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=504
+  ok  3 [chromium] › tests-architect-controlled\architect.spec.ts:75:7 › controlled timeout preserves prior approval and permits only explicit recovery (14.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d711fc82-8402-4bac-ba2e-3e24b2987051 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d711fc82-8402-4bac-ba2e-3e24b2987051 workspace_id=15463f16-e1a4-4461-b69c-e25991f12dcb
+[WebServer] INFO:     architect_timing run_id=6b64ffc5-32ce-4945-97f5-553301c655f9 stage=admission_commit_acknowledged elapsed_ms=73.792 stage_duration_ms=73.774 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6b64ffc5-32ce-4945-97f5-553301c655f9 stage=running_commit_acknowledged elapsed_ms=123.985 stage_duration_ms=50.062 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6b64ffc5-32ce-4945-97f5-553301c655f9 stage=provider_response_received elapsed_ms=1126.978 stage_duration_ms=1002.806 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6b64ffc5-32ce-4945-97f5-553301c655f9 stage=output_validated elapsed_ms=1128.991 stage_duration_ms=1.292 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6b64ffc5-32ce-4945-97f5-553301c655f9 stage=publication_commit_acknowledged elapsed_ms=1182.912 stage_duration_ms=53.801 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=7ad50ad4-ce2d-4e9d-bb9f-a450675e4543 stage=admission_commit_acknowledged elapsed_ms=64.546 stage_duration_ms=64.533 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=7ad50ad4-ce2d-4e9d-bb9f-a450675e4543 stage=running_commit_acknowledged elapsed_ms=88.733 stage_duration_ms=24.08 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=7ad50ad4-ce2d-4e9d-bb9f-a450675e4543 stage=failure_commit_acknowledged stage_duration_ms=20.757 attempt=1 final_state=failed error_category=provider_unavailable provider_http_status=503
+  ok  4 [chromium] › tests-architect-controlled\architect.spec.ts:75:7 › controlled unavailable preserves prior approval and permits only explicit recovery (15.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=43a8b876-17ef-4ce6-84f2-2c1c817fc15c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=43a8b876-17ef-4ce6-84f2-2c1c817fc15c workspace_id=0d90c46f-df23-4039-b939-9ed37ee3a1c2
+[WebServer] INFO:     architect_timing run_id=46262449-6825-4423-9e96-f0df1190aaf8 stage=admission_commit_acknowledged elapsed_ms=73.323 stage_duration_ms=73.307 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=46262449-6825-4423-9e96-f0df1190aaf8 stage=running_commit_acknowledged elapsed_ms=108.221 stage_duration_ms=34.774 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=46262449-6825-4423-9e96-f0df1190aaf8 stage=provider_response_received elapsed_ms=1111.953 stage_duration_ms=1003.6 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=46262449-6825-4423-9e96-f0df1190aaf8 stage=output_validated elapsed_ms=1114.434 stage_duration_ms=1.897 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=46262449-6825-4423-9e96-f0df1190aaf8 stage=publication_commit_acknowledged elapsed_ms=1184.675 stage_duration_ms=70.0 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=b1f8778f-5256-4a00-95c8-3e3b88dd9373 stage=admission_commit_acknowledged elapsed_ms=68.196 stage_duration_ms=68.178 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=b1f8778f-5256-4a00-95c8-3e3b88dd9373 stage=running_commit_acknowledged elapsed_ms=102.028 stage_duration_ms=33.702 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=b1f8778f-5256-4a00-95c8-3e3b88dd9373 stage=provider_response_received elapsed_ms=1115.120 stage_duration_ms=1012.952 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=b1f8778f-5256-4a00-95c8-3e3b88dd9373 stage=failure_commit_acknowledged stage_duration_ms=9.924 attempt=1 final_state=failed error_category=invalid_model_response provider_http_status=-
+  ok  5 [chromium] › tests-architect-controlled\architect.spec.ts:75:7 › controlled invalid preserves prior approval and permits only explicit recovery (15.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=ac292f72-3e0b-4df7-a3e0-26b57fca2937 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ac292f72-3e0b-4df7-a3e0-26b57fca2937 workspace_id=f9f06447-b1d5-4013-94b3-9d4e7303a960
+[WebServer] INFO:     architect_timing run_id=629b5204-702a-444f-956c-ff2d328c1f17 stage=admission_commit_acknowledged elapsed_ms=59.057 stage_duration_ms=59.043 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=629b5204-702a-444f-956c-ff2d328c1f17 stage=running_commit_acknowledged elapsed_ms=82.858 stage_duration_ms=23.688 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=629b5204-702a-444f-956c-ff2d328c1f17 stage=provider_response_received elapsed_ms=1090.183 stage_duration_ms=1007.204 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=629b5204-702a-444f-956c-ff2d328c1f17 stage=output_validated elapsed_ms=1091.851 stage_duration_ms=1.343 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=629b5204-702a-444f-956c-ff2d328c1f17 stage=publication_commit_acknowledged elapsed_ms=1158.137 stage_duration_ms=66.053 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed2b6ea3-f481-41c7-86c2-a087d4314dfc stage=admission_commit_acknowledged elapsed_ms=68.402 stage_duration_ms=68.381 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed2b6ea3-f481-41c7-86c2-a087d4314dfc stage=running_commit_acknowledged elapsed_ms=97.548 stage_duration_ms=29.031 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed2b6ea3-f481-41c7-86c2-a087d4314dfc stage=provider_response_received elapsed_ms=1113.157 stage_duration_ms=1015.482 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed2b6ea3-f481-41c7-86c2-a087d4314dfc stage=failure_commit_acknowledged stage_duration_ms=8.212 attempt=1 final_state=failed error_category=invalid_model_response provider_http_status=-
+  ok  6 [chromium] › tests-architect-controlled\architect.spec.ts:75:7 › controlled cycle preserves prior approval and permits only explicit recovery (15.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=9e1e65a9-a49b-4830-a15c-81ba0009cd54 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9e1e65a9-a49b-4830-a15c-81ba0009cd54 workspace_id=7221ae12-abe8-42e0-94b4-1b80476b5a75
+[WebServer] INFO:     architect_timing run_id=e7ea53e2-3955-4062-9cfa-7667a083bd9c stage=admission_commit_acknowledged elapsed_ms=60.667 stage_duration_ms=60.651 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e7ea53e2-3955-4062-9cfa-7667a083bd9c stage=running_commit_acknowledged elapsed_ms=90.109 stage_duration_ms=29.295 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e7ea53e2-3955-4062-9cfa-7667a083bd9c stage=provider_response_received elapsed_ms=1092.649 stage_duration_ms=1002.429 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e7ea53e2-3955-4062-9cfa-7667a083bd9c stage=output_validated elapsed_ms=1093.865 stage_duration_ms=1.03 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e7ea53e2-3955-4062-9cfa-7667a083bd9c stage=publication_commit_acknowledged elapsed_ms=1155.293 stage_duration_ms=61.288 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ea5afc45-23a7-4182-a3f8-a317cc559fe4 stage=admission_commit_acknowledged elapsed_ms=71.470 stage_duration_ms=71.447 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ea5afc45-23a7-4182-a3f8-a317cc559fe4 stage=running_commit_acknowledged elapsed_ms=104.793 stage_duration_ms=33.165 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ea5afc45-23a7-4182-a3f8-a317cc559fe4 stage=failure_commit_acknowledged stage_duration_ms=8.255 attempt=1 final_state=failed error_category=provider_rate_limited provider_http_status=429
+  ok  7 [chromium] › tests-architect-controlled\architect.spec.ts:75:7 › controlled rate limited preserves prior approval and permits only explicit recovery (14.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=12de75ee-fa8c-4115-9fff-b21da3233d54 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=12de75ee-fa8c-4115-9fff-b21da3233d54 workspace_id=b592347e-b3d1-4d75-9d63-da1280f0495a
+[WebServer] INFO:     architect_timing run_id=77a713be-1aae-4ff2-accb-4e37cf79471f stage=admission_commit_acknowledged elapsed_ms=58.596 stage_duration_ms=58.576 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=77a713be-1aae-4ff2-accb-4e37cf79471f stage=running_commit_acknowledged elapsed_ms=87.293 stage_duration_ms=28.392 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=77a713be-1aae-4ff2-accb-4e37cf79471f stage=provider_response_received elapsed_ms=1098.390 stage_duration_ms=1010.936 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=77a713be-1aae-4ff2-accb-4e37cf79471f stage=output_validated elapsed_ms=1101.365 stage_duration_ms=2.36 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=77a713be-1aae-4ff2-accb-4e37cf79471f stage=publication_commit_acknowledged elapsed_ms=1163.261 stage_duration_ms=61.612 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     security_event=session_revoked actor_id=12de75ee-fa8c-4115-9fff-b21da3233d54 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=33cbb2cf-4f8c-4d7f-b6bc-5b5e81067ed1 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=33cbb2cf-4f8c-4d7f-b6bc-5b5e81067ed1 workspace_id=ec3d6ea6-9442-4a2c-8f86-845488dec01e
+  ok  8 [chromium] › tests-architect-controlled\architect.spec.ts:103:5 › unrelated user cannot see architecture or run content (14.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b6838ad8-f2e5-4eaf-b13f-a9e35b108747 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b6838ad8-f2e5-4eaf-b13f-a9e35b108747 workspace_id=f9908592-b539-49be-82a9-a72977a7eb83
+[WebServer] INFO:     architect_timing run_id=9a681e45-2fa8-4e54-8afe-69d4fb968ce5 stage=admission_commit_acknowledged elapsed_ms=74.062 stage_duration_ms=74.045 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=9a681e45-2fa8-4e54-8afe-69d4fb968ce5 stage=running_commit_acknowledged elapsed_ms=107.230 stage_duration_ms=33.046 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=9a681e45-2fa8-4e54-8afe-69d4fb968ce5 stage=provider_response_received elapsed_ms=1117.583 stage_duration_ms=1010.222 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=9a681e45-2fa8-4e54-8afe-69d4fb968ce5 stage=output_validated elapsed_ms=1118.446 stage_duration_ms=0.676 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=9a681e45-2fa8-4e54-8afe-69d4fb968ce5 stage=publication_commit_acknowledged elapsed_ms=1193.890 stage_duration_ms=75.272 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     security_event=session_revoked actor_id=b6838ad8-f2e5-4eaf-b13f-a9e35b108747 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=8e76646d-8d89-4569-bb7e-cb4b71c34732 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=8e76646d-8d89-4569-bb7e-cb4b71c34732 workspace_id=f9908592-b539-49be-82a9-a72977a7eb83
+  ok  9 [chromium] › tests-architect-controlled\architect.spec.ts:111:5 › viewer can inspect saved architecture but cannot generate, edit or approve (14.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=7ebe7c9e-44d4-489c-ab5a-3e0366a35b94 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7ebe7c9e-44d4-489c-ab5a-3e0366a35b94 workspace_id=6372b32a-f69a-40a9-849e-98f02c4a6520
+[WebServer] INFO:     architect_timing run_id=6694da2d-9e30-4075-9751-3ec61cdb704c stage=admission_commit_acknowledged elapsed_ms=75.799 stage_duration_ms=75.775 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6694da2d-9e30-4075-9751-3ec61cdb704c stage=running_commit_acknowledged elapsed_ms=109.835 stage_duration_ms=33.749 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6694da2d-9e30-4075-9751-3ec61cdb704c stage=failure_commit_acknowledged stage_duration_ms=8.077 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=504
+[WebServer] INFO:     architect_timing run_id=0f131c01-0516-4a3e-b5e2-c738167314c1 stage=admission_commit_acknowledged elapsed_ms=66.821 stage_duration_ms=66.802 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=0f131c01-0516-4a3e-b5e2-c738167314c1 stage=running_commit_acknowledged elapsed_ms=97.261 stage_duration_ms=30.315 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=0f131c01-0516-4a3e-b5e2-c738167314c1 stage=provider_response_received elapsed_ms=1112.352 stage_duration_ms=1014.964 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=0f131c01-0516-4a3e-b5e2-c738167314c1 stage=output_validated elapsed_ms=1113.891 stage_duration_ms=1.199 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=0f131c01-0516-4a3e-b5e2-c738167314c1 stage=publication_commit_acknowledged elapsed_ms=1186.036 stage_duration_ms=71.943 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok 10 [chromium] › tests-architect-controlled\architect.spec.ts:125:5 › explicit retry creates a fresh auditable run and unsaved navigation preserves draft (12.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=cf612856-c951-4101-8503-601c3b7d4111 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=cf612856-c951-4101-8503-601c3b7d4111 workspace_id=75ffeadc-1340-4d9c-aff0-3d22a4b5550b
+[WebServer] INFO:     architect_timing run_id=bf9773cd-6b3c-4fcb-8473-c9254613d507 stage=admission_commit_acknowledged elapsed_ms=77.582 stage_duration_ms=77.566 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bf9773cd-6b3c-4fcb-8473-c9254613d507 stage=running_commit_acknowledged elapsed_ms=105.722 stage_duration_ms=28.019 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bf9773cd-6b3c-4fcb-8473-c9254613d507 stage=provider_response_received elapsed_ms=1108.826 stage_duration_ms=1002.978 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bf9773cd-6b3c-4fcb-8473-c9254613d507 stage=output_validated elapsed_ms=1110.291 stage_duration_ms=1.264 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bf9773cd-6b3c-4fcb-8473-c9254613d507 stage=publication_commit_acknowledged elapsed_ms=1187.195 stage_duration_ms=76.512 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok 11 [chromium] › tests-architect-controlled\architect.spec.ts:137:5 › hidden architecture tab retains a visible navigation dialog and rejected graph edits (11.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=0ad577de-8109-40ed-a372-8bb25f828a66 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0ad577de-8109-40ed-a372-8bb25f828a66 workspace_id=ee03cb70-f5a8-4a17-a07e-202f09206ab2
+  ok 12 [mobile] › tests-architect-controlled\architect.spec.ts:32:5 › draft PRD is not an approved source; no generation is dispatched (8.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d302b605-56c8-4979-9beb-68ba1a6d01c6 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d302b605-56c8-4979-9beb-68ba1a6d01c6 workspace_id=b8e74f83-2144-4952-8973-3b46dd2b4b11
+[WebServer] INFO:     architect_timing run_id=8913ad3e-2285-4db6-8249-821a6c193024 stage=admission_commit_acknowledged elapsed_ms=53.767 stage_duration_ms=53.752 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=8913ad3e-2285-4db6-8249-821a6c193024 stage=running_commit_acknowledged elapsed_ms=72.642 stage_duration_ms=18.753 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=8913ad3e-2285-4db6-8249-821a6c193024 stage=provider_response_received elapsed_ms=1075.383 stage_duration_ms=1002.621 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=8913ad3e-2285-4db6-8249-821a6c193024 stage=output_validated elapsed_ms=1076.384 stage_duration_ms=0.837 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=8913ad3e-2285-4db6-8249-821a6c193024 stage=publication_commit_acknowledged elapsed_ms=1157.731 stage_duration_ms=81.051 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok 13 [mobile] › tests-architect-controlled\architect.spec.ts:38:5 › controlled architecture persists, graph rejects a cycle, human edit and approval survive reload (15.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=592475d0-76fd-4cf2-acef-68676a95e82d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=592475d0-76fd-4cf2-acef-68676a95e82d workspace_id=73ab1d1f-3f04-49bd-82c9-c8c5191a1361
+[WebServer] INFO:     architect_timing run_id=4c5def64-3fc2-4ebf-b5a0-3bd13c6a0b8c stage=admission_commit_acknowledged elapsed_ms=53.815 stage_duration_ms=53.8 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=4c5def64-3fc2-4ebf-b5a0-3bd13c6a0b8c stage=running_commit_acknowledged elapsed_ms=80.755 stage_duration_ms=26.821 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=4c5def64-3fc2-4ebf-b5a0-3bd13c6a0b8c stage=provider_response_received elapsed_ms=1095.827 stage_duration_ms=1014.922 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=4c5def64-3fc2-4ebf-b5a0-3bd13c6a0b8c stage=output_validated elapsed_ms=1097.429 stage_duration_ms=1.266 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=4c5def64-3fc2-4ebf-b5a0-3bd13c6a0b8c stage=publication_commit_acknowledged elapsed_ms=1162.289 stage_duration_ms=64.58 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=fe763406-ad84-4e58-8cca-c9f1de8ee45b stage=admission_commit_acknowledged elapsed_ms=59.018 stage_duration_ms=59.001 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=fe763406-ad84-4e58-8cca-c9f1de8ee45b stage=running_commit_acknowledged elapsed_ms=89.772 stage_duration_ms=30.639 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=fe763406-ad84-4e58-8cca-c9f1de8ee45b stage=failure_commit_acknowledged stage_duration_ms=8.601 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=504
+  ok 14 [mobile] › tests-architect-controlled\architect.spec.ts:75:7 › controlled timeout preserves prior approval and permits only explicit recovery (14.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=9f9b23a5-efcc-47f5-8e53-028eb1cb23a5 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9f9b23a5-efcc-47f5-8e53-028eb1cb23a5 workspace_id=200f596b-4929-424c-837b-78b1af81444f
+[WebServer] INFO:     architect_timing run_id=f69dc693-37e6-4827-9a42-9ba37b7d4b9c stage=admission_commit_acknowledged elapsed_ms=60.426 stage_duration_ms=60.408 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=f69dc693-37e6-4827-9a42-9ba37b7d4b9c stage=running_commit_acknowledged elapsed_ms=86.550 stage_duration_ms=25.995 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=f69dc693-37e6-4827-9a42-9ba37b7d4b9c stage=provider_response_received elapsed_ms=1097.454 stage_duration_ms=1010.53 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=f69dc693-37e6-4827-9a42-9ba37b7d4b9c stage=output_validated elapsed_ms=1099.683 stage_duration_ms=1.573 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=f69dc693-37e6-4827-9a42-9ba37b7d4b9c stage=publication_commit_acknowledged elapsed_ms=1151.670 stage_duration_ms=51.743 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=347b941d-3f95-42c1-bd00-2ad43847e9ab stage=admission_commit_acknowledged elapsed_ms=71.310 stage_duration_ms=71.286 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=347b941d-3f95-42c1-bd00-2ad43847e9ab stage=running_commit_acknowledged elapsed_ms=109.738 stage_duration_ms=38.277 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=347b941d-3f95-42c1-bd00-2ad43847e9ab stage=failure_commit_acknowledged stage_duration_ms=10.514 attempt=1 final_state=failed error_category=provider_unavailable provider_http_status=503
+  ok 15 [mobile] › tests-architect-controlled\architect.spec.ts:75:7 › controlled unavailable preserves prior approval and permits only explicit recovery (14.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d3ed7525-9071-485d-80b7-79726c0c57cf workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d3ed7525-9071-485d-80b7-79726c0c57cf workspace_id=7dc92abb-c926-46c5-b053-5c7dbadc00e8
+[WebServer] INFO:     architect_timing run_id=2dd9cf9e-9a1b-4a8e-a9ec-4960ae555213 stage=admission_commit_acknowledged elapsed_ms=80.266 stage_duration_ms=80.246 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2dd9cf9e-9a1b-4a8e-a9ec-4960ae555213 stage=running_commit_acknowledged elapsed_ms=122.266 stage_duration_ms=41.859 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2dd9cf9e-9a1b-4a8e-a9ec-4960ae555213 stage=provider_response_received elapsed_ms=1130.035 stage_duration_ms=1007.608 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2dd9cf9e-9a1b-4a8e-a9ec-4960ae555213 stage=output_validated elapsed_ms=1131.529 stage_duration_ms=1.222 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2dd9cf9e-9a1b-4a8e-a9ec-4960ae555213 stage=publication_commit_acknowledged elapsed_ms=1225.442 stage_duration_ms=93.658 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=10e46ef9-788a-4286-9c58-a963e85e5d1a stage=admission_commit_acknowledged elapsed_ms=82.836 stage_duration_ms=82.816 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=10e46ef9-788a-4286-9c58-a963e85e5d1a stage=running_commit_acknowledged elapsed_ms=121.087 stage_duration_ms=38.099 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=10e46ef9-788a-4286-9c58-a963e85e5d1a stage=provider_response_received elapsed_ms=1130.379 stage_duration_ms=1009.144 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=10e46ef9-788a-4286-9c58-a963e85e5d1a stage=failure_commit_acknowledged stage_duration_ms=11.750 attempt=1 final_state=failed error_category=invalid_model_response provider_http_status=-
+  ok 16 [mobile] › tests-architect-controlled\architect.spec.ts:75:7 › controlled invalid preserves prior approval and permits only explicit recovery (16.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=25acbaa2-e636-41f1-8ea1-d9fbae3f3bf2 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=25acbaa2-e636-41f1-8ea1-d9fbae3f3bf2 workspace_id=f8d84110-0d5a-43b9-99ad-25bd2fb55b27
+[WebServer] INFO:     architect_timing run_id=153981cb-bdc3-4846-952e-cf09210fff3b stage=admission_commit_acknowledged elapsed_ms=60.163 stage_duration_ms=60.146 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=153981cb-bdc3-4846-952e-cf09210fff3b stage=running_commit_acknowledged elapsed_ms=87.382 stage_duration_ms=27.114 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=153981cb-bdc3-4846-952e-cf09210fff3b stage=provider_response_received elapsed_ms=1091.148 stage_duration_ms=1003.654 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=153981cb-bdc3-4846-952e-cf09210fff3b stage=output_validated elapsed_ms=1091.936 stage_duration_ms=0.614 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=153981cb-bdc3-4846-952e-cf09210fff3b stage=publication_commit_acknowledged elapsed_ms=1151.556 stage_duration_ms=59.49 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bcca16d1-76f6-4074-9614-a37c8c01ceba stage=admission_commit_acknowledged elapsed_ms=60.771 stage_duration_ms=60.755 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bcca16d1-76f6-4074-9614-a37c8c01ceba stage=running_commit_acknowledged elapsed_ms=95.473 stage_duration_ms=34.576 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bcca16d1-76f6-4074-9614-a37c8c01ceba stage=provider_response_received elapsed_ms=1103.770 stage_duration_ms=1008.16 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bcca16d1-76f6-4074-9614-a37c8c01ceba stage=failure_commit_acknowledged stage_duration_ms=9.208 attempt=1 final_state=failed error_category=invalid_model_response provider_http_status=-
+  ok 17 [mobile] › tests-architect-controlled\architect.spec.ts:75:7 › controlled cycle preserves prior approval and permits only explicit recovery (15.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b4708b8a-8d71-4497-b048-67408e94c408 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b4708b8a-8d71-4497-b048-67408e94c408 workspace_id=1a8927f3-3163-48fa-8e50-1157eb7c218e
+[WebServer] INFO:     architect_timing run_id=439b6b8c-6029-4a8c-b9ab-13f249e125c0 stage=admission_commit_acknowledged elapsed_ms=66.387 stage_duration_ms=66.37 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=439b6b8c-6029-4a8c-b9ab-13f249e125c0 stage=running_commit_acknowledged elapsed_ms=96.861 stage_duration_ms=30.342 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=439b6b8c-6029-4a8c-b9ab-13f249e125c0 stage=provider_response_received elapsed_ms=1111.273 stage_duration_ms=1014.28 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=439b6b8c-6029-4a8c-b9ab-13f249e125c0 stage=output_validated elapsed_ms=1113.148 stage_duration_ms=1.54 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=439b6b8c-6029-4a8c-b9ab-13f249e125c0 stage=publication_commit_acknowledged elapsed_ms=1181.272 stage_duration_ms=67.827 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6887d082-ef75-4af3-bef2-1ea0d135bdcc stage=admission_commit_acknowledged elapsed_ms=74.120 stage_duration_ms=74.098 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6887d082-ef75-4af3-bef2-1ea0d135bdcc stage=running_commit_acknowledged elapsed_ms=109.478 stage_duration_ms=35.177 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=6887d082-ef75-4af3-bef2-1ea0d135bdcc stage=failure_commit_acknowledged stage_duration_ms=11.428 attempt=1 final_state=failed error_category=provider_rate_limited provider_http_status=429
+  ok 18 [mobile] › tests-architect-controlled\architect.spec.ts:75:7 › controlled rate limited preserves prior approval and permits only explicit recovery (14.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=2ab37e89-23da-4395-b33f-6a2dd0418a32 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=2ab37e89-23da-4395-b33f-6a2dd0418a32 workspace_id=3e86fa7e-d40e-4134-9155-761dffac6323
+[WebServer] INFO:     architect_timing run_id=a886c85c-14a8-4b08-b05e-0bd55c3dcbcd stage=admission_commit_acknowledged elapsed_ms=63.952 stage_duration_ms=63.932 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a886c85c-14a8-4b08-b05e-0bd55c3dcbcd stage=running_commit_acknowledged elapsed_ms=95.901 stage_duration_ms=31.827 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a886c85c-14a8-4b08-b05e-0bd55c3dcbcd stage=provider_response_received elapsed_ms=1104.351 stage_duration_ms=1008.33 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a886c85c-14a8-4b08-b05e-0bd55c3dcbcd stage=output_validated elapsed_ms=1105.124 stage_duration_ms=0.601 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a886c85c-14a8-4b08-b05e-0bd55c3dcbcd stage=publication_commit_acknowledged elapsed_ms=1187.927 stage_duration_ms=82.703 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     security_event=session_revoked actor_id=2ab37e89-23da-4395-b33f-6a2dd0418a32 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=e9dcdad7-944d-40b8-8e0b-6fa96e634916 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e9dcdad7-944d-40b8-8e0b-6fa96e634916 workspace_id=7e9e8f7a-2c23-44e6-b0c9-bc9b48cd48c7
+  ok 19 [mobile] › tests-architect-controlled\architect.spec.ts:103:5 › unrelated user cannot see architecture or run content (14.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=bf62d124-0e89-45c3-a62e-21c6a15ca11f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=bf62d124-0e89-45c3-a62e-21c6a15ca11f workspace_id=d6c6103d-6610-42f2-9793-4a20dbae87cf
+[WebServer] INFO:     architect_timing run_id=3ee59e19-3d91-4ba7-8060-3d3d3232135e stage=admission_commit_acknowledged elapsed_ms=94.913 stage_duration_ms=94.891 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3ee59e19-3d91-4ba7-8060-3d3d3232135e stage=running_commit_acknowledged elapsed_ms=128.850 stage_duration_ms=33.813 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3ee59e19-3d91-4ba7-8060-3d3d3232135e stage=provider_response_received elapsed_ms=1132.253 stage_duration_ms=1003.243 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3ee59e19-3d91-4ba7-8060-3d3d3232135e stage=output_validated elapsed_ms=1133.123 stage_duration_ms=0.704 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3ee59e19-3d91-4ba7-8060-3d3d3232135e stage=publication_commit_acknowledged elapsed_ms=1213.161 stage_duration_ms=79.875 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     security_event=session_revoked actor_id=bf62d124-0e89-45c3-a62e-21c6a15ca11f workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=3ac4f048-2c8b-4a0e-a7df-b65e1a550428 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3ac4f048-2c8b-4a0e-a7df-b65e1a550428 workspace_id=d6c6103d-6610-42f2-9793-4a20dbae87cf
+  ok 20 [mobile] › tests-architect-controlled\architect.spec.ts:111:5 › viewer can inspect saved architecture but cannot generate, edit or approve (12.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=3fea0340-5643-40b2-9ba4-0a5fcbfaf610 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3fea0340-5643-40b2-9ba4-0a5fcbfaf610 workspace_id=c92ede14-fa36-4d54-bdcb-aa345dccae4a
+[WebServer] INFO:     architect_timing run_id=c81e061e-f046-4c00-aacf-988672a543fa stage=admission_commit_acknowledged elapsed_ms=67.850 stage_duration_ms=67.835 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=c81e061e-f046-4c00-aacf-988672a543fa stage=running_commit_acknowledged elapsed_ms=90.894 stage_duration_ms=22.924 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=c81e061e-f046-4c00-aacf-988672a543fa stage=failure_commit_acknowledged stage_duration_ms=13.297 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=504
+[WebServer] INFO:     architect_timing run_id=2056f502-df2e-4d81-aa4f-3f5b6df99452 stage=admission_commit_acknowledged elapsed_ms=59.348 stage_duration_ms=59.325 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2056f502-df2e-4d81-aa4f-3f5b6df99452 stage=running_commit_acknowledged elapsed_ms=90.813 stage_duration_ms=31.229 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2056f502-df2e-4d81-aa4f-3f5b6df99452 stage=provider_response_received elapsed_ms=1098.664 stage_duration_ms=1007.397 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2056f502-df2e-4d81-aa4f-3f5b6df99452 stage=output_validated elapsed_ms=1100.544 stage_duration_ms=1.503 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2056f502-df2e-4d81-aa4f-3f5b6df99452 stage=publication_commit_acknowledged elapsed_ms=1160.064 stage_duration_ms=59.247 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok 21 [mobile] › tests-architect-controlled\architect.spec.ts:125:5 › explicit retry creates a fresh auditable run and unsaved navigation preserves draft (11.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=de1581d3-df03-4692-a7d4-4b75cd1d183c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=de1581d3-df03-4692-a7d4-4b75cd1d183c workspace_id=6804b12e-4075-4f41-857d-10aa49ebc7d4
+[WebServer] INFO:     architect_timing run_id=3282a3ee-fbf0-4594-9d66-ffe1af7bf865 stage=admission_commit_acknowledged elapsed_ms=90.669 stage_duration_ms=90.637 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3282a3ee-fbf0-4594-9d66-ffe1af7bf865 stage=running_commit_acknowledged elapsed_ms=134.414 stage_duration_ms=43.501 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3282a3ee-fbf0-4594-9d66-ffe1af7bf865 stage=provider_response_received elapsed_ms=1138.462 stage_duration_ms=1003.913 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3282a3ee-fbf0-4594-9d66-ffe1af7bf865 stage=output_validated elapsed_ms=1140.073 stage_duration_ms=1.256 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3282a3ee-fbf0-4594-9d66-ffe1af7bf865 stage=publication_commit_acknowledged elapsed_ms=1197.202 stage_duration_ms=56.864 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok 22 [mobile] › tests-architect-controlled\architect.spec.ts:137:5 › hidden architecture tab retains a visible navigation dialog and rejected graph edits (10.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=fcaec7d8-7e71-494e-974e-62a6fef7347a workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=fcaec7d8-7e71-494e-974e-62a6fef7347a workspace_id=9eb63779-a3e2-4b67-89d3-3c4643dfb1f7
+  ok 23 [tablet] › tests-architect-controlled\architect.spec.ts:32:5 › draft PRD is not an approved source; no generation is dispatched (6.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=61c62320-17a6-45d2-a3c8-8a417bee48c2 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=61c62320-17a6-45d2-a3c8-8a417bee48c2 workspace_id=55ab6afd-89f2-44e4-890a-6315ba5e22a8
+[WebServer] INFO:     architect_timing run_id=f2c0c195-713e-4483-839d-a5bfabf0f22b stage=admission_commit_acknowledged elapsed_ms=68.384 stage_duration_ms=68.363 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=f2c0c195-713e-4483-839d-a5bfabf0f22b stage=running_commit_acknowledged elapsed_ms=96.069 stage_duration_ms=27.43 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=f2c0c195-713e-4483-839d-a5bfabf0f22b stage=provider_response_received elapsed_ms=1108.370 stage_duration_ms=1012.176 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=f2c0c195-713e-4483-839d-a5bfabf0f22b stage=output_validated elapsed_ms=1109.239 stage_duration_ms=0.674 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=f2c0c195-713e-4483-839d-a5bfabf0f22b stage=publication_commit_acknowledged elapsed_ms=1168.106 stage_duration_ms=58.732 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok 24 [tablet] › tests-architect-controlled\architect.spec.ts:38:5 › controlled architecture persists, graph rejects a cycle, human edit and approval survive reload (15.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=c19ae70a-62f6-48b7-839e-d3f9874167c3 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c19ae70a-62f6-48b7-839e-d3f9874167c3 workspace_id=832e2b3a-b7b9-4da9-805f-15297469a864
+[WebServer] INFO:     architect_timing run_id=69ef7fdf-109b-4422-86ae-71bc925d9e59 stage=admission_commit_acknowledged elapsed_ms=71.276 stage_duration_ms=71.247 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=69ef7fdf-109b-4422-86ae-71bc925d9e59 stage=running_commit_acknowledged elapsed_ms=102.343 stage_duration_ms=30.944 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=69ef7fdf-109b-4422-86ae-71bc925d9e59 stage=provider_response_received elapsed_ms=1111.572 stage_duration_ms=1009.051 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=69ef7fdf-109b-4422-86ae-71bc925d9e59 stage=output_validated elapsed_ms=1113.271 stage_duration_ms=1.382 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=69ef7fdf-109b-4422-86ae-71bc925d9e59 stage=publication_commit_acknowledged elapsed_ms=1184.875 stage_duration_ms=71.321 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=4859511b-03c9-4da5-b119-b6ff5ce157d3 stage=admission_commit_acknowledged elapsed_ms=83.194 stage_duration_ms=83.166 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=4859511b-03c9-4da5-b119-b6ff5ce157d3 stage=running_commit_acknowledged elapsed_ms=122.950 stage_duration_ms=39.467 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=4859511b-03c9-4da5-b119-b6ff5ce157d3 stage=failure_commit_acknowledged stage_duration_ms=14.702 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=504
+  ok 25 [tablet] › tests-architect-controlled\architect.spec.ts:75:7 › controlled timeout preserves prior approval and permits only explicit recovery (14.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=54b66b3b-6441-40c3-899b-5ac749a3b47f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=54b66b3b-6441-40c3-899b-5ac749a3b47f workspace_id=40c88ffb-1f75-4090-be40-cf159bed4615
+[WebServer] INFO:     architect_timing run_id=1297d37b-9b14-44a8-8c72-fcbfac77453e stage=admission_commit_acknowledged elapsed_ms=77.363 stage_duration_ms=77.341 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=1297d37b-9b14-44a8-8c72-fcbfac77453e stage=running_commit_acknowledged elapsed_ms=109.628 stage_duration_ms=32.087 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=1297d37b-9b14-44a8-8c72-fcbfac77453e stage=provider_response_received elapsed_ms=1118.648 stage_duration_ms=1008.679 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=1297d37b-9b14-44a8-8c72-fcbfac77453e stage=output_validated elapsed_ms=1120.445 stage_duration_ms=1.458 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=1297d37b-9b14-44a8-8c72-fcbfac77453e stage=publication_commit_acknowledged elapsed_ms=1182.743 stage_duration_ms=62.019 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=56779750-8a0a-4092-9dd3-23b1c6f24aa6 stage=admission_commit_acknowledged elapsed_ms=55.447 stage_duration_ms=55.431 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=56779750-8a0a-4092-9dd3-23b1c6f24aa6 stage=running_commit_acknowledged elapsed_ms=85.556 stage_duration_ms=29.988 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=56779750-8a0a-4092-9dd3-23b1c6f24aa6 stage=failure_commit_acknowledged stage_duration_ms=7.717 attempt=1 final_state=failed error_category=provider_unavailable provider_http_status=503
+  ok 26 [tablet] › tests-architect-controlled\architect.spec.ts:75:7 › controlled unavailable preserves prior approval and permits only explicit recovery (15.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d2dd6516-8745-4c08-8e74-5533ae379702 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d2dd6516-8745-4c08-8e74-5533ae379702 workspace_id=5893ee9b-6525-40ec-a32b-2bfb52a13968
+[WebServer] INFO:     architect_timing run_id=2611b8d7-2b1d-4189-b79a-102f36211e75 stage=admission_commit_acknowledged elapsed_ms=80.665 stage_duration_ms=80.647 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2611b8d7-2b1d-4189-b79a-102f36211e75 stage=running_commit_acknowledged elapsed_ms=111.405 stage_duration_ms=30.631 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2611b8d7-2b1d-4189-b79a-102f36211e75 stage=provider_response_received elapsed_ms=1114.464 stage_duration_ms=1002.923 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2611b8d7-2b1d-4189-b79a-102f36211e75 stage=output_validated elapsed_ms=1115.788 stage_duration_ms=1.091 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=2611b8d7-2b1d-4189-b79a-102f36211e75 stage=publication_commit_acknowledged elapsed_ms=1174.411 stage_duration_ms=58.477 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a15961bf-8cbe-420b-88a9-e2b90bf5edba stage=admission_commit_acknowledged elapsed_ms=70.285 stage_duration_ms=70.27 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a15961bf-8cbe-420b-88a9-e2b90bf5edba stage=running_commit_acknowledged elapsed_ms=103.346 stage_duration_ms=32.941 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a15961bf-8cbe-420b-88a9-e2b90bf5edba stage=provider_response_received elapsed_ms=1113.413 stage_duration_ms=1009.934 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=a15961bf-8cbe-420b-88a9-e2b90bf5edba stage=failure_commit_acknowledged stage_duration_ms=9.174 attempt=1 final_state=failed error_category=invalid_model_response provider_http_status=-
+  ok 27 [tablet] › tests-architect-controlled\architect.spec.ts:75:7 › controlled invalid preserves prior approval and permits only explicit recovery (15.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=56a6c147-fd75-43c3-91c6-5a6d9201c97d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=56a6c147-fd75-43c3-91c6-5a6d9201c97d workspace_id=7915e571-257f-46af-bf64-36dc795711af
+[WebServer] INFO:     architect_timing run_id=3212e0e8-0c16-49be-9c81-9b21c78270fa stage=admission_commit_acknowledged elapsed_ms=64.282 stage_duration_ms=64.264 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3212e0e8-0c16-49be-9c81-9b21c78270fa stage=running_commit_acknowledged elapsed_ms=91.419 stage_duration_ms=27.028 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3212e0e8-0c16-49be-9c81-9b21c78270fa stage=provider_response_received elapsed_ms=1094.787 stage_duration_ms=1003.234 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3212e0e8-0c16-49be-9c81-9b21c78270fa stage=output_validated elapsed_ms=1096.012 stage_duration_ms=1.035 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=3212e0e8-0c16-49be-9c81-9b21c78270fa stage=publication_commit_acknowledged elapsed_ms=1162.109 stage_duration_ms=65.941 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e8d8786f-bcf1-4347-a944-9f1ad3c46db3 stage=admission_commit_acknowledged elapsed_ms=83.931 stage_duration_ms=83.908 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e8d8786f-bcf1-4347-a944-9f1ad3c46db3 stage=running_commit_acknowledged elapsed_ms=120.378 stage_duration_ms=36.144 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e8d8786f-bcf1-4347-a944-9f1ad3c46db3 stage=provider_response_received elapsed_ms=1129.392 stage_duration_ms=1008.879 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e8d8786f-bcf1-4347-a944-9f1ad3c46db3 stage=failure_commit_acknowledged stage_duration_ms=10.211 attempt=1 final_state=failed error_category=invalid_model_response provider_http_status=-
+  ok 28 [tablet] › tests-architect-controlled\architect.spec.ts:75:7 › controlled cycle preserves prior approval and permits only explicit recovery (15.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=41b70e9c-082b-4f0f-8a73-fa5904089b3e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=41b70e9c-082b-4f0f-8a73-fa5904089b3e workspace_id=e7f0fe37-544d-4a34-9940-22b3ebe39120
+[WebServer] INFO:     architect_timing run_id=ed610120-32c2-460f-b072-45ecb6a7d926 stage=admission_commit_acknowledged elapsed_ms=77.954 stage_duration_ms=77.936 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed610120-32c2-460f-b072-45ecb6a7d926 stage=running_commit_acknowledged elapsed_ms=114.910 stage_duration_ms=36.827 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed610120-32c2-460f-b072-45ecb6a7d926 stage=provider_response_received elapsed_ms=1119.454 stage_duration_ms=1004.415 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed610120-32c2-460f-b072-45ecb6a7d926 stage=output_validated elapsed_ms=1120.364 stage_duration_ms=0.72 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=ed610120-32c2-460f-b072-45ecb6a7d926 stage=publication_commit_acknowledged elapsed_ms=1203.365 stage_duration_ms=82.847 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e3719014-b857-417c-a51c-03e3c8da4541 stage=admission_commit_acknowledged elapsed_ms=94.905 stage_duration_ms=94.868 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e3719014-b857-417c-a51c-03e3c8da4541 stage=running_commit_acknowledged elapsed_ms=130.480 stage_duration_ms=35.268 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=e3719014-b857-417c-a51c-03e3c8da4541 stage=failure_commit_acknowledged stage_duration_ms=10.516 attempt=1 final_state=failed error_category=provider_rate_limited provider_http_status=429
+  ok 29 [tablet] › tests-architect-controlled\architect.spec.ts:75:7 › controlled rate limited preserves prior approval and permits only explicit recovery (15.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5eafcae0-fd95-4f3f-8a40-17da7decdbbb workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5eafcae0-fd95-4f3f-8a40-17da7decdbbb workspace_id=23174181-4616-4a71-89c1-06abfb45cfbb
+[WebServer] INFO:     architect_timing run_id=933fbf39-0c45-4919-be43-d758c18de50f stage=admission_commit_acknowledged elapsed_ms=59.015 stage_duration_ms=58.997 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=933fbf39-0c45-4919-be43-d758c18de50f stage=running_commit_acknowledged elapsed_ms=83.809 stage_duration_ms=24.668 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=933fbf39-0c45-4919-be43-d758c18de50f stage=provider_response_received elapsed_ms=1093.969 stage_duration_ms=1010.038 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=933fbf39-0c45-4919-be43-d758c18de50f stage=output_validated elapsed_ms=1095.591 stage_duration_ms=1.297 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=933fbf39-0c45-4919-be43-d758c18de50f stage=publication_commit_acknowledged elapsed_ms=1157.621 stage_duration_ms=61.61 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     security_event=session_revoked actor_id=5eafcae0-fd95-4f3f-8a40-17da7decdbbb workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=e49d92af-1353-4f1c-a600-2c3b75f18b3e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e49d92af-1353-4f1c-a600-2c3b75f18b3e workspace_id=ac177be8-e35e-46bc-ba51-b36fca924f9a
+  ok 30 [tablet] › tests-architect-controlled\architect.spec.ts:103:5 › unrelated user cannot see architecture or run content (14.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=f0ac2ddd-3310-4472-9942-0c69f8110c46 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f0ac2ddd-3310-4472-9942-0c69f8110c46 workspace_id=1da9fe51-4c42-4406-b46a-d48001a54484
+[WebServer] INFO:     architect_timing run_id=65f91e2b-4b79-4ccf-bded-dec633c2f2c5 stage=admission_commit_acknowledged elapsed_ms=55.444 stage_duration_ms=55.428 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=65f91e2b-4b79-4ccf-bded-dec633c2f2c5 stage=running_commit_acknowledged elapsed_ms=81.214 stage_duration_ms=25.664 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=65f91e2b-4b79-4ccf-bded-dec633c2f2c5 stage=provider_response_received elapsed_ms=1096.532 stage_duration_ms=1015.178 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=65f91e2b-4b79-4ccf-bded-dec633c2f2c5 stage=output_validated elapsed_ms=1097.560 stage_duration_ms=0.78 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=65f91e2b-4b79-4ccf-bded-dec633c2f2c5 stage=publication_commit_acknowledged elapsed_ms=1153.974 stage_duration_ms=56.256 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+[WebServer] INFO:     security_event=session_revoked actor_id=f0ac2ddd-3310-4472-9942-0c69f8110c46 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=9704f724-abd7-4d0b-b522-5f42c6526cbd workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9704f724-abd7-4d0b-b522-5f42c6526cbd workspace_id=1da9fe51-4c42-4406-b46a-d48001a54484
+  ok 31 [tablet] › tests-architect-controlled\architect.spec.ts:111:5 › viewer can inspect saved architecture but cannot generate, edit or approve (12.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=fcd16094-e75f-4db3-bb98-cf55a798498b workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=fcd16094-e75f-4db3-bb98-cf55a798498b workspace_id=8203a043-0589-4818-be9b-4b60a1c1241e
+[WebServer] INFO:     architect_timing run_id=63a1d1ca-1a44-4352-99a2-65750a2fad50 stage=admission_commit_acknowledged elapsed_ms=68.547 stage_duration_ms=68.53 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=63a1d1ca-1a44-4352-99a2-65750a2fad50 stage=running_commit_acknowledged elapsed_ms=101.000 stage_duration_ms=32.333 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=63a1d1ca-1a44-4352-99a2-65750a2fad50 stage=failure_commit_acknowledged stage_duration_ms=11.097 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=504
+[WebServer] INFO:     architect_timing run_id=09a0c9f2-f1f6-47e1-a853-2a5e698b09f0 stage=admission_commit_acknowledged elapsed_ms=77.423 stage_duration_ms=77.395 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=09a0c9f2-f1f6-47e1-a853-2a5e698b09f0 stage=running_commit_acknowledged elapsed_ms=126.177 stage_duration_ms=48.519 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=09a0c9f2-f1f6-47e1-a853-2a5e698b09f0 stage=provider_response_received elapsed_ms=1138.286 stage_duration_ms=1011.965 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=09a0c9f2-f1f6-47e1-a853-2a5e698b09f0 stage=output_validated elapsed_ms=1141.388 stage_duration_ms=2.836 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=09a0c9f2-f1f6-47e1-a853-2a5e698b09f0 stage=publication_commit_acknowledged elapsed_ms=1192.440 stage_duration_ms=50.372 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok 32 [tablet] › tests-architect-controlled\architect.spec.ts:125:5 › explicit retry creates a fresh auditable run and unsaved navigation preserves draft (11.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=e214b832-efa9-4cb2-9fd7-42c00cc54c88 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e214b832-efa9-4cb2-9fd7-42c00cc54c88 workspace_id=e689eb8d-b96a-4e36-a0ca-7e8012231377
+[WebServer] INFO:     architect_timing run_id=bd06baf0-a7f9-4fcd-b7a2-17442c9a4ebe stage=admission_commit_acknowledged elapsed_ms=46.991 stage_duration_ms=46.975 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bd06baf0-a7f9-4fcd-b7a2-17442c9a4ebe stage=running_commit_acknowledged elapsed_ms=67.809 stage_duration_ms=20.701 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bd06baf0-a7f9-4fcd-b7a2-17442c9a4ebe stage=provider_response_received elapsed_ms=1070.877 stage_duration_ms=1002.908 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bd06baf0-a7f9-4fcd-b7a2-17442c9a4ebe stage=output_validated elapsed_ms=1074.942 stage_duration_ms=3.24 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     architect_timing run_id=bd06baf0-a7f9-4fcd-b7a2-17442c9a4ebe stage=publication_commit_acknowledged elapsed_ms=1121.578 stage_duration_ms=46.048 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok 33 [tablet] › tests-architect-controlled\architect.spec.ts:137:5 › hidden architecture tab retains a visible navigation dialog and rejected graph edits (10.0s)
+
+  33 passed (7.5m)

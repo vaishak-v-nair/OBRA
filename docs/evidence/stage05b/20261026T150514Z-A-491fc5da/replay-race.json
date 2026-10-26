@@ -1,0 +1,110 @@
+{
+  "scenario": "replay",
+  "holder_pid": 10220,
+  "request_pid": 10222,
+  "wait_event_type": "Lock",
+  "lock_observed_at": "2026-10-26T15:09:27.162128+00:00",
+  "credential_expires_at": "2026-10-26T15:09:27.862071+00:00",
+  "lock_released_at": "2026-10-26T15:09:27.868901+00:00",
+  "response_status": 401,
+  "before_sql": {
+    "dispatch": {
+      "id": "4d9111c0-e0b6-4343-a952-bd49ebdb6f72",
+      "state": "leased",
+      "attempts": 1,
+      "fence_epoch": 1
+    },
+    "leases": 1,
+    "handoffs": 1,
+    "claim_receipts": 1,
+    "events": [
+      [
+        1,
+        "run_created",
+        1
+      ],
+      [
+        2,
+        "run_awaiting_executor",
+        2
+      ],
+      [
+        3,
+        "dispatch_queued",
+        3
+      ],
+      [
+        4,
+        "lease_claimed",
+        4
+      ],
+      [
+        5,
+        "handoff_available",
+        5
+      ]
+    ],
+    "execution_statuses": [
+      "awaiting_executor",
+      "awaiting_executor"
+    ],
+    "runs": [
+      [
+        "e4b8dee3-406c-433c-bab1-4d5064604f81",
+        "awaiting_executor",
+        5,
+        5
+      ]
+    ]
+  },
+  "after_sql": {
+    "dispatch": {
+      "id": "4d9111c0-e0b6-4343-a952-bd49ebdb6f72",
+      "state": "leased",
+      "attempts": 1,
+      "fence_epoch": 1
+    },
+    "leases": 1,
+    "handoffs": 1,
+    "claim_receipts": 1,
+    "events": [
+      [
+        1,
+        "run_created",
+        1
+      ],
+      [
+        2,
+        "run_awaiting_executor",
+        2
+      ],
+      [
+        3,
+        "dispatch_queued",
+        3
+      ],
+      [
+        4,
+        "lease_claimed",
+        4
+      ],
+      [
+        5,
+        "handoff_available",
+        5
+      ]
+    ],
+    "execution_statuses": [
+      "awaiting_executor",
+      "awaiting_executor"
+    ],
+    "runs": [
+      [
+        "e4b8dee3-406c-433c-bab1-4d5064604f81",
+        "awaiting_executor",
+        5,
+        5
+      ]
+    ]
+  }
+}

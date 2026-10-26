@@ -1,5 +1,28 @@
 # ORBA current verification
 
+**Stage05B VERIFIED after the credential-publication repair,2026-10-26.**
+Fresh Gate A:792 backend and201 browser tests,18 commands exited0. Independent
+local Gate B:1 real scheduler/worker-protocol browser flow,exit0. Gate C:VERIFIED,
+exit0. Source `d47cf1fe3478c7877dd7cda342e56c94fdc16a517be7964f5cfefd4244f20b6f`
+(243 files). No skips,retries,paid requests or engineering execution.
+The pre-repair PostgreSQL reproduction returned201 after credential expiry;
+new regressions return401 without SQL publication. See [current evidence and
+commands](VERIFICATION_STAGE05B_CREDENTIAL_REPAIR.md). The earlier acceptance
+below remains historical and cannot certify the repair.
+
+## Historical Stage05B acceptance before credential repair
+
+**Stage05B VERIFIED, 2026-10-26.** Gate A passed 776 backend and 201 browser tests;
+all 18 native commands exited 0. Independent local Gate B passed1 real scheduler/
+worker-protocol browser flow and strict SQL/API/source proof validation. Gate C
+exited 0 with applicable matching source and policy. No skips, xfails or retries.
+Source: `4bfcc3ec0d903cfedcd7addaca7e06c4287467a4ed1d1e79d33524a446d2538d` (241 files).
+[Complete Stage05B report,commands and preserved failures](VERIFICATION_STAGE05B.md).
+No model generation or task execution occurred. **Overall Stage05: IN PROGRESS.**
+No Stage05C/D/06, Git commit or push occurred.
+
+## Historical Stage05A verified checkpoint
+
 The focused proof-v2 repair is **VERIFIED** against fresh passing A/B/C:
 683 backend tests;60 core,33 PM controlled,33 Architect controlled,39 navigation
 and21 orchestration browser tests;1 independent local control-plane browser flow.
@@ -77,3 +100,10 @@ uv run --directory apps/api python -m scripts.architect_verification summary
 
 One real passing journey is bounded evidence,not a provider reliability guarantee,
 production-security certification or proof that proposed designs were implemented.
+# Stage05B current verification
+
+New scheduler and worker-protocol results are recorded separately in
+[VERIFICATION_STAGE05B.md](VERIFICATION_STAGE05B.md) and new immutable
+`docs/evidence/stage05b` receipts. Stage05B has not yet passed its full A/B/C gates.
+No paid AI or engineering task execution is part of this verification. All older
+reports and historical receipts below remain unchanged.

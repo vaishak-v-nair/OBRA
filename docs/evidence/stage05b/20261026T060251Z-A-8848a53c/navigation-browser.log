@@ -1,0 +1,138 @@
+$ pnpm --filter @orba/web test:e2e:navigation
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.navigation.config.ts
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [23648]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 39 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=7959208e-087d-494a-8cd9-d27df60a8859 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7959208e-087d-494a-8cd9-d27df60a8859 workspace_id=4fcbecc4-f276-419d-b55c-c2beaaae1d07
+  ok  1 [chromium] › tests-navigation\navigation.spec.ts:73:5 › shared Phase1 approves the exact source, reloads and stops at Architect entry (22.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=bb709de8-5fea-4b92-b5cf-86eb294cb9e0 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=bb709de8-5fea-4b92-b5cf-86eb294cb9e0 workspace_id=7236d3c3-a37d-4e0c-97c2-276a5d4f373a
+  ok  2 [chromium] › tests-navigation\navigation.spec.ts:77:5 › route confirmation precedes immediate reload even when real Next navigation is held (6.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=9eaa5c4e-220f-417d-8a57-d6188e94adf3 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9eaa5c4e-220f-417d-8a57-d6188e94adf3 workspace_id=db57f2b1-1699-4dfa-9120-ec8758abce7a
+  ok  3 [chromium] › tests-navigation\navigation.spec.ts:92:5 › slow real project API stays on its project route without returning to Chat (8.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d43d60b3-5286-4781-8e8d-d9f005dad7f1 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d43d60b3-5286-4781-8e8d-d9f005dad7f1 workspace_id=94e17547-1a09-4723-82a9-695b6fbd70c1
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d43d60b3-5286-4781-8e8d-d9f005dad7f1 workspace_id=1eea8cb3-3f28-411c-9db3-a659bae31f25
+  ok  4 [chromium] › tests-navigation\navigation.spec.ts:105:5 › asynchronous workspace restoration preserves the selected project and hides stale content (9.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=51d79f0e-cf92-4c24-ba58-57541a101f5e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=51d79f0e-cf92-4c24-ba58-57541a101f5e workspace_id=725d6bd6-0220-4b10-a581-73ba42d071a4
+  ok  5 [chromium] › tests-navigation\navigation.spec.ts:125:5 › a delayed second project cannot display the first project as its details (8.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=6cbe3d8f-e094-4dcd-b479-e8fb3c60f3b6 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=6cbe3d8f-e094-4dcd-b479-e8fb3c60f3b6 workspace_id=95a2ccfd-58a1-44e1-9caa-bf35537c3ee2
+  ok  6 [chromium] › tests-navigation\navigation.spec.ts:140:5 › wrong-route synchronization reports expected identity without approving or generating (5.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=399a34e9-5fac-4383-9f78-08c4aecd399c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=399a34e9-5fac-4383-9f78-08c4aecd399c workspace_id=3afbf169-656e-44ec-bb4a-80d0cbdfd9c4
+[WebServer] INFO:     security_event=session_revoked actor_id=399a34e9-5fac-4383-9f78-08c4aecd399c workspace_id=-
+  ok  7 [chromium] › tests-navigation\navigation.spec.ts:150:5 › real session revocation stops approval and leaves the exact PRD draft (11.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=c696caea-9b0d-4ab0-8243-2be688974f83 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c696caea-9b0d-4ab0-8243-2be688974f83 workspace_id=bd323d89-bb30-4ac4-bb19-8d5ca5e763c5
+  ok  8 [chromium] › tests-navigation\navigation.spec.ts:166:5 › controlled PRD transport failure stops before approval and Architect entry (12.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=26c12e3f-8f42-43a5-8220-d926599dad78 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=26c12e3f-8f42-43a5-8220-d926599dad78 workspace_id=1b6b9ce4-2649-4233-8b3f-038063732cb7
+  ok  9 [chromium] › tests-navigation\navigation.spec.ts:176:5 › controlled approval API failure preserves draft and does not claim approval (12.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5423929e-6c03-4f78-b22d-4bd92d067b9d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5423929e-6c03-4f78-b22d-4bd92d067b9d workspace_id=46881e64-98a1-4854-8450-47ce313138dc
+[WebServer] INFO:     security_event=session_rotated actor_id=9e2e2668-40af-451b-aa99-d8cac22a28d5 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9e2e2668-40af-451b-aa99-d8cac22a28d5 workspace_id=46881e64-98a1-4854-8450-47ce313138dc
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5423929e-6c03-4f78-b22d-4bd92d067b9d workspace_id=5599a992-af67-44ec-92f8-5ea266c0fef8
+  ok 10 [chromium] › tests-navigation\navigation.spec.ts:188:5 › a real Member cannot approve the Owner source or access another workspace (15.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=63b76d7f-6282-4a6e-a365-4a8627c2bd69 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=63b76d7f-6282-4a6e-a365-4a8627c2bd69 workspace_id=8beb31f5-8a0b-491e-9047-8bd5742e762b
+  ok 11 [chromium] › tests-navigation\navigation.spec.ts:210:5 › preflight closes before generation when approval prerequisite fails (12.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=a4507451-1fc1-4313-a846-d20b8757dd6b workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a4507451-1fc1-4313-a846-d20b8757dd6b workspace_id=021d96b0-a6fd-4286-957c-b68b528e77d4
+  ok 12 [chromium] › tests-navigation\navigation.spec.ts:221:5 › unpaid server boundary rejects direct model POSTs before creating any run (10.1s)
+  ok 13 [chromium] › tests-navigation\navigation.spec.ts:235:5 › unpaid browser boundary cannot open generation even with a claimed passing preflight (2.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=95fcadd1-e87e-4f17-8812-22baf84743ce workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=95fcadd1-e87e-4f17-8812-22baf84743ce workspace_id=895f23b6-9bdb-4b46-a4c0-a0f1cdcfaafd
+  ok 14 [mobile] › tests-navigation\navigation.spec.ts:73:5 › shared Phase1 approves the exact source, reloads and stops at Architect entry (15.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=ccb8ff8b-f0e5-4450-b117-af6dc82f55bf workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ccb8ff8b-f0e5-4450-b117-af6dc82f55bf workspace_id=f0b61135-9ce8-4182-b327-b28893e189fd
+  ok 15 [mobile] › tests-navigation\navigation.spec.ts:77:5 › route confirmation precedes immediate reload even when real Next navigation is held (6.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=0755e2d2-3ffc-4ff5-96d5-9c711db5cffe workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0755e2d2-3ffc-4ff5-96d5-9c711db5cffe workspace_id=ff90f5d1-cc0f-4d4e-8bc8-fe09f108a0c2
+  ok 16 [mobile] › tests-navigation\navigation.spec.ts:92:5 › slow real project API stays on its project route without returning to Chat (8.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=51321dec-d123-458a-959f-564a301e5886 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=51321dec-d123-458a-959f-564a301e5886 workspace_id=5d821c81-92d7-402d-a21f-27c40510c07d
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=51321dec-d123-458a-959f-564a301e5886 workspace_id=55203fee-0749-483c-8f39-5918e2b2379d
+  ok 17 [mobile] › tests-navigation\navigation.spec.ts:105:5 › asynchronous workspace restoration preserves the selected project and hides stale content (8.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b231aa3b-9c9e-429c-9d8d-dac16afd0d64 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b231aa3b-9c9e-429c-9d8d-dac16afd0d64 workspace_id=929a6397-ae6e-4625-b3ea-b7a3091b40e5
+  ok 18 [mobile] › tests-navigation\navigation.spec.ts:125:5 › a delayed second project cannot display the first project as its details (8.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=ce5e8efe-807d-4fad-bf53-450d0b0d4b9b workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ce5e8efe-807d-4fad-bf53-450d0b0d4b9b workspace_id=213a2fb5-4bd0-4a2b-98e5-1514cd9e757d
+  ok 19 [mobile] › tests-navigation\navigation.spec.ts:140:5 › wrong-route synchronization reports expected identity without approving or generating (5.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d3c7f252-d942-47d4-9b02-0d334d0a93ae workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d3c7f252-d942-47d4-9b02-0d334d0a93ae workspace_id=e6ab9108-2860-4baa-a699-9f4436040b11
+[WebServer] INFO:     security_event=session_revoked actor_id=d3c7f252-d942-47d4-9b02-0d334d0a93ae workspace_id=-
+  ok 20 [mobile] › tests-navigation\navigation.spec.ts:150:5 › real session revocation stops approval and leaves the exact PRD draft (10.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=3de5a336-f313-4c51-a616-01f9b8de6940 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3de5a336-f313-4c51-a616-01f9b8de6940 workspace_id=f5b47622-143f-4387-8aa9-cea45493da87
+  ok 21 [mobile] › tests-navigation\navigation.spec.ts:166:5 › controlled PRD transport failure stops before approval and Architect entry (13.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=35dbc4db-0c90-453c-a4a2-2e2d08fe2e8d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=35dbc4db-0c90-453c-a4a2-2e2d08fe2e8d workspace_id=415097d8-ec16-47df-a200-468eed3d6136
+  ok 22 [mobile] › tests-navigation\navigation.spec.ts:176:5 › controlled approval API failure preserves draft and does not claim approval (11.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=bf79c2d7-770d-4c6d-ae41-20816ddb4958 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=bf79c2d7-770d-4c6d-ae41-20816ddb4958 workspace_id=275ae5cf-ee25-4b1e-99b6-fc30b9d0f30a
+[WebServer] INFO:     security_event=session_rotated actor_id=90193e43-d12a-44db-872f-89f2c30056e4 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=90193e43-d12a-44db-872f-89f2c30056e4 workspace_id=275ae5cf-ee25-4b1e-99b6-fc30b9d0f30a
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=bf79c2d7-770d-4c6d-ae41-20816ddb4958 workspace_id=139d0c1e-c845-482b-be61-92d3a60aaff2
+  ok 23 [mobile] › tests-navigation\navigation.spec.ts:188:5 › a real Member cannot approve the Owner source or access another workspace (15.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=c4d16f24-a4a5-4bf0-a0aa-1bbf34c44626 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c4d16f24-a4a5-4bf0-a0aa-1bbf34c44626 workspace_id=defe848b-29e0-4ada-b3e3-6500cd67518e
+  ok 24 [mobile] › tests-navigation\navigation.spec.ts:210:5 › preflight closes before generation when approval prerequisite fails (12.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=f44894ba-4e86-4ca6-bf86-95dd59b8f436 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f44894ba-4e86-4ca6-bf86-95dd59b8f436 workspace_id=12e67725-8bf1-4f44-b7e1-617bdfedcde1
+  ok 25 [mobile] › tests-navigation\navigation.spec.ts:221:5 › unpaid server boundary rejects direct model POSTs before creating any run (10.4s)
+  ok 26 [mobile] › tests-navigation\navigation.spec.ts:235:5 › unpaid browser boundary cannot open generation even with a claimed passing preflight (3.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=6bac333e-86f1-411b-9879-df716c267c9d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=6bac333e-86f1-411b-9879-df716c267c9d workspace_id=87ab6d02-9611-446e-b945-41eef1036d99
+  ok 27 [tablet] › tests-navigation\navigation.spec.ts:73:5 › shared Phase1 approves the exact source, reloads and stops at Architect entry (16.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=7acb7735-6786-4307-8b0f-b872194e4e70 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7acb7735-6786-4307-8b0f-b872194e4e70 workspace_id=9ce28b98-b6e0-4c13-a7bd-5fa9118ec85d
+  ok 28 [tablet] › tests-navigation\navigation.spec.ts:77:5 › route confirmation precedes immediate reload even when real Next navigation is held (5.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=7f0381d7-d1bf-43dd-aa72-bb7d788611ed workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7f0381d7-d1bf-43dd-aa72-bb7d788611ed workspace_id=90977f04-f85e-49f3-84b4-7bef52587e56
+  ok 29 [tablet] › tests-navigation\navigation.spec.ts:92:5 › slow real project API stays on its project route without returning to Chat (7.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=0bc87478-3522-41b7-be7d-56c8872e02a3 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0bc87478-3522-41b7-be7d-56c8872e02a3 workspace_id=54a62fd4-8482-44e0-b412-cf67e6e30c6b
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0bc87478-3522-41b7-be7d-56c8872e02a3 workspace_id=51250c0f-1b2f-4ba9-ab2c-3822771d8168
+  ok 30 [tablet] › tests-navigation\navigation.spec.ts:105:5 › asynchronous workspace restoration preserves the selected project and hides stale content (9.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=f365e381-2798-461d-8a09-4a6aa15e03b5 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f365e381-2798-461d-8a09-4a6aa15e03b5 workspace_id=7617dc0c-0918-4033-95d7-574696b843b5
+  ok 31 [tablet] › tests-navigation\navigation.spec.ts:125:5 › a delayed second project cannot display the first project as its details (7.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=7ec65799-6942-47ed-ad4a-a836d8c6febd workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7ec65799-6942-47ed-ad4a-a836d8c6febd workspace_id=79e70103-67e3-41ba-b602-65c0d1f7301f
+  ok 32 [tablet] › tests-navigation\navigation.spec.ts:140:5 › wrong-route synchronization reports expected identity without approving or generating (5.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=1ab7efe7-de55-4274-b0ec-dc7e7f57c811 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1ab7efe7-de55-4274-b0ec-dc7e7f57c811 workspace_id=83bc8111-c9cb-4167-a334-6de440df807e
+[WebServer] INFO:     security_event=session_revoked actor_id=1ab7efe7-de55-4274-b0ec-dc7e7f57c811 workspace_id=-
+  ok 33 [tablet] › tests-navigation\navigation.spec.ts:150:5 › real session revocation stops approval and leaves the exact PRD draft (10.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=3ae0bb0c-33b7-42a4-ba9a-e7e30dc31bfd workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3ae0bb0c-33b7-42a4-ba9a-e7e30dc31bfd workspace_id=5304218c-efe2-49b6-af2c-73cb9fa23d2c
+  ok 34 [tablet] › tests-navigation\navigation.spec.ts:166:5 › controlled PRD transport failure stops before approval and Architect entry (11.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=aa2ad3e5-7593-4e17-9293-54a70bd3b38e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=aa2ad3e5-7593-4e17-9293-54a70bd3b38e workspace_id=0288b924-c9bb-4bd8-801e-d65fe75db2a1
+  ok 35 [tablet] › tests-navigation\navigation.spec.ts:176:5 › controlled approval API failure preserves draft and does not claim approval (12.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d83a07a2-b195-4d03-b7f5-ef0db1e5420d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d83a07a2-b195-4d03-b7f5-ef0db1e5420d workspace_id=b3fc42ac-a687-4de8-a8c5-5a2f2f333eca
+[WebServer] INFO:     security_event=session_rotated actor_id=a951b501-9730-4474-8b51-0754d4467ca7 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a951b501-9730-4474-8b51-0754d4467ca7 workspace_id=b3fc42ac-a687-4de8-a8c5-5a2f2f333eca
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d83a07a2-b195-4d03-b7f5-ef0db1e5420d workspace_id=97166e28-7138-4bc6-9d28-8011caadd612
+  ok 36 [tablet] › tests-navigation\navigation.spec.ts:188:5 › a real Member cannot approve the Owner source or access another workspace (15.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=ead0ea5d-939c-47b6-8c98-ecddb36ef724 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ead0ea5d-939c-47b6-8c98-ecddb36ef724 workspace_id=01748c33-e8bd-46bf-855a-a55c8096e999
+  ok 37 [tablet] › tests-navigation\navigation.spec.ts:210:5 › preflight closes before generation when approval prerequisite fails (13.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=77d6b8a0-cbff-49c2-b641-2ac265be7e1d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=77d6b8a0-cbff-49c2-b641-2ac265be7e1d workspace_id=4d238a90-790d-4d22-8013-f79e65c5568b
+  ok 38 [tablet] › tests-navigation\navigation.spec.ts:221:5 › unpaid server boundary rejects direct model POSTs before creating any run (10.1s)
+  ok 39 [tablet] › tests-navigation\navigation.spec.ts:235:5 › unpaid browser boundary cannot open generation even with a claimed passing preflight (2.8s)
+
+  39 passed (6.8m)

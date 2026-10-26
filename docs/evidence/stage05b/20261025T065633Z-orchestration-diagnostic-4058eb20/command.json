@@ -1,0 +1,28 @@
+{
+  "name": "orchestration",
+  "argv": [
+    "npm",
+    "exec",
+    "--yes",
+    "--package=pnpm@12.14.0",
+    "--",
+    "pnpm",
+    "--filter",
+    "@orba/web",
+    "exec",
+    "playwright",
+    "test",
+    "--config",
+    "playwright.orchestration.config.ts",
+    "--workers=1",
+    "--retries=0",
+    "--max-failures=1",
+    "--grep",
+    "unknown committed creation|approved source creates"
+  ],
+  "started_at": "2026-10-25T06:56:40.277846+00:00",
+  "exit_code": 0,
+  "pid": 1660,
+  "duration_seconds": 499.035,
+  "completed_at": "2026-10-25T07:04:59.312919+00:00"
+}

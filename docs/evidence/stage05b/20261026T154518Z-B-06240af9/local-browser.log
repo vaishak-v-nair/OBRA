@@ -1,0 +1,18 @@
+$ pnpm --filter @orba/web test:e2e:scheduler:local
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.scheduler-local.config.ts
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [11560]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 1 test using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e workspace_id=546e942c-18be-473c-8edc-7c71a8fa05f6
+[WebServer] INFO:     security_event=session_revoked actor_id=ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=22c47fe8-7085-47b5-960b-4c1ef5099257 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=22c47fe8-7085-47b5-960b-4c1ef5099257 workspace_id=0e3e4b80-94e2-4530-a4b1-19155dbcd564
+  ok 1 [chromium-scheduler-control-plane] › tests-scheduler-local\control-plane.spec.ts:10:5 › actual scheduler, authenticated protocol client, fencing, restart and reconciliation (1.4m)
+
+  1 passed (1.5m)

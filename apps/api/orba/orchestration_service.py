@@ -1,6 +1,5 @@
 """Short transactional control-plane operations. No model, worker or executor calls."""
 
-import hashlib
 import logging
 from datetime import datetime
 from uuid import uuid4
@@ -28,8 +27,10 @@ from orba.orchestration_models import (
 from orba.orchestration_schemas import RunRead, TaskRead
 from orba.pm_errors import PMError
 from orba.pm_models import ProductPlan
-from orba.pm_schemas import canonical
-from orba.pm_service import check_session, lock_project, phase
+from orba.scheduler_models import BASE_EVENTS
+from orba.scheduler_schemas import validate_control_event
+from orba.snapshot_checksum import checksum
+from orba.transactions import phase
 
 HASH_VERSION = "orba-orchestration-canonical-json-v1"
 logger = logging.getLogger(__name__)
@@ -45,10 +46,6 @@ class OrchestrationError(PMError):
         result = super().body()
         result["error"]["docs"] = "#orchestration-foundation"
         return result
-
-
-def checksum(value):
-    return hashlib.sha256(canonical(value).encode("utf-8")).hexdigest()
 
 
 def conflict(code, message):
@@ -245,6 +242,8 @@ def transition(db, run, target, actor, moment, *, expected_revision):
 
 
 def create_run(engine, project_id, actor, session_id, payload):
+    from orba.pm_service import check_session, lock_project
+
     request_hash = checksum(payload.model_dump(mode="json"))
     with phase(engine) as db:
         project = lock_project(db, project_id, actor)
@@ -440,11 +439,12 @@ def materialized(db, run):
         if (
             run.status not in {"awaiting_executor", "cancelled"}
             or [event.sequence for event in events] != list(range(1, run.last_event_sequence + 1))
-            or len(events) != (len(tasks) + 3 if run.status == "cancelled" else 2)
+            or len([event for event in events if event.event_type in BASE_EVENTS])
+            != (len(tasks) + 3 if run.status == "cancelled" else 2)
             or [event.event_type for event in events[:2]]
             != ["run_created", "run_awaiting_executor"]
             or events[-1].new_state != run.status
-            or any(event.details != {"execution_performed": False} for event in events)
+            or any(not validate_control_event(event) for event in events)
         ):
             raise ValueError("Lifecycle ledger mismatch")
         return tasks, graph

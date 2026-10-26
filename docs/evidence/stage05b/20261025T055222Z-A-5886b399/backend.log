@@ -1,0 +1,44 @@
+........................................................................ [  9%]
+........................................................................ [ 18%]
+........................................................................ [ 27%]
+........................................................................ [ 37%]
+........................................................................ [ 46%]
+........................................................................ [ 55%]
+........................................................................ [ 64%]
+........................................................................ [ 74%]
+........................................................................ [ 83%]
+........................................................................ [ 92%]
+........................................................                 [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================ slowest 25 durations =============================
+11.13s call     tests/test_projects.py::test_real_unavailable_database_returns_503_and_liveness_survives
+8.58s call     tests/test_scheduler_proof.py::test_complete_sql_backed_protocol_proof_and_adversarial_changes
+6.15s call     tests/test_scheduler_recovery.py::test_postack_crash_requires_reconciliation_never_redispatch
+5.88s call     tests/test_scheduler_recovery.py::test_heartbeat_vs_expiration_cannot_revive_stale_ownership
+5.72s call     tests/test_scheduler_api_restart.py::test_actual_api_process_restart_preserves_claim_and_acknowledgment
+5.36s call     tests/test_legacy.py::test_legacy_is_hidden_and_operator_claim_is_explicit
+3.95s call     tests/test_scheduler_recovery.py::test_real_heartbeat_receipt_duplicate_and_hard_bound
+3.60s call     tests/test_scheduler_recovery.py::test_preack_expiration_fences_old_worker_and_new_owner
+3.28s call     tests/test_scheduler_recovery.py::test_preack_redispatch_is_bounded_and_terminal_replay_never_claims_new_task
+3.22s call     tests/test_orchestration_proof.py::test_every_sql_record_field_is_required[path0-fields0]
+2.90s call     tests/test_password_policy.py::test_openapi_publishes_new_credential_policy_without_changing_login
+2.60s call     tests/test_pm_reliability.py::test_flushed_partial_graph_is_invisible_and_rollback_never_publishes
+2.26s call     tests/test_pm_model_policy.py::test_actual_invalid_api_startup_hides_supplied_values[ORBA_PM_MODEL]
+2.16s call     tests/test_pm_model_policy.py::test_actual_invalid_api_startup_hides_supplied_values[ORBA_PM_THINKING_LEVEL]
+1.95s call     tests/test_orchestration_proof.py::test_native_sql_integrity_guard_survives_python_optimization
+1.86s call     tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[revoke]
+1.86s call     tests/test_scheduler_migration.py::test_stage05a_snapshot_and_events_survive_scheduler_migration
+1.85s call     tests/test_orchestration.py::test_approved_source_creates_durable_bound_snapshot_and_truthful_events
+1.80s call     tests/test_pm_persistence.py::test_viewer_member_approval_and_cross_workspace_isolation
+1.67s call     tests/test_scheduler_protocol.py::test_strict_worker_inputs_reject_coercion_and_completion[change1]
+1.57s call     tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[rotate]
+1.56s call     tests/test_scheduler_protocol.py::test_forged_ownership_is_rejected_with_persisted_event[change1]
+1.53s setup    tests/test_pm_lifecycle_unit.py::test_unit_invalid_output_or_provider_failure_never_creates_plan[malformed]
+1.50s call     tests/test_scheduler_protocol.py::test_forged_ownership_is_rejected_with_persisted_event[change0]
+1.48s setup    tests/test_orchestration.py::test_database_prevents_rewriting_published_snapshots_and_ledger[edge]
+776 passed, 1 warning in 448.85s (0:07:28)

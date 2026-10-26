@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.436" timestamp="2026-10-26T20:16:27.737233+05:30" hostname="Vaishak-MSI"><testcase classname="tests.test_scheduler_credential_races" name="test_credential_expiring_during_workspace_lock_is_rejected" time="2.044"><failure message="assert 201 == 401&#10; +  where 201 = &lt;Response [201 Created]&gt;.status_code">client = &lt;starlette.testclient.TestClient object at 0x00000260F6749A90&gt;
+
+    def test_credential_expiring_during_workspace_lock_is_rejected(client):
+        _, run, worker_id, _, _ = ready(client)
+        response, before, after = blocked_until_expiry(client, run, worker_id)
+&gt;       assert response.status_code == 401
+E       assert 201 == 401
+E        +  where 201 = &lt;Response [201 Created]&gt;.status_code
+
+tests\test_scheduler_credential_races.py:142: AssertionError</failure></testcase></testsuite></testsuites>

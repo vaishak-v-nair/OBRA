@@ -1,0 +1,3857 @@
+{
+  "stage": "stage05b-scheduler",
+  "gate": "B",
+  "execution_class": "real_local_worker_protocol",
+  "verification_contract": {
+    "stage": "stage05b-scheduler",
+    "proof_version": 1,
+    "proof_schema_sha256": "996e348cbcc142a9e8a9b75939f60b533352f24c37e9f49b2f16c8a4a6cb3320",
+    "handoff_schema_sha256": "bef3ba5d65a96f635fbc3b664f522ef38455cdaab75b87a9d3915a09a4e66d43",
+    "policy": {
+      "acknowledge_seconds": 10,
+      "lease_seconds": 30,
+      "max_lease_seconds": 120,
+      "heartbeat_seconds": 10,
+      "worker_liveness_seconds": 60,
+      "global_capacity": 8,
+      "run_capacity": 2,
+      "max_attempts": 3,
+      "batch_size": 8
+    },
+    "source_contract": {
+      "stage": "stage05a-orchestration",
+      "proof_version": 2,
+      "proof_schema_sha256": "ee903692317f58843c55ea65c6d3d7d1f7a9da111328e5029dbea4c1e6e781b3",
+      "hash_version": "orba-orchestration-canonical-json-v1",
+      "edge_convention": "prerequisite -> dependent",
+      "transitions": {
+        "created": [
+          "awaiting_executor"
+        ],
+        "awaiting_executor": [
+          "cancelled"
+        ],
+        "cancelled": []
+      },
+      "schema_sha256": "cdee704beeff62b0ff76ee247303ea971a0759b217c3d8544f257ec8c050d30b",
+      "model_generation_requests": 0,
+      "executor_available": false,
+      "execution_performed": false,
+      "database": "guarded local orba_test",
+      "workers": 1,
+      "automatic_retries": 0
+    },
+    "model_generation_requests": 0,
+    "executor_available": false,
+    "execution_performed": false,
+    "automatic_retries": 0,
+    "backend_diagnostics": {
+      "durations": 25,
+      "stall_dump_seconds": 60
+    },
+    "credential_publication_guard": "post-lock-and-final-db-clock-v1",
+    "credential_race_artifacts": [
+      "workspace-race.json",
+      "task_fk-race.json",
+      "worker-race.json",
+      "credential-race.json",
+      "revoke-race.json",
+      "disable-race.json",
+      "rotate-race.json",
+      "replay-race.json",
+      "recovery-race.json",
+      "acknowledge-race.json",
+      "release-race.json",
+      "heartbeat-race.json"
+    ],
+    "workers": 1,
+    "database": "guarded local orba_test"
+  },
+  "started_at": "2026-10-26T15:45:19.532306+00:00",
+  "commands": [
+    {
+      "name": "local-browser",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "test:e2e:scheduler:local"
+      ],
+      "started_at": "2026-10-26T15:45:24.071915+00:00",
+      "exit_code": 0,
+      "pid": 12460,
+      "duration_seconds": 94.168,
+      "completed_at": "2026-10-26T15:46:58.240204+00:00"
+    }
+  ],
+  "result": "PASS",
+  "exit_code": 0,
+  "source_start": {
+    "version": 1,
+    "policy": "git-relevant-source-v2-including-root-template",
+    "sha256": "d47cf1fe3478c7877dd7cda342e56c94fdc16a517be7964f5cfefd4244f20b6f",
+    "files": {
+      ".env.example": "713ae062c9ba5c024e018416edf69a197805e83efe87193cd37d0a579235db44",
+      ".gitignore": "00fa81e1e924669f0856da223cc586833ef72844cae0cefea46a50b6594db7a5",
+      "apps/api/.env.example": "bbe276bb407987d6938e8c3b98ed3001faa02b37b4d85cd3f869164d9833d6da",
+      "apps/api/alembic.ini": "55f6227b037e8558031bdca3ace12a01bd14b7fea0df8d7285d35a508c04a671",
+      "apps/api/migrations/env.py": "023baf8db182badd6991fd50de7b8f300df1da155d79d079f637cb185aa6479a",
+      "apps/api/migrations/script.py.mako": "ee5dd9a388ee59fd3d089670c2f60db5f5904da6f21cfe3bfc44d7f567ee1546",
+      "apps/api/migrations/versions/0001_projects.py": "afd31c934b3b28bb471ddaa3b0a4b5249b006446d550c0a45bffc1f5922409c2",
+      "apps/api/migrations/versions/0febbe526f54_auth_workspaces.py": "7a463ba5c0b3e79959a276b9a7496f069785be744a81b8aee59e24147fb2cc47",
+      "apps/api/migrations/versions/5a28ca29f8df_scheduler_worker_handoffs.py": "aef5dc502ee51040cea35c060447a51223dd32af3c2d1ceff7838211e749b73a",
+      "apps/api/migrations/versions/7dd7671f9417_architect_planning.py": "be0cebe80b0801d2543c181bc7a3da8afe1b6d8fca5a7d79df43a87f112edc7d",
+      "apps/api/migrations/versions/ab3987da8961_product_manager_plans.py": "b1b13b4de935b7a9511983c0d24c36be10d1f792f1f6759f064bc0d7261ba17d",
+      "apps/api/migrations/versions/f9e997d59bb4_orchestration_foundation.py": "92779f2c35a8af0dabdc8e1b7fa2345292afe01f579c7714081317592ff26347",
+      "apps/api/orba/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "apps/api/orba/architect.py": "9776ea80ea61fd26f9dadf73ddff290574cf2bc442ae8618e0a69e42b8776958",
+      "apps/api/orba/architect_models.py": "3fbcae3e439c1e85e956db33563d4845cfa482917d9034361bc950e8c68b584e",
+      "apps/api/orba/architect_provider.py": "67d62b093eac3fa07c7dff5b90d891d2f0fa4ee0cc16e6d687fee42346eb8336",
+      "apps/api/orba/architect_repository.py": "710f7d02601a42b6df01674c30738b577af8b3209e8923361b335c19cfb25947",
+      "apps/api/orba/architect_schemas.py": "cc121bf70ed920206464c13d02af97a20b40d9462d6a91b49e18e4afca0ac6a9",
+      "apps/api/orba/architect_service.py": "e6ff5d329cb795fb9ae5930996adc67ed46ac7120a4c7de72daa5688a477b8fc",
+      "apps/api/orba/architect_traceability.py": "2fa975e444a1b31f67a9234efae04aa94c53a078555f0a99c616d349a58a5c03",
+      "apps/api/orba/auth.py": "b9777bf99338576cafc52bc30d15cde6db0815606cbc492735c7c68a219f4c25",
+      "apps/api/orba/config.py": "3fe511fcf9b6f411b7108d880b41a9f7a08a137390ea61be319e8bfc9364bda6",
+      "apps/api/orba/db.py": "5660e401376f6f2614678c7e5763dce7d52674aceeb59413f0ae28f2864b6bf6",
+      "apps/api/orba/main.py": "6b820256a1d92771e05793cd5ea0820829c33523ebccb2dbca64c51aefa5f58e",
+      "apps/api/orba/migration_safety.py": "1257766657aa8d8f58bbe49447ed8730da927fbf5acda6f4f6f9c818ab677588",
+      "apps/api/orba/models.py": "61239dcebb5f642353f632577476cacc89de0e861f56b81820630ca25af733ae",
+      "apps/api/orba/orchestration.py": "116ac4bb3fd119f085dac79915d5feb88bcfc2ef8ea0d4d635233e8fe14a479d",
+      "apps/api/orba/orchestration_graph.py": "c9021130b940e7eeb082653387298736c68cf3e5bf18add31e04da86a5bd7299",
+      "apps/api/orba/orchestration_models.py": "ff953aa10bd24dd632448cccac0679d25196cbeb1bfdd12ec3dc0da8d86e4919",
+      "apps/api/orba/orchestration_schemas.py": "58f144f215350837b4475f57d95b474f9ece9c9a94a3647e43b3598494b0a106",
+      "apps/api/orba/orchestration_service.py": "a135eb889c40b7dbd5c196fde3e63326d1d271f7baaa23b08841c56381a84f25",
+      "apps/api/orba/planning_admission.py": "0e91ae5f5dae9c78ad6d2474f5343661bdeedf84d1248f59c2539dbdbed973b5",
+      "apps/api/orba/pm.py": "b1969ab1ef97c71faa305e8c9cebe61f497333755f31f630b52184b86d9aae0c",
+      "apps/api/orba/pm_errors.py": "e85eb27b5ed1431119dcc89ccd3259a9f9bd9a210555e67c6df6ab79d3302c79",
+      "apps/api/orba/pm_middleware.py": "6bb02b57e8a839acd1b5952a2bab34d21957c1d403f27c75d73a0a583b05e2c3",
+      "apps/api/orba/pm_models.py": "832f4d620a1434a367b9b0d72c9f95652337acc30d7bf972329a7063c797381d",
+      "apps/api/orba/pm_models_policy.py": "4a449e4d7c187ab7055afa72f511ac5f53268d5f8f8ad71d141098f854635c7e",
+      "apps/api/orba/pm_provider.py": "3264212276b6af3a07d329f2e1d09afe217fbb4ddfee9492c5ed5751298586c5",
+      "apps/api/orba/pm_readiness.py": "47b77748c80ddfa8bf53a3df9100a1306c3230c0a324d7daf5e60434e4ac3e91",
+      "apps/api/orba/pm_repository.py": "5dd8b72bbb6a9959e099eb400e7ed36a1527d6a017cbc780550400bf781b5121",
+      "apps/api/orba/pm_schemas.py": "bfaf16a984ce27cf2a849d42740da86e6e9bb8ae6e85a157a40408e2fd99675e",
+      "apps/api/orba/pm_service.py": "e54922fb11af9f346eb909143564d0ed2857a4c7bb5d7dc80e8434d68edb837a",
+      "apps/api/orba/pm_timing.py": "8e2c5deeddabc0ad95eafd5e5eb16848e396472501275161bb265d3e5aba288f",
+      "apps/api/orba/prompts/architect_v1.txt": "b05f3df028026489ca760894a1cbba96ab69ea37d7979f1c8a756c69466400a8",
+      "apps/api/orba/prompts/product_manager_v1.txt": "268749ec7f6f7527b7950889b51efae43dcd18a60f5140a51bae4c9a918e40ac",
+      "apps/api/orba/prompts/product_manager_v2.txt": "c7b8aac189085ca73a281633265461c7327dfb3a5e531d61b7e3c51f42a29056",
+      "apps/api/orba/scheduler_models.py": "a0a8297d3bfe5652e0ab383c64bd41d2da2ccc14478c904eff3e8ba25d19a2f6",
+      "apps/api/orba/scheduler_schemas.py": "0d781f48e8955daf60244dec6014dcf252d9115fb5056d226da94cc144986cac",
+      "apps/api/orba/scheduler_service.py": "901bdb6effe68c9648f405908fa6d25b158985c826c07d04ad4bcecb559aac01",
+      "apps/api/orba/schemas.py": "248c39d97c571bb549bd9d2e20339cae68cbabca733bfccd934b699493b45448",
+      "apps/api/orba/security.py": "58ebd495dbf67af6eaadb234aad509365655fbdc4d641e1cc78cbcfe8d613315",
+      "apps/api/orba/snapshot_checksum.py": "09e1480b9fa4a112c0d4ba3b6ef4f39cb13ed2735b9189d23a15bbc7c38c5204",
+      "apps/api/orba/task_graph.py": "924cff4d6ca98afe489c889d5c0f00cd91f5cec9a8e88dd9eae531bf7a9f5d60",
+      "apps/api/orba/transactions.py": "891f7d91c7f605f0ec6e9ab4a93242011ef85bd65c1ad8c02418dd180355b775",
+      "apps/api/orba/workers.py": "3daad2f7d24e71684dd93219a1498d3fc3a86e43fe5f02d7a01eb1769893f580",
+      "apps/api/orba/workspaces.py": "f63b9d35bda271359640df83550d93a357e776b272fb530fd3c42c3c2e2cb593",
+      "apps/api/pyproject.toml": "90711ee61b67e92d068489050e0eefd33c4b5aaf33f18e9b816a4d1c1eb3f7d6",
+      "apps/api/scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "apps/api/scripts/architect_false_success.py": "f3e81da8e13771515263ed5c3a5d71827a2d0d4ec982cf09d10fc061b5a7b9e9",
+      "apps/api/scripts/architect_preflight.py": "f7238b71e9817ce5819f9b60bf0b1467b50909d56f2c7e0ba4c03898c9c1c512",
+      "apps/api/scripts/architect_sample.py": "0aeced8c0bc1c031f8b150310bae9e591b81a07de17019b137bf9eb98107d767",
+      "apps/api/scripts/architect_verification.py": "c0ebf50d9d2e164a0e24d909031ef82940e68de110dc855b71a9bed76fdcf1b0",
+      "apps/api/scripts/architect_verification_baseline.json": "a3efb148eae167ebbe8961825468be9031e5ad18fee13f4036d676aef789226f",
+      "apps/api/scripts/check_architect_config.py": "79994383cc7d9de6ed9516313e8dd230e970f590f21a35af44c5af756f0e9cce",
+      "apps/api/scripts/check_pm_config.py": "c677b4152e9fdccf54b3f9ecebb5a1f7c1b585d110bd246ac88f321c37227c7e",
+      "apps/api/scripts/check_scheduler_proof.py": "1035a9f51d411001d06d6337dd1b63bfc1a0a829f24533cc5f10b61e4c1cd9c7",
+      "apps/api/scripts/claim_legacy.py": "a78df44d8abade19b7d8270e7b3731dc2e6113fa3b271393c3a030f928c18c67",
+      "apps/api/scripts/inspect_architect_preflight.py": "31ad750d6248359455194a43d7310ecb7a064e83547f2aa5a50be2c8f8076bfb",
+      "apps/api/scripts/inspect_architect_run.py": "5244a9eef6ee80585bb3f043ea7b79e40a43ea5a9e30f08181b269b82826d97c",
+      "apps/api/scripts/inspect_orchestration.py": "6e4beee3a7759a1d7aac9d569ffed99a5a76466a13cb350ef5a7f81c7690a816",
+      "apps/api/scripts/inspect_pm_run.py": "b127f154d3faf21f5f12fb624d06ec75a0d04e07f3717293d54a52b313d3e3f8",
+      "apps/api/scripts/inspect_scheduler.py": "068c43cd620c2f52fce9512967e08aa046e8f7b6bd48b1fc46810a87f8997b68",
+      "apps/api/scripts/orchestration_false_success.py": "fa10590233984ef0ca871446c2995f882cd601889ee100c1777e442abb41c07a",
+      "apps/api/scripts/orchestration_proof.py": "2b2bb6c65516eda9c869349ee7be3266ba6992f3530aa8ff872aba8a4f1447e1",
+      "apps/api/scripts/orchestration_verification.py": "e76a720f81dd9c96107ddf1d31dcb3c7925f3153c7dfba9d8f71ec5c2749cff8",
+      "apps/api/scripts/orchestration_verification_baseline.json": "d271b7ab7bfdd9503bb7aca4ba90535a2e45288ade748c16e871b6117fb56bfc",
+      "apps/api/scripts/owned_process.py": "d7cdd7c232e4907c9f022cdae0093fecfd37ba8d9ca8d690f3d4e0a0f6f60b40",
+      "apps/api/scripts/pm_sample.py": "d184a021f7235a8c5bbe94321adb558d3b19790e584e1c1f9a4b95fa2726af2f",
+      "apps/api/scripts/prepare_tests.py": "2f2fc021addc46098549ff83122630fabbf65fbe1ed1bbb186fc936b0cd3fb3c",
+      "apps/api/scripts/scheduler.py": "e311dcaec634091f188153af3b9f63b5b030548a08b1316de2b2901c3603ca68",
+      "apps/api/scripts/scheduler_proof.py": "08c3865cd67a0aa063cb1f929d1947cb180ab363fb1b4b04866315b9af169fc7",
+      "apps/api/scripts/scheduler_verification.py": "5eb7cd7d03d131a807b337f2c4643fc9a5d818f703566ad6684a964836d288d9",
+      "apps/api/scripts/scheduler_verification_baseline.json": "2256ca9311cab7ff00a053204b037764f2895d81fd3413f587b38a2cd7306bce",
+      "apps/api/scripts/seed_orchestration_fixture.py": "519dcb51e5383edd7e4d5f247279d7a0f5b34050f86231b8a896d91b16553d1c",
+      "apps/api/scripts/seed_pm_fixture.py": "eddbf07901b4ba660df50a19a0ed585ddd8c3ef267716c8e8d8ce7095d743544",
+      "apps/api/scripts/test_database.py": "88ff31b9dce00a2e0abc8f9c3f66ce92ae895a794753943db99376b62157317e",
+      "apps/api/scripts/test_evidence.py": "9db6662d9f0229511c5e35bae127933c67f457bb405ac3f9f5ad576e9a52fd56",
+      "apps/api/scripts/verification.py": "ce87b828f3d2dc8482af7847311524a39f69b277129220c37bb445090c308c87",
+      "apps/api/scripts/verification_baseline.json": "2e2d83e325ae07061159842f2a7ffec75919528696a56ba79f073863ddb2978b",
+      "apps/api/scripts/verify_false_success.py": "75b37665fe3d283f516e6065567ae0b879fb23adeaef34107c4434fb7887fdc1",
+      "apps/api/scripts/verify_pm_live.py": "bb09b029eb54b0fdbd9a583abc71563e6b5b80beca4e8d69c9f80e507707cf0f",
+      "apps/api/scripts/worker_admin.py": "506dc3cf7dde65c105f2ddd6779eb4ea147b95d89667aad090a9fb7001f41b35",
+      "apps/api/scripts/worker_client.py": "26a866ce963e2ee86885c5d10b0fc093abb42cab3403940ea59c8aa11908b441",
+      "apps/api/tests/architect_controlled_app.py": "f93830b320c59e0ab76c37b67140b7c71903712259058c4733f0845a750a4477",
+      "apps/api/tests/architect_support.py": "1855a15ba2b76a74d031bb30d826b1413eba69caa8550aea994e4ecd19f0bdbb",
+      "apps/api/tests/conftest.py": "bc1f989d696981a1c8cb1fbea442f51c5f16b0daa8841df036f303854f365d22",
+      "apps/api/tests/controlled_app.py": "4aa7623bf3a856bf2019b0a22bf1fa3b28922bb6e250f1b001ed91048ced0903",
+      "apps/api/tests/experiments/architect_failed_run_success_experiment.py": "46fa15e7a371c7d73fe3550e50780e1ed927096d4e1914e86c67f68c045cda46",
+      "apps/api/tests/experiments/credential_publication_experiment.py": "c808c76d7ed561c666aae5889f34a70e04dfe40bb3bd842179155c51b7549c8c",
+      "apps/api/tests/experiments/handoff_completion_experiment.py": "8c3eaa0eb6378b188f1b07c8cbf92d1e93948d2f9c60415bc8ae0097492a54f7",
+      "apps/api/tests/experiments/orchestration_completion_experiment.py": "60a5f73d55d74fb4f89601f43f29c720fc43e424e8d5d274703765d820fd867d",
+      "apps/api/tests/experiments/pm_failed_run_success_experiment.py": "75ae15934c5cab3f8b8891e7c2ad7e6e7878b84fe52801722e101b2cb94af43e",
+      "apps/api/tests/experiments/unauthorized_success_experiment.py": "44bb6e89b444e517af5414c7fdd7ed60c6e712ec76bc042dd5bf382f6ff4fd1a",
+      "apps/api/tests/no_generation_app.py": "88cab4ba82173a10cb73f0bfc990756653ec90f187714e14a0da6557c865fb0b",
+      "apps/api/tests/orchestration_proof_support.py": "954b45ee7ec7ac374e3e7e29e19da7ded465a6aae15c4eb4745b0063fde075fe",
+      "apps/api/tests/orchestration_support.py": "30cde3455f4eac25ae77c36e1ed60335d0abc55c5e52b6a76e8a79e20a22548f",
+      "apps/api/tests/password_support.py": "4fd03df5db9af2ce628f327bdd73bebb23124e67d2286442397d3e5d640ded3c",
+      "apps/api/tests/pm_support.py": "d2cb7a5e6b01b9996dbeab4082fe76852097af4a566c3a72ec8d2be1871e26e1",
+      "apps/api/tests/report_safety.py": "99cf547b211881f685c9109957cac5517342f3f4aa0fd999fa0df1da312634e5",
+      "apps/api/tests/scheduler_proof_support.py": "f0d1fcd66d3b36f791e8f229804c0795d5ed650fa1f627db56172bfef975b3f5",
+      "apps/api/tests/scheduler_support.py": "caf94e909961067ab6a69012aefed258db4136359bd4ff7fe89cac2095596bc4",
+      "apps/api/tests/test_architect.py": "72ed489d08d54ff68e0b154cbc55f71b76e57f7297a9729ede517fe076c85d88",
+      "apps/api/tests/test_architect_concurrency.py": "98acaf4819a3cbb5116b1e96a9a8804e4b71492be125b17e32ce2c94069fb53f",
+      "apps/api/tests/test_architect_migration.py": "77eac5571d8e599df0874a677e61125278b6dd524c76a8eb3edb81404ab6edc0",
+      "apps/api/tests/test_architect_preflight.py": "16684db1c862959a4d63e52c009d6bee24e54da1bc5afa88ba989809142c2257",
+      "apps/api/tests/test_architect_provider.py": "f99050a93c3185032c392da731468a8e7a46d9a02b2fadd246d29c0fff04e84a",
+      "apps/api/tests/test_architect_schemas.py": "07529f7143bf89a2d86b55b7806af014b8f2559e7d795d1cd0acb6c995ac85f7",
+      "apps/api/tests/test_architect_verification.py": "ba32a67cfab2840b0766e2763fe2b51f21b315603f8a32056db22dda3d1fd1de",
+      "apps/api/tests/test_auth_workspaces.py": "439aebf1a3ed4c8a91e176f922d933399eb6d1275ae5a925bb8113c5e9152736",
+      "apps/api/tests/test_legacy.py": "be83b1e8aef1f61e014a74e3abda0537264f266fe230297a3f34c69c8cf9e540",
+      "apps/api/tests/test_orchestration.py": "97a9fb9575bac2033aaebc2032ce5d3e06e7af0a62ab91c17e8778d23e124e09",
+      "apps/api/tests/test_orchestration_migration.py": "7daf619c186d912c91f53b3f0068af2d1223f56b0a77f46995c0cbbe6f6166a1",
+      "apps/api/tests/test_orchestration_proof.py": "848b3248079479dc6006c128c0893875db56ae5904ffa8dce3be48598c56ebce",
+      "apps/api/tests/test_orchestration_verification.py": "f405e7ecea5e888edac8734d4e4032ee599a5891dd925ff3c8b275360ec49597",
+      "apps/api/tests/test_password_policy.py": "3a3dd29d4c7972be0994c093147ccd80b3f3c424b44b151049f234529c6dd8b8",
+      "apps/api/tests/test_pm_boundaries.py": "467978304071e5a668b4cbdf2510da74b78705271214ff7eaabc404fc017c28c",
+      "apps/api/tests/test_pm_concurrency.py": "e5293c1f5f99bbd17cad1a0bc37bcd84b1bf0881575b38128b8cc75bbcebf21d",
+      "apps/api/tests/test_pm_contract.py": "5091907b077e3390bbb1b7eca6a1292c8fe40f19ec54f5de9f68205d1609db6b",
+      "apps/api/tests/test_pm_lifecycle_unit.py": "ac09b448b354ae559b6698250ee541d32adcd218ffe5c0b274daba0868c6c235",
+      "apps/api/tests/test_pm_model_integration.py": "714995f2fafdff323d8d4b67a0c578dfa3dbee921e13b45faf9a588701803ce3",
+      "apps/api/tests/test_pm_model_policy.py": "0095fcb538cc0760f5d90357e011f1f1a9e3c267420b05f03f8869ac053d82ea",
+      "apps/api/tests/test_pm_persistence.py": "da39f78d85b50d32ad610f543951e1bb361e70c4217b45840299ff1766b75110",
+      "apps/api/tests/test_pm_provider_unit.py": "6377cfd2e5e6b70508be4efad06e030c814fa81a8cdbfd51eed161c0786f2a83",
+      "apps/api/tests/test_pm_readiness.py": "774d3b9f2587762f1d5c487ccd7e9cbbe587ecb6f5f597bff24e9ef1a753e069",
+      "apps/api/tests/test_pm_reliability.py": "4c295041986bf0b4c0760276eff130b8f94eec69ba44f8dfbccbd2f243f90f21",
+      "apps/api/tests/test_projects.py": "52c11db77b91068ad74a3a0a8cec1f5124378f5a04ad098071bac16f08c99997",
+      "apps/api/tests/test_readiness_evidence.py": "a0264e10cd97989c1cf1628c402d7702c9084851bc6e3edb6917ba08853328a2",
+      "apps/api/tests/test_scheduler_api_restart.py": "8ebbd28bfc96b6d26553c13a7cb2b5f095035215c7606109a115f0268c32e980",
+      "apps/api/tests/test_scheduler_credential_races.py": "21fd145a19551f557b5773c53c4c5610c3ae829b406ea6f41cfffd05454a31e2",
+      "apps/api/tests/test_scheduler_imports.py": "f37b47e3221bc54480b9a828c8b48a5760a7b0af65bed03a1e1badd98dc3e2de",
+      "apps/api/tests/test_scheduler_migration.py": "a5f7ec41c509e14743eef6f6f85ef7a840377eff56dbbd10f6953c4f15395481",
+      "apps/api/tests/test_scheduler_proof.py": "a617937368b2c50482fdc5f70eb42440352a871fdd2fc89f67a0bfdf6bb3386b",
+      "apps/api/tests/test_scheduler_protocol.py": "cc2c5d3623dacc964e9d764b91e9ad4b73982361d5b37ac879ec673554090fee",
+      "apps/api/tests/test_scheduler_recovery.py": "ec96cc43faab6002ceac2e87afd4cfc818fc0c7cb6a43dcbad8c1dac65b8f2e9",
+      "apps/api/tests/test_scheduler_report_safety.py": "7ff2c5dc35bab5c788eaa81779026a22eefd2f623e0f774348154d4b84d8926d",
+      "apps/api/tests/test_scheduler_security.py": "710c0e69430798955e75db9aec17a9abb5071756380257270b7150adeb1c4938",
+      "apps/api/tests/test_scheduler_verification.py": "5b335446a3d26d35783bcdd373d5fd555e569b5a5c0044fd9205bb797f911c3d",
+      "apps/api/tests/test_task_graph.py": "3af54cf021cc454566223e830273aa8f09cf2fe90ca9f2846bc3a2fc3fbb118b",
+      "apps/api/tests/test_verification.py": "f80f4d7df2302f23f23d156d7c9b184add72880873ba8b5da9cfc896a40e1478",
+      "apps/api/uv.lock": "caeb0d985de3bfb9aa4d3f298dd164ae773e17d0936cc3a85547187332845f42",
+      "apps/web/.env.example": "c659f9eb8cad91b87d992b9b6bd8ff27c56f9d7ec4e950f212bd19f19ba46e9d",
+      "apps/web/AGENTS.md": "063098f6cb31bb44c6f8fbea25b3876de7ee1e5f7d00a50dbab506f6415eb7f0",
+      "apps/web/components.json": "0c60033cff764977ad34938d50558c0a3d7a8433b6f11c3607339a4f85559e49",
+      "apps/web/eslint.config.mjs": "202af1f79ca6cce81076deb0823cf3dd9bbffc843030bbf6a1e1962a67973cf1",
+      "apps/web/next.config.ts": "fbf171389d52bee2aba853200353c59e38e3c3d9e6ce3f778e419acde9026241",
+      "apps/web/package.json": "d9593b645210cf82802eb737072d0f7b9d1ee106c1a64c70f14cf6625e0bb69a",
+      "apps/web/playwright.architect-controlled.config.ts": "45b30b2b29fb8b727ba3f0734b78b089ac24318ec814298635b8cf22eab6dc83",
+      "apps/web/playwright.architect-live.config.ts": "c8480b71ccf1501a33ba74c15ee23fd87c5f789c490f928e0c0a16eb475e1300",
+      "apps/web/playwright.architect-preflight.config.ts": "027115bf52f79bcdc1040de01a6fb24206b1781adc8d88d95afd4a5cafcf380c",
+      "apps/web/playwright.config.ts": "9adb1e7addb22b08fb258ba0336627f83eaf4fb41e948ea2b0fbea2e6ae124b3",
+      "apps/web/playwright.controlled.config.ts": "0c646141b33ee2cae424bb4f8c06439e0aa22953ccc0dc0b6e10ad97a22e1ced",
+      "apps/web/playwright.live.config.ts": "0eb82848bc442532049c4f879dbf230b29aace4c6f32202987993e8d696d6f36",
+      "apps/web/playwright.navigation.config.ts": "e3aa2833efafb025bbe46113a74024cbb7abb7da7ecbcbc7769069c363734799",
+      "apps/web/playwright.negative.config.ts": "a0d7dcd3dfb81e922568eccb6390c9fbed1cb595f82cab951a31116e679691b3",
+      "apps/web/playwright.orchestration-local.config.ts": "d6625c1206c5b6b3d1a55890cc5b51c0bc93422a1ea9707feaa2634d2fb2a941",
+      "apps/web/playwright.orchestration.config.ts": "8b62e16f8d4138e26baff4ede7426210986e9535307ef7098e96adfacdbb7e5c",
+      "apps/web/playwright.scheduler-local.config.ts": "1b83779d2f56d087bd32f186e67265d985c1807736f8946ecd3be8dbed7cb93d",
+      "apps/web/playwright.scheduler.config.ts": "6e3c88d39d3361937d74e13621e25d31a9c37ad828608a87d09d5035dd229178",
+      "apps/web/postcss.config.mjs": "b783348d5618047d0f37e12acd15c5a2c5f02809d8711e0764c9cea52750346c",
+      "apps/web/src/app/[section]/page.tsx": "84a5b5cee75e94a3f34feb9c9ec1ea7952775792b61c8db4d7de071f80090585",
+      "apps/web/src/app/api/v1/[...path]/route.ts": "4f3f48b3736762def75122e6beec2c530421f672e40dc3930ff8750bb17a0b60",
+      "apps/web/src/app/error.tsx": "0965067b6e7a0498b918330ba4e8cc3a10e5d0de2d68a09bf597d7c8933287f4",
+      "apps/web/src/app/globals.css": "28953106a0172b98aabb3850a29ea9813f39b969a182505b4f246f8fc40aa4d5",
+      "apps/web/src/app/invitations/accept/page.tsx": "e539870fe6ad48fd61f94941274d2e6b18a1aa99b4e226f2ce5c8a75df22a962",
+      "apps/web/src/app/layout.tsx": "5b1777ebe1162dff6dc78d40ca3139a72608a2228de9c5492d6623210aff6ef4",
+      "apps/web/src/app/not-found.tsx": "d9835d367e86060fab4fae6fa1f4daf54ce39237dc12a8ba5640e39d36637070",
+      "apps/web/src/app/page.tsx": "c9c5b0cba5fee233442b76659d8bc9d0bba9319f24fe6e93bca23be960222c42",
+      "apps/web/src/app/projects/[id]/page.tsx": "30f616534a52649aa2a942696ad235d2a1a9e29e75559164e67ebf98b01c8c1f",
+      "apps/web/src/app/projects/new/page.tsx": "67f4100188f44fbb0b8175019cfe7e4984d7826bbcaeedee1c0b51f15a0b5486",
+      "apps/web/src/app/projects/page.tsx": "73587a7ed7fe795b4c5d3c954c6ff32705b04a1e256f1853c00e7bc00217daef",
+      "apps/web/src/app/settings/page.tsx": "90fc21b4fa6f3fbe28ff1a1b00189141bf19316cf8f8636f2c0e1b0cb956b2b4",
+      "apps/web/src/app/signin/page.tsx": "f61a7db2b172ce8d150380ffd6432a54e7bf5d98057dfd3a230804b0e4193e74",
+      "apps/web/src/app/signup/page.tsx": "5de6cb426991620bc4c3c7217635f749087d02c12eb20adafc60f9ad7413a7fd",
+      "apps/web/src/app/workspaces/[id]/page.tsx": "c72f5296bc74faadda60c55c265eb372c896a2fa0f6c95f2a1936a4e0e3aeeab",
+      "apps/web/src/app/workspaces/new/page.tsx": "12e8dcd4697efb434234a7aba2317349ff139f1f9cc0c688dddbbb036dcf3963",
+      "apps/web/src/app/workspaces/page.tsx": "52e8bb6eccb8808daa3cbd83a088918f9b5f26fcf15516dda64523b8a120a759",
+      "apps/web/src/components/architecture-editor.tsx": "be6dba584234f0768de9bb3269feb1a2b7f40114006a4d963c526e320172fe32",
+      "apps/web/src/components/architecture.tsx": "16afd7a65dab5260c207f9769f7d062d12463802f6bcc8680652fb445a0fe183",
+      "apps/web/src/components/auth-form.tsx": "56510d876c7ca589f142c410186a19b1c384a89ac89ae0cce9bc3e53bc2504ac",
+      "apps/web/src/components/execution-graph.tsx": "245cea018b364767de1c145d6649058bdfb289c353658ecca7fa136d37327ede",
+      "apps/web/src/components/execution-plan.tsx": "3cdc2833a3a23e317278c2a16f96f0df3f7ebae7f45c9ed7abf61a858598b365",
+      "apps/web/src/components/plan-editor.tsx": "90500245e4c5f92a045e78e77cd3716b223ddd09d675ce2e9b2b081c7d717ecd",
+      "apps/web/src/components/product-plan.tsx": "90577d7378f1769c7881993ba7d1a6bb2376bdd4377cf7e7f2e965383ecbde12",
+      "apps/web/src/components/project-editor.tsx": "3cad48354a1bf89429a6d19b7e50997822bb60f969e8d1a7d863613029732116",
+      "apps/web/src/components/project-form.tsx": "5783ad1d5333fcab05424a9ac5c418da057daa654c5504b958f062f706b99079",
+      "apps/web/src/components/project-planning.tsx": "9dd797b7fa1c316421be8e0943aaaee3b90f3a7651dcdcfa251f4b8bcf62ce75",
+      "apps/web/src/components/providers.tsx": "8704eb803954d3a0b57edf7d61d6b0f961f192944ea7257bf91cd2bdea764868",
+      "apps/web/src/components/scheduler-status.tsx": "0ec0300fe836605abc74973626f51e178bd3d357a34a2c44b02a453ca2be7a07",
+      "apps/web/src/components/session.tsx": "592ee427349f76b2b564b714a78785c9aa2bfe8e613a13e16212289b375feaa7",
+      "apps/web/src/components/shell.tsx": "90f2fe5a98c4ec2b2182cc1e60d00a54b2f627980a84fb82051a16cfd880eda3",
+      "apps/web/src/components/task-graph.tsx": "fa3d0db14b31b66f04cab9c148b12a881b58bfb864716f5210c9511c82fa498b",
+      "apps/web/src/components/ui/button.tsx": "6a90ed22d612bbec20d68f4c9fbbe6e5d99333fcd456f1cfbcd92244600eeea8",
+      "apps/web/src/lib/api.ts": "7704f2b5ac1c78b4fee1ee4f0edf1e19ba7f0a3852b054f51e6646622157876b",
+      "apps/web/src/lib/architect.ts": "084a732e6d258f40fc97ad4cd5a29d4c7a900c30d8e8a1e9f05a54abbb3b4454",
+      "apps/web/src/lib/orchestration.ts": "ea926e959b970825e06935a0f8f8ecfd17000dfbf13fa295ed99dbafe925d57d",
+      "apps/web/src/lib/pm.ts": "e403749550ec60cc2808d4cfaf39830e2022407ecded476e67ce24a01fb64dfe",
+      "apps/web/src/lib/use-hash.ts": "921003e933f181665b0f85348018fa932972d1855607555be84a9b77ac76d617",
+      "apps/web/src/lib/utils.ts": "64fc84c1be627f0d586fb4ba64d824a1604f44282381f5bae68cdf86e10bb6ec",
+      "apps/web/tests-architect-controlled/architect.spec.ts": "d6b32356b8e0cc7c6ce4c534c111e36af3813c578233fb0c08c10ce9730331bc",
+      "apps/web/tests-architect-live/architect-live.spec.ts": "3b1989b7c416a1711c508077c77d82101856f944d296a7172bb92ef52c232bb0",
+      "apps/web/tests-architect-preflight/preflight.spec.ts": "d5c73bbd8621de23fde29de89f256585994bd6d817c09a4383881f5cbc08184e",
+      "apps/web/tests-controlled/pm-recovery.spec.ts": "746003c01ff743f2a8d2a673ab53394ef2f3c7774a36f49dab81489601fb5c08",
+      "apps/web/tests-live/pm-live.spec.ts": "c8203b73952a81ddf81ded7dd5d1cb88a99caa0f035eaacc7ecc517ead8d124e",
+      "apps/web/tests-navigation/navigation.spec.ts": "8b5b0b3c7b185deef7847fa81e8c6b63c100c00f6b396ab243f2b18fcb5b98b3",
+      "apps/web/tests-negative/provider-failure.spec.ts": "ff8e6ff9be055a578a3b68b1fdd27250f427310b6f6de7466cbd3dd65c635ea5",
+      "apps/web/tests-orchestration-local/control-plane.spec.ts": "3c4bafe5e030dcb726247876111a244b200976da73533beb33bc4088e3745122",
+      "apps/web/tests-orchestration/orchestration.spec.ts": "d3b9610ab09bef3c9b5d7d0753f25e7da8801ccdc2c7328a21d12b95c8dd90b6",
+      "apps/web/tests-scheduler-local/control-plane.spec.ts": "3c5be000dc8841a636b476c3c39e4ca974483a5b071d3acdb6983bc9137383d1",
+      "apps/web/tests-scheduler/auth-readiness.spec.ts": "3463b0403810b5b385d338e831b88fb0786cf48cb59df60f56c40ff06bab9896",
+      "apps/web/tests-scheduler/scheduler.spec.ts": "98676814eb86bf3701096e54765a3eaeef75a2bfbdbd44ad2fb4dcbed72b648a",
+      "apps/web/tests/architect-boundary.ts": "1614b070ce7ebc552bf9aa290dc5cc48d5e4fde817128a082b79873d75fa0bdb",
+      "apps/web/tests/architect-preflight.ts": "7b03ac90fe4572fefeff3fa0a6bea049102f172f3432b723c580e2186db426f2",
+      "apps/web/tests/evidence.ts": "056f733e65d4f5b078821264e99062cd7c23b59d0f7af05a4ebd615ed238a43d",
+      "apps/web/tests/generation-budget.ts": "9658345d787023805db881fcdace7fc007400bbf4c80f7cd0228171e05cf7a47",
+      "apps/web/tests/helpers.ts": "ebbe862001713ed67b1941201ad322498bfd846ad40dd2b3447902992fd81e87",
+      "apps/web/tests/no-generation-config.ts": "14e311bae3b7dce886a810e374c2a870850b00a0353e210bf527e09d0c07e7bb",
+      "apps/web/tests/orchestration-setup.ts": "48ae5d9e3955550d8d92f5ef29662f3d4c6d37eb8e08a4bf2a8ce238770566cb",
+      "apps/web/tests/password-policy.spec.ts": "34ab140131f011956980c7c492027125894e386f2e970b5d5b19caadbf4e4b6e",
+      "apps/web/tests/pm.spec.ts": "e7b78b7327d5bfde278a633ae5d27a5747541daad9280d38718c27f74fe6f08b",
+      "apps/web/tests/projects.spec.ts": "d0d5e5a571f5ec4b1897114dc79eb7429d92251ff98c82cea72e83d7ce27eb40",
+      "apps/web/tests/scheduler-setup.ts": "88ed2c4a14d8a0c9e53a27fc4d6d51f088332fe39295ae9dc387f80b18b7baa1",
+      "apps/web/tests/teams.spec.ts": "14ef381c4c5ae6ccc6b8ab3fbc0dfd9b2049cd5f134a8b5df1021f8b71cbfa62",
+      "apps/web/tsconfig.json": "93277bb06d21418d49db8ce2a4f7a4fcd4bef70de9fdee8838af4b8f7a360513",
+      "infra/compose.yaml": "224f6a21cc0d0f41d0c7f7b81eb7f6d1873620b88bf24f198833c1950f131a53",
+      "package.json": "7bc0f4a6ba5629cd60a8c830b5e125fb6030b1509ff18c8c5de38a25ae78796c",
+      "pnpm-lock.yaml": "9f135b01bfa345acae6f2fdb9154a7976e6f16da54813f38d542a0fdfb43b64d",
+      "pnpm-workspace.yaml": "9f215e6e25291b49e0537ca1a87020c61ef4b9a5f0305ec15456e82814cf0d1e",
+      "scripts/verify-architect-live.ps1": "13edb9266d5eefced82baa10009fefba9cd566c11201e54632c1e5b4fe37128f",
+      "scripts/verify-architect-preflight.ps1": "a0ec88aace11276991c20f6e731cd5b74884942111861398d4bca917dc48f8e7",
+      "scripts/verify-live.ps1": "c7eacc8bf556d51f4f9913a9f6458b4facca675ebe485444d4fba74ec29073a0",
+      "scripts/verify-orchestration-local.ps1": "f3003c388e8c41ccd33a19c867211d3114f273c45f5d35b7bd6b2a784ee4b5d1",
+      "scripts/verify-scheduler-local.ps1": "9710e1576cb7db867249ee88ec3bfee4fb030c358ea2090468f7e3207f8c3825",
+      "scripts/verify.ps1": "bfe61270663c96599da06b22abddf5bbd92ebcef08800d2bd07c4418916b68f4"
+    }
+  },
+  "git_head": "ab7c7acbfcac01ccba9d8a3d0bb7b07e37adc874",
+  "gate_a_receipt": "20261026T150514Z-A-491fc5da\\receipt.json",
+  "gate_a_receipt_sha256": "b750b77863ae52be20df3f878240bde41b134154fe99f642999f4f183befbf70",
+  "results": {
+    "local-browser": {
+      "passed": 1,
+      "skipped": 0,
+      "identities": [
+        [
+          "control-plane.spec.ts",
+          "actual scheduler, authenticated protocol client, fencing, restart and reconciliation",
+          "chromium-scheduler-control-plane"
+        ]
+      ]
+    },
+    "local-proof": {
+      "proof_version": 1,
+      "stage": "stage05b-scheduler",
+      "result": "PASS",
+      "execution_class": "real_local_worker_protocol",
+      "started_at": "2026-10-26T15:45:32.481000Z",
+      "completed_at": "2026-10-26T15:46:56.011000Z",
+      "foundation": {
+        "proof_version": 2,
+        "stage": "stage05a-orchestration",
+        "result": "PASS",
+        "execution_class": "real_local_control_plane",
+        "source_origin": "human_authored_test_fixture_approved_through_real_UI",
+        "provider_double": false,
+        "executor_available": false,
+        "started_at": "2026-10-26T15:45:32.481Z",
+        "completed_at": "2026-10-26T15:46:56.011Z",
+        "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+        "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+        "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+        "model_generation_budget": {
+          "attempted": 0,
+          "forwarded": 0,
+          "blocked": 0
+        },
+        "server_boundary": {
+          "execution_class": "no_generation_test_boundary",
+          "provider_readiness_verified": false,
+          "blocked_generation_posts": 0,
+          "provider_dependency_entries": 0
+        },
+        "model_generation_requests": 0,
+        "browser_create_posts": 1,
+        "explicit_idempotency_replay_status": 200,
+        "forged_completion_status": 404,
+        "unauthorized_status": 404,
+        "protected_ui_hidden": true,
+        "reload_persisted": true,
+        "run_api": {
+          "id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+          "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+          "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+          "architecture_id": "68f38194-1b13-4557-9ced-b3cd6da86d20",
+          "architecture_version": 1,
+          "architecture_revision": 1,
+          "architecture_hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e",
+          "source_plan_id": "cbcccd5b-ac96-4ce2-a7a4-bfd242d7f19a",
+          "source_version": 1,
+          "source_revision": 1,
+          "source_hash": "5dfe5d9123ef31242316dc1c769bad96ba51913dfdd74e1dda0d499a7a6f82c1",
+          "creator_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+          "client_request_id": "7693f668-efac-49f7-a977-22c51e1a0159",
+          "snapshot_hash": "9ef322a2164ab54aa0ee2f3eb337704279fb4588de055531a2bdab2704f6a4f5",
+          "hash_version": "orba-orchestration-canonical-json-v1",
+          "status": "awaiting_executor",
+          "revision": 2,
+          "last_event_sequence": 2,
+          "created_at": "2026-10-26T15:45:47.099088Z",
+          "updated_at": "2026-10-26T15:45:47.099088Z",
+          "cancelled_at": null,
+          "execution_performed": false,
+          "tasks": [
+            {
+              "id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "source_task_id": "60c8597e-3f91-4ed4-b573-de4fc6c0fa81",
+              "key": "storage",
+              "definition": {
+                "key": "storage",
+                "title": "Persist daily check-ins",
+                "description": "Add a dated check-in record.",
+                "scope": "Storage and validation",
+                "deliverables": [
+                  "Persistence operation"
+                ],
+                "acceptance_criteria": [
+                  "Given an incomplete day, when saved, then the check-in remains complete after reload."
+                ],
+                "priority": "P1",
+                "category": "backend",
+                "complexity_estimate": "small",
+                "planning_state": "proposed",
+                "story_refs": [
+                  "story_checkin"
+                ],
+                "requirement_refs": [
+                  "fr_checkin"
+                ],
+                "criterion_refs": [
+                  "criterion_checkin"
+                ],
+                "component_refs": [
+                  "journal"
+                ],
+                "dependencies": []
+              },
+              "eligibility": "eligible",
+              "execution_status": "awaiting_executor",
+              "display_order": 0,
+              "created_at": "2026-10-26T15:45:47.099088Z",
+              "updated_at": "2026-10-26T15:45:47.099088Z"
+            },
+            {
+              "id": "fbfe1601-6786-4ad0-8d21-a80bfde90975",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "source_task_id": "923ca4bf-d06e-4e02-8a85-48e4bbf8c78f",
+              "key": "screen",
+              "definition": {
+                "key": "screen",
+                "title": "Display saved check-ins",
+                "description": "Show saved state after reload.",
+                "scope": "Daily journal UI",
+                "deliverables": [
+                  "Check-in form"
+                ],
+                "acceptance_criteria": [
+                  "Reload displays the saved completion state."
+                ],
+                "priority": "P1",
+                "category": "frontend",
+                "complexity_estimate": "small",
+                "planning_state": "proposed",
+                "story_refs": [
+                  "story_checkin"
+                ],
+                "requirement_refs": [
+                  "fr_checkin"
+                ],
+                "criterion_refs": [
+                  "criterion_checkin"
+                ],
+                "component_refs": [
+                  "journal"
+                ],
+                "dependencies": [
+                  "storage"
+                ]
+              },
+              "eligibility": "waiting_prerequisites",
+              "execution_status": "awaiting_executor",
+              "display_order": 1,
+              "created_at": "2026-10-26T15:45:47.099088Z",
+              "updated_at": "2026-10-26T15:45:47.099088Z"
+            }
+          ],
+          "graph": {
+            "valid": true,
+            "edge_convention": "prerequisite -> dependent",
+            "topological_order": [
+              "storage",
+              "screen"
+            ],
+            "roots": [
+              "storage"
+            ],
+            "eligible": [
+              "storage"
+            ],
+            "blocked": [
+              "screen"
+            ],
+            "nodes": [
+              {
+                "key": "storage",
+                "eligibility": "eligible",
+                "execution_status": "awaiting_executor",
+                "explanation": "No unmet prerequisites. Eligible for future dispatch; awaiting an execution agent. No code has been run.",
+                "prerequisites": [],
+                "dependents": [
+                  "screen"
+                ],
+                "ancestors": [],
+                "impact": [
+                  "screen"
+                ]
+              },
+              {
+                "key": "screen",
+                "eligibility": "waiting_prerequisites",
+                "execution_status": "awaiting_executor",
+                "explanation": "Waiting for storage to complete with verified evidence.",
+                "prerequisites": [
+                  "storage"
+                ],
+                "dependents": [],
+                "ancestors": [
+                  "storage"
+                ],
+                "impact": []
+              }
+            ],
+            "edges": [
+              {
+                "prerequisite": "storage",
+                "dependent": "screen"
+              }
+            ],
+            "execution_performed": false
+          },
+          "source_current": true
+        },
+        "initial_sql": {
+          "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+          "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+          "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+          "creator_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+          "client_request_id": "7693f668-efac-49f7-a977-22c51e1a0159",
+          "architecture_id": "68f38194-1b13-4557-9ced-b3cd6da86d20",
+          "architecture_version": 1,
+          "architecture_revision": 1,
+          "architecture_hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e",
+          "source_plan_id": "cbcccd5b-ac96-4ce2-a7a4-bfd242d7f19a",
+          "source_version": 1,
+          "source_revision": 1,
+          "source_hash": "5dfe5d9123ef31242316dc1c769bad96ba51913dfdd74e1dda0d499a7a6f82c1",
+          "source_approved_by": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+          "source_approved_at": "2026-10-26T15:45:46.717756+00:00",
+          "source_snapshot": {
+            "tasks": [
+              {
+                "definition": {
+                  "key": "storage",
+                  "scope": "Storage and validation",
+                  "title": "Persist daily check-ins",
+                  "category": "backend",
+                  "priority": "P1",
+                  "story_refs": [
+                    "story_checkin"
+                  ],
+                  "description": "Add a dated check-in record.",
+                  "deliverables": [
+                    "Persistence operation"
+                  ],
+                  "dependencies": [],
+                  "component_refs": [
+                    "journal"
+                  ],
+                  "criterion_refs": [
+                    "criterion_checkin"
+                  ],
+                  "planning_state": "proposed",
+                  "requirement_refs": [
+                    "fr_checkin"
+                  ],
+                  "acceptance_criteria": [
+                    "Given an incomplete day, when saved, then the check-in remains complete after reload."
+                  ],
+                  "complexity_estimate": "small"
+                },
+                "display_order": 0,
+                "source_task_id": "60c8597e-3f91-4ed4-b573-de4fc6c0fa81"
+              },
+              {
+                "definition": {
+                  "key": "screen",
+                  "scope": "Daily journal UI",
+                  "title": "Display saved check-ins",
+                  "category": "frontend",
+                  "priority": "P1",
+                  "story_refs": [
+                    "story_checkin"
+                  ],
+                  "description": "Show saved state after reload.",
+                  "deliverables": [
+                    "Check-in form"
+                  ],
+                  "dependencies": [
+                    "storage"
+                  ],
+                  "component_refs": [
+                    "journal"
+                  ],
+                  "criterion_refs": [
+                    "criterion_checkin"
+                  ],
+                  "planning_state": "proposed",
+                  "requirement_refs": [
+                    "fr_checkin"
+                  ],
+                  "acceptance_criteria": [
+                    "Reload displays the saved completion state."
+                  ],
+                  "complexity_estimate": "small"
+                },
+                "display_order": 1,
+                "source_task_id": "923ca4bf-d06e-4e02-8a85-48e4bbf8c78f"
+              }
+            ],
+            "traces": [
+              {
+                "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+                "task_key": "storage",
+                "component_key": null,
+                "source_trace_id": "7e6deee7-39f7-4ea7-bd84-5c60c5b18304"
+              },
+              {
+                "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+                "task_key": "screen",
+                "component_key": null,
+                "source_trace_id": "cff2bf70-5996-4ad7-9a4b-34287d10e52a"
+              },
+              {
+                "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+                "task_key": null,
+                "component_key": "journal",
+                "source_trace_id": "f2c2196e-ad75-48a1-95f5-96449715ea9b"
+              }
+            ],
+            "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+            "architecture": {
+              "id": "68f38194-1b13-4557-9ced-b3cd6da86d20",
+              "hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e",
+              "version": 1,
+              "document": {
+                "risks": [
+                  "Date boundaries require user confirmation"
+                ],
+                "tasks": [
+                  {
+                    "key": "storage",
+                    "scope": "Storage and validation",
+                    "title": "Persist daily check-ins",
+                    "category": "backend",
+                    "priority": "P1",
+                    "story_refs": [
+                      "story_checkin"
+                    ],
+                    "description": "Add a dated check-in record.",
+                    "deliverables": [
+                      "Persistence operation"
+                    ],
+                    "dependencies": [],
+                    "component_refs": [
+                      "journal"
+                    ],
+                    "criterion_refs": [
+                      "criterion_checkin"
+                    ],
+                    "planning_state": "proposed",
+                    "requirement_refs": [
+                      "fr_checkin"
+                    ],
+                    "acceptance_criteria": [
+                      "Given an incomplete day, when saved, then the check-in remains complete after reload."
+                    ],
+                    "complexity_estimate": "small"
+                  },
+                  {
+                    "key": "screen",
+                    "scope": "Daily journal UI",
+                    "title": "Display saved check-ins",
+                    "category": "frontend",
+                    "priority": "P1",
+                    "story_refs": [
+                      "story_checkin"
+                    ],
+                    "description": "Show saved state after reload.",
+                    "deliverables": [
+                      "Check-in form"
+                    ],
+                    "dependencies": [
+                      "storage"
+                    ],
+                    "component_refs": [
+                      "journal"
+                    ],
+                    "criterion_refs": [
+                      "criterion_checkin"
+                    ],
+                    "planning_state": "proposed",
+                    "requirement_refs": [
+                      "fr_checkin"
+                    ],
+                    "acceptance_criteria": [
+                      "Reload displays the saved completion state."
+                    ],
+                    "complexity_estimate": "small"
+                  }
+                ],
+                "overview": {
+                  "title": "Habit journal \u2014 human-authored orchestration fixture",
+                  "summary": "A single-user daily journal.",
+                  "non_goals": [
+                    "Social sharing"
+                  ],
+                  "assumptions": [
+                    "One user"
+                  ],
+                  "constraints": [
+                    "Local first release"
+                  ],
+                  "design_goals": [
+                    "Persist dated check-ins"
+                  ],
+                  "architectural_style": "Modular monolith"
+                },
+                "security": {
+                  "threats": [
+                    {
+                      "threat": "Unauthorized read",
+                      "mitigation": "Check ownership on every request"
+                    }
+                  ],
+                  "sensitive_data": [
+                    "Habit history"
+                  ],
+                  "trust_boundaries": [
+                    "Browser to authenticated API"
+                  ],
+                  "secret_management": "Server-only environment configuration",
+                  "authorization_model": "User-owned records",
+                  "external_integrations": [],
+                  "authentication_assumptions": "Existing user session"
+                },
+                "api_design": {
+                  "notes": "Proposed API; no endpoint has been implemented by this agent.",
+                  "endpoints": [
+                    {
+                      "key": "save_checkin",
+                      "route": "/checkins",
+                      "method": "POST",
+                      "status": "proposed",
+                      "purpose": "Save a daily check-in",
+                      "authorization": "Only the owning user",
+                      "authentication": "Local authenticated user",
+                      "error_behavior": [
+                        "Reject invalid dates"
+                      ],
+                      "request_contract": "Date and completion boolean",
+                      "response_contract": "Saved date and completion state"
+                    }
+                  ]
+                },
+                "components": [
+                  {
+                    "key": "journal",
+                    "name": "Journal service",
+                    "inputs": [
+                      "Date and completion state"
+                    ],
+                    "outputs": [
+                      "Saved check-in"
+                    ],
+                    "story_refs": [
+                      "story_checkin"
+                    ],
+                    "dependencies": [],
+                    "responsibility": "Validate and save daily entries",
+                    "security_considerations": [
+                      "Enforce user ownership"
+                    ]
+                  }
+                ],
+                "deployment": {
+                  "topology": "One local application and PostgreSQL",
+                  "uncertain_choices": [
+                    "Hosted deployment is undecided"
+                  ],
+                  "operational_considerations": [
+                    "Back up personal records"
+                  ],
+                  "infrastructure_requirements": [
+                    "Local database"
+                  ]
+                },
+                "technologies": [
+                  {
+                    "basis": "recommendation",
+                    "reason": "Unique daily records",
+                    "tradeoffs": [
+                      "Requires a database service"
+                    ],
+                    "technology": "PostgreSQL",
+                    "constraints": [],
+                    "alternatives": [
+                      "Embedded storage"
+                    ],
+                    "responsibility": "Store check-ins"
+                  }
+                ],
+                "open_decisions": [],
+                "schema_version": 1,
+                "database_design": {
+                  "notes": "Proposed logical storage; not an applied migration.",
+                  "entities": [
+                    {
+                      "key": "checkin",
+                      "name": "Check-in",
+                      "fields": [
+                        {
+                          "name": "day",
+                          "constraints": [
+                            "Required"
+                          ],
+                          "logical_type": "date"
+                        }
+                      ],
+                      "indexes": [
+                        "Owner and day"
+                      ],
+                      "constraints": [
+                        "Unique day per owner"
+                      ],
+                      "data_ownership": "Local user",
+                      "privacy_considerations": [
+                        "Private habit history"
+                      ]
+                    }
+                  ],
+                  "relationships": []
+                },
+                "coverage_exceptions": []
+              },
+              "revision": 1,
+              "approved_at": "2026-10-26T15:45:46.717756+00:00",
+              "approved_by": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+              "approval_dispositions": {}
+            },
+            "dependencies": [
+              {
+                "dependent": "screen",
+                "prerequisite": "storage",
+                "display_order": 0,
+                "source_dependency_id": "da5fb34b-43b0-46dd-bf90-fb044b0d4640"
+              }
+            ],
+            "hash_version": "orba-orchestration-canonical-json-v1",
+            "product_plan": {
+              "id": "cbcccd5b-ac96-4ce2-a7a4-bfd242d7f19a",
+              "hash": "5dfe5d9123ef31242316dc1c769bad96ba51913dfdd74e1dda0d499a7a6f82c1",
+              "version": 1,
+              "document": {
+                "epics": [
+                  {
+                    "key": "epic_checkin",
+                    "goal": "Record a daily habit",
+                    "title": "Daily journal",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    },
+                    "stories": [
+                      {
+                        "key": "story_checkin",
+                        "title": "Record today's check-in",
+                        "source": {
+                          "kind": "human",
+                          "quote": null,
+                          "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                          "context_key": null,
+                          "inherited_kind": null
+                        },
+                        "priority": "P1",
+                        "statement": "As a habit tracker, I want to record a daily check-in, so that I can review my progress.",
+                        "description": "Keep the saved date and completion state.",
+                        "dependencies": [],
+                        "requirement_refs": [
+                          "fr_checkin"
+                        ],
+                        "acceptance_criteria": [
+                          {
+                            "key": "criterion_checkin",
+                            "then": "Today's habit is shown as complete after reload",
+                            "when": "I record today's check-in",
+                            "given": "Today's habit is incomplete",
+                            "source": {
+                              "kind": "human",
+                              "quote": null,
+                              "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                              "context_key": null,
+                              "inherited_kind": null
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "priority": "P1"
+                  }
+                ],
+                "risks": [],
+                "summary": {
+                  "key": "summary",
+                  "text": "Track a personal daily habit.",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "context_key": null,
+                    "inherited_kind": null
+                  }
+                },
+                "in_scope": [
+                  {
+                    "key": "scope",
+                    "text": "Daily check-ins",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "user_goals": [
+                  {
+                    "key": "goal",
+                    "text": "See whether today's habit is complete",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "assumptions": [
+                  {
+                    "key": "assumption",
+                    "text": "A single local user is sufficient initially",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "out_of_scope": [
+                  {
+                    "key": "out",
+                    "text": "Social sharing",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "product_name": {
+                  "key": "name",
+                  "text": "Habit journal \u2014 human-authored test fixture",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "context_key": null,
+                    "inherited_kind": null
+                  }
+                },
+                "target_users": [
+                  {
+                    "key": "user",
+                    "text": "One person tracking a habit",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "confirmations": [],
+                "prerequisites": [],
+                "open_questions": [],
+                "schema_version": 1,
+                "problem_statement": {
+                  "key": "problem",
+                  "text": "A person needs a record of daily check-ins.",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "context_key": null,
+                    "inherited_kind": null
+                  }
+                },
+                "proposed_solution": {
+                  "key": "solution",
+                  "text": "A dated check-in journal.",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "context_key": null,
+                    "inherited_kind": null
+                  }
+                },
+                "functional_requirements": [
+                  {
+                    "key": "fr_checkin",
+                    "text": "Record one check-in per local day",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "nonfunctional_requirements": []
+              },
+              "revision": 1,
+              "approved_at": "2026-10-26T15:45:41.634650+00:00",
+              "approved_by": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e"
+            },
+            "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6"
+          },
+          "snapshot_hash": "9ef322a2164ab54aa0ee2f3eb337704279fb4588de055531a2bdab2704f6a4f5",
+          "hash_valid": true,
+          "relational_snapshot_valid": true,
+          "status": "awaiting_executor",
+          "revision": 2,
+          "created_at": "2026-10-26T15:45:47.099088+00:00",
+          "cancelled_at": null,
+          "counts": {
+            "tasks": 2,
+            "dependencies": 1,
+            "events": 2,
+            "traces": 3
+          },
+          "graph": {
+            "valid": true,
+            "edge_convention": "prerequisite -> dependent",
+            "topological_order": [
+              "storage",
+              "screen"
+            ],
+            "roots": [
+              "storage"
+            ],
+            "eligible": [
+              "storage"
+            ],
+            "blocked": [
+              "screen"
+            ],
+            "nodes": [
+              {
+                "key": "storage",
+                "prerequisites": [],
+                "dependents": [
+                  "screen"
+                ],
+                "ancestors": [],
+                "impact": [
+                  "screen"
+                ],
+                "eligibility": "eligible",
+                "execution_status": "awaiting_executor",
+                "explanation": "No unmet prerequisites. Eligible for future dispatch; awaiting an execution agent. No code has been run."
+              },
+              {
+                "key": "screen",
+                "prerequisites": [
+                  "storage"
+                ],
+                "dependents": [],
+                "ancestors": [
+                  "storage"
+                ],
+                "impact": [],
+                "eligibility": "waiting_prerequisites",
+                "execution_status": "awaiting_executor",
+                "explanation": "Waiting for storage to complete with verified evidence."
+              }
+            ],
+            "edges": [
+              {
+                "prerequisite": "storage",
+                "dependent": "screen"
+              }
+            ],
+            "execution_performed": false
+          },
+          "tasks": [
+            {
+              "id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "source_task_id": "60c8597e-3f91-4ed4-b573-de4fc6c0fa81",
+              "key": "storage",
+              "definition": {
+                "key": "storage",
+                "title": "Persist daily check-ins",
+                "description": "Add a dated check-in record.",
+                "scope": "Storage and validation",
+                "deliverables": [
+                  "Persistence operation"
+                ],
+                "acceptance_criteria": [
+                  "Given an incomplete day, when saved, then the check-in remains complete after reload."
+                ],
+                "priority": "P1",
+                "category": "backend",
+                "complexity_estimate": "small",
+                "planning_state": "proposed",
+                "story_refs": [
+                  "story_checkin"
+                ],
+                "requirement_refs": [
+                  "fr_checkin"
+                ],
+                "criterion_refs": [
+                  "criterion_checkin"
+                ],
+                "component_refs": [
+                  "journal"
+                ],
+                "dependencies": []
+              },
+              "eligibility": "eligible",
+              "execution_status": "awaiting_executor",
+              "display_order": 0,
+              "created_at": "2026-10-26T15:45:47.099088Z",
+              "updated_at": "2026-10-26T15:45:47.099088Z",
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+              "architecture_id": "68f38194-1b13-4557-9ced-b3cd6da86d20"
+            },
+            {
+              "id": "fbfe1601-6786-4ad0-8d21-a80bfde90975",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "source_task_id": "923ca4bf-d06e-4e02-8a85-48e4bbf8c78f",
+              "key": "screen",
+              "definition": {
+                "key": "screen",
+                "title": "Display saved check-ins",
+                "description": "Show saved state after reload.",
+                "scope": "Daily journal UI",
+                "deliverables": [
+                  "Check-in form"
+                ],
+                "acceptance_criteria": [
+                  "Reload displays the saved completion state."
+                ],
+                "priority": "P1",
+                "category": "frontend",
+                "complexity_estimate": "small",
+                "planning_state": "proposed",
+                "story_refs": [
+                  "story_checkin"
+                ],
+                "requirement_refs": [
+                  "fr_checkin"
+                ],
+                "criterion_refs": [
+                  "criterion_checkin"
+                ],
+                "component_refs": [
+                  "journal"
+                ],
+                "dependencies": [
+                  "storage"
+                ]
+              },
+              "eligibility": "waiting_prerequisites",
+              "execution_status": "awaiting_executor",
+              "display_order": 1,
+              "created_at": "2026-10-26T15:45:47.099088Z",
+              "updated_at": "2026-10-26T15:45:47.099088Z",
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+              "architecture_id": "68f38194-1b13-4557-9ced-b3cd6da86d20"
+            }
+          ],
+          "dependencies": [
+            {
+              "id": "f2fa5223-b3b7-4f19-baf1-7b43be9ffcb4",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+              "source_dependency_id": "da5fb34b-43b0-46dd-bf90-fb044b0d4640",
+              "prerequisite_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "dependent_id": "fbfe1601-6786-4ad0-8d21-a80bfde90975",
+              "display_order": 0
+            }
+          ],
+          "events": [
+            {
+              "id": "7b1e7727-670c-40ba-a4b9-aaf2dcaba36f",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": null,
+              "sequence": 1,
+              "run_revision": 1,
+              "event_type": "run_created",
+              "actor_type": "user",
+              "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+              "occurred_at": "2026-10-26T15:45:47.099088Z",
+              "previous_state": null,
+              "new_state": "created",
+              "details": {
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "d9f27392-34c4-4d79-b68b-003d3496f85c",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": null,
+              "sequence": 2,
+              "run_revision": 2,
+              "event_type": "run_awaiting_executor",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:45:47.099088Z",
+              "previous_state": "created",
+              "new_state": "awaiting_executor",
+              "details": {
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            }
+          ],
+          "generation_records": {
+            "product_manager_runs": 0,
+            "architect_runs": 0
+          },
+          "audit_model_requests": 0,
+          "execution_performed": false,
+          "execution_class": "real_local_control_plane"
+        },
+        "reloaded_sql": {
+          "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+          "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+          "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+          "creator_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+          "client_request_id": "7693f668-efac-49f7-a977-22c51e1a0159",
+          "architecture_id": "68f38194-1b13-4557-9ced-b3cd6da86d20",
+          "architecture_version": 1,
+          "architecture_revision": 1,
+          "architecture_hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e",
+          "source_plan_id": "cbcccd5b-ac96-4ce2-a7a4-bfd242d7f19a",
+          "source_version": 1,
+          "source_revision": 1,
+          "source_hash": "5dfe5d9123ef31242316dc1c769bad96ba51913dfdd74e1dda0d499a7a6f82c1",
+          "source_approved_by": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+          "source_approved_at": "2026-10-26T15:45:46.717756+00:00",
+          "source_snapshot": {
+            "tasks": [
+              {
+                "definition": {
+                  "key": "storage",
+                  "scope": "Storage and validation",
+                  "title": "Persist daily check-ins",
+                  "category": "backend",
+                  "priority": "P1",
+                  "story_refs": [
+                    "story_checkin"
+                  ],
+                  "description": "Add a dated check-in record.",
+                  "deliverables": [
+                    "Persistence operation"
+                  ],
+                  "dependencies": [],
+                  "component_refs": [
+                    "journal"
+                  ],
+                  "criterion_refs": [
+                    "criterion_checkin"
+                  ],
+                  "planning_state": "proposed",
+                  "requirement_refs": [
+                    "fr_checkin"
+                  ],
+                  "acceptance_criteria": [
+                    "Given an incomplete day, when saved, then the check-in remains complete after reload."
+                  ],
+                  "complexity_estimate": "small"
+                },
+                "display_order": 0,
+                "source_task_id": "60c8597e-3f91-4ed4-b573-de4fc6c0fa81"
+              },
+              {
+                "definition": {
+                  "key": "screen",
+                  "scope": "Daily journal UI",
+                  "title": "Display saved check-ins",
+                  "category": "frontend",
+                  "priority": "P1",
+                  "story_refs": [
+                    "story_checkin"
+                  ],
+                  "description": "Show saved state after reload.",
+                  "deliverables": [
+                    "Check-in form"
+                  ],
+                  "dependencies": [
+                    "storage"
+                  ],
+                  "component_refs": [
+                    "journal"
+                  ],
+                  "criterion_refs": [
+                    "criterion_checkin"
+                  ],
+                  "planning_state": "proposed",
+                  "requirement_refs": [
+                    "fr_checkin"
+                  ],
+                  "acceptance_criteria": [
+                    "Reload displays the saved completion state."
+                  ],
+                  "complexity_estimate": "small"
+                },
+                "display_order": 1,
+                "source_task_id": "923ca4bf-d06e-4e02-8a85-48e4bbf8c78f"
+              }
+            ],
+            "traces": [
+              {
+                "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+                "task_key": "storage",
+                "component_key": null,
+                "source_trace_id": "7e6deee7-39f7-4ea7-bd84-5c60c5b18304"
+              },
+              {
+                "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+                "task_key": "screen",
+                "component_key": null,
+                "source_trace_id": "cff2bf70-5996-4ad7-9a4b-34287d10e52a"
+              },
+              {
+                "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+                "task_key": null,
+                "component_key": "journal",
+                "source_trace_id": "f2c2196e-ad75-48a1-95f5-96449715ea9b"
+              }
+            ],
+            "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+            "architecture": {
+              "id": "68f38194-1b13-4557-9ced-b3cd6da86d20",
+              "hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e",
+              "version": 1,
+              "document": {
+                "risks": [
+                  "Date boundaries require user confirmation"
+                ],
+                "tasks": [
+                  {
+                    "key": "storage",
+                    "scope": "Storage and validation",
+                    "title": "Persist daily check-ins",
+                    "category": "backend",
+                    "priority": "P1",
+                    "story_refs": [
+                      "story_checkin"
+                    ],
+                    "description": "Add a dated check-in record.",
+                    "deliverables": [
+                      "Persistence operation"
+                    ],
+                    "dependencies": [],
+                    "component_refs": [
+                      "journal"
+                    ],
+                    "criterion_refs": [
+                      "criterion_checkin"
+                    ],
+                    "planning_state": "proposed",
+                    "requirement_refs": [
+                      "fr_checkin"
+                    ],
+                    "acceptance_criteria": [
+                      "Given an incomplete day, when saved, then the check-in remains complete after reload."
+                    ],
+                    "complexity_estimate": "small"
+                  },
+                  {
+                    "key": "screen",
+                    "scope": "Daily journal UI",
+                    "title": "Display saved check-ins",
+                    "category": "frontend",
+                    "priority": "P1",
+                    "story_refs": [
+                      "story_checkin"
+                    ],
+                    "description": "Show saved state after reload.",
+                    "deliverables": [
+                      "Check-in form"
+                    ],
+                    "dependencies": [
+                      "storage"
+                    ],
+                    "component_refs": [
+                      "journal"
+                    ],
+                    "criterion_refs": [
+                      "criterion_checkin"
+                    ],
+                    "planning_state": "proposed",
+                    "requirement_refs": [
+                      "fr_checkin"
+                    ],
+                    "acceptance_criteria": [
+                      "Reload displays the saved completion state."
+                    ],
+                    "complexity_estimate": "small"
+                  }
+                ],
+                "overview": {
+                  "title": "Habit journal \u2014 human-authored orchestration fixture",
+                  "summary": "A single-user daily journal.",
+                  "non_goals": [
+                    "Social sharing"
+                  ],
+                  "assumptions": [
+                    "One user"
+                  ],
+                  "constraints": [
+                    "Local first release"
+                  ],
+                  "design_goals": [
+                    "Persist dated check-ins"
+                  ],
+                  "architectural_style": "Modular monolith"
+                },
+                "security": {
+                  "threats": [
+                    {
+                      "threat": "Unauthorized read",
+                      "mitigation": "Check ownership on every request"
+                    }
+                  ],
+                  "sensitive_data": [
+                    "Habit history"
+                  ],
+                  "trust_boundaries": [
+                    "Browser to authenticated API"
+                  ],
+                  "secret_management": "Server-only environment configuration",
+                  "authorization_model": "User-owned records",
+                  "external_integrations": [],
+                  "authentication_assumptions": "Existing user session"
+                },
+                "api_design": {
+                  "notes": "Proposed API; no endpoint has been implemented by this agent.",
+                  "endpoints": [
+                    {
+                      "key": "save_checkin",
+                      "route": "/checkins",
+                      "method": "POST",
+                      "status": "proposed",
+                      "purpose": "Save a daily check-in",
+                      "authorization": "Only the owning user",
+                      "authentication": "Local authenticated user",
+                      "error_behavior": [
+                        "Reject invalid dates"
+                      ],
+                      "request_contract": "Date and completion boolean",
+                      "response_contract": "Saved date and completion state"
+                    }
+                  ]
+                },
+                "components": [
+                  {
+                    "key": "journal",
+                    "name": "Journal service",
+                    "inputs": [
+                      "Date and completion state"
+                    ],
+                    "outputs": [
+                      "Saved check-in"
+                    ],
+                    "story_refs": [
+                      "story_checkin"
+                    ],
+                    "dependencies": [],
+                    "responsibility": "Validate and save daily entries",
+                    "security_considerations": [
+                      "Enforce user ownership"
+                    ]
+                  }
+                ],
+                "deployment": {
+                  "topology": "One local application and PostgreSQL",
+                  "uncertain_choices": [
+                    "Hosted deployment is undecided"
+                  ],
+                  "operational_considerations": [
+                    "Back up personal records"
+                  ],
+                  "infrastructure_requirements": [
+                    "Local database"
+                  ]
+                },
+                "technologies": [
+                  {
+                    "basis": "recommendation",
+                    "reason": "Unique daily records",
+                    "tradeoffs": [
+                      "Requires a database service"
+                    ],
+                    "technology": "PostgreSQL",
+                    "constraints": [],
+                    "alternatives": [
+                      "Embedded storage"
+                    ],
+                    "responsibility": "Store check-ins"
+                  }
+                ],
+                "open_decisions": [],
+                "schema_version": 1,
+                "database_design": {
+                  "notes": "Proposed logical storage; not an applied migration.",
+                  "entities": [
+                    {
+                      "key": "checkin",
+                      "name": "Check-in",
+                      "fields": [
+                        {
+                          "name": "day",
+                          "constraints": [
+                            "Required"
+                          ],
+                          "logical_type": "date"
+                        }
+                      ],
+                      "indexes": [
+                        "Owner and day"
+                      ],
+                      "constraints": [
+                        "Unique day per owner"
+                      ],
+                      "data_ownership": "Local user",
+                      "privacy_considerations": [
+                        "Private habit history"
+                      ]
+                    }
+                  ],
+                  "relationships": []
+                },
+                "coverage_exceptions": []
+              },
+              "revision": 1,
+              "approved_at": "2026-10-26T15:45:46.717756+00:00",
+              "approved_by": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+              "approval_dispositions": {}
+            },
+            "dependencies": [
+              {
+                "dependent": "screen",
+                "prerequisite": "storage",
+                "display_order": 0,
+                "source_dependency_id": "da5fb34b-43b0-46dd-bf90-fb044b0d4640"
+              }
+            ],
+            "hash_version": "orba-orchestration-canonical-json-v1",
+            "product_plan": {
+              "id": "cbcccd5b-ac96-4ce2-a7a4-bfd242d7f19a",
+              "hash": "5dfe5d9123ef31242316dc1c769bad96ba51913dfdd74e1dda0d499a7a6f82c1",
+              "version": 1,
+              "document": {
+                "epics": [
+                  {
+                    "key": "epic_checkin",
+                    "goal": "Record a daily habit",
+                    "title": "Daily journal",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    },
+                    "stories": [
+                      {
+                        "key": "story_checkin",
+                        "title": "Record today's check-in",
+                        "source": {
+                          "kind": "human",
+                          "quote": null,
+                          "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                          "context_key": null,
+                          "inherited_kind": null
+                        },
+                        "priority": "P1",
+                        "statement": "As a habit tracker, I want to record a daily check-in, so that I can review my progress.",
+                        "description": "Keep the saved date and completion state.",
+                        "dependencies": [],
+                        "requirement_refs": [
+                          "fr_checkin"
+                        ],
+                        "acceptance_criteria": [
+                          {
+                            "key": "criterion_checkin",
+                            "then": "Today's habit is shown as complete after reload",
+                            "when": "I record today's check-in",
+                            "given": "Today's habit is incomplete",
+                            "source": {
+                              "kind": "human",
+                              "quote": null,
+                              "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                              "context_key": null,
+                              "inherited_kind": null
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "priority": "P1"
+                  }
+                ],
+                "risks": [],
+                "summary": {
+                  "key": "summary",
+                  "text": "Track a personal daily habit.",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "context_key": null,
+                    "inherited_kind": null
+                  }
+                },
+                "in_scope": [
+                  {
+                    "key": "scope",
+                    "text": "Daily check-ins",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "user_goals": [
+                  {
+                    "key": "goal",
+                    "text": "See whether today's habit is complete",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "assumptions": [
+                  {
+                    "key": "assumption",
+                    "text": "A single local user is sufficient initially",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "out_of_scope": [
+                  {
+                    "key": "out",
+                    "text": "Social sharing",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "product_name": {
+                  "key": "name",
+                  "text": "Habit journal \u2014 human-authored test fixture",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "context_key": null,
+                    "inherited_kind": null
+                  }
+                },
+                "target_users": [
+                  {
+                    "key": "user",
+                    "text": "One person tracking a habit",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "confirmations": [],
+                "prerequisites": [],
+                "open_questions": [],
+                "schema_version": 1,
+                "problem_statement": {
+                  "key": "problem",
+                  "text": "A person needs a record of daily check-ins.",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "context_key": null,
+                    "inherited_kind": null
+                  }
+                },
+                "proposed_solution": {
+                  "key": "solution",
+                  "text": "A dated check-in journal.",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "context_key": null,
+                    "inherited_kind": null
+                  }
+                },
+                "functional_requirements": [
+                  {
+                    "key": "fr_checkin",
+                    "text": "Record one check-in per local day",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "context_key": null,
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "nonfunctional_requirements": []
+              },
+              "revision": 1,
+              "approved_at": "2026-10-26T15:45:41.634650+00:00",
+              "approved_by": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e"
+            },
+            "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6"
+          },
+          "snapshot_hash": "9ef322a2164ab54aa0ee2f3eb337704279fb4588de055531a2bdab2704f6a4f5",
+          "hash_valid": true,
+          "relational_snapshot_valid": true,
+          "status": "awaiting_executor",
+          "revision": 2,
+          "created_at": "2026-10-26T15:45:47.099088+00:00",
+          "cancelled_at": null,
+          "counts": {
+            "tasks": 2,
+            "dependencies": 1,
+            "events": 2,
+            "traces": 3
+          },
+          "graph": {
+            "valid": true,
+            "edge_convention": "prerequisite -> dependent",
+            "topological_order": [
+              "storage",
+              "screen"
+            ],
+            "roots": [
+              "storage"
+            ],
+            "eligible": [
+              "storage"
+            ],
+            "blocked": [
+              "screen"
+            ],
+            "nodes": [
+              {
+                "key": "storage",
+                "prerequisites": [],
+                "dependents": [
+                  "screen"
+                ],
+                "ancestors": [],
+                "impact": [
+                  "screen"
+                ],
+                "eligibility": "eligible",
+                "execution_status": "awaiting_executor",
+                "explanation": "No unmet prerequisites. Eligible for future dispatch; awaiting an execution agent. No code has been run."
+              },
+              {
+                "key": "screen",
+                "prerequisites": [
+                  "storage"
+                ],
+                "dependents": [],
+                "ancestors": [
+                  "storage"
+                ],
+                "impact": [],
+                "eligibility": "waiting_prerequisites",
+                "execution_status": "awaiting_executor",
+                "explanation": "Waiting for storage to complete with verified evidence."
+              }
+            ],
+            "edges": [
+              {
+                "prerequisite": "storage",
+                "dependent": "screen"
+              }
+            ],
+            "execution_performed": false
+          },
+          "tasks": [
+            {
+              "id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "source_task_id": "60c8597e-3f91-4ed4-b573-de4fc6c0fa81",
+              "key": "storage",
+              "definition": {
+                "key": "storage",
+                "title": "Persist daily check-ins",
+                "description": "Add a dated check-in record.",
+                "scope": "Storage and validation",
+                "deliverables": [
+                  "Persistence operation"
+                ],
+                "acceptance_criteria": [
+                  "Given an incomplete day, when saved, then the check-in remains complete after reload."
+                ],
+                "priority": "P1",
+                "category": "backend",
+                "complexity_estimate": "small",
+                "planning_state": "proposed",
+                "story_refs": [
+                  "story_checkin"
+                ],
+                "requirement_refs": [
+                  "fr_checkin"
+                ],
+                "criterion_refs": [
+                  "criterion_checkin"
+                ],
+                "component_refs": [
+                  "journal"
+                ],
+                "dependencies": []
+              },
+              "eligibility": "eligible",
+              "execution_status": "awaiting_executor",
+              "display_order": 0,
+              "created_at": "2026-10-26T15:45:47.099088Z",
+              "updated_at": "2026-10-26T15:45:47.099088Z",
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+              "architecture_id": "68f38194-1b13-4557-9ced-b3cd6da86d20"
+            },
+            {
+              "id": "fbfe1601-6786-4ad0-8d21-a80bfde90975",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "source_task_id": "923ca4bf-d06e-4e02-8a85-48e4bbf8c78f",
+              "key": "screen",
+              "definition": {
+                "key": "screen",
+                "title": "Display saved check-ins",
+                "description": "Show saved state after reload.",
+                "scope": "Daily journal UI",
+                "deliverables": [
+                  "Check-in form"
+                ],
+                "acceptance_criteria": [
+                  "Reload displays the saved completion state."
+                ],
+                "priority": "P1",
+                "category": "frontend",
+                "complexity_estimate": "small",
+                "planning_state": "proposed",
+                "story_refs": [
+                  "story_checkin"
+                ],
+                "requirement_refs": [
+                  "fr_checkin"
+                ],
+                "criterion_refs": [
+                  "criterion_checkin"
+                ],
+                "component_refs": [
+                  "journal"
+                ],
+                "dependencies": [
+                  "storage"
+                ]
+              },
+              "eligibility": "waiting_prerequisites",
+              "execution_status": "awaiting_executor",
+              "display_order": 1,
+              "created_at": "2026-10-26T15:45:47.099088Z",
+              "updated_at": "2026-10-26T15:45:47.099088Z",
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+              "architecture_id": "68f38194-1b13-4557-9ced-b3cd6da86d20"
+            }
+          ],
+          "dependencies": [
+            {
+              "id": "f2fa5223-b3b7-4f19-baf1-7b43be9ffcb4",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+              "source_dependency_id": "da5fb34b-43b0-46dd-bf90-fb044b0d4640",
+              "prerequisite_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "dependent_id": "fbfe1601-6786-4ad0-8d21-a80bfde90975",
+              "display_order": 0
+            }
+          ],
+          "events": [
+            {
+              "id": "7b1e7727-670c-40ba-a4b9-aaf2dcaba36f",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": null,
+              "sequence": 1,
+              "run_revision": 1,
+              "event_type": "run_created",
+              "actor_type": "user",
+              "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+              "occurred_at": "2026-10-26T15:45:47.099088Z",
+              "previous_state": null,
+              "new_state": "created",
+              "details": {
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "d9f27392-34c4-4d79-b68b-003d3496f85c",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": null,
+              "sequence": 2,
+              "run_revision": 2,
+              "event_type": "run_awaiting_executor",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:45:47.099088Z",
+              "previous_state": "created",
+              "new_state": "awaiting_executor",
+              "details": {
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            }
+          ],
+          "generation_records": {
+            "product_manager_runs": 0,
+            "architect_runs": 0
+          },
+          "audit_model_requests": 0,
+          "execution_performed": false,
+          "execution_class": "real_local_control_plane"
+        }
+      },
+      "worker": {
+        "id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+        "worker_type": "protocol_only",
+        "display_name": "Local protocol verifier",
+        "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+        "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+        "capabilities": [
+          "backend"
+        ],
+        "max_leases": 1,
+        "enabled": true,
+        "credential_version": 1,
+        "last_authenticated_at": "2026-10-26T15:45:53.758660Z"
+      },
+      "acknowledged_api": {
+        "lease": {
+          "id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+          "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+          "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+          "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+          "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+          "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+          "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+          "credential_version": 1,
+          "fence_epoch": 1,
+          "state": "acknowledged",
+          "created_at": "2026-10-26T15:45:59.888861Z",
+          "acknowledge_by": "2026-10-26T15:46:09.888861Z",
+          "expires_at": "2026-10-26T15:46:29.888861Z",
+          "max_expires_at": "2026-10-26T15:47:59.888861Z",
+          "acknowledged_at": "2026-10-26T15:45:59.980110Z",
+          "last_heartbeat_at": null,
+          "ended_at": null,
+          "reason": null
+        },
+        "manifest": {
+          "contract_version": 1,
+          "handoff_id": "38d01e94-a617-48e6-ba66-68fe3b2aec63",
+          "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+          "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+          "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+          "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+          "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+          "source_task_id": "60c8597e-3f91-4ed4-b573-de4fc6c0fa81",
+          "source_task_key": "storage",
+          "architecture": {
+            "id": "68f38194-1b13-4557-9ced-b3cd6da86d20",
+            "version": 1,
+            "revision": 1,
+            "hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e"
+          },
+          "product_plan": {
+            "id": "cbcccd5b-ac96-4ce2-a7a4-bfd242d7f19a",
+            "version": 1,
+            "revision": 1,
+            "hash": "5dfe5d9123ef31242316dc1c769bad96ba51913dfdd74e1dda0d499a7a6f82c1"
+          },
+          "snapshot_hash": "9ef322a2164ab54aa0ee2f3eb337704279fb4588de055531a2bdab2704f6a4f5",
+          "title": "Persist daily check-ins",
+          "description": "Add a dated check-in record.",
+          "acceptance_criteria": [
+            "Given an incomplete day, when saved, then the check-in remains complete after reload."
+          ],
+          "requirement_traces": [
+            {
+              "source_trace_id": "7e6deee7-39f7-4ea7-bd84-5c60c5b18304",
+              "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+              "task_key": "storage",
+              "component_key": null
+            }
+          ],
+          "dependencies": [],
+          "required_capability": "backend",
+          "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+          "fence_epoch": 1,
+          "acknowledge_by": "2026-10-26T15:46:09.888861Z",
+          "initial_expires_at": "2026-10-26T15:46:29.888861Z",
+          "max_expires_at": "2026-10-26T15:47:59.888861Z",
+          "execution_policy": "protocol_only_no_execution",
+          "checksum": "e8ffd79ba0c89bea30f7df834f74f83e2d0c26085fe35b018547e4bb469de5f8"
+        },
+        "execution_performed": false
+      },
+      "heartbeat_api": {
+        "lease": {
+          "id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+          "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+          "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+          "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+          "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+          "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+          "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+          "credential_version": 1,
+          "fence_epoch": 1,
+          "state": "acknowledged",
+          "created_at": "2026-10-26T15:45:59.888861Z",
+          "acknowledge_by": "2026-10-26T15:46:09.888861Z",
+          "expires_at": "2026-10-26T15:46:41.470082Z",
+          "max_expires_at": "2026-10-26T15:47:59.888861Z",
+          "acknowledged_at": "2026-10-26T15:45:59.980110Z",
+          "last_heartbeat_at": "2026-10-26T15:46:11.470082Z",
+          "ended_at": null,
+          "reason": null
+        },
+        "manifest": {
+          "contract_version": 1,
+          "handoff_id": "38d01e94-a617-48e6-ba66-68fe3b2aec63",
+          "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+          "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+          "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+          "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+          "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+          "source_task_id": "60c8597e-3f91-4ed4-b573-de4fc6c0fa81",
+          "source_task_key": "storage",
+          "architecture": {
+            "id": "68f38194-1b13-4557-9ced-b3cd6da86d20",
+            "version": 1,
+            "revision": 1,
+            "hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e"
+          },
+          "product_plan": {
+            "id": "cbcccd5b-ac96-4ce2-a7a4-bfd242d7f19a",
+            "version": 1,
+            "revision": 1,
+            "hash": "5dfe5d9123ef31242316dc1c769bad96ba51913dfdd74e1dda0d499a7a6f82c1"
+          },
+          "snapshot_hash": "9ef322a2164ab54aa0ee2f3eb337704279fb4588de055531a2bdab2704f6a4f5",
+          "title": "Persist daily check-ins",
+          "description": "Add a dated check-in record.",
+          "acceptance_criteria": [
+            "Given an incomplete day, when saved, then the check-in remains complete after reload."
+          ],
+          "requirement_traces": [
+            {
+              "source_trace_id": "7e6deee7-39f7-4ea7-bd84-5c60c5b18304",
+              "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+              "task_key": "storage",
+              "component_key": null
+            }
+          ],
+          "dependencies": [],
+          "required_capability": "backend",
+          "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+          "fence_epoch": 1,
+          "acknowledge_by": "2026-10-26T15:46:09.888861Z",
+          "initial_expires_at": "2026-10-26T15:46:29.888861Z",
+          "max_expires_at": "2026-10-26T15:47:59.888861Z",
+          "execution_policy": "protocol_only_no_execution",
+          "checksum": "e8ffd79ba0c89bea30f7df834f74f83e2d0c26085fe35b018547e4bb469de5f8"
+        },
+        "execution_performed": false
+      },
+      "final_api": {
+        "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+        "snapshot_hash": "9ef322a2164ab54aa0ee2f3eb337704279fb4588de055531a2bdab2704f6a4f5",
+        "observed_at": "2026-10-26T15:46:44.305176Z",
+        "last_tick_at": "2026-10-26T15:46:43.867355Z",
+        "tick_count": 4,
+        "policy": {
+          "acknowledge_seconds": 10,
+          "lease_seconds": 30,
+          "max_lease_seconds": 120,
+          "heartbeat_seconds": 10,
+          "worker_liveness_seconds": 60,
+          "global_capacity": 8,
+          "run_capacity": 2,
+          "max_attempts": 3,
+          "batch_size": 8
+        },
+        "dispatches": [
+          {
+            "id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+            "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+            "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+            "required_capability": "backend",
+            "state": "needs_reconciliation",
+            "attempts": 1,
+            "fence_epoch": 2,
+            "created_at": "2026-10-26T15:45:55.111532Z",
+            "updated_at": "2026-10-26T15:46:43.828638Z",
+            "leases": [
+              {
+                "id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+                "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+                "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+                "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+                "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+                "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+                "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+                "credential_version": 1,
+                "fence_epoch": 1,
+                "state": "expired",
+                "created_at": "2026-10-26T15:45:59.888861Z",
+                "acknowledge_by": "2026-10-26T15:46:09.888861Z",
+                "expires_at": "2026-10-26T15:46:41.470082Z",
+                "max_expires_at": "2026-10-26T15:47:59.888861Z",
+                "acknowledged_at": "2026-10-26T15:45:59.980110Z",
+                "last_heartbeat_at": "2026-10-26T15:46:11.470082Z",
+                "ended_at": "2026-10-26T15:46:43.828638Z",
+                "reason": "lease_deadline"
+              }
+            ],
+            "worker_name": "Local protocol verifier"
+          }
+        ],
+        "execution_performed": false
+      },
+      "independent_sql": {
+        "scheduler_state": {
+          "tick_count": 4,
+          "last_tick_at": "2026-10-26T15:46:43.867355Z",
+          "process_id": "508a78c6-2142-473c-8a62-2c7e69f4b281",
+          "policy": {
+            "acknowledge_seconds": 10,
+            "lease_seconds": 30,
+            "max_lease_seconds": 120,
+            "heartbeat_seconds": 10,
+            "worker_liveness_seconds": 60,
+            "global_capacity": 8,
+            "run_capacity": 2,
+            "max_attempts": 3,
+            "batch_size": 8
+          }
+        },
+        "orchestration": {
+          "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+          "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+          "architecture_id": "68f38194-1b13-4557-9ced-b3cd6da86d20",
+          "architecture_version": 1,
+          "architecture_revision": 1,
+          "architecture_hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e",
+          "source_plan_id": "cbcccd5b-ac96-4ce2-a7a4-bfd242d7f19a",
+          "source_version": 1,
+          "source_revision": 1,
+          "source_hash": "5dfe5d9123ef31242316dc1c769bad96ba51913dfdd74e1dda0d499a7a6f82c1",
+          "creator_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+          "client_request_id": "7693f668-efac-49f7-a977-22c51e1a0159",
+          "snapshot_hash": "9ef322a2164ab54aa0ee2f3eb337704279fb4588de055531a2bdab2704f6a4f5",
+          "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+          "source_approved_by": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+          "source_approved_at": "2026-10-26T15:45:46.717756Z",
+          "source_snapshot": {
+            "hash_version": "orba-orchestration-canonical-json-v1",
+            "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+            "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+            "architecture": {
+              "id": "68f38194-1b13-4557-9ced-b3cd6da86d20",
+              "version": 1,
+              "revision": 1,
+              "hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e",
+              "approved_by": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+              "approved_at": "2026-10-26T15:45:46.717756Z",
+              "document": {
+                "schema_version": 1,
+                "overview": {
+                  "title": "Habit journal \u2014 human-authored orchestration fixture",
+                  "summary": "A single-user daily journal.",
+                  "architectural_style": "Modular monolith",
+                  "design_goals": [
+                    "Persist dated check-ins"
+                  ],
+                  "constraints": [
+                    "Local first release"
+                  ],
+                  "assumptions": [
+                    "One user"
+                  ],
+                  "non_goals": [
+                    "Social sharing"
+                  ]
+                },
+                "technologies": [
+                  {
+                    "technology": "PostgreSQL",
+                    "responsibility": "Store check-ins",
+                    "reason": "Unique daily records",
+                    "alternatives": [
+                      "Embedded storage"
+                    ],
+                    "tradeoffs": [
+                      "Requires a database service"
+                    ],
+                    "constraints": [],
+                    "basis": "recommendation"
+                  }
+                ],
+                "components": [
+                  {
+                    "key": "journal",
+                    "name": "Journal service",
+                    "responsibility": "Validate and save daily entries",
+                    "inputs": [
+                      "Date and completion state"
+                    ],
+                    "outputs": [
+                      "Saved check-in"
+                    ],
+                    "dependencies": [],
+                    "story_refs": [
+                      "story_checkin"
+                    ],
+                    "security_considerations": [
+                      "Enforce user ownership"
+                    ]
+                  }
+                ],
+                "database_design": {
+                  "notes": "Proposed logical storage; not an applied migration.",
+                  "entities": [
+                    {
+                      "key": "checkin",
+                      "name": "Check-in",
+                      "fields": [
+                        {
+                          "name": "day",
+                          "logical_type": "date",
+                          "constraints": [
+                            "Required"
+                          ]
+                        }
+                      ],
+                      "constraints": [
+                        "Unique day per owner"
+                      ],
+                      "indexes": [
+                        "Owner and day"
+                      ],
+                      "data_ownership": "Local user",
+                      "privacy_considerations": [
+                        "Private habit history"
+                      ]
+                    }
+                  ],
+                  "relationships": []
+                },
+                "api_design": {
+                  "notes": "Proposed API; no endpoint has been implemented by this agent.",
+                  "endpoints": [
+                    {
+                      "key": "save_checkin",
+                      "status": "proposed",
+                      "method": "POST",
+                      "route": "/checkins",
+                      "purpose": "Save a daily check-in",
+                      "request_contract": "Date and completion boolean",
+                      "response_contract": "Saved date and completion state",
+                      "authentication": "Local authenticated user",
+                      "authorization": "Only the owning user",
+                      "error_behavior": [
+                        "Reject invalid dates"
+                      ]
+                    }
+                  ]
+                },
+                "security": {
+                  "trust_boundaries": [
+                    "Browser to authenticated API"
+                  ],
+                  "authentication_assumptions": "Existing user session",
+                  "authorization_model": "User-owned records",
+                  "sensitive_data": [
+                    "Habit history"
+                  ],
+                  "external_integrations": [],
+                  "secret_management": "Server-only environment configuration",
+                  "threats": [
+                    {
+                      "threat": "Unauthorized read",
+                      "mitigation": "Check ownership on every request"
+                    }
+                  ]
+                },
+                "deployment": {
+                  "topology": "One local application and PostgreSQL",
+                  "infrastructure_requirements": [
+                    "Local database"
+                  ],
+                  "operational_considerations": [
+                    "Back up personal records"
+                  ],
+                  "uncertain_choices": [
+                    "Hosted deployment is undecided"
+                  ]
+                },
+                "risks": [
+                  "Date boundaries require user confirmation"
+                ],
+                "open_decisions": [],
+                "tasks": [
+                  {
+                    "key": "storage",
+                    "title": "Persist daily check-ins",
+                    "description": "Add a dated check-in record.",
+                    "scope": "Storage and validation",
+                    "deliverables": [
+                      "Persistence operation"
+                    ],
+                    "acceptance_criteria": [
+                      "Given an incomplete day, when saved, then the check-in remains complete after reload."
+                    ],
+                    "priority": "P1",
+                    "category": "backend",
+                    "complexity_estimate": "small",
+                    "planning_state": "proposed",
+                    "story_refs": [
+                      "story_checkin"
+                    ],
+                    "requirement_refs": [
+                      "fr_checkin"
+                    ],
+                    "criterion_refs": [
+                      "criterion_checkin"
+                    ],
+                    "component_refs": [
+                      "journal"
+                    ],
+                    "dependencies": []
+                  },
+                  {
+                    "key": "screen",
+                    "title": "Display saved check-ins",
+                    "description": "Show saved state after reload.",
+                    "scope": "Daily journal UI",
+                    "deliverables": [
+                      "Check-in form"
+                    ],
+                    "acceptance_criteria": [
+                      "Reload displays the saved completion state."
+                    ],
+                    "priority": "P1",
+                    "category": "frontend",
+                    "complexity_estimate": "small",
+                    "planning_state": "proposed",
+                    "story_refs": [
+                      "story_checkin"
+                    ],
+                    "requirement_refs": [
+                      "fr_checkin"
+                    ],
+                    "criterion_refs": [
+                      "criterion_checkin"
+                    ],
+                    "component_refs": [
+                      "journal"
+                    ],
+                    "dependencies": [
+                      "storage"
+                    ]
+                  }
+                ],
+                "coverage_exceptions": []
+              },
+              "approval_dispositions": {}
+            },
+            "product_plan": {
+              "id": "cbcccd5b-ac96-4ce2-a7a4-bfd242d7f19a",
+              "version": 1,
+              "revision": 1,
+              "hash": "5dfe5d9123ef31242316dc1c769bad96ba51913dfdd74e1dda0d499a7a6f82c1",
+              "approved_by": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+              "approved_at": "2026-10-26T15:45:41.634650Z",
+              "document": {
+                "schema_version": 1,
+                "product_name": {
+                  "key": "name",
+                  "text": "Habit journal \u2014 human-authored test fixture",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "context_key": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "inherited_kind": null
+                  }
+                },
+                "summary": {
+                  "key": "summary",
+                  "text": "Track a personal daily habit.",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "context_key": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "inherited_kind": null
+                  }
+                },
+                "problem_statement": {
+                  "key": "problem",
+                  "text": "A person needs a record of daily check-ins.",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "context_key": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "inherited_kind": null
+                  }
+                },
+                "proposed_solution": {
+                  "key": "solution",
+                  "text": "A dated check-in journal.",
+                  "source": {
+                    "kind": "human",
+                    "quote": null,
+                    "context_key": null,
+                    "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                    "inherited_kind": null
+                  }
+                },
+                "target_users": [
+                  {
+                    "key": "user",
+                    "text": "One person tracking a habit",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "context_key": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "user_goals": [
+                  {
+                    "key": "goal",
+                    "text": "See whether today's habit is complete",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "context_key": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "in_scope": [
+                  {
+                    "key": "scope",
+                    "text": "Daily check-ins",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "context_key": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "out_of_scope": [
+                  {
+                    "key": "out",
+                    "text": "Social sharing",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "context_key": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "functional_requirements": [
+                  {
+                    "key": "fr_checkin",
+                    "text": "Record one check-in per local day",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "context_key": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "nonfunctional_requirements": [],
+                "prerequisites": [],
+                "assumptions": [
+                  {
+                    "key": "assumption",
+                    "text": "A single local user is sufficient initially",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "context_key": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "inherited_kind": null
+                    }
+                  }
+                ],
+                "risks": [],
+                "open_questions": [],
+                "confirmations": [],
+                "epics": [
+                  {
+                    "key": "epic_checkin",
+                    "title": "Daily journal",
+                    "goal": "Record a daily habit",
+                    "priority": "P1",
+                    "source": {
+                      "kind": "human",
+                      "quote": null,
+                      "context_key": null,
+                      "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                      "inherited_kind": null
+                    },
+                    "stories": [
+                      {
+                        "key": "story_checkin",
+                        "title": "Record today's check-in",
+                        "statement": "As a habit tracker, I want to record a daily check-in, so that I can review my progress.",
+                        "description": "Keep the saved date and completion state.",
+                        "priority": "P1",
+                        "requirement_refs": [
+                          "fr_checkin"
+                        ],
+                        "dependencies": [],
+                        "source": {
+                          "kind": "human",
+                          "quote": null,
+                          "context_key": null,
+                          "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                          "inherited_kind": null
+                        },
+                        "acceptance_criteria": [
+                          {
+                            "key": "criterion_checkin",
+                            "given": "Today's habit is incomplete",
+                            "when": "I record today's check-in",
+                            "then": "Today's habit is shown as complete after reload",
+                            "source": {
+                              "kind": "human",
+                              "quote": null,
+                              "context_key": null,
+                              "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+                              "inherited_kind": null
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "tasks": [
+              {
+                "source_task_id": "60c8597e-3f91-4ed4-b573-de4fc6c0fa81",
+                "display_order": 0,
+                "definition": {
+                  "key": "storage",
+                  "title": "Persist daily check-ins",
+                  "description": "Add a dated check-in record.",
+                  "scope": "Storage and validation",
+                  "deliverables": [
+                    "Persistence operation"
+                  ],
+                  "acceptance_criteria": [
+                    "Given an incomplete day, when saved, then the check-in remains complete after reload."
+                  ],
+                  "priority": "P1",
+                  "category": "backend",
+                  "complexity_estimate": "small",
+                  "planning_state": "proposed",
+                  "story_refs": [
+                    "story_checkin"
+                  ],
+                  "requirement_refs": [
+                    "fr_checkin"
+                  ],
+                  "criterion_refs": [
+                    "criterion_checkin"
+                  ],
+                  "component_refs": [
+                    "journal"
+                  ],
+                  "dependencies": []
+                }
+              },
+              {
+                "source_task_id": "923ca4bf-d06e-4e02-8a85-48e4bbf8c78f",
+                "display_order": 1,
+                "definition": {
+                  "key": "screen",
+                  "title": "Display saved check-ins",
+                  "description": "Show saved state after reload.",
+                  "scope": "Daily journal UI",
+                  "deliverables": [
+                    "Check-in form"
+                  ],
+                  "acceptance_criteria": [
+                    "Reload displays the saved completion state."
+                  ],
+                  "priority": "P1",
+                  "category": "frontend",
+                  "complexity_estimate": "small",
+                  "planning_state": "proposed",
+                  "story_refs": [
+                    "story_checkin"
+                  ],
+                  "requirement_refs": [
+                    "fr_checkin"
+                  ],
+                  "criterion_refs": [
+                    "criterion_checkin"
+                  ],
+                  "component_refs": [
+                    "journal"
+                  ],
+                  "dependencies": [
+                    "storage"
+                  ]
+                }
+              }
+            ],
+            "dependencies": [
+              {
+                "prerequisite": "storage",
+                "dependent": "screen",
+                "source_dependency_id": "da5fb34b-43b0-46dd-bf90-fb044b0d4640",
+                "display_order": 0
+              }
+            ],
+            "traces": [
+              {
+                "source_trace_id": "7e6deee7-39f7-4ea7-bd84-5c60c5b18304",
+                "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+                "task_key": "storage",
+                "component_key": null
+              },
+              {
+                "source_trace_id": "cff2bf70-5996-4ad7-9a4b-34287d10e52a",
+                "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+                "task_key": "screen",
+                "component_key": null
+              },
+              {
+                "source_trace_id": "f2c2196e-ad75-48a1-95f5-96449715ea9b",
+                "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+                "task_key": null,
+                "component_key": "journal"
+              }
+            ]
+          },
+          "hash_valid": true,
+          "relational_snapshot_valid": true,
+          "status": "awaiting_executor",
+          "revision": 12,
+          "created_at": "2026-10-26T15:45:47.099088Z",
+          "cancelled_at": null,
+          "counts": {
+            "tasks": 2,
+            "dependencies": 1,
+            "events": 12,
+            "traces": 3
+          },
+          "graph": {
+            "valid": true,
+            "edge_convention": "prerequisite -> dependent",
+            "topological_order": [
+              "storage",
+              "screen"
+            ],
+            "roots": [
+              "storage"
+            ],
+            "eligible": [
+              "storage"
+            ],
+            "blocked": [
+              "screen"
+            ],
+            "nodes": [
+              {
+                "key": "storage",
+                "eligibility": "eligible",
+                "execution_status": "awaiting_executor",
+                "explanation": "No unmet prerequisites. Eligible for future dispatch; awaiting an execution agent. No code has been run.",
+                "prerequisites": [],
+                "dependents": [
+                  "screen"
+                ],
+                "ancestors": [],
+                "impact": [
+                  "screen"
+                ]
+              },
+              {
+                "key": "screen",
+                "eligibility": "waiting_prerequisites",
+                "execution_status": "awaiting_executor",
+                "explanation": "Waiting for storage to complete with verified evidence.",
+                "prerequisites": [
+                  "storage"
+                ],
+                "dependents": [],
+                "ancestors": [
+                  "storage"
+                ],
+                "impact": []
+              }
+            ],
+            "edges": [
+              {
+                "prerequisite": "storage",
+                "dependent": "screen"
+              }
+            ],
+            "execution_performed": false
+          },
+          "tasks": [
+            {
+              "id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "source_task_id": "60c8597e-3f91-4ed4-b573-de4fc6c0fa81",
+              "key": "storage",
+              "definition": {
+                "key": "storage",
+                "title": "Persist daily check-ins",
+                "description": "Add a dated check-in record.",
+                "scope": "Storage and validation",
+                "deliverables": [
+                  "Persistence operation"
+                ],
+                "acceptance_criteria": [
+                  "Given an incomplete day, when saved, then the check-in remains complete after reload."
+                ],
+                "priority": "P1",
+                "category": "backend",
+                "complexity_estimate": "small",
+                "planning_state": "proposed",
+                "story_refs": [
+                  "story_checkin"
+                ],
+                "requirement_refs": [
+                  "fr_checkin"
+                ],
+                "criterion_refs": [
+                  "criterion_checkin"
+                ],
+                "component_refs": [
+                  "journal"
+                ],
+                "dependencies": []
+              },
+              "eligibility": "eligible",
+              "execution_status": "awaiting_executor",
+              "display_order": 0,
+              "created_at": "2026-10-26T15:45:47.099088Z",
+              "updated_at": "2026-10-26T15:45:47.099088Z",
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+              "architecture_id": "68f38194-1b13-4557-9ced-b3cd6da86d20"
+            },
+            {
+              "id": "fbfe1601-6786-4ad0-8d21-a80bfde90975",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "source_task_id": "923ca4bf-d06e-4e02-8a85-48e4bbf8c78f",
+              "key": "screen",
+              "definition": {
+                "key": "screen",
+                "title": "Display saved check-ins",
+                "description": "Show saved state after reload.",
+                "scope": "Daily journal UI",
+                "deliverables": [
+                  "Check-in form"
+                ],
+                "acceptance_criteria": [
+                  "Reload displays the saved completion state."
+                ],
+                "priority": "P1",
+                "category": "frontend",
+                "complexity_estimate": "small",
+                "planning_state": "proposed",
+                "story_refs": [
+                  "story_checkin"
+                ],
+                "requirement_refs": [
+                  "fr_checkin"
+                ],
+                "criterion_refs": [
+                  "criterion_checkin"
+                ],
+                "component_refs": [
+                  "journal"
+                ],
+                "dependencies": [
+                  "storage"
+                ]
+              },
+              "eligibility": "waiting_prerequisites",
+              "execution_status": "awaiting_executor",
+              "display_order": 1,
+              "created_at": "2026-10-26T15:45:47.099088Z",
+              "updated_at": "2026-10-26T15:45:47.099088Z",
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+              "architecture_id": "68f38194-1b13-4557-9ced-b3cd6da86d20"
+            }
+          ],
+          "dependencies": [
+            {
+              "id": "f2fa5223-b3b7-4f19-baf1-7b43be9ffcb4",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+              "source_dependency_id": "da5fb34b-43b0-46dd-bf90-fb044b0d4640",
+              "prerequisite_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "dependent_id": "fbfe1601-6786-4ad0-8d21-a80bfde90975",
+              "display_order": 0
+            }
+          ],
+          "events": [
+            {
+              "id": "7b1e7727-670c-40ba-a4b9-aaf2dcaba36f",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": null,
+              "sequence": 1,
+              "run_revision": 1,
+              "event_type": "run_created",
+              "actor_type": "user",
+              "actor_id": "ce8dcf7a-5a8d-4a5e-96b4-8070ec402e6e",
+              "occurred_at": "2026-10-26T15:45:47.099088Z",
+              "previous_state": null,
+              "new_state": "created",
+              "details": {
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "d9f27392-34c4-4d79-b68b-003d3496f85c",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": null,
+              "sequence": 2,
+              "run_revision": 2,
+              "event_type": "run_awaiting_executor",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:45:47.099088Z",
+              "previous_state": "created",
+              "new_state": "awaiting_executor",
+              "details": {
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "a3095563-13d5-482b-a50f-32f7e414eb80",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "sequence": 3,
+              "run_revision": 3,
+              "event_type": "dispatch_queued",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:45:55.121014Z",
+              "previous_state": "awaiting_executor",
+              "new_state": "awaiting_executor",
+              "details": {
+                "reason": "eligible_root_with_registered_worker",
+                "lease_id": null,
+                "worker_id": null,
+                "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+                "fence_epoch": 0,
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "254beb67-a690-4cd6-b896-9252ab625246",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": null,
+              "sequence": 4,
+              "run_revision": 4,
+              "event_type": "scheduler_recovered",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:45:56.759179Z",
+              "previous_state": "awaiting_executor",
+              "new_state": "awaiting_executor",
+              "details": {
+                "reason": "new_scheduler_process_observed",
+                "lease_id": null,
+                "worker_id": null,
+                "dispatch_id": null,
+                "fence_epoch": null,
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "644d4ec8-9855-4f2f-818f-c11c36f97d8c",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": null,
+              "sequence": 5,
+              "run_revision": 5,
+              "event_type": "scheduler_recovered",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:45:58.957751Z",
+              "previous_state": "awaiting_executor",
+              "new_state": "awaiting_executor",
+              "details": {
+                "reason": "new_scheduler_process_observed",
+                "lease_id": null,
+                "worker_id": null,
+                "dispatch_id": null,
+                "fence_epoch": null,
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "c618e606-7143-425a-90e8-1a44497fea7a",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "sequence": 6,
+              "run_revision": 6,
+              "event_type": "lease_claimed",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:45:59.898670Z",
+              "previous_state": "awaiting_executor",
+              "new_state": "awaiting_executor",
+              "details": {
+                "reason": "atomic_worker_claim",
+                "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+                "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+                "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+                "fence_epoch": 1,
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "594686d6-2d16-4793-b5b0-f80be4125e1d",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "sequence": 7,
+              "run_revision": 7,
+              "event_type": "handoff_available",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:45:59.910160Z",
+              "previous_state": "awaiting_executor",
+              "new_state": "awaiting_executor",
+              "details": {
+                "reason": "immutable_manifest_committed",
+                "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+                "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+                "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+                "fence_epoch": 1,
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "b2fd8419-f4b6-42d1-8a55-06701d367aaa",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "sequence": 8,
+              "run_revision": 8,
+              "event_type": "handoff_acknowledged",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:46:00.025265Z",
+              "previous_state": "awaiting_executor",
+              "new_state": "awaiting_executor",
+              "details": {
+                "reason": "exact_manifest_received",
+                "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+                "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+                "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+                "fence_epoch": 1,
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "084723ab-2734-4a5f-af34-a712ffd1b79c",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "sequence": 9,
+              "run_revision": 9,
+              "event_type": "lease_renewed",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:46:11.475492Z",
+              "previous_state": "awaiting_executor",
+              "new_state": "awaiting_executor",
+              "details": {
+                "reason": "authenticated_heartbeat",
+                "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+                "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+                "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+                "fence_epoch": 1,
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "c8a919da-e468-4693-83eb-c0cf55630474",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "sequence": 10,
+              "run_revision": 10,
+              "event_type": "lease_expired",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:46:43.829516Z",
+              "previous_state": "awaiting_executor",
+              "new_state": "awaiting_executor",
+              "details": {
+                "reason": "lease_deadline",
+                "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+                "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+                "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+                "fence_epoch": 1,
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "a120c7d6-5a86-4137-8524-7e15016598f7",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "sequence": 11,
+              "run_revision": 11,
+              "event_type": "task_requires_reconciliation",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:46:43.842749Z",
+              "previous_state": "awaiting_executor",
+              "new_state": "awaiting_executor",
+              "details": {
+                "reason": "lease_deadline",
+                "lease_id": null,
+                "worker_id": null,
+                "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+                "fence_epoch": 2,
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            },
+            {
+              "id": "97fcb950-286b-45ed-909d-fb38b19cb0da",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "sequence": 12,
+              "run_revision": 12,
+              "event_type": "worker_lease_rejected",
+              "actor_type": "system",
+              "actor_id": null,
+              "occurred_at": "2026-10-26T15:46:44.104635Z",
+              "previous_state": "awaiting_executor",
+              "new_state": "awaiting_executor",
+              "details": {
+                "reason": "stale_or_invalid_ownership",
+                "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+                "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+                "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+                "fence_epoch": 1,
+                "execution_performed": false
+              },
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1"
+            }
+          ],
+          "generation_records": {
+            "product_manager_runs": 0,
+            "architect_runs": 0
+          },
+          "audit_model_requests": 0,
+          "execution_performed": false,
+          "execution_class": "real_local_control_plane"
+        },
+        "dispatches": [
+          {
+            "id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+            "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+            "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+            "required_capability": "backend",
+            "state": "needs_reconciliation",
+            "attempts": 1,
+            "fence_epoch": 2,
+            "created_at": "2026-10-26T15:45:55.111532Z",
+            "updated_at": "2026-10-26T15:46:43.828638Z",
+            "leases": [
+              {
+                "id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+                "dispatch_id": "8e657ae6-dee1-4db2-8d6d-99515473b91c",
+                "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+                "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+                "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+                "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+                "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+                "credential_version": 1,
+                "fence_epoch": 1,
+                "state": "expired",
+                "created_at": "2026-10-26T15:45:59.888861Z",
+                "acknowledge_by": "2026-10-26T15:46:09.888861Z",
+                "expires_at": "2026-10-26T15:46:41.470082Z",
+                "max_expires_at": "2026-10-26T15:47:59.888861Z",
+                "acknowledged_at": "2026-10-26T15:45:59.980110Z",
+                "last_heartbeat_at": "2026-10-26T15:46:11.470082Z",
+                "ended_at": "2026-10-26T15:46:43.828638Z",
+                "reason": "lease_deadline"
+              }
+            ],
+            "worker_name": "Local protocol verifier",
+            "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+            "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6"
+          }
+        ],
+        "workers": [
+          {
+            "id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+            "worker_type": "protocol_only",
+            "display_name": "Local protocol verifier",
+            "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+            "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+            "capabilities": [
+              "backend"
+            ],
+            "max_leases": 1,
+            "enabled": true,
+            "credential_version": 1,
+            "last_authenticated_at": "2026-10-26T15:46:44.095689Z"
+          }
+        ],
+        "credentials": [
+          {
+            "id": "f2b07f55-9ed4-4cea-b0c5-eaaab75c0785",
+            "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+            "version": 1,
+            "created_at": "2026-10-26T15:45:52.812791Z",
+            "expires_at": "2026-10-27T15:45:52.812791Z",
+            "revoked_at": null
+          }
+        ],
+        "handoffs": [
+          {
+            "id": "38d01e94-a617-48e6-ba66-68fe3b2aec63",
+            "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+            "checksum": "e8ffd79ba0c89bea30f7df834f74f83e2d0c26085fe35b018547e4bb469de5f8",
+            "manifest": {
+              "contract_version": 1,
+              "handoff_id": "38d01e94-a617-48e6-ba66-68fe3b2aec63",
+              "worker_id": "db266c6a-6bd9-42a2-9c58-940d1011c1d6",
+              "workspace_id": "546e942c-18be-473c-8edc-7c71a8fa05f6",
+              "project_id": "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+              "run_id": "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+              "task_id": "4c6e4908-70be-42f3-ac82-fe75c927fa17",
+              "source_task_id": "60c8597e-3f91-4ed4-b573-de4fc6c0fa81",
+              "source_task_key": "storage",
+              "architecture": {
+                "id": "68f38194-1b13-4557-9ced-b3cd6da86d20",
+                "version": 1,
+                "revision": 1,
+                "hash": "ff92891e3fe47960f0604cfd76e4bb00a207c3c5e743cb4caeab969c0329ed8e"
+              },
+              "product_plan": {
+                "id": "cbcccd5b-ac96-4ce2-a7a4-bfd242d7f19a",
+                "version": 1,
+                "revision": 1,
+                "hash": "5dfe5d9123ef31242316dc1c769bad96ba51913dfdd74e1dda0d499a7a6f82c1"
+              },
+              "snapshot_hash": "9ef322a2164ab54aa0ee2f3eb337704279fb4588de055531a2bdab2704f6a4f5",
+              "title": "Persist daily check-ins",
+              "description": "Add a dated check-in record.",
+              "acceptance_criteria": [
+                "Given an incomplete day, when saved, then the check-in remains complete after reload."
+              ],
+              "requirement_traces": [
+                {
+                  "source_trace_id": "7e6deee7-39f7-4ea7-bd84-5c60c5b18304",
+                  "story_id": "02663485-146d-4183-ae7a-f9cdc35af124",
+                  "task_key": "storage",
+                  "component_key": null
+                }
+              ],
+              "dependencies": [],
+              "required_capability": "backend",
+              "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+              "fence_epoch": 1,
+              "acknowledge_by": "2026-10-26T15:46:09.888861Z",
+              "initial_expires_at": "2026-10-26T15:46:29.888861Z",
+              "max_expires_at": "2026-10-26T15:47:59.888861Z",
+              "execution_policy": "protocol_only_no_execution",
+              "checksum": "e8ffd79ba0c89bea30f7df834f74f83e2d0c26085fe35b018547e4bb469de5f8"
+            },
+            "created_at": "2026-10-26T15:45:59.888861Z"
+          }
+        ],
+        "heartbeats": [
+          {
+            "id": "907f9e8f-9c26-430b-8aad-80243b7de45e",
+            "lease_id": "038dfee0-9ac7-4122-b5a9-72371ca7c0d9",
+            "request_id": "d5edeb51-3973-4dd1-8aa7-98a341bd7c15",
+            "request_hash": "a17a83f5c64ee881598cd90a9947c065e3e64d2b00560e98d09eb61f7345e0cc",
+            "accepted_at": "2026-10-26T15:46:11.470082Z",
+            "expires_at": "2026-10-26T15:46:41.470082Z"
+          }
+        ],
+        "run_revision_rechecked": 12,
+        "inspected_at": "2026-10-26T15:46:46.945573Z"
+      },
+      "process_commands": [
+        {
+          "receipt_id": "e3247212-3ff9-498e-bdb7-bc1ca2cd297d",
+          "name": "provision",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.worker_admin",
+            "provision",
+            "--workspace",
+            "546e942c-18be-473c-8edc-7c71a8fa05f6",
+            "--project",
+            "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+            "--name",
+            "Local protocol verifier",
+            "--capability",
+            "backend",
+            "--credential-file",
+            "C:\\Users\\vaish\\AppData\\Local\\Temp\\orba-protocol-RgbzMc\\worker.credential"
+          ],
+          "pid": 27744,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:45:51.560000Z",
+          "completed_at": "2026-10-26T15:45:53.029000Z"
+        },
+        {
+          "receipt_id": "126d472f-b12b-405c-aaf5-822609d3b348",
+          "name": "worker-start",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.worker_client",
+            "--api-url",
+            "http://127.0.0.1:8001",
+            "--credential-file",
+            "C:\\Users\\vaish\\AppData\\Local\\Temp\\orba-protocol-RgbzMc\\worker.credential",
+            "--state-file",
+            "C:\\Users\\vaish\\AppData\\Local\\Temp\\orba-protocol-RgbzMc\\claim-state.json",
+            "--run",
+            "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+            "--cycles",
+            "1"
+          ],
+          "pid": 18608,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:45:53.030000Z",
+          "completed_at": "2026-10-26T15:45:53.703000Z"
+        },
+        {
+          "receipt_id": "b9afb15e-7626-4a8c-8502-d921c1f82478",
+          "name": "scheduler-start",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.scheduler"
+          ],
+          "pid": 30696,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:45:53.771000Z",
+          "completed_at": "2026-10-26T15:45:55.313000Z"
+        },
+        {
+          "receipt_id": "4ef21fd4-e0cd-4367-a752-b4dbce64c98d",
+          "name": "scheduler-interrupted",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.scheduler",
+            "--ticks",
+            "60",
+            "--interval",
+            "5"
+          ],
+          "pid": 29788,
+          "exit_code": null,
+          "signal": "SIGTERM",
+          "expected_termination": true,
+          "started_at": "2026-10-26T15:45:55.546000Z",
+          "completed_at": "2026-10-26T15:45:57.787000Z"
+        },
+        {
+          "receipt_id": "cd71181e-5de6-4663-b8d1-2de5b55dac20",
+          "name": "scheduler-restart",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.scheduler"
+          ],
+          "pid": 29860,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:45:57.788000Z",
+          "completed_at": "2026-10-26T15:45:59.211000Z"
+        },
+        {
+          "receipt_id": "366939d4-bbb8-4d05-b4ee-e1e4579fe427",
+          "name": "worker-claim",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.worker_client",
+            "--api-url",
+            "http://127.0.0.1:8001",
+            "--credential-file",
+            "C:\\Users\\vaish\\AppData\\Local\\Temp\\orba-protocol-RgbzMc\\worker.credential",
+            "--state-file",
+            "C:\\Users\\vaish\\AppData\\Local\\Temp\\orba-protocol-RgbzMc\\claim-state.json",
+            "--run",
+            "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+            "--cycles",
+            "1"
+          ],
+          "pid": 26912,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:45:59.294000Z",
+          "completed_at": "2026-10-26T15:46:00.096000Z"
+        },
+        {
+          "receipt_id": "751a8044-7c8e-4785-9455-119f8fee7e6d",
+          "name": "worker-restart",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.worker_client",
+            "--api-url",
+            "http://127.0.0.1:8001",
+            "--credential-file",
+            "C:\\Users\\vaish\\AppData\\Local\\Temp\\orba-protocol-RgbzMc\\worker.credential",
+            "--state-file",
+            "C:\\Users\\vaish\\AppData\\Local\\Temp\\orba-protocol-RgbzMc\\claim-state.json",
+            "--run",
+            "24afc7cc-02c4-4cf7-bdc5-2698193cd09e",
+            "--cycles",
+            "1"
+          ],
+          "pid": 12008,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:46:10.879000Z",
+          "completed_at": "2026-10-26T15:46:11.541000Z"
+        },
+        {
+          "receipt_id": "7081e3da-d6d5-4073-a18e-3474285438a4",
+          "name": "scheduler-expiration",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.scheduler"
+          ],
+          "pid": 24680,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:46:42.428000Z",
+          "completed_at": "2026-10-26T15:46:44.061000Z"
+        },
+        {
+          "receipt_id": "7d0d3e78-fc49-4f14-ba84-d1cbf493152e",
+          "name": "revoked-provision",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.worker_admin",
+            "provision",
+            "--workspace",
+            "546e942c-18be-473c-8edc-7c71a8fa05f6",
+            "--project",
+            "848fd22a-9832-4b18-82d4-6e559d71f5a1",
+            "--name",
+            "Local protocol verifier",
+            "--capability",
+            "backend",
+            "--credential-file",
+            "C:\\Users\\vaish\\AppData\\Local\\Temp\\orba-protocol-90s5GR\\worker.credential"
+          ],
+          "pid": 22664,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:46:47.142000Z",
+          "completed_at": "2026-10-26T15:46:48.590000Z"
+        },
+        {
+          "receipt_id": "7d9a6d8d-0ea0-430d-ba19-4605198ff618",
+          "name": "revoke",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.worker_admin",
+            "revoke",
+            "--worker",
+            "c1d9a574-bc22-4f5a-86fa-6d45f2f70dab"
+          ],
+          "pid": 30828,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:46:48.591000Z",
+          "completed_at": "2026-10-26T15:46:50.009000Z"
+        },
+        {
+          "receipt_id": "93be3e97-cbb3-402d-bb54-79f26b168af4",
+          "name": "foreign-provision",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.worker_admin",
+            "provision",
+            "--workspace",
+            "0e3e4b80-94e2-4530-a4b1-19155dbcd564",
+            "--name",
+            "Local protocol verifier",
+            "--capability",
+            "backend",
+            "--credential-file",
+            "C:\\Users\\vaish\\AppData\\Local\\Temp\\orba-protocol-BqXHeW\\worker.credential"
+          ],
+          "pid": 3676,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:46:52.607000Z",
+          "completed_at": "2026-10-26T15:46:54.049000Z"
+        },
+        {
+          "receipt_id": "da1a9ca5-edfd-44e1-9d87-6614d7438cba",
+          "name": "incomplete-proof",
+          "argv": [
+            "E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "scripts.check_scheduler_proof",
+            "--reject-empty"
+          ],
+          "pid": 18640,
+          "exit_code": 0,
+          "signal": null,
+          "expected_termination": false,
+          "started_at": "2026-10-26T15:46:54.758000Z",
+          "completed_at": "2026-10-26T15:46:56.007000Z"
+        }
+      ],
+      "stale_epoch_status": 409,
+      "foreign_worker_status": 404,
+      "unauthorized_user_status": 404,
+      "revoked_worker_status": 401,
+      "model_generation_requests": 0,
+      "executed_tasks": 0,
+      "browser_rendered": true,
+      "reload_persisted": true,
+      "protected_ui_hidden": true,
+      "incomplete_proof_rejected": true
+    }
+  },
+  "completed_at": "2026-10-26T15:46:58.560986+00:00",
+  "source_end": {
+    "version": 1,
+    "policy": "git-relevant-source-v2-including-root-template",
+    "sha256": "d47cf1fe3478c7877dd7cda342e56c94fdc16a517be7964f5cfefd4244f20b6f",
+    "files": {
+      ".env.example": "713ae062c9ba5c024e018416edf69a197805e83efe87193cd37d0a579235db44",
+      ".gitignore": "00fa81e1e924669f0856da223cc586833ef72844cae0cefea46a50b6594db7a5",
+      "apps/api/.env.example": "bbe276bb407987d6938e8c3b98ed3001faa02b37b4d85cd3f869164d9833d6da",
+      "apps/api/alembic.ini": "55f6227b037e8558031bdca3ace12a01bd14b7fea0df8d7285d35a508c04a671",
+      "apps/api/migrations/env.py": "023baf8db182badd6991fd50de7b8f300df1da155d79d079f637cb185aa6479a",
+      "apps/api/migrations/script.py.mako": "ee5dd9a388ee59fd3d089670c2f60db5f5904da6f21cfe3bfc44d7f567ee1546",
+      "apps/api/migrations/versions/0001_projects.py": "afd31c934b3b28bb471ddaa3b0a4b5249b006446d550c0a45bffc1f5922409c2",
+      "apps/api/migrations/versions/0febbe526f54_auth_workspaces.py": "7a463ba5c0b3e79959a276b9a7496f069785be744a81b8aee59e24147fb2cc47",
+      "apps/api/migrations/versions/5a28ca29f8df_scheduler_worker_handoffs.py": "aef5dc502ee51040cea35c060447a51223dd32af3c2d1ceff7838211e749b73a",
+      "apps/api/migrations/versions/7dd7671f9417_architect_planning.py": "be0cebe80b0801d2543c181bc7a3da8afe1b6d8fca5a7d79df43a87f112edc7d",
+      "apps/api/migrations/versions/ab3987da8961_product_manager_plans.py": "b1b13b4de935b7a9511983c0d24c36be10d1f792f1f6759f064bc0d7261ba17d",
+      "apps/api/migrations/versions/f9e997d59bb4_orchestration_foundation.py": "92779f2c35a8af0dabdc8e1b7fa2345292afe01f579c7714081317592ff26347",
+      "apps/api/orba/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "apps/api/orba/architect.py": "9776ea80ea61fd26f9dadf73ddff290574cf2bc442ae8618e0a69e42b8776958",
+      "apps/api/orba/architect_models.py": "3fbcae3e439c1e85e956db33563d4845cfa482917d9034361bc950e8c68b584e",
+      "apps/api/orba/architect_provider.py": "67d62b093eac3fa07c7dff5b90d891d2f0fa4ee0cc16e6d687fee42346eb8336",
+      "apps/api/orba/architect_repository.py": "710f7d02601a42b6df01674c30738b577af8b3209e8923361b335c19cfb25947",
+      "apps/api/orba/architect_schemas.py": "cc121bf70ed920206464c13d02af97a20b40d9462d6a91b49e18e4afca0ac6a9",
+      "apps/api/orba/architect_service.py": "e6ff5d329cb795fb9ae5930996adc67ed46ac7120a4c7de72daa5688a477b8fc",
+      "apps/api/orba/architect_traceability.py": "2fa975e444a1b31f67a9234efae04aa94c53a078555f0a99c616d349a58a5c03",
+      "apps/api/orba/auth.py": "b9777bf99338576cafc52bc30d15cde6db0815606cbc492735c7c68a219f4c25",
+      "apps/api/orba/config.py": "3fe511fcf9b6f411b7108d880b41a9f7a08a137390ea61be319e8bfc9364bda6",
+      "apps/api/orba/db.py": "5660e401376f6f2614678c7e5763dce7d52674aceeb59413f0ae28f2864b6bf6",
+      "apps/api/orba/main.py": "6b820256a1d92771e05793cd5ea0820829c33523ebccb2dbca64c51aefa5f58e",
+      "apps/api/orba/migration_safety.py": "1257766657aa8d8f58bbe49447ed8730da927fbf5acda6f4f6f9c818ab677588",
+      "apps/api/orba/models.py": "61239dcebb5f642353f632577476cacc89de0e861f56b81820630ca25af733ae",
+      "apps/api/orba/orchestration.py": "116ac4bb3fd119f085dac79915d5feb88bcfc2ef8ea0d4d635233e8fe14a479d",
+      "apps/api/orba/orchestration_graph.py": "c9021130b940e7eeb082653387298736c68cf3e5bf18add31e04da86a5bd7299",
+      "apps/api/orba/orchestration_models.py": "ff953aa10bd24dd632448cccac0679d25196cbeb1bfdd12ec3dc0da8d86e4919",
+      "apps/api/orba/orchestration_schemas.py": "58f144f215350837b4475f57d95b474f9ece9c9a94a3647e43b3598494b0a106",
+      "apps/api/orba/orchestration_service.py": "a135eb889c40b7dbd5c196fde3e63326d1d271f7baaa23b08841c56381a84f25",
+      "apps/api/orba/planning_admission.py": "0e91ae5f5dae9c78ad6d2474f5343661bdeedf84d1248f59c2539dbdbed973b5",
+      "apps/api/orba/pm.py": "b1969ab1ef97c71faa305e8c9cebe61f497333755f31f630b52184b86d9aae0c",
+      "apps/api/orba/pm_errors.py": "e85eb27b5ed1431119dcc89ccd3259a9f9bd9a210555e67c6df6ab79d3302c79",
+      "apps/api/orba/pm_middleware.py": "6bb02b57e8a839acd1b5952a2bab34d21957c1d403f27c75d73a0a583b05e2c3",
+      "apps/api/orba/pm_models.py": "832f4d620a1434a367b9b0d72c9f95652337acc30d7bf972329a7063c797381d",
+      "apps/api/orba/pm_models_policy.py": "4a449e4d7c187ab7055afa72f511ac5f53268d5f8f8ad71d141098f854635c7e",
+      "apps/api/orba/pm_provider.py": "3264212276b6af3a07d329f2e1d09afe217fbb4ddfee9492c5ed5751298586c5",
+      "apps/api/orba/pm_readiness.py": "47b77748c80ddfa8bf53a3df9100a1306c3230c0a324d7daf5e60434e4ac3e91",
+      "apps/api/orba/pm_repository.py": "5dd8b72bbb6a9959e099eb400e7ed36a1527d6a017cbc780550400bf781b5121",
+      "apps/api/orba/pm_schemas.py": "bfaf16a984ce27cf2a849d42740da86e6e9bb8ae6e85a157a40408e2fd99675e",
+      "apps/api/orba/pm_service.py": "e54922fb11af9f346eb909143564d0ed2857a4c7bb5d7dc80e8434d68edb837a",
+      "apps/api/orba/pm_timing.py": "8e2c5deeddabc0ad95eafd5e5eb16848e396472501275161bb265d3e5aba288f",
+      "apps/api/orba/prompts/architect_v1.txt": "b05f3df028026489ca760894a1cbba96ab69ea37d7979f1c8a756c69466400a8",
+      "apps/api/orba/prompts/product_manager_v1.txt": "268749ec7f6f7527b7950889b51efae43dcd18a60f5140a51bae4c9a918e40ac",
+      "apps/api/orba/prompts/product_manager_v2.txt": "c7b8aac189085ca73a281633265461c7327dfb3a5e531d61b7e3c51f42a29056",
+      "apps/api/orba/scheduler_models.py": "a0a8297d3bfe5652e0ab383c64bd41d2da2ccc14478c904eff3e8ba25d19a2f6",
+      "apps/api/orba/scheduler_schemas.py": "0d781f48e8955daf60244dec6014dcf252d9115fb5056d226da94cc144986cac",
+      "apps/api/orba/scheduler_service.py": "901bdb6effe68c9648f405908fa6d25b158985c826c07d04ad4bcecb559aac01",
+      "apps/api/orba/schemas.py": "248c39d97c571bb549bd9d2e20339cae68cbabca733bfccd934b699493b45448",
+      "apps/api/orba/security.py": "58ebd495dbf67af6eaadb234aad509365655fbdc4d641e1cc78cbcfe8d613315",
+      "apps/api/orba/snapshot_checksum.py": "09e1480b9fa4a112c0d4ba3b6ef4f39cb13ed2735b9189d23a15bbc7c38c5204",
+      "apps/api/orba/task_graph.py": "924cff4d6ca98afe489c889d5c0f00cd91f5cec9a8e88dd9eae531bf7a9f5d60",
+      "apps/api/orba/transactions.py": "891f7d91c7f605f0ec6e9ab4a93242011ef85bd65c1ad8c02418dd180355b775",
+      "apps/api/orba/workers.py": "3daad2f7d24e71684dd93219a1498d3fc3a86e43fe5f02d7a01eb1769893f580",
+      "apps/api/orba/workspaces.py": "f63b9d35bda271359640df83550d93a357e776b272fb530fd3c42c3c2e2cb593",
+      "apps/api/pyproject.toml": "90711ee61b67e92d068489050e0eefd33c4b5aaf33f18e9b816a4d1c1eb3f7d6",
+      "apps/api/scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "apps/api/scripts/architect_false_success.py": "f3e81da8e13771515263ed5c3a5d71827a2d0d4ec982cf09d10fc061b5a7b9e9",
+      "apps/api/scripts/architect_preflight.py": "f7238b71e9817ce5819f9b60bf0b1467b50909d56f2c7e0ba4c03898c9c1c512",
+      "apps/api/scripts/architect_sample.py": "0aeced8c0bc1c031f8b150310bae9e591b81a07de17019b137bf9eb98107d767",
+      "apps/api/scripts/architect_verification.py": "c0ebf50d9d2e164a0e24d909031ef82940e68de110dc855b71a9bed76fdcf1b0",
+      "apps/api/scripts/architect_verification_baseline.json": "a3efb148eae167ebbe8961825468be9031e5ad18fee13f4036d676aef789226f",
+      "apps/api/scripts/check_architect_config.py": "79994383cc7d9de6ed9516313e8dd230e970f590f21a35af44c5af756f0e9cce",
+      "apps/api/scripts/check_pm_config.py": "c677b4152e9fdccf54b3f9ecebb5a1f7c1b585d110bd246ac88f321c37227c7e",
+      "apps/api/scripts/check_scheduler_proof.py": "1035a9f51d411001d06d6337dd1b63bfc1a0a829f24533cc5f10b61e4c1cd9c7",
+      "apps/api/scripts/claim_legacy.py": "a78df44d8abade19b7d8270e7b3731dc2e6113fa3b271393c3a030f928c18c67",
+      "apps/api/scripts/inspect_architect_preflight.py": "31ad750d6248359455194a43d7310ecb7a064e83547f2aa5a50be2c8f8076bfb",
+      "apps/api/scripts/inspect_architect_run.py": "5244a9eef6ee80585bb3f043ea7b79e40a43ea5a9e30f08181b269b82826d97c",
+      "apps/api/scripts/inspect_orchestration.py": "6e4beee3a7759a1d7aac9d569ffed99a5a76466a13cb350ef5a7f81c7690a816",
+      "apps/api/scripts/inspect_pm_run.py": "b127f154d3faf21f5f12fb624d06ec75a0d04e07f3717293d54a52b313d3e3f8",
+      "apps/api/scripts/inspect_scheduler.py": "068c43cd620c2f52fce9512967e08aa046e8f7b6bd48b1fc46810a87f8997b68",
+      "apps/api/scripts/orchestration_false_success.py": "fa10590233984ef0ca871446c2995f882cd601889ee100c1777e442abb41c07a",
+      "apps/api/scripts/orchestration_proof.py": "2b2bb6c65516eda9c869349ee7be3266ba6992f3530aa8ff872aba8a4f1447e1",
+      "apps/api/scripts/orchestration_verification.py": "e76a720f81dd9c96107ddf1d31dcb3c7925f3153c7dfba9d8f71ec5c2749cff8",
+      "apps/api/scripts/orchestration_verification_baseline.json": "d271b7ab7bfdd9503bb7aca4ba90535a2e45288ade748c16e871b6117fb56bfc",
+      "apps/api/scripts/owned_process.py": "d7cdd7c232e4907c9f022cdae0093fecfd37ba8d9ca8d690f3d4e0a0f6f60b40",
+      "apps/api/scripts/pm_sample.py": "d184a021f7235a8c5bbe94321adb558d3b19790e584e1c1f9a4b95fa2726af2f",
+      "apps/api/scripts/prepare_tests.py": "2f2fc021addc46098549ff83122630fabbf65fbe1ed1bbb186fc936b0cd3fb3c",
+      "apps/api/scripts/scheduler.py": "e311dcaec634091f188153af3b9f63b5b030548a08b1316de2b2901c3603ca68",
+      "apps/api/scripts/scheduler_proof.py": "08c3865cd67a0aa063cb1f929d1947cb180ab363fb1b4b04866315b9af169fc7",
+      "apps/api/scripts/scheduler_verification.py": "5eb7cd7d03d131a807b337f2c4643fc9a5d818f703566ad6684a964836d288d9",
+      "apps/api/scripts/scheduler_verification_baseline.json": "2256ca9311cab7ff00a053204b037764f2895d81fd3413f587b38a2cd7306bce",
+      "apps/api/scripts/seed_orchestration_fixture.py": "519dcb51e5383edd7e4d5f247279d7a0f5b34050f86231b8a896d91b16553d1c",
+      "apps/api/scripts/seed_pm_fixture.py": "eddbf07901b4ba660df50a19a0ed585ddd8c3ef267716c8e8d8ce7095d743544",
+      "apps/api/scripts/test_database.py": "88ff31b9dce00a2e0abc8f9c3f66ce92ae895a794753943db99376b62157317e",
+      "apps/api/scripts/test_evidence.py": "9db6662d9f0229511c5e35bae127933c67f457bb405ac3f9f5ad576e9a52fd56",
+      "apps/api/scripts/verification.py": "ce87b828f3d2dc8482af7847311524a39f69b277129220c37bb445090c308c87",
+      "apps/api/scripts/verification_baseline.json": "2e2d83e325ae07061159842f2a7ffec75919528696a56ba79f073863ddb2978b",
+      "apps/api/scripts/verify_false_success.py": "75b37665fe3d283f516e6065567ae0b879fb23adeaef34107c4434fb7887fdc1",
+      "apps/api/scripts/verify_pm_live.py": "bb09b029eb54b0fdbd9a583abc71563e6b5b80beca4e8d69c9f80e507707cf0f",
+      "apps/api/scripts/worker_admin.py": "506dc3cf7dde65c105f2ddd6779eb4ea147b95d89667aad090a9fb7001f41b35",
+      "apps/api/scripts/worker_client.py": "26a866ce963e2ee86885c5d10b0fc093abb42cab3403940ea59c8aa11908b441",
+      "apps/api/tests/architect_controlled_app.py": "f93830b320c59e0ab76c37b67140b7c71903712259058c4733f0845a750a4477",
+      "apps/api/tests/architect_support.py": "1855a15ba2b76a74d031bb30d826b1413eba69caa8550aea994e4ecd19f0bdbb",
+      "apps/api/tests/conftest.py": "bc1f989d696981a1c8cb1fbea442f51c5f16b0daa8841df036f303854f365d22",
+      "apps/api/tests/controlled_app.py": "4aa7623bf3a856bf2019b0a22bf1fa3b28922bb6e250f1b001ed91048ced0903",
+      "apps/api/tests/experiments/architect_failed_run_success_experiment.py": "46fa15e7a371c7d73fe3550e50780e1ed927096d4e1914e86c67f68c045cda46",
+      "apps/api/tests/experiments/credential_publication_experiment.py": "c808c76d7ed561c666aae5889f34a70e04dfe40bb3bd842179155c51b7549c8c",
+      "apps/api/tests/experiments/handoff_completion_experiment.py": "8c3eaa0eb6378b188f1b07c8cbf92d1e93948d2f9c60415bc8ae0097492a54f7",
+      "apps/api/tests/experiments/orchestration_completion_experiment.py": "60a5f73d55d74fb4f89601f43f29c720fc43e424e8d5d274703765d820fd867d",
+      "apps/api/tests/experiments/pm_failed_run_success_experiment.py": "75ae15934c5cab3f8b8891e7c2ad7e6e7878b84fe52801722e101b2cb94af43e",
+      "apps/api/tests/experiments/unauthorized_success_experiment.py": "44bb6e89b444e517af5414c7fdd7ed60c6e712ec76bc042dd5bf382f6ff4fd1a",
+      "apps/api/tests/no_generation_app.py": "88cab4ba82173a10cb73f0bfc990756653ec90f187714e14a0da6557c865fb0b",
+      "apps/api/tests/orchestration_proof_support.py": "954b45ee7ec7ac374e3e7e29e19da7ded465a6aae15c4eb4745b0063fde075fe",
+      "apps/api/tests/orchestration_support.py": "30cde3455f4eac25ae77c36e1ed60335d0abc55c5e52b6a76e8a79e20a22548f",
+      "apps/api/tests/password_support.py": "4fd03df5db9af2ce628f327bdd73bebb23124e67d2286442397d3e5d640ded3c",
+      "apps/api/tests/pm_support.py": "d2cb7a5e6b01b9996dbeab4082fe76852097af4a566c3a72ec8d2be1871e26e1",
+      "apps/api/tests/report_safety.py": "99cf547b211881f685c9109957cac5517342f3f4aa0fd999fa0df1da312634e5",
+      "apps/api/tests/scheduler_proof_support.py": "f0d1fcd66d3b36f791e8f229804c0795d5ed650fa1f627db56172bfef975b3f5",
+      "apps/api/tests/scheduler_support.py": "caf94e909961067ab6a69012aefed258db4136359bd4ff7fe89cac2095596bc4",
+      "apps/api/tests/test_architect.py": "72ed489d08d54ff68e0b154cbc55f71b76e57f7297a9729ede517fe076c85d88",
+      "apps/api/tests/test_architect_concurrency.py": "98acaf4819a3cbb5116b1e96a9a8804e4b71492be125b17e32ce2c94069fb53f",
+      "apps/api/tests/test_architect_migration.py": "77eac5571d8e599df0874a677e61125278b6dd524c76a8eb3edb81404ab6edc0",
+      "apps/api/tests/test_architect_preflight.py": "16684db1c862959a4d63e52c009d6bee24e54da1bc5afa88ba989809142c2257",
+      "apps/api/tests/test_architect_provider.py": "f99050a93c3185032c392da731468a8e7a46d9a02b2fadd246d29c0fff04e84a",
+      "apps/api/tests/test_architect_schemas.py": "07529f7143bf89a2d86b55b7806af014b8f2559e7d795d1cd0acb6c995ac85f7",
+      "apps/api/tests/test_architect_verification.py": "ba32a67cfab2840b0766e2763fe2b51f21b315603f8a32056db22dda3d1fd1de",
+      "apps/api/tests/test_auth_workspaces.py": "439aebf1a3ed4c8a91e176f922d933399eb6d1275ae5a925bb8113c5e9152736",
+      "apps/api/tests/test_legacy.py": "be83b1e8aef1f61e014a74e3abda0537264f266fe230297a3f34c69c8cf9e540",
+      "apps/api/tests/test_orchestration.py": "97a9fb9575bac2033aaebc2032ce5d3e06e7af0a62ab91c17e8778d23e124e09",
+      "apps/api/tests/test_orchestration_migration.py": "7daf619c186d912c91f53b3f0068af2d1223f56b0a77f46995c0cbbe6f6166a1",
+      "apps/api/tests/test_orchestration_proof.py": "848b3248079479dc6006c128c0893875db56ae5904ffa8dce3be48598c56ebce",
+      "apps/api/tests/test_orchestration_verification.py": "f405e7ecea5e888edac8734d4e4032ee599a5891dd925ff3c8b275360ec49597",
+      "apps/api/tests/test_password_policy.py": "3a3dd29d4c7972be0994c093147ccd80b3f3c424b44b151049f234529c6dd8b8",
+      "apps/api/tests/test_pm_boundaries.py": "467978304071e5a668b4cbdf2510da74b78705271214ff7eaabc404fc017c28c",
+      "apps/api/tests/test_pm_concurrency.py": "e5293c1f5f99bbd17cad1a0bc37bcd84b1bf0881575b38128b8cc75bbcebf21d",
+      "apps/api/tests/test_pm_contract.py": "5091907b077e3390bbb1b7eca6a1292c8fe40f19ec54f5de9f68205d1609db6b",
+      "apps/api/tests/test_pm_lifecycle_unit.py": "ac09b448b354ae559b6698250ee541d32adcd218ffe5c0b274daba0868c6c235",
+      "apps/api/tests/test_pm_model_integration.py": "714995f2fafdff323d8d4b67a0c578dfa3dbee921e13b45faf9a588701803ce3",
+      "apps/api/tests/test_pm_model_policy.py": "0095fcb538cc0760f5d90357e011f1f1a9e3c267420b05f03f8869ac053d82ea",
+      "apps/api/tests/test_pm_persistence.py": "da39f78d85b50d32ad610f543951e1bb361e70c4217b45840299ff1766b75110",
+      "apps/api/tests/test_pm_provider_unit.py": "6377cfd2e5e6b70508be4efad06e030c814fa81a8cdbfd51eed161c0786f2a83",
+      "apps/api/tests/test_pm_readiness.py": "774d3b9f2587762f1d5c487ccd7e9cbbe587ecb6f5f597bff24e9ef1a753e069",
+      "apps/api/tests/test_pm_reliability.py": "4c295041986bf0b4c0760276eff130b8f94eec69ba44f8dfbccbd2f243f90f21",
+      "apps/api/tests/test_projects.py": "52c11db77b91068ad74a3a0a8cec1f5124378f5a04ad098071bac16f08c99997",
+      "apps/api/tests/test_readiness_evidence.py": "a0264e10cd97989c1cf1628c402d7702c9084851bc6e3edb6917ba08853328a2",
+      "apps/api/tests/test_scheduler_api_restart.py": "8ebbd28bfc96b6d26553c13a7cb2b5f095035215c7606109a115f0268c32e980",
+      "apps/api/tests/test_scheduler_credential_races.py": "21fd145a19551f557b5773c53c4c5610c3ae829b406ea6f41cfffd05454a31e2",
+      "apps/api/tests/test_scheduler_imports.py": "f37b47e3221bc54480b9a828c8b48a5760a7b0af65bed03a1e1badd98dc3e2de",
+      "apps/api/tests/test_scheduler_migration.py": "a5f7ec41c509e14743eef6f6f85ef7a840377eff56dbbd10f6953c4f15395481",
+      "apps/api/tests/test_scheduler_proof.py": "a617937368b2c50482fdc5f70eb42440352a871fdd2fc89f67a0bfdf6bb3386b",
+      "apps/api/tests/test_scheduler_protocol.py": "cc2c5d3623dacc964e9d764b91e9ad4b73982361d5b37ac879ec673554090fee",
+      "apps/api/tests/test_scheduler_recovery.py": "ec96cc43faab6002ceac2e87afd4cfc818fc0c7cb6a43dcbad8c1dac65b8f2e9",
+      "apps/api/tests/test_scheduler_report_safety.py": "7ff2c5dc35bab5c788eaa81779026a22eefd2f623e0f774348154d4b84d8926d",
+      "apps/api/tests/test_scheduler_security.py": "710c0e69430798955e75db9aec17a9abb5071756380257270b7150adeb1c4938",
+      "apps/api/tests/test_scheduler_verification.py": "5b335446a3d26d35783bcdd373d5fd555e569b5a5c0044fd9205bb797f911c3d",
+      "apps/api/tests/test_task_graph.py": "3af54cf021cc454566223e830273aa8f09cf2fe90ca9f2846bc3a2fc3fbb118b",
+      "apps/api/tests/test_verification.py": "f80f4d7df2302f23f23d156d7c9b184add72880873ba8b5da9cfc896a40e1478",
+      "apps/api/uv.lock": "caeb0d985de3bfb9aa4d3f298dd164ae773e17d0936cc3a85547187332845f42",
+      "apps/web/.env.example": "c659f9eb8cad91b87d992b9b6bd8ff27c56f9d7ec4e950f212bd19f19ba46e9d",
+      "apps/web/AGENTS.md": "063098f6cb31bb44c6f8fbea25b3876de7ee1e5f7d00a50dbab506f6415eb7f0",
+      "apps/web/components.json": "0c60033cff764977ad34938d50558c0a3d7a8433b6f11c3607339a4f85559e49",
+      "apps/web/eslint.config.mjs": "202af1f79ca6cce81076deb0823cf3dd9bbffc843030bbf6a1e1962a67973cf1",
+      "apps/web/next.config.ts": "fbf171389d52bee2aba853200353c59e38e3c3d9e6ce3f778e419acde9026241",
+      "apps/web/package.json": "d9593b645210cf82802eb737072d0f7b9d1ee106c1a64c70f14cf6625e0bb69a",
+      "apps/web/playwright.architect-controlled.config.ts": "45b30b2b29fb8b727ba3f0734b78b089ac24318ec814298635b8cf22eab6dc83",
+      "apps/web/playwright.architect-live.config.ts": "c8480b71ccf1501a33ba74c15ee23fd87c5f789c490f928e0c0a16eb475e1300",
+      "apps/web/playwright.architect-preflight.config.ts": "027115bf52f79bcdc1040de01a6fb24206b1781adc8d88d95afd4a5cafcf380c",
+      "apps/web/playwright.config.ts": "9adb1e7addb22b08fb258ba0336627f83eaf4fb41e948ea2b0fbea2e6ae124b3",
+      "apps/web/playwright.controlled.config.ts": "0c646141b33ee2cae424bb4f8c06439e0aa22953ccc0dc0b6e10ad97a22e1ced",
+      "apps/web/playwright.live.config.ts": "0eb82848bc442532049c4f879dbf230b29aace4c6f32202987993e8d696d6f36",
+      "apps/web/playwright.navigation.config.ts": "e3aa2833efafb025bbe46113a74024cbb7abb7da7ecbcbc7769069c363734799",
+      "apps/web/playwright.negative.config.ts": "a0d7dcd3dfb81e922568eccb6390c9fbed1cb595f82cab951a31116e679691b3",
+      "apps/web/playwright.orchestration-local.config.ts": "d6625c1206c5b6b3d1a55890cc5b51c0bc93422a1ea9707feaa2634d2fb2a941",
+      "apps/web/playwright.orchestration.config.ts": "8b62e16f8d4138e26baff4ede7426210986e9535307ef7098e96adfacdbb7e5c",
+      "apps/web/playwright.scheduler-local.config.ts": "1b83779d2f56d087bd32f186e67265d985c1807736f8946ecd3be8dbed7cb93d",
+      "apps/web/playwright.scheduler.config.ts": "6e3c88d39d3361937d74e13621e25d31a9c37ad828608a87d09d5035dd229178",
+      "apps/web/postcss.config.mjs": "b783348d5618047d0f37e12acd15c5a2c5f02809d8711e0764c9cea52750346c",
+      "apps/web/src/app/[section]/page.tsx": "84a5b5cee75e94a3f34feb9c9ec1ea7952775792b61c8db4d7de071f80090585",
+      "apps/web/src/app/api/v1/[...path]/route.ts": "4f3f48b3736762def75122e6beec2c530421f672e40dc3930ff8750bb17a0b60",
+      "apps/web/src/app/error.tsx": "0965067b6e7a0498b918330ba4e8cc3a10e5d0de2d68a09bf597d7c8933287f4",
+      "apps/web/src/app/globals.css": "28953106a0172b98aabb3850a29ea9813f39b969a182505b4f246f8fc40aa4d5",
+      "apps/web/src/app/invitations/accept/page.tsx": "e539870fe6ad48fd61f94941274d2e6b18a1aa99b4e226f2ce5c8a75df22a962",
+      "apps/web/src/app/layout.tsx": "5b1777ebe1162dff6dc78d40ca3139a72608a2228de9c5492d6623210aff6ef4",
+      "apps/web/src/app/not-found.tsx": "d9835d367e86060fab4fae6fa1f4daf54ce39237dc12a8ba5640e39d36637070",
+      "apps/web/src/app/page.tsx": "c9c5b0cba5fee233442b76659d8bc9d0bba9319f24fe6e93bca23be960222c42",
+      "apps/web/src/app/projects/[id]/page.tsx": "30f616534a52649aa2a942696ad235d2a1a9e29e75559164e67ebf98b01c8c1f",
+      "apps/web/src/app/projects/new/page.tsx": "67f4100188f44fbb0b8175019cfe7e4984d7826bbcaeedee1c0b51f15a0b5486",
+      "apps/web/src/app/projects/page.tsx": "73587a7ed7fe795b4c5d3c954c6ff32705b04a1e256f1853c00e7bc00217daef",
+      "apps/web/src/app/settings/page.tsx": "90fc21b4fa6f3fbe28ff1a1b00189141bf19316cf8f8636f2c0e1b0cb956b2b4",
+      "apps/web/src/app/signin/page.tsx": "f61a7db2b172ce8d150380ffd6432a54e7bf5d98057dfd3a230804b0e4193e74",
+      "apps/web/src/app/signup/page.tsx": "5de6cb426991620bc4c3c7217635f749087d02c12eb20adafc60f9ad7413a7fd",
+      "apps/web/src/app/workspaces/[id]/page.tsx": "c72f5296bc74faadda60c55c265eb372c896a2fa0f6c95f2a1936a4e0e3aeeab",
+      "apps/web/src/app/workspaces/new/page.tsx": "12e8dcd4697efb434234a7aba2317349ff139f1f9cc0c688dddbbb036dcf3963",
+      "apps/web/src/app/workspaces/page.tsx": "52e8bb6eccb8808daa3cbd83a088918f9b5f26fcf15516dda64523b8a120a759",
+      "apps/web/src/components/architecture-editor.tsx": "be6dba584234f0768de9bb3269feb1a2b7f40114006a4d963c526e320172fe32",
+      "apps/web/src/components/architecture.tsx": "16afd7a65dab5260c207f9769f7d062d12463802f6bcc8680652fb445a0fe183",
+      "apps/web/src/components/auth-form.tsx": "56510d876c7ca589f142c410186a19b1c384a89ac89ae0cce9bc3e53bc2504ac",
+      "apps/web/src/components/execution-graph.tsx": "245cea018b364767de1c145d6649058bdfb289c353658ecca7fa136d37327ede",
+      "apps/web/src/components/execution-plan.tsx": "3cdc2833a3a23e317278c2a16f96f0df3f7ebae7f45c9ed7abf61a858598b365",
+      "apps/web/src/components/plan-editor.tsx": "90500245e4c5f92a045e78e77cd3716b223ddd09d675ce2e9b2b081c7d717ecd",
+      "apps/web/src/components/product-plan.tsx": "90577d7378f1769c7881993ba7d1a6bb2376bdd4377cf7e7f2e965383ecbde12",
+      "apps/web/src/components/project-editor.tsx": "3cad48354a1bf89429a6d19b7e50997822bb60f969e8d1a7d863613029732116",
+      "apps/web/src/components/project-form.tsx": "5783ad1d5333fcab05424a9ac5c418da057daa654c5504b958f062f706b99079",
+      "apps/web/src/components/project-planning.tsx": "9dd797b7fa1c316421be8e0943aaaee3b90f3a7651dcdcfa251f4b8bcf62ce75",
+      "apps/web/src/components/providers.tsx": "8704eb803954d3a0b57edf7d61d6b0f961f192944ea7257bf91cd2bdea764868",
+      "apps/web/src/components/scheduler-status.tsx": "0ec0300fe836605abc74973626f51e178bd3d357a34a2c44b02a453ca2be7a07",
+      "apps/web/src/components/session.tsx": "592ee427349f76b2b564b714a78785c9aa2bfe8e613a13e16212289b375feaa7",
+      "apps/web/src/components/shell.tsx": "90f2fe5a98c4ec2b2182cc1e60d00a54b2f627980a84fb82051a16cfd880eda3",
+      "apps/web/src/components/task-graph.tsx": "fa3d0db14b31b66f04cab9c148b12a881b58bfb864716f5210c9511c82fa498b",
+      "apps/web/src/components/ui/button.tsx": "6a90ed22d612bbec20d68f4c9fbbe6e5d99333fcd456f1cfbcd92244600eeea8",
+      "apps/web/src/lib/api.ts": "7704f2b5ac1c78b4fee1ee4f0edf1e19ba7f0a3852b054f51e6646622157876b",
+      "apps/web/src/lib/architect.ts": "084a732e6d258f40fc97ad4cd5a29d4c7a900c30d8e8a1e9f05a54abbb3b4454",
+      "apps/web/src/lib/orchestration.ts": "ea926e959b970825e06935a0f8f8ecfd17000dfbf13fa295ed99dbafe925d57d",
+      "apps/web/src/lib/pm.ts": "e403749550ec60cc2808d4cfaf39830e2022407ecded476e67ce24a01fb64dfe",
+      "apps/web/src/lib/use-hash.ts": "921003e933f181665b0f85348018fa932972d1855607555be84a9b77ac76d617",
+      "apps/web/src/lib/utils.ts": "64fc84c1be627f0d586fb4ba64d824a1604f44282381f5bae68cdf86e10bb6ec",
+      "apps/web/tests-architect-controlled/architect.spec.ts": "d6b32356b8e0cc7c6ce4c534c111e36af3813c578233fb0c08c10ce9730331bc",
+      "apps/web/tests-architect-live/architect-live.spec.ts": "3b1989b7c416a1711c508077c77d82101856f944d296a7172bb92ef52c232bb0",
+      "apps/web/tests-architect-preflight/preflight.spec.ts": "d5c73bbd8621de23fde29de89f256585994bd6d817c09a4383881f5cbc08184e",
+      "apps/web/tests-controlled/pm-recovery.spec.ts": "746003c01ff743f2a8d2a673ab53394ef2f3c7774a36f49dab81489601fb5c08",
+      "apps/web/tests-live/pm-live.spec.ts": "c8203b73952a81ddf81ded7dd5d1cb88a99caa0f035eaacc7ecc517ead8d124e",
+      "apps/web/tests-navigation/navigation.spec.ts": "8b5b0b3c7b185deef7847fa81e8c6b63c100c00f6b396ab243f2b18fcb5b98b3",
+      "apps/web/tests-negative/provider-failure.spec.ts": "ff8e6ff9be055a578a3b68b1fdd27250f427310b6f6de7466cbd3dd65c635ea5",
+      "apps/web/tests-orchestration-local/control-plane.spec.ts": "3c4bafe5e030dcb726247876111a244b200976da73533beb33bc4088e3745122",
+      "apps/web/tests-orchestration/orchestration.spec.ts": "d3b9610ab09bef3c9b5d7d0753f25e7da8801ccdc2c7328a21d12b95c8dd90b6",
+      "apps/web/tests-scheduler-local/control-plane.spec.ts": "3c5be000dc8841a636b476c3c39e4ca974483a5b071d3acdb6983bc9137383d1",
+      "apps/web/tests-scheduler/auth-readiness.spec.ts": "3463b0403810b5b385d338e831b88fb0786cf48cb59df60f56c40ff06bab9896",
+      "apps/web/tests-scheduler/scheduler.spec.ts": "98676814eb86bf3701096e54765a3eaeef75a2bfbdbd44ad2fb4dcbed72b648a",
+      "apps/web/tests/architect-boundary.ts": "1614b070ce7ebc552bf9aa290dc5cc48d5e4fde817128a082b79873d75fa0bdb",
+      "apps/web/tests/architect-preflight.ts": "7b03ac90fe4572fefeff3fa0a6bea049102f172f3432b723c580e2186db426f2",
+      "apps/web/tests/evidence.ts": "056f733e65d4f5b078821264e99062cd7c23b59d0f7af05a4ebd615ed238a43d",
+      "apps/web/tests/generation-budget.ts": "9658345d787023805db881fcdace7fc007400bbf4c80f7cd0228171e05cf7a47",
+      "apps/web/tests/helpers.ts": "ebbe862001713ed67b1941201ad322498bfd846ad40dd2b3447902992fd81e87",
+      "apps/web/tests/no-generation-config.ts": "14e311bae3b7dce886a810e374c2a870850b00a0353e210bf527e09d0c07e7bb",
+      "apps/web/tests/orchestration-setup.ts": "48ae5d9e3955550d8d92f5ef29662f3d4c6d37eb8e08a4bf2a8ce238770566cb",
+      "apps/web/tests/password-policy.spec.ts": "34ab140131f011956980c7c492027125894e386f2e970b5d5b19caadbf4e4b6e",
+      "apps/web/tests/pm.spec.ts": "e7b78b7327d5bfde278a633ae5d27a5747541daad9280d38718c27f74fe6f08b",
+      "apps/web/tests/projects.spec.ts": "d0d5e5a571f5ec4b1897114dc79eb7429d92251ff98c82cea72e83d7ce27eb40",
+      "apps/web/tests/scheduler-setup.ts": "88ed2c4a14d8a0c9e53a27fc4d6d51f088332fe39295ae9dc387f80b18b7baa1",
+      "apps/web/tests/teams.spec.ts": "14ef381c4c5ae6ccc6b8ab3fbc0dfd9b2049cd5f134a8b5df1021f8b71cbfa62",
+      "apps/web/tsconfig.json": "93277bb06d21418d49db8ce2a4f7a4fcd4bef70de9fdee8838af4b8f7a360513",
+      "infra/compose.yaml": "224f6a21cc0d0f41d0c7f7b81eb7f6d1873620b88bf24f198833c1950f131a53",
+      "package.json": "7bc0f4a6ba5629cd60a8c830b5e125fb6030b1509ff18c8c5de38a25ae78796c",
+      "pnpm-lock.yaml": "9f135b01bfa345acae6f2fdb9154a7976e6f16da54813f38d542a0fdfb43b64d",
+      "pnpm-workspace.yaml": "9f215e6e25291b49e0537ca1a87020c61ef4b9a5f0305ec15456e82814cf0d1e",
+      "scripts/verify-architect-live.ps1": "13edb9266d5eefced82baa10009fefba9cd566c11201e54632c1e5b4fe37128f",
+      "scripts/verify-architect-preflight.ps1": "a0ec88aace11276991c20f6e731cd5b74884942111861398d4bca917dc48f8e7",
+      "scripts/verify-live.ps1": "c7eacc8bf556d51f4f9913a9f6458b4facca675ebe485444d4fba74ec29073a0",
+      "scripts/verify-orchestration-local.ps1": "f3003c388e8c41ccd33a19c867211d3114f273c45f5d35b7bd6b2a784ee4b5d1",
+      "scripts/verify-scheduler-local.ps1": "9710e1576cb7db867249ee88ec3bfee4fb030c358ea2090468f7e3207f8c3825",
+      "scripts/verify.ps1": "bfe61270663c96599da06b22abddf5bbd92ebcef08800d2bd07c4418916b68f4"
+    }
+  },
+  "artifacts": {
+    "126d472f-b12b-405c-aaf5-822609d3b348-process.json": "f09d1b919217c1c047e3cd4b82f70167703d8349bc2eeef2a6b7c578b6ad3a67",
+    "126d472f-b12b-405c-aaf5-822609d3b348-process.log": "4bb7516325fce607bc8fd73effe4d0a84eb5a62ecb4131dcbfe401cc9ed654cc",
+    "366939d4-bbb8-4d05-b4ee-e1e4579fe427-process.json": "0b1bc77a25a9451728dc627b06d19be58523e17bc4c0e337434bdc78a39a3ba6",
+    "366939d4-bbb8-4d05-b4ee-e1e4579fe427-process.log": "ff87f1e4694dcba3f44c33c9c635746f2e58fa426e08f03ab0de3cc2c2e8fecd",
+    "4ef21fd4-e0cd-4367-a752-b4dbce64c98d-process.json": "f049764df108b7bcb94f82684b2f11bc47936c5070a4cf769b7460c4daf287a2",
+    "4ef21fd4-e0cd-4367-a752-b4dbce64c98d-process.log": "2940d24807ab7f5b864fc6553a52ed5f23d0d690f9d7e45e53f7a35641e418fb",
+    "7081e3da-d6d5-4073-a18e-3474285438a4-process.json": "1f6001af6df7490863653d2617aeebfaef4115ff6adcf594e9a6f6ed1c5d8906",
+    "7081e3da-d6d5-4073-a18e-3474285438a4-process.log": "4fadb6efba3e72f5dc62581dadddf216c4f8777a59e833e65dfd0dd88ddf993d",
+    "751a8044-7c8e-4785-9455-119f8fee7e6d-process.json": "e5d8d5a42ba595083d80ef3f66147ddee000921e7a7ef9a8d638d80f8ce6c2e3",
+    "751a8044-7c8e-4785-9455-119f8fee7e6d-process.log": "c3eda0e061df35804fe06a9cebb9cdb90ed009c433e30e3d375f60b25dd9c003",
+    "7d0d3e78-fc49-4f14-ba84-d1cbf493152e-process.json": "c66c1805ec8273e40577e6739d5b24d290e03674f059af8ba32adf69b13b9876",
+    "7d0d3e78-fc49-4f14-ba84-d1cbf493152e-process.log": "3beb31e9338e2689688f14199ae49a8a9b15f3a8f6a8e6ed56dc8f7818f6a2b4",
+    "7d9a6d8d-0ea0-430d-ba19-4605198ff618-process.json": "fc8487fedd4f9de940b69065ee364f8b5cd1d30403b5ba2cdab59005701205c6",
+    "7d9a6d8d-0ea0-430d-ba19-4605198ff618-process.log": "bd86fadaf46fe360a601d42cef2e15c25d726182229c86663eb72b5a37c1834e",
+    "93be3e97-cbb3-402d-bb54-79f26b168af4-process.json": "262cd88c736ee4a3321734ded0219744e1b80264c7b4a2efb2a19525d4f22cda",
+    "93be3e97-cbb3-402d-bb54-79f26b168af4-process.log": "e1d5caf7d203d0422994ee6603419bbbf500ada59ad33e97205d349540d4ddeb",
+    "attempt.json": "087db1ee78c873bd1946c362f7396dc8b9655011785d001fdda73743321d3cb0",
+    "b9afb15e-7626-4a8c-8502-d921c1f82478-process.json": "af73530dd96aedcedc6f26e40e7d80521904973025e895320b92feb627bb1332",
+    "b9afb15e-7626-4a8c-8502-d921c1f82478-process.log": "d640434698050010d9c4e022c2e539bd340f4a18f7b7cc76aab55c708338cbba",
+    "cd71181e-5de6-4663-b8d1-2de5b55dac20-process.json": "6ddf7a5728a82cf6ff8117e97fbb1b52882a7245b4e5ffb6058de6b3631f8c6f",
+    "cd71181e-5de6-4663-b8d1-2de5b55dac20-process.log": "2d12388dab3a4da166a5d73759b81d9a9a3f9327a4c9b96a0ea0f872e46e4326",
+    "da1a9ca5-edfd-44e1-9d87-6614d7438cba-process.json": "4ad1e2f8b51395a0cdd655fbe7c98c73b147385623e493db9d6a23bbc732913d",
+    "da1a9ca5-edfd-44e1-9d87-6614d7438cba-process.log": "9bbf6fe7f996c04e66a2e98811167f4d4202de0fac18e45fd4b0caf6cdb875ac",
+    "e3247212-3ff9-498e-bdb7-bc1ca2cd297d-process.json": "ad1e9770fd2a446263c586a7014437740ef1197c2f5ae112b842c43b2c073f8d",
+    "e3247212-3ff9-498e-bdb7-bc1ca2cd297d-process.log": "eb0cb40df07193821a024c075efbba502bab9030156ac9b2c399d0ab64211482",
+    "local-browser-command.json": "e8fece219692dbb792fefde72bc051059a9537a8a7bf4727add3fa05d6679b58",
+    "local-browser.json": "b8552fe5503fba76f16ddc4543c08414b6433df14ec8a8691c24ba33e3ed4eac",
+    "local-browser.log": "366f08b0a71b485a0e8800bb3373b8eff9112435777a35e3a55ba23be7757c43",
+    "scheduler-proof.json": "5533478a6239dc7a70cc66f7d2e34705ace78423f6144a9c83f6067f21f68771"
+  }
+}

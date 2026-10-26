@@ -1,0 +1,55 @@
+{
+  "stage": "stage05b-scheduler",
+  "gate": "A",
+  "execution_class": "deterministic",
+  "verification_contract": {
+    "stage": "stage05b-scheduler",
+    "proof_version": 1,
+    "proof_schema_sha256": "996e348cbcc142a9e8a9b75939f60b533352f24c37e9f49b2f16c8a4a6cb3320",
+    "handoff_schema_sha256": "bef3ba5d65a96f635fbc3b664f522ef38455cdaab75b87a9d3915a09a4e66d43",
+    "policy": {
+      "acknowledge_seconds": 10,
+      "lease_seconds": 30,
+      "max_lease_seconds": 120,
+      "heartbeat_seconds": 10,
+      "worker_liveness_seconds": 60,
+      "global_capacity": 8,
+      "run_capacity": 2,
+      "max_attempts": 3,
+      "batch_size": 8
+    },
+    "source_contract": {
+      "stage": "stage05a-orchestration",
+      "proof_version": 2,
+      "proof_schema_sha256": "ee903692317f58843c55ea65c6d3d7d1f7a9da111328e5029dbea4c1e6e781b3",
+      "hash_version": "orba-orchestration-canonical-json-v1",
+      "edge_convention": "prerequisite -> dependent",
+      "transitions": {
+        "created": [
+          "awaiting_executor"
+        ],
+        "awaiting_executor": [
+          "cancelled"
+        ],
+        "cancelled": []
+      },
+      "schema_sha256": "cdee704beeff62b0ff76ee247303ea971a0759b217c3d8544f257ec8c050d30b",
+      "model_generation_requests": 0,
+      "executor_available": false,
+      "execution_performed": false,
+      "database": "guarded local orba_test",
+      "workers": 1,
+      "automatic_retries": 0
+    },
+    "model_generation_requests": 0,
+    "executor_available": false,
+    "execution_performed": false,
+    "automatic_retries": 0,
+    "workers": 1,
+    "database": "guarded local orba_test"
+  },
+  "started_at": "2026-10-24T11:07:59.612050+00:00",
+  "commands": [],
+  "result": "BLOCKED",
+  "exit_code": 2
+}

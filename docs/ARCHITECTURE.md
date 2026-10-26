@@ -1,5 +1,17 @@
 # ORBA architecture: planning and orchestration foundation
 
+Stage05B extends the existing foundation with durable PostgreSQL dispatch, scoped
+worker credentials, atomic leases, monotonic fencing and versioned handoff receipts.
+See [scheduler architecture](ARCHITECTURE_STAGE05B.md). Engineering task definitions
+and approved source snapshots remain immutable. Acknowledgment and heartbeats are
+control-plane facts, never task execution or completion evidence. There is no
+coding/QA agent, completion endpoint or exactly-once external-effects guarantee.
+
+Public authentication forms remain disabled until client initialization and the
+initial session lookup finish. Their native method is POST; delayed or missing
+client scripts must not send credential fields through a GET. This readiness
+guard changes no FastAPI password, session, CSRF or authorization rule.
+
 Stage05A's local verification uses a strict evidence-only proof-v2 contract. It
 requires actual SQL task/edge/event records from a separate read-only repeatable-read
 transaction and reconciles API identities, DAG evaluation and the raw canonical
@@ -10,7 +22,8 @@ be nonempty; zero edges are valid. Public application behavior is unchanged. See
 Stage05A adds a deterministic orchestration control plane, described in
 [ARCHITECTURE_STAGE05A.md](ARCHITECTURE_STAGE05A.md). It preserves approved source
 artifacts, snapshots their tasks and DAG, records transactional events and
-separates eligibility from execution. No executor or scheduler is implemented.
+separates eligibility from execution. No executor or scheduler was implemented in
+that stage; the scheduler extension is described above.
 The Stage04 sections below remain the planning-agent architecture baseline.
 
 The existing Next.js/FastAPI/PostgreSQL monorepo, authentication, workspace authorization and Product Manager remain. Stage04 adds an Architect proposal and task dependency engine; it executes no tasks. [Stage04 data model, algorithms, API and lifecycle](ARCHITECTURE_STAGE04.md) describes the additive extension. The Stage03 sections below retain their historical design context. Current verification is in VERIFICATION.md; no production security certification is claimed.

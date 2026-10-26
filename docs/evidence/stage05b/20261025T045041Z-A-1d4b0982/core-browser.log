@@ -1,0 +1,297 @@
+$ pnpm --filter @orba/web test:e2e
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [3980]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 60 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=8debcbe8-4fbe-4aa5-81e1-7e688cefe747 workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=8debcbe8-4fbe-4aa5-81e1-7e688cefe747 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=fcc8cf19-87af-4d1c-a862-9065c098b98a workspace_id=-
+  ok  1 [chromium] › tests\password-policy.spec.ts:25:5 › new password boundaries reject fourteen and accept fifteen without composition rules (20.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=771b62bf-df1e-48cc-b62d-e6bfb6cce72e workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=771b62bf-df1e-48cc-b62d-e6bfb6cce72e workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=771b62bf-df1e-48cc-b62d-e6bfb6cce72e workspace_id=-
+  ok  2 [chromium] › tests\password-policy.spec.ts:73:5 › actual clipboard paste preserves over-limit values and full unicode passphrase login (8.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=a5594a02-a210-4203-8e11-bcc7771bdb6f workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=a5594a02-a210-4203-8e11-bcc7771bdb6f workspace_id=-
+[WebServer] INFO:     security_event=login_rejected actor_id=- workspace_id=-
+  ok  3 [chromium] › tests\password-policy.spec.ts:115:5 › a real legacy twelve-character account signs in and keeps ordinary credential rejection (25.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=00effeab-53b6-40b0-b468-d9e6338e0879 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=00effeab-53b6-40b0-b468-d9e6338e0879 workspace_id=d7b88551-24e5-4a64-b972-041843ff6388
+  x   4 [chromium] › tests\pm.spec.ts:21:5 › provider setup and empty state are honest; visiting a project makes no model request (13.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=2798b3ac-fa3c-480a-afef-e9ac234b3e66 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=2798b3ac-fa3c-480a-afef-e9ac234b3e66 workspace_id=2d371cb9-679d-4aea-8803-0016892d8f0b
+[WebServer] INFO:     security_event=session_rotated actor_id=e2c18fcf-c041-42f2-a98f-98d17227447d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e2c18fcf-c041-42f2-a98f-98d17227447d workspace_id=5504bfd4-4ded-41c2-8c0a-6252f982c8a7
+[WebServer] INFO:     security_event=session_revoked actor_id=2798b3ac-fa3c-480a-afef-e9ac234b3e66 workspace_id=-
+  ok  5 [chromium] › tests\pm.spec.ts:32:5 › human-authored fixture: edit criterion, persist, approve exact version, history and isolation (1.1m)
+[WebServer] INFO:     security_event=session_rotated actor_id=e1ddeac7-ccf7-49db-9b01-8b4a083e4fb8 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e1ddeac7-ccf7-49db-9b01-8b4a083e4fb8 workspace_id=0add290b-4131-4613-83b3-4c27b0582aa5
+  x   6 [chromium] › tests\pm.spec.ts:89:5 › a save conflict preserves local edits for comparison (30.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=58b414fd-79a0-4c14-af11-9f40d36bf232 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=58b414fd-79a0-4c14-af11-9f40d36bf232 workspace_id=60460e34-8de5-4031-9132-ea604ac7e4b8
+  ok  7 [chromium] › tests\projects.spec.ts:12:5 › empty Projects gives a usable first-project action (11.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=fe2de87e-5ab3-421b-abcd-428ae0a3bb99 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=fe2de87e-5ab3-421b-abcd-428ae0a3bb99 workspace_id=c8b6328d-a070-452a-ad78-83c5bb1feeed
+  ok  8 [chromium] › tests\projects.spec.ts:25:5 › chat creates a real project, survives reload, and appears in Projects (15.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b48886c3-dc47-4033-ba02-8390f7347d7f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b48886c3-dc47-4033-ba02-8390f7347d7f workspace_id=da4c368a-7b0f-4dda-86cd-4a9b5231eef9
+  ok  9 [chromium] › tests\projects.spec.ts:53:5 › explicit project form saves title and description (9.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5862f14b-f3c9-4479-92cc-7a415fbd9821 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5862f14b-f3c9-4479-92cc-7a415fbd9821 workspace_id=dc461f94-8430-4636-8479-b7faa24b23a8
+  ok 10 [chromium] › tests\projects.spec.ts:62:5 › theme persists, future sections are honest, keyboard navigation works (12.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=2c9319e6-338d-48b9-87eb-efdf59c73b93 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=2c9319e6-338d-48b9-87eb-efdf59c73b93 workspace_id=da6b003a-d1a9-4cdb-b42d-2273ffbb2080
+  ok 11 [chromium] › tests\projects.spec.ts:79:5 › nonexistent project shows an actual API not-found error (8.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=c6e10d7b-f501-46cb-a9a5-03a30f3e02bb workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c6e10d7b-f501-46cb-a9a5-03a30f3e02bb workspace_id=ba591bd4-8751-41f9-a66c-a4396cae7690
+  ok 12 [chromium] › tests\projects.spec.ts:84:5 › network failure preserves the draft and permits deliberate retry (14.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=ccad99ca-3eb2-42e1-9edc-c372ea550f8a workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ccad99ca-3eb2-42e1-9edc-c372ea550f8a workspace_id=58c7c7a6-d7da-46ed-8495-0271bdc42a94
+  ok 13 [chromium] › tests\projects.spec.ts:97:5 › whitespace cannot create a project (4.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=db33ca76-302b-4570-a97a-b8a86125c175 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=db33ca76-302b-4570-a97a-b8a86125c175 workspace_id=5b9db99e-bba2-4b30-8dbd-31bba645d80f
+  ok 14 [chromium] › tests\projects.spec.ts:107:5 › navigation supports mobile Escape and focus restoration (4.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=ddf16609-8ed1-4413-8266-14522256f969 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ddf16609-8ed1-4413-8266-14522256f969 workspace_id=71e35380-923c-4ae5-9b02-26abd1d0247e
+  ok 15 [chromium] › tests\projects.spec.ts:122:5 › home layout in both themes (4.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d07f234b-2450-4fdc-89bf-e85db50eec45 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d07f234b-2450-4fdc-89bf-e85db50eec45 workspace_id=bdfb2d80-db68-490f-bed2-eb0608f5cea4
+  ok 16 [chromium] › tests\projects.spec.ts:130:5 › rapid duplicate submission sends a single creation request (10.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=32ae0b1d-7644-4409-9aec-c99ae4b7e64d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=32ae0b1d-7644-4409-9aec-c99ae4b7e64d workspace_id=a90b1054-7529-41cf-ae3a-5aff47752ad4
+[WebServer] INFO:     security_event=session_rotated actor_id=88aa6ba2-14d4-4f81-85f2-3eee65b8fe3d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=88aa6ba2-14d4-4f81-85f2-3eee65b8fe3d workspace_id=a90b1054-7529-41cf-ae3a-5aff47752ad4
+[WebServer] INFO:     security_event=session_revoked actor_id=88aa6ba2-14d4-4f81-85f2-3eee65b8fe3d workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=88aa6ba2-14d4-4f81-85f2-3eee65b8fe3d workspace_id=-
+  ok 17 [chromium] › tests\teams.spec.ts:8:5 › two people join a real workspace with Viewer restrictions, persistence and logout (22.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=813d3bd3-fd4c-4730-977b-c00bf7075766 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=813d3bd3-fd4c-4730-977b-c00bf7075766 workspace_id=47a8efba-9ca8-4503-8793-567678636178
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=813d3bd3-fd4c-4730-977b-c00bf7075766 workspace_id=58b03c0a-60be-4f6c-bf35-c905a595e1d0
+[WebServer] INFO:     security_event=session_rotated actor_id=e2d1140f-4b00-4788-bc15-7d97d5cbf339 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e2d1140f-4b00-4788-bc15-7d97d5cbf339 workspace_id=7d997d21-7fd6-4db3-9a0d-e017209e2ecc
+  ok 18 [chromium] › tests\teams.spec.ts:95:5 › unrelated exact project UUID stays private and workspace switching clears projects (7.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d27cc05d-a1a2-49a4-8017-1370246a8c35 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d27cc05d-a1a2-49a4-8017-1370246a8c35 workspace_id=f1d70cd8-8e5c-47f1-8725-9617ff249074
+[WebServer] INFO:     security_event=session_revoked actor_id=d27cc05d-a1a2-49a4-8017-1370246a8c35 workspace_id=-
+  ok 19 [chromium] › tests\teams.spec.ts:120:5 › account menu and signout remain keyboard accessible (2.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=2646047a-4ccd-4d52-a3c7-67b9dfee15dc workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=2646047a-4ccd-4d52-a3c7-67b9dfee15dc workspace_id=4b48c342-0fc2-45f3-8fde-a63a6ae31dd6
+  ok 20 [chromium] › tests\teams.spec.ts:138:5 › unconfirmed logout clears protected content without claiming server revocation (3.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=2f7a5204-2b3c-4e86-9394-fb27865515e3 workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=2f7a5204-2b3c-4e86-9394-fb27865515e3 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=0a6db62c-95d4-4241-be3b-15301af52104 workspace_id=-
+  ok 21 [mobile] › tests\password-policy.spec.ts:25:5 › new password boundaries reject fourteen and accept fifteen without composition rules (3.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=e64ee68a-2c68-4b8e-87a5-0e7e03976eb8 workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=e64ee68a-2c68-4b8e-87a5-0e7e03976eb8 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=e64ee68a-2c68-4b8e-87a5-0e7e03976eb8 workspace_id=-
+  ok 22 [mobile] › tests\password-policy.spec.ts:73:5 › actual clipboard paste preserves over-limit values and full unicode passphrase login (3.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=9ff62b0c-346b-4a50-ab09-2fa7a97b8a78 workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=9ff62b0c-346b-4a50-ab09-2fa7a97b8a78 workspace_id=-
+[WebServer] INFO:     security_event=login_rejected actor_id=- workspace_id=-
+  ok 23 [mobile] › tests\password-policy.spec.ts:115:5 › a real legacy twelve-character account signs in and keeps ordinary credential rejection (4.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=db12b3c6-2212-469f-8ef2-0c719f09575b workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=db12b3c6-2212-469f-8ef2-0c719f09575b workspace_id=5336449a-7e68-4855-95d1-f83b5646e355
+  ok 24 [mobile] › tests\pm.spec.ts:21:5 › provider setup and empty state are honest; visiting a project makes no model request (3.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=e5f33d37-1174-4e05-bd91-becd64f435f8 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e5f33d37-1174-4e05-bd91-becd64f435f8 workspace_id=4ed84b0a-ad2e-4696-8846-a4e097931fdd
+[WebServer] INFO:     security_event=session_rotated actor_id=4c2a55d3-9a0c-43cf-83fb-5a372c06d92c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=4c2a55d3-9a0c-43cf-83fb-5a372c06d92c workspace_id=167a44b4-2324-4d51-840a-107fa2c3f99d
+[WebServer] INFO:     security_event=session_revoked actor_id=e5f33d37-1174-4e05-bd91-becd64f435f8 workspace_id=-
+  ok 25 [mobile] › tests\pm.spec.ts:32:5 › human-authored fixture: edit criterion, persist, approve exact version, history and isolation (16.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=78848080-01f7-46c4-b450-e2e91c303d97 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=78848080-01f7-46c4-b450-e2e91c303d97 workspace_id=685e783a-49ad-4923-befc-9a39622ff9d0
+  ok 26 [mobile] › tests\pm.spec.ts:89:5 › a save conflict preserves local edits for comparison (7.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=e944d380-5389-4c6f-bf20-fa1e7dba0e26 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e944d380-5389-4c6f-bf20-fa1e7dba0e26 workspace_id=bac6f9c5-6169-44c5-a751-e7141c0651c1
+  ok 27 [mobile] › tests\projects.spec.ts:12:5 › empty Projects gives a usable first-project action (2.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=e994cee5-7639-4133-8ef0-e47f2f4f947e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=e994cee5-7639-4133-8ef0-e47f2f4f947e workspace_id=3e1d81e7-b1fe-405f-b68b-761f7e138170
+  ok 28 [mobile] › tests\projects.spec.ts:25:5 › chat creates a real project, survives reload, and appears in Projects (5.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b420e570-0a1a-46e3-bffc-b42474641c9c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b420e570-0a1a-46e3-bffc-b42474641c9c workspace_id=06c5431f-6541-40b1-bb49-33af08b81449
+  ok 29 [mobile] › tests\projects.spec.ts:53:5 › explicit project form saves title and description (2.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b0d97548-3d0d-4426-b8cc-fe8a1aaab0ea workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b0d97548-3d0d-4426-b8cc-fe8a1aaab0ea workspace_id=06c44317-0a59-49a1-bfb0-c24b3dbed73d
+  ok 30 [mobile] › tests\projects.spec.ts:62:5 › theme persists, future sections are honest, keyboard navigation works (4.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b9e21c16-3c2b-40fc-8ffb-0cf11019613a workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b9e21c16-3c2b-40fc-8ffb-0cf11019613a workspace_id=1706fc1b-538f-4b71-9bc0-00a6e856f2bb
+  ok 31 [mobile] › tests\projects.spec.ts:79:5 › nonexistent project shows an actual API not-found error (2.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=146c40b0-5e2a-4f07-b747-9c7145ead7fc workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=146c40b0-5e2a-4f07-b747-9c7145ead7fc workspace_id=ecf4bc84-bea4-4fde-8859-5056d968bd02
+  ok 32 [mobile] › tests\projects.spec.ts:84:5 › network failure preserves the draft and permits deliberate retry (3.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=39066de5-8c08-4ab4-b3bb-00cf0de72b9e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=39066de5-8c08-4ab4-b3bb-00cf0de72b9e workspace_id=d8182850-7e5c-470d-bd40-2dc9b0c06914
+  ok 33 [mobile] › tests\projects.spec.ts:97:5 › whitespace cannot create a project (2.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=2bc5305e-b14e-4ddd-a52d-4510b25a8cde workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=2bc5305e-b14e-4ddd-a52d-4510b25a8cde workspace_id=84a9a656-0c91-443c-b320-450869991387
+  ok 34 [mobile] › tests\projects.spec.ts:107:5 › navigation supports mobile Escape and focus restoration (3.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5133b8f7-d24c-4cb8-89fa-2f0d64d7ff36 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5133b8f7-d24c-4cb8-89fa-2f0d64d7ff36 workspace_id=2ca398d6-e06c-487f-950d-0f1f13cf8c18
+  ok 35 [mobile] › tests\projects.spec.ts:122:5 › home layout in both themes (2.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=a4739a80-0576-410e-b799-320ae7178637 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a4739a80-0576-410e-b799-320ae7178637 workspace_id=80ac42fc-1ffc-4704-8579-c536a55503e4
+  ok 36 [mobile] › tests\projects.spec.ts:130:5 › rapid duplicate submission sends a single creation request (3.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=f6a844b5-7d55-4ea3-9a44-a7d1feb89116 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f6a844b5-7d55-4ea3-9a44-a7d1feb89116 workspace_id=6fb98adf-71da-4a63-8376-7092f1da8793
+[WebServer] INFO:     security_event=session_rotated actor_id=6d79a1ef-fbd3-44d2-a8d9-0d9c3203524e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=6d79a1ef-fbd3-44d2-a8d9-0d9c3203524e workspace_id=6fb98adf-71da-4a63-8376-7092f1da8793
+[WebServer] INFO:     security_event=session_revoked actor_id=6d79a1ef-fbd3-44d2-a8d9-0d9c3203524e workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=6d79a1ef-fbd3-44d2-a8d9-0d9c3203524e workspace_id=-
+  ok 37 [mobile] › tests\teams.spec.ts:8:5 › two people join a real workspace with Viewer restrictions, persistence and logout (15.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=1cc25e2e-d28d-451e-89ed-50e954b0cf2f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1cc25e2e-d28d-451e-89ed-50e954b0cf2f workspace_id=761da0da-799c-4dd6-8a1d-fb833bcb1582
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1cc25e2e-d28d-451e-89ed-50e954b0cf2f workspace_id=9ff9a7cb-1549-487a-bb4c-2da809b0e8c7
+[WebServer] INFO:     security_event=session_rotated actor_id=479aef8f-a993-4ea8-9c3b-b4f7d04869a8 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=479aef8f-a993-4ea8-9c3b-b4f7d04869a8 workspace_id=d3377d84-0471-4f8d-9e9d-983cb61e3833
+  ok 38 [mobile] › tests\teams.spec.ts:95:5 › unrelated exact project UUID stays private and workspace switching clears projects (9.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=bea21f70-21aa-4e6c-9b80-18c7e87f5a4e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=bea21f70-21aa-4e6c-9b80-18c7e87f5a4e workspace_id=48e965cf-8418-4f56-9c09-32aa74a5aac8
+[WebServer] INFO:     security_event=session_revoked actor_id=bea21f70-21aa-4e6c-9b80-18c7e87f5a4e workspace_id=-
+  ok 39 [mobile] › tests\teams.spec.ts:120:5 › account menu and signout remain keyboard accessible (2.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=4f4150d4-a1fe-4cb9-b8cf-aae5fa383512 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=4f4150d4-a1fe-4cb9-b8cf-aae5fa383512 workspace_id=fb06c550-45d0-4e1c-b64e-ab73b9f3c02e
+  ok 40 [mobile] › tests\teams.spec.ts:138:5 › unconfirmed logout clears protected content without claiming server revocation (2.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=10ace475-3659-4b29-a065-3c5310d375e3 workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=10ace475-3659-4b29-a065-3c5310d375e3 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=92f4e7ce-4ed5-4129-9f39-2811ad46c021 workspace_id=-
+  ok 41 [tablet] › tests\password-policy.spec.ts:25:5 › new password boundaries reject fourteen and accept fifteen without composition rules (2.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=f3569a02-2cff-4515-96d9-e244e9b81b5f workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=f3569a02-2cff-4515-96d9-e244e9b81b5f workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=f3569a02-2cff-4515-96d9-e244e9b81b5f workspace_id=-
+  ok 42 [tablet] › tests\password-policy.spec.ts:73:5 › actual clipboard paste preserves over-limit values and full unicode passphrase login (3.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b1ec2b3e-c1c5-42a4-9053-9656438bdf28 workspace_id=-
+[WebServer] INFO:     security_event=session_revoked actor_id=b1ec2b3e-c1c5-42a4-9053-9656438bdf28 workspace_id=-
+[WebServer] INFO:     security_event=login_rejected actor_id=- workspace_id=-
+  ok 43 [tablet] › tests\password-policy.spec.ts:115:5 › a real legacy twelve-character account signs in and keeps ordinary credential rejection (3.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=99f87371-2fce-4e48-9ae7-2e23536a3011 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=99f87371-2fce-4e48-9ae7-2e23536a3011 workspace_id=19389c92-3490-4b05-a0c6-d999b144dcc0
+  ok 44 [tablet] › tests\pm.spec.ts:21:5 › provider setup and empty state are honest; visiting a project makes no model request (4.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=2afcc24e-9ed4-42be-9d68-ba32099ad92b workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=2afcc24e-9ed4-42be-9d68-ba32099ad92b workspace_id=7dac6d6f-633f-4028-b487-e9015028ebc0
+[WebServer] INFO:     security_event=session_rotated actor_id=5e54e82c-479a-49a0-912a-d876169e85b0 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5e54e82c-479a-49a0-912a-d876169e85b0 workspace_id=b67c91f9-f9ff-40de-9bb2-7b31294f018c
+[WebServer] INFO:     security_event=session_revoked actor_id=2afcc24e-9ed4-42be-9d68-ba32099ad92b workspace_id=-
+  ok 45 [tablet] › tests\pm.spec.ts:32:5 › human-authored fixture: edit criterion, persist, approve exact version, history and isolation (17.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=1585988a-c8c2-4440-b283-4fcecf9b5ae4 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1585988a-c8c2-4440-b283-4fcecf9b5ae4 workspace_id=79d13a01-3e1d-4723-aa45-7e8962c7c6de
+  ok 46 [tablet] › tests\pm.spec.ts:89:5 › a save conflict preserves local edits for comparison (8.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5c8e48ee-a69a-49a7-902f-395689ce4ef3 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5c8e48ee-a69a-49a7-902f-395689ce4ef3 workspace_id=c713c1e0-9aa3-4daf-a1e7-f7aff7db9cd5
+  ok 47 [tablet] › tests\projects.spec.ts:12:5 › empty Projects gives a usable first-project action (2.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=3b6f85be-553c-4a1e-bfd4-c9a7741cce82 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3b6f85be-553c-4a1e-bfd4-c9a7741cce82 workspace_id=eb6a0306-ae8f-4a46-89d2-62d75b2a75d8
+  ok 48 [tablet] › tests\projects.spec.ts:25:5 › chat creates a real project, survives reload, and appears in Projects (4.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=0d106521-5239-4c4a-a960-e8e5bb7ecb63 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0d106521-5239-4c4a-a960-e8e5bb7ecb63 workspace_id=fc7c39c8-c37d-422c-917f-fe0bbb7a05c2
+  ok 49 [tablet] › tests\projects.spec.ts:53:5 › explicit project form saves title and description (3.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=6450958c-b2a8-4a11-bacc-b669607bed36 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=6450958c-b2a8-4a11-bacc-b669607bed36 workspace_id=90a811df-b82c-47d4-82e6-5d14a03498e9
+  ok 50 [tablet] › tests\projects.spec.ts:62:5 › theme persists, future sections are honest, keyboard navigation works (3.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=591f116b-2429-4ad6-beb9-d5a563e228a9 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=591f116b-2429-4ad6-beb9-d5a563e228a9 workspace_id=aa7f6e35-e0a6-4949-8057-79da01d9d09a
+  ok 51 [tablet] › tests\projects.spec.ts:79:5 › nonexistent project shows an actual API not-found error (2.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d72d05f5-e4bd-4423-828e-4bb64193d434 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d72d05f5-e4bd-4423-828e-4bb64193d434 workspace_id=bc9154c3-d2ce-4a00-9b1c-136e2e8d865e
+  ok 52 [tablet] › tests\projects.spec.ts:84:5 › network failure preserves the draft and permits deliberate retry (2.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=87defaf0-e1e6-4936-8e10-4fed13b23c69 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=87defaf0-e1e6-4936-8e10-4fed13b23c69 workspace_id=bd4e0f54-453b-4dbf-b549-b6b82e3d06cf
+  ok 53 [tablet] › tests\projects.spec.ts:97:5 › whitespace cannot create a project (2.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5b6e5e20-c163-4c04-ac37-7073bc788bd7 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5b6e5e20-c163-4c04-ac37-7073bc788bd7 workspace_id=f76ae41d-bca2-4740-9300-33a9dfd0c5e6
+  ok 54 [tablet] › tests\projects.spec.ts:107:5 › navigation supports mobile Escape and focus restoration (3.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=9845ca6e-9ac7-4f49-9fb6-de8f831f8bec workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9845ca6e-9ac7-4f49-9fb6-de8f831f8bec workspace_id=2dd8f8ed-e704-4a3f-a515-d48df926d6e9
+  ok 55 [tablet] › tests\projects.spec.ts:122:5 › home layout in both themes (2.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5a3dbddd-a253-426e-9910-ddc5fa880a0e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5a3dbddd-a253-426e-9910-ddc5fa880a0e workspace_id=fa5d9a30-47d2-4ac3-86bd-1b5b41de92e9
+  ok 56 [tablet] › tests\projects.spec.ts:130:5 › rapid duplicate submission sends a single creation request (2.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=0a8db14c-191a-40f6-8675-b5657b721b50 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0a8db14c-191a-40f6-8675-b5657b721b50 workspace_id=2c9b733d-3699-4ed5-99e9-06c80722871e
+[WebServer] INFO:     security_event=session_rotated actor_id=1e2a9e8d-8aa3-4b6a-bb39-9c4f1d9b1b53 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1e2a9e8d-8aa3-4b6a-bb39-9c4f1d9b1b53 workspace_id=2c9b733d-3699-4ed5-99e9-06c80722871e
+[WebServer] INFO:     security_event=session_revoked actor_id=1e2a9e8d-8aa3-4b6a-bb39-9c4f1d9b1b53 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=1e2a9e8d-8aa3-4b6a-bb39-9c4f1d9b1b53 workspace_id=-
+  ok 57 [tablet] › tests\teams.spec.ts:8:5 › two people join a real workspace with Viewer restrictions, persistence and logout (14.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=0c1f79ed-195b-4a42-a294-96df5dff49a4 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0c1f79ed-195b-4a42-a294-96df5dff49a4 workspace_id=2c0fdc03-908f-480a-a5e6-5f27ac433b1e
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0c1f79ed-195b-4a42-a294-96df5dff49a4 workspace_id=71b8b8af-04d5-4525-a06e-a92ea11593a3
+[WebServer] INFO:     security_event=session_rotated actor_id=0ec7f8b8-410d-4094-a005-2570e5987ab9 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=0ec7f8b8-410d-4094-a005-2570e5987ab9 workspace_id=6b0d407b-9734-4f21-836e-9c08f27c6cd1
+  ok 58 [tablet] › tests\teams.spec.ts:95:5 › unrelated exact project UUID stays private and workspace switching clears projects (6.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=c0185987-39ae-4dbd-b777-55b6ba8b30a8 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c0185987-39ae-4dbd-b777-55b6ba8b30a8 workspace_id=f95d5169-2299-419f-b010-b8721119718d
+[WebServer] INFO:     security_event=session_revoked actor_id=c0185987-39ae-4dbd-b777-55b6ba8b30a8 workspace_id=-
+  ok 59 [tablet] › tests\teams.spec.ts:120:5 › account menu and signout remain keyboard accessible (2.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=114989dd-4653-4eab-9ffe-cd4dd7bb9bca workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=114989dd-4653-4eab-9ffe-cd4dd7bb9bca workspace_id=4ea1da42-58cd-435c-b604-730aa041c0e0
+  ok 60 [tablet] › tests\teams.spec.ts:138:5 › unconfirmed logout clears protected content without claiming server revocation (3.4s)
+
+
+  1) [chromium] › tests\pm.spec.ts:21:5 › provider setup and empty state are honest; visiting a project makes no model request 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Product Plan', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Product Plan', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Product Plan', exact: true })
+
+
+      14 |   await page.getByRole("button",{name:"Create project",exact:true}).click();
+      15 |   const project=await (await save).json();
+    > 16 |   await expect(page.getByRole("heading",{name:"Product Plan",exact:true})).toBeVisible();
+         |                                                                            ^
+      17 |   const user=await (await page.request.get("/api/v1/auth/me")).json();
+      18 |   return {project,user};
+      19 | }
+        at setup (E:\BrosKi\OBRA\apps\web\tests\pm.spec.ts:16:76)
+        at E:\BrosKi\OBRA\apps\web\tests\pm.spec.ts:23:3
+
+    Error Context: test-results\pm-provider-setup-and-empt-eee05-ject-makes-no-model-request-chromium\error-context.md
+
+  2) [chromium] › tests\pm.spec.ts:89:5 › a save conflict preserves local edits for comparison ─────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Edit draft', exact: true })
+        - locator resolved to <button type="button" data-slot="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring [&_svg]:size-4 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4">Edit draft</button>
+      - attempting click action
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - performing click action
+
+
+      90 |   const {project,user}=await setup(page);
+      91 |   const fixture=JSON.parse(execFileSync("uv",["run","--directory","../api","python","-m","scripts.seed_pm_fixture","--project",project.id,"--actor",user.id],{encoding:"utf8",stdio:["ignore","pipe","pipe"]}));
+    > 92 |   await page.reload();await page.getByRole("button",{name:"Edit draft",exact:true}).click();
+         |                                                                                     ^
+      93 |   const field=page.getByLabel("Then (criterion_checkin)",{exact:true});
+      94 |   await field.fill("My preserved local criterion");
+      95 |   const original=await (await page.request.get(`/api/v1/projects/${project.id}/pm-plans/${fixture.plan_id}`)).json();
+        at E:\BrosKi\OBRA\apps\web\tests\pm.spec.ts:92:85
+
+    Error Context: test-results\pm-a-save-conflict-preserves-local-edits-for-comparison-chromium\error-context.md
+
+  2 failed
+    [chromium] › tests\pm.spec.ts:21:5 › provider setup and empty state are honest; visiting a project makes no model request 
+    [chromium] › tests\pm.spec.ts:89:5 › a save conflict preserves local edits for comparison ──────
+  58 passed (11.3m)
+[ELIFECYCLE] Command failed with exit code 1.
+Error: ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL
+
+  × "pnpm recursive run" failed in E:\BrosKi\OBRA\apps/web
+
+[ELIFECYCLE] Command failed with exit code 1.

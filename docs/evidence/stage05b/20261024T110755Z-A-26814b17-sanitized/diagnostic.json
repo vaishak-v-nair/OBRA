@@ -1,0 +1,257 @@
+{
+  "recorded_at": "2026-10-24T11:36:23.411946+00:00",
+  "classification": "sanitized historical failure diagnostic, never a passing gate receipt",
+  "gate": "A",
+  "result": "FAIL",
+  "exit_code": 1,
+  "backend": {
+    "passed": 772,
+    "failed": 1,
+    "skipped": 0,
+    "xfail": 0
+  },
+  "source_fingerprint": "20b2bfbcbd7a81f5081932c2453db9763e0924a417908d4c9ddb9d23998c7cf3",
+  "original_receipt_sha256": "4ee56f120b91f0e1df08ccdee774093afb2e25b2525083e3ca0462c4dd8c4580",
+  "raw_evidence": "Preserved byte-for-byte in private quarantine outside the repository.",
+  "reason": "Pytest failure rendered one ephemeral test-scoped worker credential; it no longer exists in the isolated database. No runtime credential was involved.",
+  "commands": [
+    {
+      "name": "database",
+      "argv": [
+        "docker",
+        "compose",
+        "-f",
+        "infra/compose.yaml",
+        "--profile",
+        "test",
+        "up",
+        "-d",
+        "--wait",
+        "test-postgres"
+      ],
+      "started_at": "2026-10-24T11:08:05.002757+00:00",
+      "exit_code": 0,
+      "pid": 2024,
+      "duration_seconds": 1.765,
+      "completed_at": "2026-10-24T11:08:06.767473+00:00"
+    },
+    {
+      "name": "python-lock",
+      "argv": [
+        "uv",
+        "sync",
+        "--locked",
+        "--directory",
+        "apps/api"
+      ],
+      "started_at": "2026-10-24T11:08:06.773447+00:00",
+      "exit_code": 0,
+      "pid": 8020,
+      "duration_seconds": 0.259,
+      "completed_at": "2026-10-24T11:08:07.032995+00:00"
+    },
+    {
+      "name": "frontend-lock",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "install",
+        "--frozen-lockfile"
+      ],
+      "started_at": "2026-10-24T11:08:07.037274+00:00",
+      "exit_code": 0,
+      "pid": 25980,
+      "duration_seconds": 6.018,
+      "completed_at": "2026-10-24T11:08:13.055433+00:00"
+    },
+    {
+      "name": "peers",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "peers",
+        "check"
+      ],
+      "started_at": "2026-10-24T11:08:13.069871+00:00",
+      "exit_code": 0,
+      "pid": 17336,
+      "duration_seconds": 5.84,
+      "completed_at": "2026-10-24T11:08:18.909770+00:00"
+    },
+    {
+      "name": "migration",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "alembic",
+        "upgrade",
+        "head"
+      ],
+      "started_at": "2026-10-24T11:08:18.911600+00:00",
+      "exit_code": 0,
+      "pid": 23700,
+      "duration_seconds": 7.372,
+      "completed_at": "2026-10-24T11:08:26.283990+00:00"
+    },
+    {
+      "name": "schema-drift",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "alembic",
+        "check"
+      ],
+      "started_at": "2026-10-24T11:08:26.292030+00:00",
+      "exit_code": 0,
+      "pid": 4012,
+      "duration_seconds": 10.228,
+      "completed_at": "2026-10-24T11:08:36.520152+00:00"
+    },
+    {
+      "name": "backend",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "pytest",
+        "-q",
+        "--junitxml=E:\\BrosKi\\OBRA\\docs\\evidence\\stage05b\\20261024T110755Z-A-26814b17\\backend.xml"
+      ],
+      "started_at": "2026-10-24T11:08:36.524264+00:00",
+      "exit_code": 1,
+      "pid": 20812,
+      "duration_seconds": 800.958,
+      "completed_at": "2026-10-24T11:21:57.482418+00:00"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "attempt.json",
+      "raw_sha256": "ea834c68406e63be3d0767e965abe8c97f478614badc3b300d720c997c6d4950",
+      "sanitized_sha256": "d17d1c53779d111da852ed9569c27daf021277feb861f3d326a46116f164ca8c",
+      "credential_redactions": 0
+    },
+    {
+      "path": "authorization.json",
+      "raw_sha256": "4d72598c7abb99881f39e04f4926701549227b4c29751bdb35a8b38a873fd4b2",
+      "sanitized_sha256": "12df9ac45c1012540d2d4b41e2304442d6a90e10d2602c6f7a543283a44182a3",
+      "credential_redactions": 0
+    },
+    {
+      "path": "backend-command.json",
+      "raw_sha256": "800c8f7d0d5e5d890dd2e110599450e6b7ccf961fd560f9df60951d9a83d8616",
+      "sanitized_sha256": "c7b79e906684c35dd9be88d80db9dac3ff060e6b848ea1693472b242fc41fbfb",
+      "credential_redactions": 0
+    },
+    {
+      "path": "backend.log",
+      "raw_sha256": "9fe371dff088a631f5319366dea42f15ba00efe2e1d1888705fc2d37141e96bb",
+      "sanitized_sha256": "deba1e816af3ff2ad9bd0dc76f88139604ad799f747d2854867c1f37ead9a31f",
+      "credential_redactions": 1
+    },
+    {
+      "path": "backend.xml",
+      "raw_sha256": "b38eb469b812ccc8af156ea402b663d8db2ef3de523a6e1495eb7a31bf0c9d40",
+      "sanitized_sha256": "1469d4f3d55aa59c87a427633304fad091e59a21ab1fd66a90055788e2263fbe",
+      "credential_redactions": 2
+    },
+    {
+      "path": "database-command.json",
+      "raw_sha256": "d86f770317a4969f3cbe04bcacb259c75356ce49150ecf7eeced98d26de5ffe0",
+      "sanitized_sha256": "9c51cfbac533cc96bfddff99cb7eac2f90cfd754ba026bfb6cdfe72f9bc1992e",
+      "credential_redactions": 0
+    },
+    {
+      "path": "database.log",
+      "raw_sha256": "ed90f2a09e6e6b90bd10be4f9a349f15632dac2b388d7ea24ca107b2b4cb5851",
+      "sanitized_sha256": "ed90f2a09e6e6b90bd10be4f9a349f15632dac2b388d7ea24ca107b2b4cb5851",
+      "credential_redactions": 0
+    },
+    {
+      "path": "frontend-lock-command.json",
+      "raw_sha256": "2b6671de5484b1f5c764461574aa837d3dfa4d95c9622d81d13dc2de81e3957f",
+      "sanitized_sha256": "542046b28a5bbbc7b068bc6c7ba07e8b909412d62c1aa2f0a2ae1eff02661644",
+      "credential_redactions": 0
+    },
+    {
+      "path": "frontend-lock.log",
+      "raw_sha256": "517b55f8113c9b50cad467bb2d6238c433c83a9d095e8887d068c35f6bfe6bde",
+      "sanitized_sha256": "517b55f8113c9b50cad467bb2d6238c433c83a9d095e8887d068c35f6bfe6bde",
+      "credential_redactions": 0
+    },
+    {
+      "path": "invalid-output-double.json",
+      "raw_sha256": "66049bb07615c7862ebea8e27063e04335a53dc3dc0aa07f12591a1217ea0273",
+      "sanitized_sha256": "6dd252b04739423e2f1ecbcec121291134a7fa0447442a0cbe6c38fee2244f96",
+      "credential_redactions": 0
+    },
+    {
+      "path": "migration-command.json",
+      "raw_sha256": "4d025e794e57106c84145c3759d74f55860ea06b0688ff2e5cb9d805013166d4",
+      "sanitized_sha256": "949e29c25f812f840d5ae5967f3065a51661ff2e033708f2a3c3dc4d1a056d90",
+      "credential_redactions": 0
+    },
+    {
+      "path": "migration.log",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sanitized_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "credential_redactions": 0
+    },
+    {
+      "path": "peers-command.json",
+      "raw_sha256": "0a456207b8f6e747cfafbf2a3a35ed858128f5ea9032c324b295dae6988a8b4e",
+      "sanitized_sha256": "24377ba74117c7778e5b10422a97bac3a5f2b944c7d7789c133a43298bf0a96c",
+      "credential_redactions": 0
+    },
+    {
+      "path": "peers.log",
+      "raw_sha256": "5ecf82a3fc1f9007eeea79ce3bf0d9c587150219ef245bb5a5a23609cdb562fb",
+      "sanitized_sha256": "5ecf82a3fc1f9007eeea79ce3bf0d9c587150219ef245bb5a5a23609cdb562fb",
+      "credential_redactions": 0
+    },
+    {
+      "path": "python-lock-command.json",
+      "raw_sha256": "0cefe699a0abb977cd11f7a834be4c9fb8d3e2d6c69ec3262d786f505e5393d4",
+      "sanitized_sha256": "c5c273ed4a0c47450bd566e01f591855134fe655a2d08f298506bbbec148dc19",
+      "credential_redactions": 0
+    },
+    {
+      "path": "python-lock.log",
+      "raw_sha256": "d731f098f14b5e79cca23d4381f0e81747a7b1609519de12e6d3fb5a6fff7a28",
+      "sanitized_sha256": "d731f098f14b5e79cca23d4381f0e81747a7b1609519de12e6d3fb5a6fff7a28",
+      "credential_redactions": 0
+    },
+    {
+      "path": "original-receipt.json",
+      "raw_sha256": "4ee56f120b91f0e1df08ccdee774093afb2e25b2525083e3ca0462c4dd8c4580",
+      "sanitized_sha256": "fd4d9dc5babc1996e12cc3ed77b46990f3f570fd06d7b32b87dda07909d830c8",
+      "credential_redactions": 0
+    },
+    {
+      "path": "schema-drift-command.json",
+      "raw_sha256": "1c0c3222f4a81a087ef924d92e056aa95a21a0e356eff8053c6d2b871b8bada9",
+      "sanitized_sha256": "0fd1437c673eec5850a1da0bf2b5e301301073ddca117ad59aa52864c3baf373",
+      "credential_redactions": 0
+    },
+    {
+      "path": "schema-drift.log",
+      "raw_sha256": "adfdf8c417ef31380a4dd8a695b7d2707cdf16a67225a06157898f271b6421e1",
+      "sanitized_sha256": "43d345b67ace77ab8c4cbf575a3baddf66e8623cf7d1e0b78e602b1d641ecf50",
+      "credential_redactions": 0
+    }
+  ],
+  "credential_redactions": 3
+}

@@ -1,0 +1,516 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\BrosKi\\OBRA\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.scheduler.config.ts",
+      "--workers=1",
+      "--retries=0",
+      "--max-failures=1"
+    ],
+    "configFile": "E:\\BrosKi\\OBRA\\apps\\web\\playwright.scheduler.config.ts",
+    "rootDir": "E:/BrosKi/OBRA/apps/web/tests-scheduler",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 1,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/BrosKi/OBRA/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "E:/BrosKi/OBRA/apps/web/tests-scheduler",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/BrosKi/OBRA/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "E:/BrosKi/OBRA/apps/web/tests-scheduler",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/BrosKi/OBRA/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "E:/BrosKi/OBRA/apps/web/tests-scheduler",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "E:\\BrosKi\\OBRA\\apps\\web\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "snapshotDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 120000,
+        "use": {
+          "baseURL": "http://localhost:3001",
+          "trace": "off",
+          "screenshot": "off",
+          "serviceWorkers": "block",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "E:\\BrosKi\\OBRA\\apps\\web\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "mobile",
+        "testDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "snapshotDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 120000,
+        "use": {
+          "baseURL": "http://localhost:3001",
+          "trace": "off",
+          "screenshot": "off",
+          "serviceWorkers": "block",
+          "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+          "viewport": {
+            "width": 390,
+            "height": 664
+          },
+          "screen": {
+            "width": 390,
+            "height": 844
+          },
+          "deviceScaleFactor": 3,
+          "isMobile": true,
+          "hasTouch": true,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "E:\\BrosKi\\OBRA\\apps\\web\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "tablet",
+        "testDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "snapshotDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 120000,
+        "use": {
+          "baseURL": "http://localhost:3001",
+          "trace": "off",
+          "screenshot": "off",
+          "serviceWorkers": "block",
+          "userAgent": "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+          "viewport": {
+            "width": 810,
+            "height": 1080
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": true,
+          "hasTouch": true,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "tablet"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scheduler.spec.ts",
+      "file": "scheduler.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "durable queue and real protocol acknowledgment remain separate from execution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 23368,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T05:44:13.637Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-719ce5e4819ee71a5f51",
+          "file": "scheduler.spec.ts",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "title": "browser session cannot impersonate a worker or forge completion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12770,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T05:44:37.200Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-84fbbd3bf4d439b29b80",
+          "file": "scheduler.spec.ts",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "title": "scheduling errors preserve the immutable task graph and do not invent success",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12006,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T05:44:49.976Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-2d7452d124719aa7e557",
+          "file": "scheduler.spec.ts",
+          "line": 41,
+          "column": 5
+        },
+        {
+          "title": "durable queue and real protocol acknowledgment remain separate from execution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 40112,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T05:45:04.327Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-06f675f1212fa1e8cd05",
+          "file": "scheduler.spec.ts",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "title": "browser session cannot impersonate a worker or forge completion",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 27847,
+                  "error": {
+                    "message": "TimeoutError: page.waitForResponse: Timeout 25000ms exceeded while waiting for event \"response\"",
+                    "stack": "TimeoutError: page.waitForResponse: Timeout 25000ms exceeded while waiting for event \"response\"\n    at signup (E:\\BrosKi\\OBRA\\apps\\web\\tests\\helpers.ts:8:10)\n    at prepareDraft (E:\\BrosKi\\OBRA\\apps\\web\\tests\\architect-preflight.ts:70:3)\n    at setupOrchestration (E:\\BrosKi\\OBRA\\apps\\web\\tests\\orchestration-setup.ts:16:39)\n    at E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler\\scheduler.spec.ts:31:33",
+                    "location": {
+                      "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests\\helpers.ts",
+                      "column": 10,
+                      "line": 8
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m..\\tests\\helpers.ts:8\n\n\u001b[0m \u001b[90m  6 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByLabel(\u001b[32m\"Password\"\u001b[39m\u001b[33m,\u001b[39m { exact\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m.\u001b[39mfill(\u001b[32m\"A long browser password!\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m  7 |\u001b[39m   \u001b[36mconst\u001b[39m [registered\u001b[33m,\u001b[39m account] \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  8 |\u001b[39m     page\u001b[33m.\u001b[39mwaitForResponse(r \u001b[33m=>\u001b[39m r\u001b[33m.\u001b[39mrequest()\u001b[33m.\u001b[39mmethod() \u001b[33m===\u001b[39m \u001b[32m\"POST\"\u001b[39m \u001b[33m&&\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mURL\u001b[39m(r\u001b[33m.\u001b[39murl())\u001b[33m.\u001b[39mpathname \u001b[33m===\u001b[39m \u001b[32m\"/api/v1/auth/register\"\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m25000\u001b[39m })\u001b[33m,\u001b[39m\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  9 |\u001b[39m     page\u001b[33m.\u001b[39mwaitForResponse(r \u001b[33m=>\u001b[39m r\u001b[33m.\u001b[39mrequest()\u001b[33m.\u001b[39mmethod() \u001b[33m===\u001b[39m \u001b[32m\"GET\"\u001b[39m \u001b[33m&&\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mURL\u001b[39m(r\u001b[33m.\u001b[39murl())\u001b[33m.\u001b[39mpathname \u001b[33m===\u001b[39m \u001b[32m\"/api/v1/auth/me\"\u001b[39m \u001b[33m&&\u001b[39m r\u001b[33m.\u001b[39mstatus() \u001b[33m===\u001b[39m \u001b[35m200\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m25000\u001b[39m })\u001b[33m,\u001b[39m\n \u001b[90m 10 |\u001b[39m     page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"button\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Create account\"\u001b[39m\u001b[33m,\u001b[39m exact\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m,\u001b[39m\n \u001b[90m 11 |\u001b[39m   ])\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests\\helpers.ts",
+                        "column": 10,
+                        "line": 8
+                      },
+                      "message": "TimeoutError: page.waitForResponse: Timeout 25000ms exceeded while waiting for event \"response\"\n\n   at ..\\tests\\helpers.ts:8\n\n   6 |   await page.getByLabel(\"Password\", { exact: true }).fill(\"A long browser password!\");\n   7 |   const [registered, account] = await Promise.all([\n>  8 |     page.waitForResponse(r => r.request().method() === \"POST\" && new URL(r.url()).pathname === \"/api/v1/auth/register\", { timeout: 25000 }),\n     |          ^\n   9 |     page.waitForResponse(r => r.request().method() === \"GET\" && new URL(r.url()).pathname === \"/api/v1/auth/me\" && r.status() === 200, { timeout: 25000 }),\n  10 |     page.getByRole(\"button\", { name: \"Create account\", exact: true }).click(),\n  11 |   ]);\n    at signup (E:\\BrosKi\\OBRA\\apps\\web\\tests\\helpers.ts:8:10)\n    at prepareDraft (E:\\BrosKi\\OBRA\\apps\\web\\tests\\architect-preflight.ts:70:3)\n    at setupOrchestration (E:\\BrosKi\\OBRA\\apps\\web\\tests\\orchestration-setup.ts:16:39)\n    at E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler\\scheduler.spec.ts:31:33"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T05:45:45.009Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "E:\\BrosKi\\OBRA\\apps\\web\\test-results\\scheduler-browser-session--7d62b--worker-or-forge-completion-mobile\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests\\helpers.ts",
+                    "column": 10,
+                    "line": 8
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-b5f4af1e07b662d4ae80",
+          "file": "scheduler.spec.ts",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "title": "scheduling errors preserve the immutable task graph and do not invent success",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-75944f3fce7a35ae006f",
+          "file": "scheduler.spec.ts",
+          "line": 41,
+          "column": 5
+        },
+        {
+          "title": "durable queue and real protocol acknowledgment remain separate from execution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-8bafd997c98d86cdb8fc",
+          "file": "scheduler.spec.ts",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "title": "browser session cannot impersonate a worker or forge completion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-8fc2448a0acb92e835cd",
+          "file": "scheduler.spec.ts",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "title": "scheduling errors preserve the immutable task graph and do not invent success",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-6a5db8cbfd57050a1fc0",
+          "file": "scheduler.spec.ts",
+          "line": 41,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "stats": {
+    "startTime": "2026-10-26T05:44:08.432Z",
+    "duration": 125017.78499999999,
+    "expected": 4,
+    "skipped": 4,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

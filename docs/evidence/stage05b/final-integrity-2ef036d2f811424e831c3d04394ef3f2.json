@@ -1,0 +1,156 @@
+{
+  "stage": "stage05b-scheduler",
+  "recorded_at": "2026-10-26T12:40:11.542322+00:00",
+  "result": "PASS",
+  "source_sha256": "4bfcc3ec0d903cfedcd7addaca7e06c4287467a4ed1d1e79d33524a446d2538d",
+  "source_files": 241,
+  "git_head": "ab7c7acbfcac01ccba9d8a3d0bb7b07e37adc874",
+  "staged_files": 0,
+  "gates": {
+    "A": {
+      "receipt": "docs\\evidence\\stage05b\\20261026T060251Z-A-8848a53c\\receipt.json",
+      "sha256": "6dafd9a259859c34b70d07c913581a140ba6e400f55f255047a60b45e1db8ffc",
+      "exit_code": 0
+    },
+    "B": {
+      "receipt": "docs\\evidence\\stage05b\\20261026T064720Z-B-bd638f2b\\receipt.json",
+      "sha256": "05669c0268b3d3ceec773fe13568ecdee7dab06730fa017fda3cd1e4acc2e5dd",
+      "exit_code": 0
+    },
+    "C": {
+      "receipt": "docs\\evidence\\stage05b\\summary-34eed0ae03b641b58cd2255435409984.json",
+      "sha256": "8ff991000fc925b9f847a2942a06b7923a7472555a93da42cc0f53978b183031",
+      "exit_code": 0
+    }
+  },
+  "gate_a_results": {
+    "backend": {
+      "passed": 776,
+      "skipped": 0
+    },
+    "core-browser": {
+      "passed": 60,
+      "skipped": 0
+    },
+    "controlled-browser": {
+      "passed": 33,
+      "skipped": 0
+    },
+    "architect-browser": {
+      "passed": 33,
+      "skipped": 0
+    },
+    "navigation-browser": {
+      "passed": 39,
+      "skipped": 0
+    },
+    "orchestration-browser": {
+      "passed": 21,
+      "skipped": 0
+    },
+    "scheduler-browser": {
+      "passed": 15,
+      "skipped": 0
+    }
+  },
+  "gate_b": {
+    "run_id": "fbe531fd-0589-4e00-9325-db1908985f4b",
+    "project_id": "febd7edf-f92e-411c-8607-55df7df7552a",
+    "worker_id": "b890f62a-3bc1-4486-941f-6fca16d5c898",
+    "tasks": 2,
+    "dependencies": 1,
+    "dispatches": 1,
+    "leases": 1,
+    "handoffs": 1,
+    "heartbeats": 1,
+    "events": 12,
+    "native_process_commands": [
+      {
+        "name": "provision",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "name": "worker-start",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "name": "scheduler-start",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "name": "scheduler-interrupted",
+        "exit_code": null,
+        "signal": "SIGTERM"
+      },
+      {
+        "name": "scheduler-restart",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "name": "worker-claim",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "name": "worker-restart",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "name": "scheduler-expiration",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "name": "revoked-provision",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "name": "revoke",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "name": "foreign-provision",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "name": "incomplete-proof",
+        "exit_code": 0,
+        "signal": null
+      }
+    ]
+  },
+  "preservation": {
+    "excluded_files": 90,
+    "historical_evidence_files": 1880,
+    "historical_receipts": 65,
+    "bound_historical_artifacts": 1690,
+    "owner_credentials_unchanged": true,
+    "quarantined_failed_gate_bytes_unchanged": true
+  },
+  "secret_scan": {
+    "raw_exit_code": 1,
+    "raw_findings": 453,
+    "individually_verified_checksum_exceptions": 453,
+    "applicable_exit_code": 0,
+    "credential_matches": 0,
+    "review_sha256": "b2bc01d147e85f8ee8a896ddc0ce0960716aa4fb546bf133691bf3280907f633"
+  },
+  "tracked_crlf_aware_whitespace_exit_code": 0,
+  "whitespace_exemptions": [],
+  "negative_experiments_actual_exit_codes": [
+    1,
+    1
+  ],
+  "model_generation_requests": 0,
+  "executed_tasks": 0,
+  "stage05b_verdict": "VERIFIED",
+  "overall_stage05": "IN PROGRESS"
+}

@@ -1,5 +1,29 @@
 # ORBA engineering contract
 
+## Stage05B authority (supersedes older stage boundaries)
+
+- Owner authorizes durable scheduling, scoped worker credentials, leases, fencing
+  and immutable handoff receipts only. Preserve checkpoint ab7c7ac and all prior
+  evidence and90excluded files. No commit/push/discard, AI call or Stage05C/D/06.
+- OrchestrationTask execution remains awaiting_executor/cancelled. A claim, ack,
+  heartbeat or manifest is never code execution or verified completion. No worker
+  completion API, executor or generated-command execution is permitted.
+- PostgreSQL coordination precedes workspace/project/run and worker/lease locks.
+  Recheck DB time and current credential after waiting. Flush tentative writes,
+  then apply the final locked credential/clock publication guard;no ORM mutation
+  may follow it before commit. Publication is not later HTTP arrival. Same-key claim recovery is
+  durable; unknown POST outcomes never silently mint a new request or retry.
+- Immutable snapshots remain authoritative. New dispatch and handoff admission
+  revalidates current approved source and DAG. Preack recovery is bounded; postack
+  expiration/release/revocation requires reconciliation, never auto redispatch.
+- Worker authentication is dedicated hashed opaque Bearer credentials provisioned
+  by a local operator; no public self-registration or browser-auth impersonation.
+  Credentials belong in exclusive private files outside the repository, not logs,
+  evidence, manifests, browser storage or ordinary command output.
+- New Stage05B gates bind new fingerprints under docs/evidence/stage05b. Historical
+  Stage05A proof-v2 remains strict and immutable. No paid provider or fake executor
+  evidence. Never run backend and browser suites concurrently against orba_test.
+
 ## Stage05A authority (supersedes older stage stop boundaries below)
 
 - Owner authorizes the deterministic orchestration foundation only. Preserve
@@ -74,6 +98,11 @@ Handle invalid input, missing records, database failure, loading, empty and erro
 Required verification: migrated real test PostgreSQL; persistence/list/retrieve/invalid/not-found/readiness tests; actual browser creation -> detail -> reload -> list; meaningful negative paths; lint; strict typecheck; production build. See README.md and docs/TEST_PLAN.md. Browser/device emulation does not establish native-device or all-browser compatibility.
 
 ## Stage 02 security rules
+
+- Public sign-up/sign-in controls stay disabled until initial client/session
+  initialization finishes. Forms declare POST; never allow a missing client
+  handler to submit credential fields through a native GET. Readiness is not
+  authentication authority; FastAPI still validates every operation.
 
 - New credentials use the shared NewPassword type:15-128 Unicode code points, no normalization/truncation or composition rules; whitespace-only new values remain invalid. Login stays1-128 for existing credentials. Future change/reset fields must reuse NewPassword; do not add such workflows implicitly. Never bulk rewrite hashes, force resets or revoke sessions for a policy rollout. Preserve normal presented-session rotation and eligible parameter rehash. Keep browser paste intact and validate bounds explicitly.
 

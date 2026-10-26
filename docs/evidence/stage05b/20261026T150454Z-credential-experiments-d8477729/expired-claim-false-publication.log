@@ -1,0 +1,30 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+__________ test_rejected_expired_claim_is_not_successful_publication __________
+
+client = <starlette.testclient.TestClient object at 0x000002D51B4F4C20>
+
+    def test_rejected_expired_claim_is_not_successful_publication(client):
+        _, run, worker_id, _, _ = ready(client)
+        response, _, _ = blocked_until_expiry(client, run, worker_id)
+>       assert response.status_code == 201, (
+            "Deliberately incorrect: actual expired claim must return401."
+        )
+E       AssertionError: Deliberately incorrect: actual expired claim must return401.
+E       assert 401 == 201
+E        +  where 401 = <Response [401 Unauthorized]>.status_code
+
+tests\experiments\credential_publication_experiment.py:14: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================ slowest 25 durations =============================
+1.80s call     tests/experiments/credential_publication_experiment.py::test_rejected_expired_claim_is_not_successful_publication
+0.72s setup    tests/experiments/credential_publication_experiment.py::test_rejected_expired_claim_is_not_successful_publication
+0.01s teardown tests/experiments/credential_publication_experiment.py::test_rejected_expired_claim_is_not_successful_publication
+=========================== short test summary info ===========================
+FAILED tests/experiments/credential_publication_experiment.py::test_rejected_expired_claim_is_not_successful_publication
+1 failed, 1 warning in 3.15s

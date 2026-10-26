@@ -1,0 +1,88 @@
+{
+  "execution_class": "controlled_provider_double",
+  "provider_double": true,
+  "database": {
+    "id": "d25e2139-8b24-400b-9237-040eff980bc1",
+    "project_id": "796a60ed-4f92-47fb-8b0a-20489716c3e8",
+    "workspace_id": "3f5b718d-6764-423c-888b-fd14de856819",
+    "initiator_id": "1390f2f0-abfc-4ea4-9d73-7d52859f5bd7",
+    "client_request_id": "ce3e20a7-8457-4814-9124-7820c020aeef",
+    "source_plan_id": "94035ddc-1ceb-44f7-a806-c83473ee4bbb",
+    "source_version": 1,
+    "source_revision": 1,
+    "source_hash": "6077f4531a9c03717bf4ecde63eba8cb2260ab17240d581ebe4d3e0d5e9598b4",
+    "status": "succeeded",
+    "provider": "google-gemini",
+    "requested_model": "gemini-3.6-flash",
+    "returned_model": "controlled-double-not-live",
+    "prompt_version": "architect-v1",
+    "created_at": "2026-10-26 15:23:59.046872+00:00",
+    "started_at": "2026-10-26 15:23:59.146584+00:00",
+    "completed_at": "2026-10-26 15:24:00.267126+00:00",
+    "deadline_at": "2026-10-26 15:26:14.146584+00:00",
+    "provider_response_id": null,
+    "provider_request_id": null,
+    "usage": null,
+    "error_category": null,
+    "diagnostic_id": null,
+    "architecture_id": "848e8413-1b55-46b3-a882-7009120d69e6",
+    "snapshot_sha256": "d55ad7f033a601e96dceacb2b4a82885b101303fb0567f94b799769328ba35ad",
+    "prompt_sha256": "b05f3df028026489ca760894a1cbba96ab69ea37d7979f1c8a756c69466400a8",
+    "diagnostic": {
+      "agent": "architect",
+      "attempt": 1,
+      "stages_ms": {
+        "validation": 1.314,
+        "provider_call": 1014.87,
+        "persistence_flush": 51.068,
+        "running_transaction": 34.655,
+        "admission_transaction": 78.634
+      },
+      "elapsed_ms": 1221.766,
+      "dispatch_phase": "validated_publication",
+      "timing_version": 1,
+      "timing_boundary": "before_terminal_commit",
+      "generation_configuration": {
+        "input_bytes": 13660,
+        "prompt_bytes": 2686,
+        "snapshot_bytes": 3439,
+        "thinking_level": "minimal",
+        "max_input_bytes": 96000,
+        "timeout_seconds": 90,
+        "max_output_tokens": 6000,
+        "provider_schema_bytes": 7535,
+        "provider_schema_sha256": "a1ec4422648e2e80f7528a6ba935f0d687c89dfd7c7f1b072e7d759773ac396c"
+      }
+    },
+    "project_architectures": [
+      {
+        "id": "848e8413-1b55-46b3-a882-7009120d69e6",
+        "state": "approved",
+        "content_hash": "a8dc341ff2559f3c03cc366322fa3f133e74afb9cfac70abcfb9a89a1433304d",
+        "version": 1,
+        "revision": 2
+      }
+    ],
+    "architecture_validated": true,
+    "source_current": true,
+    "content_hash": "a8dc341ff2559f3c03cc366322fa3f133e74afb9cfac70abcfb9a89a1433304d",
+    "state": "approved",
+    "version": 1,
+    "revision": 2,
+    "approved_by": "1390f2f0-abfc-4ea4-9d73-7d52859f5bd7",
+    "approved_at": "2026-10-26 15:24:02.847133+00:00",
+    "counts": {
+      "architecture_components": 1,
+      "engineering_tasks": 2,
+      "task_dependencies": 1,
+      "requirement_traces": 3
+    },
+    "coverage_approvable": true,
+    "task_keys": [
+      "storage",
+      "screen"
+    ],
+    "graph_valid": true,
+    "execution_performed": false
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "recorded_at": "2026-10-26T05:56:41.998960+00:00",
+  "result": "FAIL",
+  "actual_exit_code": 1,
+  "passed": 4,
+  "failed": 1,
+  "not_run": 4,
+  "failure": "WebKit mobile signup waited25s for an absent registration POST; final form fields were empty.",
+  "confirmed_followup_defect": "Controlled delayed-client regression proves auth inputs were enabled before initialization.",
+  "exact_original_browser_microtiming": "not independently recorded",
+  "repair": "Auth form is disabled until initial session initialization ends; explicit method=post prevents native GET fallback. Password policy, server authentication/CSRF unchanged.",
+  "gates_a_b_c": "NOT RUN",
+  "generation_requests": 0
+}

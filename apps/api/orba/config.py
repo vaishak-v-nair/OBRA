@@ -16,6 +16,33 @@ class Settings(BaseSettings):
     invitation_lifetime_seconds: int = Field(default=172800, ge=60, le=604800)
     login_max_attempts: int = Field(default=5, ge=1, le=100)
     login_window_seconds: int = Field(default=900, ge=60, le=86400)
+    scheduler_ack_seconds: int = Field(
+        default=10, ge=2, le=60, validation_alias="ORBA_SCHEDULER_ACK_SECONDS"
+    )
+    scheduler_lease_seconds: int = Field(
+        default=30, ge=5, le=120, validation_alias="ORBA_SCHEDULER_LEASE_SECONDS"
+    )
+    scheduler_max_lease_seconds: int = Field(
+        default=120, ge=10, le=600, validation_alias="ORBA_SCHEDULER_MAX_LEASE_SECONDS"
+    )
+    scheduler_heartbeat_seconds: int = Field(
+        default=10, ge=1, le=30, validation_alias="ORBA_SCHEDULER_HEARTBEAT_SECONDS"
+    )
+    scheduler_liveness_seconds: int = Field(
+        default=60, ge=10, le=600, validation_alias="ORBA_SCHEDULER_LIVENESS_SECONDS"
+    )
+    scheduler_global_capacity: int = Field(
+        default=8, ge=1, le=64, validation_alias="ORBA_SCHEDULER_GLOBAL_CAPACITY"
+    )
+    scheduler_run_capacity: int = Field(
+        default=2, ge=1, le=16, validation_alias="ORBA_SCHEDULER_RUN_CAPACITY"
+    )
+    scheduler_max_attempts: int = Field(
+        default=3, ge=1, le=5, validation_alias="ORBA_SCHEDULER_MAX_ATTEMPTS"
+    )
+    scheduler_batch_size: int = Field(
+        default=8, ge=1, le=32, validation_alias="ORBA_SCHEDULER_BATCH_SIZE"
+    )
     pm_api_key: SecretStr | None = Field(
         default=None, validation_alias=AliasChoices("ORBA_PM_API_KEY", "GEMINI_API_KEY")
     )
@@ -113,3 +140,18 @@ class Settings(BaseSettings):
         if not self.web_origin.startswith(("http://", "https://")) or self.web_origin.endswith("/"):
             raise ValueError("WEB_ORIGIN must be an exact HTTP(S) origin without trailing slash")
         return self
+
+    def scheduler_policy(self):
+        from orba.scheduler_schemas import SchedulerPolicy
+
+        return SchedulerPolicy(
+            acknowledge_seconds=self.scheduler_ack_seconds,
+            lease_seconds=self.scheduler_lease_seconds,
+            max_lease_seconds=self.scheduler_max_lease_seconds,
+            heartbeat_seconds=self.scheduler_heartbeat_seconds,
+            worker_liveness_seconds=self.scheduler_liveness_seconds,
+            global_capacity=self.scheduler_global_capacity,
+            run_capacity=self.scheduler_run_capacity,
+            max_attempts=self.scheduler_max_attempts,
+            batch_size=self.scheduler_batch_size,
+        )

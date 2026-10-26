@@ -1,0 +1,34 @@
+.....................................................................    [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================ slowest 25 durations =============================
+5.85s call     tests/test_scheduler_recovery.py::test_postack_crash_requires_reconciliation_never_redispatch
+5.71s call     tests/test_scheduler_recovery.py::test_heartbeat_vs_expiration_cannot_revive_stale_ownership
+3.29s call     tests/test_scheduler_recovery.py::test_preack_expiration_fences_old_worker_and_new_owner
+3.06s call     tests/test_scheduler_credential_races.py::test_related_handoff_paths_recheck_expiry_after_workspace_wait[heartbeat]
+2.85s call     tests/test_scheduler_recovery.py::test_preack_redispatch_is_bounded_and_terminal_replay_never_claims_new_task
+1.84s call     tests/test_scheduler_recovery.py::test_real_heartbeat_receipt_duplicate_and_hard_bound
+1.49s call     tests/test_scheduler_credential_races.py::test_related_handoff_paths_recheck_expiry_after_workspace_wait[release]
+1.47s call     tests/test_scheduler_credential_races.py::test_related_handoff_paths_recheck_expiry_after_workspace_wait[recovery]
+1.42s call     tests/test_scheduler_credential_races.py::test_related_handoff_paths_recheck_expiry_after_workspace_wait[replay]
+1.42s call     tests/test_scheduler_credential_races.py::test_related_handoff_paths_recheck_expiry_after_workspace_wait[acknowledge]
+1.40s call     tests/test_scheduler_credential_races.py::test_credential_expiring_during_publication_fk_wait_rolls_back
+1.35s call     tests/test_scheduler_credential_races.py::test_credential_expiring_during_authorization_row_wait_is_rejected[worker]
+1.31s call     tests/test_scheduler_credential_races.py::test_credential_expiring_during_authorization_row_wait_is_rejected[credential]
+1.26s call     tests/test_scheduler_credential_races.py::test_credential_expiring_during_workspace_lock_is_rejected
+0.97s call     tests/test_scheduler_security.py::test_unrelated_user_cannot_inspect_scheduling_state
+0.93s call     tests/test_scheduler_protocol.py::test_real_claim_manifest_acknowledgment_and_read
+0.92s call     tests/test_scheduler_recovery.py::test_explicit_release_preserves_acknowledgment_uncertainty[False-withdrawn]
+0.89s call     tests/test_scheduler_recovery.py::test_explicit_release_preserves_acknowledgment_uncertainty[True-needs_reconciliation]
+0.89s call     tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[disable]
+0.87s call     tests/test_scheduler_recovery.py::test_scheduler_restart_and_deterministic_dispatch_preserve_sources
+0.87s call     tests/test_scheduler_protocol.py::test_other_worker_cannot_ack_or_read_claim
+0.85s call     tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[rotate]
+0.83s call     tests/test_scheduler_recovery.py::test_cancel_vs_claim_invalidates_all_ownership
+0.83s call     tests/test_scheduler_protocol.py::test_same_key_replay_conflict_capacity_and_recovery
+0.82s call     tests/test_scheduler_credential_races.py::test_scope_loss_cannot_bypass_immutable_binding_or_foreign_scope[project_id]
+69 passed, 1 warning in 86.45s (0:01:26)

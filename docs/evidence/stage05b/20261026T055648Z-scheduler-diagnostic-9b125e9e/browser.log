@@ -1,0 +1,49 @@
+[WebServer] INFO:     Started server process [2504]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 15 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=73430097-928d-4104-b776-444b8c4fb03b workspace_id=-
+  ok  1 [chromium] › tests-scheduler\auth-readiness.spec.ts:5:5 › registration controls wait for client initialization (3.3s)
+  x   2 [chromium] › tests-scheduler\auth-readiness.spec.ts:35:5 › registration waits for the initial authoritative session check (5.5s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [chromium] › tests-scheduler\auth-readiness.spec.ts:35:5 › registration waits for the initial authoritative session check 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByLabel('Display name', { exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByLabel('Display name', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('Display name', { exact: true })
+        14 × locator resolved to <input required="" name="name" maxlength="80" autocomplete="name"/>
+           - unexpected value "enabled"
+
+
+      44 |     await page.goto("/signup");
+      45 |     await expect.poll(() => held).toBe(true);
+    > 46 |     await expect(page.getByLabel("Display name", { exact: true })).toBeDisabled();
+         |                                                                    ^
+      47 |     await expect(page.getByLabel("Email", { exact: true })).toBeDisabled();
+      48 |     await expect(page.getByLabel("Password", { exact: true })).toBeDisabled();
+      49 |     await expect(page.getByRole("button", { name: "Create account", exact: true })).toBeDisabled();
+        at E:\BrosKi\OBRA\apps\web\tests-scheduler\auth-readiness.spec.ts:46:68
+
+    Error Context: test-results\auth-readiness-registratio-d09f9-authoritative-session-check-chromium\error-context.md
+
+  1 failed
+    [chromium] › tests-scheduler\auth-readiness.spec.ts:35:5 › registration waits for the initial authoritative session check 
+  13 did not run
+  1 passed (15.6s)
+  1 error was not a part of any test, see above for details
+Error: ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL
+
+  × "pnpm recursive exec" failed in E:\BrosKi\OBRA\apps/web
+

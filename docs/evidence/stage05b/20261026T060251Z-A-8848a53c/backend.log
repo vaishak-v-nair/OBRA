@@ -1,0 +1,44 @@
+........................................................................ [  9%]
+........................................................................ [ 18%]
+........................................................................ [ 27%]
+........................................................................ [ 37%]
+........................................................................ [ 46%]
+........................................................................ [ 55%]
+........................................................................ [ 64%]
+........................................................................ [ 74%]
+........................................................................ [ 83%]
+........................................................................ [ 92%]
+........................................................                 [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================ slowest 25 durations =============================
+11.08s call     tests/test_projects.py::test_real_unavailable_database_returns_503_and_liveness_survives
+7.87s call     tests/test_scheduler_proof.py::test_complete_sql_backed_protocol_proof_and_adversarial_changes
+5.70s call     tests/test_scheduler_recovery.py::test_postack_crash_requires_reconciliation_never_redispatch
+5.60s call     tests/test_scheduler_recovery.py::test_heartbeat_vs_expiration_cannot_revive_stale_ownership
+5.17s call     tests/test_scheduler_api_restart.py::test_actual_api_process_restart_preserves_claim_and_acknowledgment
+4.75s call     tests/test_legacy.py::test_legacy_is_hidden_and_operator_claim_is_explicit
+2.91s call     tests/test_scheduler_recovery.py::test_preack_expiration_fences_old_worker_and_new_owner
+2.73s call     tests/test_scheduler_recovery.py::test_preack_redispatch_is_bounded_and_terminal_replay_never_claims_new_task
+2.15s call     tests/test_orchestration_proof.py::test_every_sql_record_field_is_required[path0-fields0]
+1.85s call     tests/test_pm_model_policy.py::test_actual_invalid_api_startup_hides_supplied_values[ORBA_PM_MODEL]
+1.72s call     tests/test_pm_model_policy.py::test_actual_invalid_api_startup_hides_supplied_values[ORBA_PM_THINKING_LEVEL]
+1.68s call     tests/test_scheduler_recovery.py::test_real_heartbeat_receipt_duplicate_and_hard_bound
+1.51s call     tests/test_orchestration_proof.py::test_native_sql_integrity_guard_survives_python_optimization
+1.49s call     tests/test_password_policy.py::test_openapi_publishes_new_credential_policy_without_changing_login
+1.35s setup    tests/test_scheduler_recovery.py::test_concurrent_same_key_network_replay_has_one_lease
+1.23s call     tests/test_scheduler_imports.py::test_scheduler_and_protocol_client_do_not_load_model_sdk
+1.10s call     tests/test_pm_persistence.py::test_viewer_member_approval_and_cross_workspace_isolation
+0.99s call     tests/test_password_policy.py::test_passphrases_hash_and_authenticate_the_exact_complete_value[ascii64]
+0.96s call     tests/test_scheduler_recovery.py::test_explicit_release_preserves_acknowledgment_uncertainty[True-needs_reconciliation]
+0.94s call     tests/test_scheduler_migration.py::test_stage05a_snapshot_and_events_survive_scheduler_migration
+0.93s call     tests/test_projects.py::test_listing_actual_records_and_pagination
+0.92s setup    tests/test_auth_workspaces.py::test_invitation_failure_states[wrong_email]
+0.92s setup    tests/test_orchestration.py::test_database_prevents_rewriting_published_snapshots_and_ledger[edge]
+0.92s call     tests/test_scheduler_protocol.py::test_real_claim_manifest_acknowledgment_and_read
+0.90s call     tests/test_password_policy.py::test_passphrases_hash_and_authenticate_the_exact_complete_value[astral128]
+776 passed, 1 warning in 292.92s (0:04:52)

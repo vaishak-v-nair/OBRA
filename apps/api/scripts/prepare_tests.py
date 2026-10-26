@@ -31,8 +31,11 @@ def prepare(reset: bool = True):
                 with engine.begin() as connection:
                     connection.execute(
                         text(
-                            "TRUNCATE TABLE orchestration_events,orchestration_dependencies,orchestration_tasks,orchestration_runs,requirement_traces,task_dependencies,engineering_tasks,architecture_components,architecture_versions,architect_runs,product_acceptance_criteria,product_stories,product_epics,product_plans,product_manager_runs,projects,workspace_invitations,workspace_members,sessions,login_attempts,workspaces,users"
+                            "TRUNCATE TABLE lease_heartbeats,worker_claim_requests,handoff_records,task_leases,task_dispatches,worker_credentials,worker_identities,scheduler_state,orchestration_events,orchestration_dependencies,orchestration_tasks,orchestration_runs,requirement_traces,task_dependencies,engineering_tasks,architecture_components,architecture_versions,architect_runs,product_acceptance_criteria,product_stories,product_epics,product_plans,product_manager_runs,projects,workspace_invitations,workspace_members,sessions,login_attempts,workspaces,users"
                         )
+                    )
+                    connection.execute(
+                        text("INSERT INTO scheduler_state (id,tick_count) VALUES (1,0)")
                     )
                     connection.execute(
                         text(

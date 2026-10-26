@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="9.091" timestamp="2026-10-25T09:43:38.317861+05:30" hostname="Vaishak-MSI"><testcase classname="tests.experiments.handoff_completion_experiment" name="test_acknowledged_handoff_is_not_verified_engineering_completion" time="6.768"><failure message="AssertionError: assert 'awaiting_executor' == 'verified_complete'&#10;  &#10;  - verified_complete&#10;  + awaiting_executor">client = &lt;starlette.testclient.TestClient object at 0x0000024E6D010EC0&gt;
+
+    def test_acknowledged_handoff_is_not_verified_engineering_completion(client):
+        _, run, _, _, headers = ready(client)
+        response = acquire(client, run, headers)
+        assert response.status_code == 201
+        handoff = response.json()
+        assert act(client, handoff, headers).status_code == 200
+        with Session(client.app.state.engine) as db:
+            task = db.get(OrchestrationTask, UUID(handoff["lease"]["task_id"]))
+&gt;           assert task.execution_status == "verified_complete"
+E           AssertionError: assert 'awaiting_executor' == 'verified_complete'
+E             
+E             - verified_complete
+E             + awaiting_executor
+
+tests\experiments\handoff_completion_experiment.py:19: AssertionError</failure></testcase></testsuite></testsuites>

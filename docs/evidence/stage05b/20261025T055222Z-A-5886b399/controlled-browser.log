@@ -1,0 +1,210 @@
+$ pnpm --filter @orba/web test:e2e:controlled
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.controlled.config.ts
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [19316]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 33 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=cfbc1e6a-9556-492f-bd50-e33347dfff0d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=cfbc1e6a-9556-492f-bd50-e33347dfff0d workspace_id=fe140b8b-2b77-49ea-aa5a-0538bb4829af
+[WebServer] INFO:     pm_timing run_id=8cfb09ad-ed66-4895-aa41-a8dbd65ef290 stage=admission_commit_acknowledged elapsed_ms=78.065 stage_duration_ms=78.039 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=8cfb09ad-ed66-4895-aa41-a8dbd65ef290 stage=running_commit_acknowledged elapsed_ms=109.768 stage_duration_ms=31.583 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=8cfb09ad-ed66-4895-aa41-a8dbd65ef290 stage=failure_commit_acknowledged stage_duration_ms=41.590 attempt=1 final_state=failed error_category=provider_unavailable provider_http_status=503
+  ok  1 [chromium] › tests-controlled\pm-recovery.spec.ts:27:7 › controlled upstream503/public502 preserves approval and input without repeated-click dispatch (17.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=7766f3d2-0957-440c-bc33-c8a4ddb7ee2a workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7766f3d2-0957-440c-bc33-c8a4ddb7ee2a workspace_id=e1bd6cae-b2e9-4066-984f-29084217d03b
+[WebServer] INFO:     pm_timing run_id=5ec7d988-3924-4f18-9237-13be7f6e4049 stage=admission_commit_acknowledged elapsed_ms=106.145 stage_duration_ms=106.075 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=5ec7d988-3924-4f18-9237-13be7f6e4049 stage=running_commit_acknowledged elapsed_ms=129.430 stage_duration_ms=22.958 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=5ec7d988-3924-4f18-9237-13be7f6e4049 stage=failure_commit_acknowledged stage_duration_ms=47.847 attempt=1 final_state=failed error_category=provider_rate_limited provider_http_status=429
+  ok  2 [chromium] › tests-controlled\pm-recovery.spec.ts:27:7 › controlled provider429 preserves approval and input without repeated-click dispatch (14.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=73f5728e-0cba-420c-803a-550f0bf8faa4 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=73f5728e-0cba-420c-803a-550f0bf8faa4 workspace_id=9983f99d-cb47-45d4-b857-9e6453666176
+[WebServer] INFO:     pm_timing run_id=5cee8779-f9fc-4b89-92ab-001cd6b03fbf stage=admission_commit_acknowledged elapsed_ms=72.572 stage_duration_ms=72.554 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=5cee8779-f9fc-4b89-92ab-001cd6b03fbf stage=running_commit_acknowledged elapsed_ms=103.839 stage_duration_ms=31.115 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=5cee8779-f9fc-4b89-92ab-001cd6b03fbf stage=provider_response_received elapsed_ms=1622.613 stage_duration_ms=1518.277 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=5cee8779-f9fc-4b89-92ab-001cd6b03fbf stage=failure_commit_acknowledged stage_duration_ms=57.245 attempt=1 final_state=failed error_category=invalid_model_response provider_http_status=-
+  ok  3 [chromium] › tests-controlled\pm-recovery.spec.ts:27:7 › controlled malformed structured response preserves approval and input without repeated-click dispatch (13.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b67fecd1-dcd9-4342-890b-3220fc48ac96 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b67fecd1-dcd9-4342-890b-3220fc48ac96 workspace_id=798ec753-ef80-4b1b-8fb8-c5088ea97489
+[WebServer] INFO:     pm_timing run_id=bae7e654-2d17-47f3-bd6f-8d5c04f978e6 stage=admission_commit_acknowledged elapsed_ms=65.378 stage_duration_ms=65.361 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=bae7e654-2d17-47f3-bd6f-8d5c04f978e6 stage=running_commit_acknowledged elapsed_ms=90.631 stage_duration_ms=25.121 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=bae7e654-2d17-47f3-bd6f-8d5c04f978e6 stage=failure_commit_acknowledged stage_duration_ms=55.785 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok  4 [chromium] › tests-controlled\pm-recovery.spec.ts:70:5 › live-test allowance aborts a simultaneous second controlled generation before dispatch (6.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=64c5b752-bf85-48ff-858e-baabcd251a74 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=64c5b752-bf85-48ff-858e-baabcd251a74 workspace_id=02fd2dee-49f1-4f60-bbc4-6cb6828611e5
+[WebServer] INFO:     pm_timing run_id=668c41ad-cad2-4ba9-9a23-7f173d873203 stage=admission_commit_acknowledged elapsed_ms=57.852 stage_duration_ms=57.836 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=668c41ad-cad2-4ba9-9a23-7f173d873203 stage=running_commit_acknowledged elapsed_ms=80.234 stage_duration_ms=22.274 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=668c41ad-cad2-4ba9-9a23-7f173d873203 stage=failure_commit_acknowledged stage_duration_ms=30.677 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=0aa25374-27de-41c2-9ddf-99b42897526b stage=admission_commit_acknowledged elapsed_ms=69.034 stage_duration_ms=69.017 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=0aa25374-27de-41c2-9ddf-99b42897526b stage=running_commit_acknowledged elapsed_ms=88.209 stage_duration_ms=19.055 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=0aa25374-27de-41c2-9ddf-99b42897526b stage=failure_commit_acknowledged stage_duration_ms=54.682 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok  5 [chromium] › tests-controlled\pm-recovery.spec.ts:85:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt (15.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=f7c90110-515e-4bcd-9dea-4bd3ded6218f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f7c90110-515e-4bcd-9dea-4bd3ded6218f workspace_id=410c0f77-380b-439a-954c-70801a6aed8a
+[WebServer] INFO:     pm_timing run_id=f30f3cba-6b9c-4f14-ab6f-e82bd4efbe3c stage=admission_commit_acknowledged elapsed_ms=74.942 stage_duration_ms=74.908 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=f30f3cba-6b9c-4f14-ab6f-e82bd4efbe3c stage=running_commit_acknowledged elapsed_ms=99.703 stage_duration_ms=24.424 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=f30f3cba-6b9c-4f14-ab6f-e82bd4efbe3c stage=failure_commit_acknowledged stage_duration_ms=43.599 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok  6 [chromium] › tests-controlled\pm-recovery.spec.ts:128:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed (8.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=205e1bfb-6433-4f07-a912-cc5971618f14 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=205e1bfb-6433-4f07-a912-cc5971618f14 workspace_id=15922a57-7748-4905-be30-04ca33004bb8
+[WebServer] INFO:     pm_timing run_id=92323a16-9adc-4f43-8fcb-6f8d441c4c43 stage=admission_commit_acknowledged elapsed_ms=73.042 stage_duration_ms=73.015 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=92323a16-9adc-4f43-8fcb-6f8d441c4c43 stage=running_commit_acknowledged elapsed_ms=99.221 stage_duration_ms=26.068 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=92323a16-9adc-4f43-8fcb-6f8d441c4c43 stage=provider_response_received elapsed_ms=1625.681 stage_duration_ms=1526.253 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=92323a16-9adc-4f43-8fcb-6f8d441c4c43 stage=output_validated elapsed_ms=1627.987 stage_duration_ms=1.911 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=92323a16-9adc-4f43-8fcb-6f8d441c4c43 stage=publication_commit_acknowledged elapsed_ms=1774.313 stage_duration_ms=146.001 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok  7 [chromium] › tests-controlled\pm-recovery.spec.ts:154:5 › controlled success retains recovery UUID when the saved-result read fails (6.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=52c93aa4-8807-46b3-870c-4bdae1967d59 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=52c93aa4-8807-46b3-870c-4bdae1967d59 workspace_id=a19914e5-3793-4680-84a3-137462a31065
+  ok  8 [chromium] › tests-controlled\pm-recovery.spec.ts:176:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run (5.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b08f910f-39bf-4c50-b2ce-bcf186668c09 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b08f910f-39bf-4c50-b2ce-bcf186668c09 workspace_id=c4c5aef2-d6e2-4b35-a6c5-d1fb222ed31f
+  ok  9 [chromium] › tests-controlled\pm-recovery.spec.ts:198:5 › status recovery never advances the revision beneath an open unchanged editor (8.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=a770aae3-ee22-40a8-9e5e-d76a1b2b86a3 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a770aae3-ee22-40a8-9e5e-d76a1b2b86a3 workspace_id=9975006a-6d12-4f8b-9b33-ea869d9f602b
+[WebServer] INFO:     pm_timing run_id=438fc586-4ba0-4801-ac87-954cf5e632cf stage=admission_commit_acknowledged elapsed_ms=63.176 stage_duration_ms=63.156 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=438fc586-4ba0-4801-ac87-954cf5e632cf stage=running_commit_acknowledged elapsed_ms=93.625 stage_duration_ms=30.324 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=438fc586-4ba0-4801-ac87-954cf5e632cf stage=failure_commit_acknowledged stage_duration_ms=55.519 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 10 [chromium] › tests-controlled\pm-recovery.spec.ts:229:5 › known active-project rejection creates no run and never strands a request reference (9.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=7761fa82-7485-4785-98d9-b67043744c52 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7761fa82-7485-4785-98d9-b67043744c52 workspace_id=4b9f9f91-a690-4450-b5a7-f4b56a275cfe
+[WebServer] INFO:     pm_timing run_id=b83bef26-81a9-48af-bbd2-ea0741736d0f stage=admission_commit_acknowledged elapsed_ms=95.911 stage_duration_ms=95.87 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=b83bef26-81a9-48af-bbd2-ea0741736d0f stage=running_commit_acknowledged elapsed_ms=123.266 stage_duration_ms=27.028 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=b83bef26-81a9-48af-bbd2-ea0741736d0f stage=failure_commit_acknowledged stage_duration_ms=41.458 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 11 [chromium] › tests-controlled\pm-recovery.spec.ts:256:5 › combined UTF8 input rejection retains context brief and approved plan before explicit recovery (12.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=3591ac73-1782-4b1c-a545-b22d85a8e977 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3591ac73-1782-4b1c-a545-b22d85a8e977 workspace_id=f21ccff8-2f86-4bd5-8f97-26c61eb93388
+[WebServer] INFO:     pm_timing run_id=284c602c-14f5-46ba-aa65-80338d4c7483 stage=admission_commit_acknowledged elapsed_ms=68.750 stage_duration_ms=68.728 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=284c602c-14f5-46ba-aa65-80338d4c7483 stage=running_commit_acknowledged elapsed_ms=91.761 stage_duration_ms=22.821 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=284c602c-14f5-46ba-aa65-80338d4c7483 stage=failure_commit_acknowledged stage_duration_ms=48.790 attempt=1 final_state=failed error_category=provider_unavailable provider_http_status=503
+  ok 12 [mobile] › tests-controlled\pm-recovery.spec.ts:27:7 › controlled upstream503/public502 preserves approval and input without repeated-click dispatch (13.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=4f896de7-e39f-4e55-91fa-4cba46b19523 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=4f896de7-e39f-4e55-91fa-4cba46b19523 workspace_id=c9e6a46c-83bf-4c9d-94a9-4ad26d0d2d26
+[WebServer] INFO:     pm_timing run_id=c42f63ec-3350-49ca-9fa0-a4ed9a27b380 stage=admission_commit_acknowledged elapsed_ms=69.274 stage_duration_ms=69.255 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c42f63ec-3350-49ca-9fa0-a4ed9a27b380 stage=running_commit_acknowledged elapsed_ms=97.490 stage_duration_ms=28.09 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c42f63ec-3350-49ca-9fa0-a4ed9a27b380 stage=failure_commit_acknowledged stage_duration_ms=20.046 attempt=1 final_state=failed error_category=provider_rate_limited provider_http_status=429
+  ok 13 [mobile] › tests-controlled\pm-recovery.spec.ts:27:7 › controlled provider429 preserves approval and input without repeated-click dispatch (13.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=44b37b54-d831-4a9e-a201-a56c589e6277 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=44b37b54-d831-4a9e-a201-a56c589e6277 workspace_id=62a5ca8d-6d53-4e04-b07d-1c92efba079a
+[WebServer] INFO:     pm_timing run_id=03d1ddee-c677-42d5-9795-e9f1c7050f0d stage=admission_commit_acknowledged elapsed_ms=84.779 stage_duration_ms=84.762 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=03d1ddee-c677-42d5-9795-e9f1c7050f0d stage=running_commit_acknowledged elapsed_ms=118.469 stage_duration_ms=33.573 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=03d1ddee-c677-42d5-9795-e9f1c7050f0d stage=provider_response_received elapsed_ms=1620.536 stage_duration_ms=1501.954 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=03d1ddee-c677-42d5-9795-e9f1c7050f0d stage=failure_commit_acknowledged stage_duration_ms=12.083 attempt=1 final_state=failed error_category=invalid_model_response provider_http_status=-
+  ok 14 [mobile] › tests-controlled\pm-recovery.spec.ts:27:7 › controlled malformed structured response preserves approval and input without repeated-click dispatch (13.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=bcfe2300-9a39-40db-aced-4aa315b4673b workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=bcfe2300-9a39-40db-aced-4aa315b4673b workspace_id=456ac0cf-e5ea-4b35-98d1-a28812e32282
+[WebServer] INFO:     pm_timing run_id=a94b7070-85e3-4a5c-9a1d-80174717d6ae stage=admission_commit_acknowledged elapsed_ms=67.398 stage_duration_ms=67.381 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=a94b7070-85e3-4a5c-9a1d-80174717d6ae stage=running_commit_acknowledged elapsed_ms=97.705 stage_duration_ms=30.174 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=a94b7070-85e3-4a5c-9a1d-80174717d6ae stage=failure_commit_acknowledged stage_duration_ms=49.196 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 15 [mobile] › tests-controlled\pm-recovery.spec.ts:70:5 › live-test allowance aborts a simultaneous second controlled generation before dispatch (6.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=69166bce-7e25-48b4-b985-5ece7140a7e9 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=69166bce-7e25-48b4-b985-5ece7140a7e9 workspace_id=d53646cd-860f-4f73-857f-b2748e1afabd
+[WebServer] INFO:     pm_timing run_id=90967825-8321-4fe0-a6ee-c2768b997395 stage=admission_commit_acknowledged elapsed_ms=69.307 stage_duration_ms=69.289 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=90967825-8321-4fe0-a6ee-c2768b997395 stage=running_commit_acknowledged elapsed_ms=93.798 stage_duration_ms=24.343 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=90967825-8321-4fe0-a6ee-c2768b997395 stage=failure_commit_acknowledged stage_duration_ms=39.998 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=2ee375f9-c7a3-4e9c-8e4d-637ca8c89617 stage=admission_commit_acknowledged elapsed_ms=55.385 stage_duration_ms=55.352 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=2ee375f9-c7a3-4e9c-8e4d-637ca8c89617 stage=running_commit_acknowledged elapsed_ms=82.152 stage_duration_ms=26.453 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=2ee375f9-c7a3-4e9c-8e4d-637ca8c89617 stage=failure_commit_acknowledged stage_duration_ms=70.695 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 16 [mobile] › tests-controlled\pm-recovery.spec.ts:85:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt (15.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=bfa6440d-c03f-4b66-9f71-cd175d6abebd workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=bfa6440d-c03f-4b66-9f71-cd175d6abebd workspace_id=edb396d9-c13f-48e4-9ac3-db087cdcf6c1
+[WebServer] INFO:     pm_timing run_id=42063b39-03e2-445f-9520-e3cbf8ed9f91 stage=admission_commit_acknowledged elapsed_ms=72.644 stage_duration_ms=72.626 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=42063b39-03e2-445f-9520-e3cbf8ed9f91 stage=running_commit_acknowledged elapsed_ms=99.844 stage_duration_ms=27.07 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=42063b39-03e2-445f-9520-e3cbf8ed9f91 stage=failure_commit_acknowledged stage_duration_ms=13.417 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 17 [mobile] › tests-controlled\pm-recovery.spec.ts:128:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed (7.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=f396856c-8b21-4660-a0ae-9ff66f13bdae workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f396856c-8b21-4660-a0ae-9ff66f13bdae workspace_id=a4a32d67-1f2d-4d1d-abbb-948bd71f0081
+[WebServer] INFO:     pm_timing run_id=c7f6a22f-816a-4076-a0d9-bf9326fcc419 stage=admission_commit_acknowledged elapsed_ms=62.549 stage_duration_ms=62.528 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c7f6a22f-816a-4076-a0d9-bf9326fcc419 stage=running_commit_acknowledged elapsed_ms=91.363 stage_duration_ms=28.484 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c7f6a22f-816a-4076-a0d9-bf9326fcc419 stage=provider_response_received elapsed_ms=1600.041 stage_duration_ms=1508.523 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c7f6a22f-816a-4076-a0d9-bf9326fcc419 stage=output_validated elapsed_ms=1603.222 stage_duration_ms=2.709 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c7f6a22f-816a-4076-a0d9-bf9326fcc419 stage=publication_commit_acknowledged elapsed_ms=1702.970 stage_duration_ms=99.292 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok 18 [mobile] › tests-controlled\pm-recovery.spec.ts:154:5 › controlled success retains recovery UUID when the saved-result read fails (6.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=dbe81a34-84c3-414f-a1c3-f5af312acc6b workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=dbe81a34-84c3-414f-a1c3-f5af312acc6b workspace_id=ff468cea-33e0-4943-9f42-b015a112553f
+  ok 19 [mobile] › tests-controlled\pm-recovery.spec.ts:176:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run (6.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=a42b2838-5b45-438d-8c44-c0164cdd7655 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a42b2838-5b45-438d-8c44-c0164cdd7655 workspace_id=7bcca8e3-ca6a-469f-9670-80ddc9df2d39
+  ok 20 [mobile] › tests-controlled\pm-recovery.spec.ts:198:5 › status recovery never advances the revision beneath an open unchanged editor (9.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=7157fcf4-d847-49e0-a4d7-2ab00e3a5896 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7157fcf4-d847-49e0-a4d7-2ab00e3a5896 workspace_id=486a91c6-d09f-49c1-9335-8f64717d6fa2
+[WebServer] INFO:     pm_timing run_id=1a411872-1fbc-4c06-acc3-f4f80ea72ace stage=admission_commit_acknowledged elapsed_ms=73.473 stage_duration_ms=73.456 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=1a411872-1fbc-4c06-acc3-f4f80ea72ace stage=running_commit_acknowledged elapsed_ms=101.004 stage_duration_ms=27.401 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=1a411872-1fbc-4c06-acc3-f4f80ea72ace stage=failure_commit_acknowledged stage_duration_ms=6.807 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 21 [mobile] › tests-controlled\pm-recovery.spec.ts:229:5 › known active-project rejection creates no run and never strands a request reference (8.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=534d3cb0-51c0-4c27-95c5-bcb95aad188f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=534d3cb0-51c0-4c27-95c5-bcb95aad188f workspace_id=b5832d2d-7682-472f-b88b-211bfd3a35d5
+[WebServer] INFO:     pm_timing run_id=1b079b35-c029-4957-ada2-7dc3763e87a5 stage=admission_commit_acknowledged elapsed_ms=79.991 stage_duration_ms=79.974 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=1b079b35-c029-4957-ada2-7dc3763e87a5 stage=running_commit_acknowledged elapsed_ms=104.280 stage_duration_ms=24.165 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=1b079b35-c029-4957-ada2-7dc3763e87a5 stage=failure_commit_acknowledged stage_duration_ms=14.808 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 22 [mobile] › tests-controlled\pm-recovery.spec.ts:256:5 › combined UTF8 input rejection retains context brief and approved plan before explicit recovery (11.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=8aa3ba41-393a-43da-8e55-466341377c4e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=8aa3ba41-393a-43da-8e55-466341377c4e workspace_id=e60204ca-aea9-4b60-9281-b138a4187508
+[WebServer] INFO:     pm_timing run_id=a7fa2010-2138-4d1b-9ee8-dbada594e3a1 stage=admission_commit_acknowledged elapsed_ms=70.170 stage_duration_ms=70.152 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=a7fa2010-2138-4d1b-9ee8-dbada594e3a1 stage=running_commit_acknowledged elapsed_ms=93.798 stage_duration_ms=23.499 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=a7fa2010-2138-4d1b-9ee8-dbada594e3a1 stage=failure_commit_acknowledged stage_duration_ms=59.061 attempt=1 final_state=failed error_category=provider_unavailable provider_http_status=503
+  ok 23 [tablet] › tests-controlled\pm-recovery.spec.ts:27:7 › controlled upstream503/public502 preserves approval and input without repeated-click dispatch (13.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=3aae07a3-70f6-4772-9f0e-b37928871824 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3aae07a3-70f6-4772-9f0e-b37928871824 workspace_id=232a42a7-3c65-4e40-8986-988dc403f4ad
+[WebServer] INFO:     pm_timing run_id=a2d0c62a-3ea5-44e4-980a-f494279ea0cb stage=admission_commit_acknowledged elapsed_ms=45.264 stage_duration_ms=45.249 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=a2d0c62a-3ea5-44e4-980a-f494279ea0cb stage=running_commit_acknowledged elapsed_ms=71.590 stage_duration_ms=26.218 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=a2d0c62a-3ea5-44e4-980a-f494279ea0cb stage=failure_commit_acknowledged stage_duration_ms=13.828 attempt=1 final_state=failed error_category=provider_rate_limited provider_http_status=429
+  ok 24 [tablet] › tests-controlled\pm-recovery.spec.ts:27:7 › controlled provider429 preserves approval and input without repeated-click dispatch (13.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d3ea1618-4fff-4e31-ad3e-2711baba470b workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d3ea1618-4fff-4e31-ad3e-2711baba470b workspace_id=914bd303-7fc9-4e8b-9f6c-70eb34a48e0f
+[WebServer] INFO:     pm_timing run_id=8ec44e20-58c6-44c3-a23f-0f6309f93cf3 stage=admission_commit_acknowledged elapsed_ms=65.773 stage_duration_ms=65.758 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=8ec44e20-58c6-44c3-a23f-0f6309f93cf3 stage=running_commit_acknowledged elapsed_ms=84.654 stage_duration_ms=18.771 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=8ec44e20-58c6-44c3-a23f-0f6309f93cf3 stage=provider_response_received elapsed_ms=1595.190 stage_duration_ms=1510.41 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=8ec44e20-58c6-44c3-a23f-0f6309f93cf3 stage=failure_commit_acknowledged stage_duration_ms=76.918 attempt=1 final_state=failed error_category=invalid_model_response provider_http_status=-
+  ok 25 [tablet] › tests-controlled\pm-recovery.spec.ts:27:7 › controlled malformed structured response preserves approval and input without repeated-click dispatch (13.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=501bf29f-dd3e-4a19-9847-83346de47c35 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=501bf29f-dd3e-4a19-9847-83346de47c35 workspace_id=85cbc615-6468-4d55-b22d-a42899731565
+[WebServer] INFO:     pm_timing run_id=0d3c325f-a7af-40eb-909b-3386bdc66678 stage=admission_commit_acknowledged elapsed_ms=70.895 stage_duration_ms=70.877 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=0d3c325f-a7af-40eb-909b-3386bdc66678 stage=running_commit_acknowledged elapsed_ms=95.157 stage_duration_ms=24.142 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=0d3c325f-a7af-40eb-909b-3386bdc66678 stage=failure_commit_acknowledged stage_duration_ms=19.539 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 26 [tablet] › tests-controlled\pm-recovery.spec.ts:70:5 › live-test allowance aborts a simultaneous second controlled generation before dispatch (5.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d048b656-dbbc-42e8-9501-9029a9352a1c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d048b656-dbbc-42e8-9501-9029a9352a1c workspace_id=011905ee-3f30-46ff-b5e0-c01e6fdd2cd3
+[WebServer] INFO:     pm_timing run_id=ed2bf473-fc89-4880-acf8-d641c0913bd9 stage=admission_commit_acknowledged elapsed_ms=58.495 stage_duration_ms=58.468 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=ed2bf473-fc89-4880-acf8-d641c0913bd9 stage=running_commit_acknowledged elapsed_ms=74.215 stage_duration_ms=15.601 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=ed2bf473-fc89-4880-acf8-d641c0913bd9 stage=failure_commit_acknowledged stage_duration_ms=11.032 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=4852ee6d-7a4b-40f4-a399-82069d25105f stage=admission_commit_acknowledged elapsed_ms=62.634 stage_duration_ms=62.616 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=4852ee6d-7a4b-40f4-a399-82069d25105f stage=running_commit_acknowledged elapsed_ms=86.220 stage_duration_ms=23.451 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=4852ee6d-7a4b-40f4-a399-82069d25105f stage=failure_commit_acknowledged stage_duration_ms=55.072 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 27 [tablet] › tests-controlled\pm-recovery.spec.ts:85:5 › controlled timeout preserves approval and brief; explicit retry records a fresh failed attempt (15.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=dcbc0ade-7daf-4079-ab74-1731066e92e3 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=dcbc0ade-7daf-4079-ab74-1731066e92e3 workspace_id=a151b55e-37d7-4b3a-bf55-50774a24bd9c
+[WebServer] INFO:     pm_timing run_id=fe9045d5-e670-4db1-8647-6907ca694e9e stage=admission_commit_acknowledged elapsed_ms=72.837 stage_duration_ms=72.816 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=fe9045d5-e670-4db1-8647-6907ca694e9e stage=running_commit_acknowledged elapsed_ms=98.899 stage_duration_ms=25.9 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=fe9045d5-e670-4db1-8647-6907ca694e9e stage=failure_commit_acknowledged stage_duration_ms=49.206 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 28 [tablet] › tests-controlled\pm-recovery.spec.ts:128:5 › lost HTTP response stays unknown and GET-only until the exact failed run is confirmed (6.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=d2e2df56-ce5a-44ac-96f0-7ed6ab88ae4e workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=d2e2df56-ce5a-44ac-96f0-7ed6ab88ae4e workspace_id=74d8dfbd-3a53-4704-a8c4-d0c37a92d8a2
+[WebServer] INFO:     pm_timing run_id=b4ba2bf3-00e3-4081-9ebd-9280c35ce987 stage=admission_commit_acknowledged elapsed_ms=99.444 stage_duration_ms=99.414 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=b4ba2bf3-00e3-4081-9ebd-9280c35ce987 stage=running_commit_acknowledged elapsed_ms=120.276 stage_duration_ms=20.707 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=b4ba2bf3-00e3-4081-9ebd-9280c35ce987 stage=provider_response_received elapsed_ms=1646.893 stage_duration_ms=1526.437 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=b4ba2bf3-00e3-4081-9ebd-9280c35ce987 stage=output_validated elapsed_ms=1651.115 stage_duration_ms=2.842 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=b4ba2bf3-00e3-4081-9ebd-9280c35ce987 stage=publication_commit_acknowledged elapsed_ms=1785.290 stage_duration_ms=132.239 attempt=1 final_state=succeeded error_category=- provider_http_status=-
+  ok 29 [tablet] › tests-controlled\pm-recovery.spec.ts:154:5 › controlled success retains recovery UUID when the saved-result read fails (6.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=3a8e5e05-418b-4ab8-93a9-3fc69e0afcec workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3a8e5e05-418b-4ab8-93a9-3fc69e0afcec workspace_id=a6ddeb2c-805a-4b1d-add7-fa6aa0827ee5
+  ok 30 [tablet] › tests-controlled\pm-recovery.spec.ts:176:5 › failed initial history read is unavailable; non-dispatch rejection preserves input without inventing a run (5.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=8c7dd3d9-8d79-4d95-909d-9b67b379c832 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=8c7dd3d9-8d79-4d95-909d-9b67b379c832 workspace_id=88b3a42f-8f5c-4071-a1a3-1f689206ec1b
+  ok 31 [tablet] › tests-controlled\pm-recovery.spec.ts:198:5 › status recovery never advances the revision beneath an open unchanged editor (8.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=eb3ce1c6-8ee9-4153-9f9b-0743459cf7e1 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=eb3ce1c6-8ee9-4153-9f9b-0743459cf7e1 workspace_id=bc06053e-5f4c-48ff-a5f0-ad4af5cd2722
+[WebServer] INFO:     pm_timing run_id=d9e7e193-e9d4-4310-93e6-6b036873cf89 stage=admission_commit_acknowledged elapsed_ms=88.111 stage_duration_ms=88.09 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=d9e7e193-e9d4-4310-93e6-6b036873cf89 stage=running_commit_acknowledged elapsed_ms=122.160 stage_duration_ms=33.761 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=d9e7e193-e9d4-4310-93e6-6b036873cf89 stage=failure_commit_acknowledged stage_duration_ms=13.035 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 32 [tablet] › tests-controlled\pm-recovery.spec.ts:229:5 › known active-project rejection creates no run and never strands a request reference (8.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=6bba9da7-af2d-49b0-99fa-63f545a6186f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=6bba9da7-af2d-49b0-99fa-63f545a6186f workspace_id=64229993-83f3-4b14-afdf-db6d6fda6cf2
+[WebServer] INFO:     pm_timing run_id=c4e21d7b-4576-4cd6-97c2-e98acf7ca015 stage=admission_commit_acknowledged elapsed_ms=80.940 stage_duration_ms=80.921 attempt=1 final_state=pending error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c4e21d7b-4576-4cd6-97c2-e98acf7ca015 stage=running_commit_acknowledged elapsed_ms=108.008 stage_duration_ms=26.943 attempt=1 final_state=running error_category=- provider_http_status=-
+[WebServer] INFO:     pm_timing run_id=c4e21d7b-4576-4cd6-97c2-e98acf7ca015 stage=failure_commit_acknowledged stage_duration_ms=45.423 attempt=1 final_state=failed error_category=provider_timeout provider_http_status=-
+  ok 33 [tablet] › tests-controlled\pm-recovery.spec.ts:256:5 › combined UTF8 input rejection retains context brief and approved plan before explicit recovery (11.0s)
+
+  33 passed (5.9m)

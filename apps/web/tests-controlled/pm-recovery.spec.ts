@@ -7,15 +7,13 @@ import {signup,createWorkspace} from "../tests/helpers";
 import {evidencePath} from "../tests/evidence";
 import {writeFileSync} from "node:fs";
 import {allowOneGeneration} from "../tests/generation-budget";
+import {createProject} from "../tests/architect-preflight";
 
 async function setup(page:Page) {
   execFileSync("uv",["run","--directory","../api","python","-m","scripts.prepare_tests"],{stdio:"pipe"});
   await signup(page,`controlled-${test.info().project.name}-${Date.now()}@example.com`);
   await createWorkspace(page,"Controlled provider verification");
-  await page.getByLabel("Project description",{exact:true}).fill("Track one daily habit.");
-  const saved=page.waitForResponse(r=>r.request().method()==="POST"&&r.url().endsWith("/api/v1/projects"));
-  await page.getByRole("button",{name:"Create project",exact:true}).click();
-  const project=await (await saved).json();
+  const project=await createProject(page,"Track one daily habit.");
   await expect(page.getByRole("button",{name:"Generate Product Plan",exact:true})).toBeEnabled();
   const user=await (await page.request.get("/api/v1/auth/me")).json();
   return {project,user,panel:page.locator("#product-plan")};

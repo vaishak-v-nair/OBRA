@@ -1,0 +1,59 @@
+[WebServer] INFO:     Started server process [18832]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 3 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=161b3c98-7db8-46d7-a0fe-5fefbf5869df workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=161b3c98-7db8-46d7-a0fe-5fefbf5869df workspace_id=a3865a95-5728-4cc5-8d68-92fbb4b0b1d6
+  x  1 [chromium] › tests\teams.spec.ts:7:5 › two people join a real workspace with Viewer restrictions, persistence and logout (15.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=536813c5-95a8-48db-80ef-be84a549d09d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=536813c5-95a8-48db-80ef-be84a549d09d workspace_id=bfc4dd08-e385-4388-94bd-5e3834e3d949
+[WebServer] INFO:     security_event=session_rotated actor_id=dd777284-fb2b-487f-9deb-ddc58a94555a workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=dd777284-fb2b-487f-9deb-ddc58a94555a workspace_id=bfc4dd08-e385-4388-94bd-5e3834e3d949
+[WebServer] INFO:     security_event=session_revoked actor_id=dd777284-fb2b-487f-9deb-ddc58a94555a workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=dd777284-fb2b-487f-9deb-ddc58a94555a workspace_id=-
+  ok 2 [mobile] › tests\teams.spec.ts:7:5 › two people join a real workspace with Viewer restrictions, persistence and logout (36.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=26193fe0-2fd0-43b1-859d-41746cc2c334 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=26193fe0-2fd0-43b1-859d-41746cc2c334 workspace_id=e2af8371-a05c-447a-aee0-97c50291876c
+[WebServer] INFO:     security_event=session_rotated actor_id=6eb7ea7f-1c2b-4c13-9ffe-fdcf61de1af2 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=6eb7ea7f-1c2b-4c13-9ffe-fdcf61de1af2 workspace_id=e2af8371-a05c-447a-aee0-97c50291876c
+[WebServer] INFO:     security_event=session_revoked actor_id=6eb7ea7f-1c2b-4c13-9ffe-fdcf61de1af2 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=6eb7ea7f-1c2b-4c13-9ffe-fdcf61de1af2 workspace_id=-
+  ok 3 [tablet] › tests\teams.spec.ts:7:5 › two people join a real workspace with Viewer restrictions, persistence and logout (30.7s)
+
+
+  1) [chromium] › tests\teams.spec.ts:7:5 › two people join a real workspace with Viewer restrictions, persistence and logout › Owner creates a persisted project and a real Viewer invitation 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Shared project chromium-1792863123843', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Shared project chromium-1792863123843', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Shared project chromium-1792863123843', exact: true })
+
+
+      19 |     await page.getByLabel("Project description", { exact: true }).fill(title);
+      20 |     await page.getByRole("button", { name: "Create project", exact: true }).click();
+    > 21 |     await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+         |                                                                           ^
+      22 |     const projectUrl = page.url();
+      23 |     await page.reload(); await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+      24 |     await nav(page, "Workspaces"); await page.getByRole("link", { name: "Workspace settings", exact: true }).click();
+        at E:\BrosKi\OBRA\apps\web\tests\teams.spec.ts:21:75
+        at E:\BrosKi\OBRA\apps\web\tests\teams.spec.ts:17:32
+
+    Error Context: test-results\teams-two-people-join-a-re-1764e-ions-persistence-and-logout-chromium\error-context.md
+
+  1 failed
+    [chromium] › tests\teams.spec.ts:7:5 › two people join a real workspace with Viewer restrictions, persistence and logout 
+  2 passed (2.8m)
+Error: ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL
+
+  × "pnpm recursive exec" failed in E:\BrosKi\OBRA\apps/web
+

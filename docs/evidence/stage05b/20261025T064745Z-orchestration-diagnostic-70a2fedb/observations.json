@@ -1,0 +1,48 @@
+{
+  "recorded_at": "2026-10-25T06:56:07.558236+00:00",
+  "result": "FAIL",
+  "actual_exit_code": 1,
+  "complete_browser_report": false,
+  "operator_terminated_after_observed_failures": true,
+  "reason": "Three journeys exhausted90s total limits; stopped owned diagnostic tree before continuing unrelated cases. No full Gate A/B/C ran.",
+  "observed_test_failures": 3,
+  "exact_errors": [
+    "90000ms total case deadline at expected ledger assertion; expected ledger exists in snapshot",
+    "90000ms total case deadline before Execution Plan ready",
+    "90000ms total case deadline disposed API response"
+  ],
+  "import_only_measurements": [
+    {
+      "module": "scripts.seed_pm_fixture",
+      "exit_code": 0,
+      "elapsed_seconds": 13.575,
+      "database_operations": 0,
+      "model_generation_requests": 0
+    },
+    {
+      "module": "scripts.seed_orchestration_fixture",
+      "exit_code": 0,
+      "elapsed_seconds": 19.83,
+      "database_operations": 0,
+      "model_generation_requests": 0
+    },
+    {
+      "module": "scripts.inspect_orchestration",
+      "exit_code": 0,
+      "elapsed_seconds": 11.77,
+      "database_operations": 0,
+      "model_generation_requests": 0
+    },
+    {
+      "module": "scripts.prepare_tests",
+      "exit_code": 0,
+      "elapsed_seconds": 10.466,
+      "database_operations": 0,
+      "model_generation_requests": 0
+    }
+  ],
+  "new_case_budget_seconds": 180,
+  "action_navigation_seconds": 30,
+  "assertion_seconds": 5,
+  "retries": 0
+}

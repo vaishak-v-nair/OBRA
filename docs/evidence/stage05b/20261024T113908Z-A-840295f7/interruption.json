@@ -1,0 +1,116 @@
+{
+  "recorded_at": "2026-10-24T16:42:16.773674+00:00",
+  "classification": "incomplete interrupted Gate A, never PASS",
+  "native_outer_exit_code": null,
+  "backend_exit_code": null,
+  "completed_commands": [
+    {
+      "name": "database",
+      "argv": [
+        "docker",
+        "compose",
+        "-f",
+        "infra/compose.yaml",
+        "--profile",
+        "test",
+        "up",
+        "-d",
+        "--wait",
+        "test-postgres"
+      ],
+      "started_at": "2026-10-24T11:39:20.245382+00:00",
+      "exit_code": 0,
+      "pid": 27244,
+      "duration_seconds": 1.388,
+      "completed_at": "2026-10-24T11:39:21.633328+00:00"
+    },
+    {
+      "name": "frontend-lock",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "install",
+        "--frozen-lockfile"
+      ],
+      "started_at": "2026-10-24T11:39:21.798428+00:00",
+      "exit_code": 0,
+      "pid": 10620,
+      "duration_seconds": 7.82,
+      "completed_at": "2026-10-24T11:39:29.618553+00:00"
+    },
+    {
+      "name": "migration",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "alembic",
+        "upgrade",
+        "head"
+      ],
+      "started_at": "2026-10-24T11:39:35.859577+00:00",
+      "exit_code": 0,
+      "pid": 23596,
+      "duration_seconds": 8.468,
+      "completed_at": "2026-10-24T11:39:44.327933+00:00"
+    },
+    {
+      "name": "peers",
+      "argv": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=pnpm@12.14.0",
+        "--",
+        "pnpm",
+        "peers",
+        "check"
+      ],
+      "started_at": "2026-10-24T11:39:29.624363+00:00",
+      "exit_code": 0,
+      "pid": 6584,
+      "duration_seconds": 6.233,
+      "completed_at": "2026-10-24T11:39:35.857746+00:00"
+    },
+    {
+      "name": "python-lock",
+      "argv": [
+        "uv",
+        "sync",
+        "--locked",
+        "--directory",
+        "apps/api"
+      ],
+      "started_at": "2026-10-24T11:39:21.641442+00:00",
+      "exit_code": 0,
+      "pid": 21252,
+      "duration_seconds": 0.153,
+      "completed_at": "2026-10-24T11:39:21.794401+00:00"
+    },
+    {
+      "name": "schema-drift",
+      "argv": [
+        "uv",
+        "run",
+        "--directory",
+        "apps/api",
+        "alembic",
+        "check"
+      ],
+      "started_at": "2026-10-24T11:39:44.332210+00:00",
+      "exit_code": 0,
+      "pid": 17336,
+      "duration_seconds": 9.372,
+      "completed_at": "2026-10-24T11:39:53.704468+00:00"
+    }
+  ],
+  "final_test_report_present": false,
+  "last_backend_log_sha256": "4bf97d91882296a7bd98fa237482d818cd1052da3784f835e4182431da672cf8",
+  "observation": "Runner and gate/backend processes absent at resumption; no native completion or final receipt. Docker daemon was unavailable on resumption. Exact interruption cause is unknown.",
+  "source_sha256": "09ece04141f3a4110d02fc0cb449107b194f41510bca216237c8dc27126f2778"
+}

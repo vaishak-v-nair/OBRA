@@ -1,0 +1,26 @@
+{
+  "name": "scheduler",
+  "argv": [
+    "npm",
+    "exec",
+    "--yes",
+    "--package=pnpm@12.14.0",
+    "--",
+    "pnpm",
+    "--filter",
+    "@orba/web",
+    "exec",
+    "playwright",
+    "test",
+    "--config",
+    "playwright.scheduler.config.ts",
+    "--workers=1",
+    "--retries=0",
+    "--max-failures=1"
+  ],
+  "started_at": "2026-10-26T05:59:36.373055+00:00",
+  "exit_code": 0,
+  "pid": 26160,
+  "duration_seconds": 185.402,
+  "completed_at": "2026-10-26T06:02:41.775235+00:00"
+}

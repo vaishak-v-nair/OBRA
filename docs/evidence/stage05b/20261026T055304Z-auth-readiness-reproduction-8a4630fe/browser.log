@@ -1,0 +1,51 @@
+[WebServer] INFO:     Started server process [13836]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:19704) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:25176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [mobile] › tests-scheduler\auth-readiness.spec.ts:5:5 › registration controls wait for client initialization (5.9s)
+
+
+  1) [mobile] › tests-scheduler\auth-readiness.spec.ts:5:5 › registration controls wait for client initialization 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByLabel('Display name', { exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByLabel('Display name', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('Display name', { exact: true })
+        14 × locator resolved to <input required="" name="name" maxlength="80" autocomplete="name"/>
+           - unexpected value "enabled"
+
+
+      21 |     await expect(page.getByRole("heading", { name: "Create your account", exact: true })).toBeVisible();
+      22 |     await expect.poll(() => scripts).toBeGreaterThan(0);
+    > 23 |     await expect(page.getByLabel("Display name", { exact: true })).toBeDisabled();
+         |                                                                    ^
+      24 |     await expect(page.getByLabel("Email", { exact: true })).toBeDisabled();
+      25 |     await expect(page.getByLabel("Password", { exact: true })).toBeDisabled();
+      26 |     await expect(page.getByRole("button", { name: "Create account", exact: true })).toBeDisabled();
+        at E:\BrosKi\OBRA\apps\web\tests-scheduler\auth-readiness.spec.ts:23:68
+
+    Error Context: test-results\auth-readiness-registratio-106f0-t-for-client-initialization-mobile\error-context.md
+
+  1 failed
+    [mobile] › tests-scheduler\auth-readiness.spec.ts:5:5 › registration controls wait for client initialization 
+Error: ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL
+
+  × "pnpm recursive exec" failed in E:\BrosKi\OBRA\apps/web
+

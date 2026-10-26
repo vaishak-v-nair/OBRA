@@ -1,0 +1,24 @@
+{
+  "name": "core-pm",
+  "argv": [
+    "npm",
+    "exec",
+    "--yes",
+    "--package=pnpm@12.14.0",
+    "--",
+    "pnpm",
+    "--filter",
+    "@orba/web",
+    "exec",
+    "playwright",
+    "test",
+    "tests/pm.spec.ts",
+    "--workers=1",
+    "--retries=0"
+  ],
+  "started_at": "2026-10-25T05:43:27.892576+00:00",
+  "exit_code": 0,
+  "pid": 29128,
+  "duration_seconds": 162.248,
+  "completed_at": "2026-10-25T05:46:10.140884+00:00"
+}

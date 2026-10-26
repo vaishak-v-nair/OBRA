@@ -1,0 +1,30 @@
+[WebServer] INFO:     Started server process [27352]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 3 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=f2300bfe-7044-419a-ade9-81abf6434c5f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=f2300bfe-7044-419a-ade9-81abf6434c5f workspace_id=f8226ddf-4dd1-47fb-82a0-0ab61d5da0d5
+[WebServer] INFO:     security_event=session_rotated actor_id=658d374e-2c4f-4309-b152-f4fd4e1f6164 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=658d374e-2c4f-4309-b152-f4fd4e1f6164 workspace_id=f8226ddf-4dd1-47fb-82a0-0ab61d5da0d5
+[WebServer] INFO:     security_event=session_revoked actor_id=658d374e-2c4f-4309-b152-f4fd4e1f6164 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=658d374e-2c4f-4309-b152-f4fd4e1f6164 workspace_id=-
+  ok 1 [chromium] › tests\teams.spec.ts:8:5 › two people join a real workspace with Viewer restrictions, persistence and logout (39.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=a6a71540-8a38-4abf-9f85-6301ad581d07 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a6a71540-8a38-4abf-9f85-6301ad581d07 workspace_id=f65b3463-a3bb-499f-ae0b-637c0abd83c4
+[WebServer] INFO:     security_event=session_rotated actor_id=b7e663ce-5bae-4fb2-a326-9915dc271403 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b7e663ce-5bae-4fb2-a326-9915dc271403 workspace_id=f65b3463-a3bb-499f-ae0b-637c0abd83c4
+[WebServer] INFO:     security_event=session_revoked actor_id=b7e663ce-5bae-4fb2-a326-9915dc271403 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=b7e663ce-5bae-4fb2-a326-9915dc271403 workspace_id=-
+  ok 2 [mobile] › tests\teams.spec.ts:8:5 › two people join a real workspace with Viewer restrictions, persistence and logout (29.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=9b93c074-c521-4c29-b3b2-9223e9fd3e7d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9b93c074-c521-4c29-b3b2-9223e9fd3e7d workspace_id=91efac95-3eb3-47be-b715-4f18cd90a8d7
+[WebServer] INFO:     security_event=session_rotated actor_id=7d35c092-be88-42d1-8613-cb0bdef9c446 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7d35c092-be88-42d1-8613-cb0bdef9c446 workspace_id=91efac95-3eb3-47be-b715-4f18cd90a8d7
+[WebServer] INFO:     security_event=session_revoked actor_id=7d35c092-be88-42d1-8613-cb0bdef9c446 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=7d35c092-be88-42d1-8613-cb0bdef9c446 workspace_id=-
+  ok 3 [tablet] › tests\teams.spec.ts:8:5 › two people join a real workspace with Viewer restrictions, persistence and logout (34.7s)
+
+  3 passed (4.3m)

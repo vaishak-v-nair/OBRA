@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="3.150" timestamp="2026-10-26T20:35:06.173004+05:30" hostname="Vaishak-MSI"><testcase classname="tests.experiments.credential_publication_experiment" name="test_rejected_expired_claim_is_not_successful_publication" time="2.535"><failure message="AssertionError: Deliberately incorrect: actual expired claim must return401.&#10;assert 401 == 201&#10; +  where 401 = &lt;Response [401 Unauthorized]&gt;.status_code">client = &lt;starlette.testclient.TestClient object at 0x000002D51B4F4C20&gt;
+
+    def test_rejected_expired_claim_is_not_successful_publication(client):
+        _, run, worker_id, _, _ = ready(client)
+        response, _, _ = blocked_until_expiry(client, run, worker_id)
+&gt;       assert response.status_code == 201, (
+            "Deliberately incorrect: actual expired claim must return401."
+        )
+E       AssertionError: Deliberately incorrect: actual expired claim must return401.
+E       assert 401 == 201
+E        +  where 401 = &lt;Response [401 Unauthorized]&gt;.status_code
+
+tests\experiments\credential_publication_experiment.py:14: AssertionError</failure></testcase></testsuite></testsuites>

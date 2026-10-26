@@ -1,0 +1,93 @@
+$ pnpm --filter @orba/web test:e2e:orchestration
+$ uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.orchestration.config.ts
+Isolated orba_test schema migrated and project test data cleared.
+[WebServer] INFO:     Started server process [27324]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 21 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=31d2f4ef-8e6b-43cc-9de9-5471dc8e2d60 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=31d2f4ef-8e6b-43cc-9de9-5471dc8e2d60 workspace_id=1851ad5c-b54a-413d-bea2-dead8b870df3
+  ok  1 [chromium] › tests-orchestration\orchestration.spec.ts:10:5 › approved source creates one persisted snapshot with roots, blockers, real events and reload (19.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=ca7ca92e-6f78-48f0-831b-a9b5e48469e2 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=ca7ca92e-6f78-48f0-831b-a9b5e48469e2 workspace_id=339c0a2f-e003-480d-bf27-d0ede78eb82e
+  ok  2 [chromium] › tests-orchestration\orchestration.spec.ts:36:5 › unapproved architecture is rejected without run snapshots or false success (12.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=c426cc4e-4e5f-4e0d-bcb8-ee20f694d8b1 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c426cc4e-4e5f-4e0d-bcb8-ee20f694d8b1 workspace_id=32fb2287-558d-4f95-a497-d5a436c376dc
+  ok  3 [chromium] › tests-orchestration\orchestration.spec.ts:46:5 › unknown committed creation recovers by exact request ID without repeating POST (15.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=084c4db4-c161-4989-b621-0ddaf6a7d466 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=084c4db4-c161-4989-b621-0ddaf6a7d466 workspace_id=41edf59c-f9cd-49ad-b381-a9c1b3a92f9a
+  ok  4 [chromium] › tests-orchestration\orchestration.spec.ts:67:5 › pre-dispatch connection failure requires explicit original-key retry (13.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=63e35c0a-6300-40ff-872f-77bca75a656f workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=63e35c0a-6300-40ff-872f-77bca75a656f workspace_id=b6ae3b8c-94ba-41d3-8f14-231fcc8d7fd2
+  ok  5 [chromium] › tests-orchestration\orchestration.spec.ts:88:5 › cancellation requires confirmation and persists ordered events with no execution (17.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=fee9be39-86c3-47db-911a-b16204706e20 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=fee9be39-86c3-47db-911a-b16204706e20 workspace_id=1ca7e518-e76c-4165-8cac-7313ba240edf
+[WebServer] INFO:     security_event=session_revoked actor_id=fee9be39-86c3-47db-911a-b16204706e20 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=37221510-daa1-43c0-b0ab-742101ec6889 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=37221510-daa1-43c0-b0ab-742101ec6889 workspace_id=df02cb63-7bc9-400c-a9e7-b67e68f3a8a9
+  ok  6 [chromium] › tests-orchestration\orchestration.spec.ts:109:5 › unrelated workspace cannot inspect or forge completion of a persisted run (18.2s)
+[WebServer] INFO:     security_event=session_rotated actor_id=3b7ea7ed-46d8-4d51-adb3-6394eddf395a workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3b7ea7ed-46d8-4d51-adb3-6394eddf395a workspace_id=e1ec49d6-c9d9-4035-a81d-6cf3f5f4032b
+[WebServer] INFO:     security_event=session_revoked actor_id=3b7ea7ed-46d8-4d51-adb3-6394eddf395a workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=53f69ce9-9272-4ab5-ab05-6541088dac8c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=53f69ce9-9272-4ab5-ab05-6541088dac8c workspace_id=e1ec49d6-c9d9-4035-a81d-6cf3f5f4032b
+  ok  7 [chromium] › tests-orchestration\orchestration.spec.ts:127:5 › viewer can inspect real snapshots but cannot create or cancel (15.4s)
+[WebServer] INFO:     security_event=session_rotated actor_id=b29e4479-0435-4faf-8897-ceebe2b04847 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b29e4479-0435-4faf-8897-ceebe2b04847 workspace_id=22e80c17-f043-4085-88ee-de247cea2222
+  ok  8 [mobile] › tests-orchestration\orchestration.spec.ts:10:5 › approved source creates one persisted snapshot with roots, blockers, real events and reload (16.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=a3d44ba0-99de-4167-a043-c4384f2add39 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=a3d44ba0-99de-4167-a043-c4384f2add39 workspace_id=d1e1df29-a6c8-4697-800b-294d8b834b96
+  ok  9 [mobile] › tests-orchestration\orchestration.spec.ts:36:5 › unapproved architecture is rejected without run snapshots or false success (12.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=c4ff1e7a-6e79-4153-9dbb-64e3bb6f7a96 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c4ff1e7a-6e79-4153-9dbb-64e3bb6f7a96 workspace_id=d69d444c-5bfd-4e71-a905-dcfbd747e9ae
+  ok 10 [mobile] › tests-orchestration\orchestration.spec.ts:46:5 › unknown committed creation recovers by exact request ID without repeating POST (16.8s)
+[WebServer] INFO:     security_event=session_rotated actor_id=fda6de62-2b30-46d0-b2b5-63e50fc47dce workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=fda6de62-2b30-46d0-b2b5-63e50fc47dce workspace_id=d4696b31-1790-4acf-9c9e-c34910656a8f
+  ok 11 [mobile] › tests-orchestration\orchestration.spec.ts:67:5 › pre-dispatch connection failure requires explicit original-key retry (13.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=7034dde8-e5e7-4b88-8b7f-5c0d9eb69c3d workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=7034dde8-e5e7-4b88-8b7f-5c0d9eb69c3d workspace_id=1c9ce303-bc7d-4800-b28c-1fa4572682ea
+  ok 12 [mobile] › tests-orchestration\orchestration.spec.ts:88:5 › cancellation requires confirmation and persists ordered events with no execution (15.9s)
+[WebServer] INFO:     security_event=session_rotated actor_id=3b5df9be-1278-4d42-b4b1-f31743191860 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=3b5df9be-1278-4d42-b4b1-f31743191860 workspace_id=0bfe64f5-b5b1-4d8e-bb29-32a11cb5f8ae
+[WebServer] INFO:     security_event=session_revoked actor_id=3b5df9be-1278-4d42-b4b1-f31743191860 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=08b898f2-84e0-4a1c-aebc-643968ab2bcd workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=08b898f2-84e0-4a1c-aebc-643968ab2bcd workspace_id=dab73d98-3645-458d-8ca1-199a86805402
+  ok 13 [mobile] › tests-orchestration\orchestration.spec.ts:109:5 › unrelated workspace cannot inspect or forge completion of a persisted run (19.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=45855c6e-bccf-49cf-9fdd-4dd893f5eb01 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=45855c6e-bccf-49cf-9fdd-4dd893f5eb01 workspace_id=c8dafb20-4f87-44e2-868f-411a644ae45d
+[WebServer] INFO:     security_event=session_revoked actor_id=45855c6e-bccf-49cf-9fdd-4dd893f5eb01 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=b3b90444-655b-423b-b54d-0589cfe50003 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=b3b90444-655b-423b-b54d-0589cfe50003 workspace_id=c8dafb20-4f87-44e2-868f-411a644ae45d
+  ok 14 [mobile] › tests-orchestration\orchestration.spec.ts:127:5 › viewer can inspect real snapshots but cannot create or cancel (15.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=cf894277-be2a-460c-a273-74f45a4cfe64 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=cf894277-be2a-460c-a273-74f45a4cfe64 workspace_id=1d877855-105e-40ce-bbfc-c92d95dd9b06
+  ok 15 [tablet] › tests-orchestration\orchestration.spec.ts:10:5 › approved source creates one persisted snapshot with roots, blockers, real events and reload (17.0s)
+[WebServer] INFO:     security_event=session_rotated actor_id=426befff-e5c0-41cc-bfc8-5da20ebdda0c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=426befff-e5c0-41cc-bfc8-5da20ebdda0c workspace_id=8935d714-3ed8-4bf5-904a-81b36abc2e37
+  ok 16 [tablet] › tests-orchestration\orchestration.spec.ts:36:5 › unapproved architecture is rejected without run snapshots or false success (11.7s)
+[WebServer] INFO:     security_event=session_rotated actor_id=56c995f1-8c5b-42f6-8b50-75b3dc3defcf workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=56c995f1-8c5b-42f6-8b50-75b3dc3defcf workspace_id=68c56261-9a9c-4bc3-90da-266161f86721
+  ok 17 [tablet] › tests-orchestration\orchestration.spec.ts:46:5 › unknown committed creation recovers by exact request ID without repeating POST (14.5s)
+[WebServer] INFO:     security_event=session_rotated actor_id=6b95f6e9-c814-43f4-ada9-4f82620216a7 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=6b95f6e9-c814-43f4-ada9-4f82620216a7 workspace_id=e5f02f14-5ed5-482a-b3a7-704e65234d88
+  ok 18 [tablet] › tests-orchestration\orchestration.spec.ts:67:5 › pre-dispatch connection failure requires explicit original-key retry (13.1s)
+[WebServer] INFO:     security_event=session_rotated actor_id=417faa89-7a67-4ec9-902f-b3671f198dce workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=417faa89-7a67-4ec9-902f-b3671f198dce workspace_id=7f90f122-1f73-44e8-ba3b-19de3328c650
+  ok 19 [tablet] › tests-orchestration\orchestration.spec.ts:88:5 › cancellation requires confirmation and persists ordered events with no execution (17.3s)
+[WebServer] INFO:     security_event=session_rotated actor_id=5fae94a8-a429-4ba9-bba1-39777b7b3ab3 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=5fae94a8-a429-4ba9-bba1-39777b7b3ab3 workspace_id=17c70eb7-955d-4336-aeee-90978415915c
+[WebServer] INFO:     security_event=session_revoked actor_id=5fae94a8-a429-4ba9-bba1-39777b7b3ab3 workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=8072382f-8a1c-4ffa-aef4-6f8ec057a9d2 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=8072382f-8a1c-4ffa-aef4-6f8ec057a9d2 workspace_id=ebfb33a1-4d44-4e14-be4e-4d9c44a186cb
+  ok 20 [tablet] › tests-orchestration\orchestration.spec.ts:109:5 › unrelated workspace cannot inspect or forge completion of a persisted run (18.6s)
+[WebServer] INFO:     security_event=session_rotated actor_id=89277fcd-1b10-449a-982b-d9236f7b67ec workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=89277fcd-1b10-449a-982b-d9236f7b67ec workspace_id=80baca8a-19bc-421e-95a2-4712ffad70f6
+[WebServer] INFO:     security_event=session_revoked actor_id=89277fcd-1b10-449a-982b-d9236f7b67ec workspace_id=-
+[WebServer] INFO:     security_event=session_rotated actor_id=9426bfa0-5d46-4069-a700-61b7d991618c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=9426bfa0-5d46-4069-a700-61b7d991618c workspace_id=80baca8a-19bc-421e-95a2-4712ffad70f6
+  ok 21 [tablet] › tests-orchestration\orchestration.spec.ts:127:5 › viewer can inspect real snapshots but cannot create or cancel (15.0s)
+
+  21 passed (5.6m)

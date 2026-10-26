@@ -7,7 +7,6 @@ failure -> terminal record only; uncertain commit -> GET reconciliation, never r
 
 import asyncio
 import hashlib
-from contextlib import contextmanager
 from datetime import timedelta
 from time import monotonic
 from uuid import uuid4
@@ -16,7 +15,6 @@ from fastapi import HTTPException
 from pydantic import ValidationError
 from sqlalchemy import func, select, text
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import Session
 
 from orba.models import AuthSession, Project, User
 from orba.pm_errors import PMError, validation_details
@@ -43,23 +41,11 @@ from orba.pm_schemas import (
 from orba.pm_timing import RunTiming
 from orba.pm_timing import logger as timing_logger
 from orba.security import authorized_project, membership, require_role
+from orba.transactions import db_now, phase
 
 AUTHORS = {"owner", "admin", "member"}
 APPROVERS = {"owner", "admin"}
 ACTIVE = {"pending", "running"}
-
-
-@contextmanager
-def phase(engine):
-    with Session(engine) as db, db.begin():
-        db.execute(text("SET LOCAL lock_timeout='1s'"))
-        db.execute(text("SET LOCAL statement_timeout='2s'"))
-        db.execute(text("SET LOCAL transaction_timeout='10s'"))
-        yield db
-
-
-def db_now(db):
-    return db.scalar(select(func.clock_timestamp()))
 
 
 def lock_project(db, project_id, actor_id, roles=AUTHORS):

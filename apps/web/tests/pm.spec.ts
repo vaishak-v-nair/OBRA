@@ -4,15 +4,13 @@ import { evidencePath } from "./evidence";
 import { test, expect, type Page } from "@playwright/test";
 import { execFileSync } from "node:child_process";
 import { createWorkspace, signup, signout } from "./helpers";
+import { createProject, reloadProject } from "./architect-preflight";
 
 test.beforeAll(()=>{execFileSync("uv",["run","--directory","../api","python","-m","scripts.prepare_tests"],{stdio:"pipe"});});
 async function setup(page:Page) {
   await signup(page,`pm-${test.info().project.name}-${Date.now()}@example.com`);
   await createWorkspace(page,"Product planning");
-  await page.getByLabel("Project description",{exact:true}).fill("A personal habit journal with daily check-ins.");
-  const save=page.waitForResponse(r=>r.request().method()==="POST" && r.url().endsWith("/api/v1/projects"));
-  await page.getByRole("button",{name:"Create project",exact:true}).click();
-  const project=await (await save).json();
+  const project=await createProject(page,"A personal habit journal with daily check-ins.");
   await expect(page.getByRole("heading",{name:"Product Plan",exact:true})).toBeVisible();
   const user=await (await page.request.get("/api/v1/auth/me")).json();
   return {project,user};
@@ -20,11 +18,11 @@ async function setup(page:Page) {
 
 test("provider setup and empty state are honest; visiting a project makes no model request",async({page})=>{
   let posts=0;page.on("request",r=>{if(r.method()==="POST" && r.url().endsWith("/pm-runs"))posts++;});
-  await setup(page);
+  const {project}=await setup(page);
   await expect(page.getByRole("heading",{name:"Configure the Product Manager"})).toBeVisible();
   await expect(page.getByRole("heading",{name:"Your requirements start here"})).toBeVisible();
   await expect(page.getByRole("button",{name:"Generate Product Plan",exact:true})).toBeDisabled();
-  await page.reload();
+  await reloadProject(page,project);
   await expect(page.getByRole("heading",{name:"Product Plan",exact:true})).toBeVisible();
   expect(posts).toBe(0);
 });
@@ -87,6 +85,12 @@ test("human-authored fixture: edit criterion, persist, approve exact version, hi
 });
 
 test("a save conflict preserves local edits for comparison",async({page})=>{
+  // Includes real account/project setup, a fixture process, a second persisted
+  // edit, conflict recovery and reload. The old30s total expired while a valid
+  // Edit draft click was already in progress. Keep assertions/action bounds.
+  test.setTimeout(90000);
+  page.setDefaultTimeout(30000);
+  page.setDefaultNavigationTimeout(30000);
   const {project,user}=await setup(page);
   const fixture=JSON.parse(execFileSync("uv",["run","--directory","../api","python","-m","scripts.seed_pm_fixture","--project",project.id,"--actor",user.id],{encoding:"utf8",stdio:["ignore","pipe","pipe"]}));
   await page.reload();await page.getByRole("button",{name:"Edit draft",exact:true}).click();

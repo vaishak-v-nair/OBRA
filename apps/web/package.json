@@ -17,7 +17,9 @@
     "test:e2e:navigation": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.navigation.config.ts",
     "test:e2e:architect:preflight": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.architect-preflight.config.ts",
     "test:e2e:orchestration": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.orchestration.config.ts",
-    "test:e2e:orchestration:local": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.orchestration-local.config.ts"
+    "test:e2e:orchestration:local": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.orchestration-local.config.ts",
+    "test:e2e:scheduler": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.scheduler.config.ts",
+    "test:e2e:scheduler:local": "uv run --directory ../api python -m scripts.prepare_tests && playwright test --config playwright.scheduler-local.config.ts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "1.5.0",

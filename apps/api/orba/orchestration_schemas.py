@@ -104,7 +104,26 @@ class EventRead(BaseModel):
     task_id: UUID | None
     sequence: int
     run_revision: int
-    event_type: Literal["run_created", "run_awaiting_executor", "run_cancelled", "task_cancelled"]
+    event_type: Literal[
+        "run_created",
+        "run_awaiting_executor",
+        "run_cancelled",
+        "task_cancelled",
+        "dispatch_queued",
+        "dispatch_withdrawn",
+        "lease_claimed",
+        "handoff_available",
+        "handoff_acknowledged",
+        "lease_renewed",
+        "lease_expired",
+        "lease_released",
+        "lease_revoked",
+        "worker_lease_rejected",
+        "worker_disabled",
+        "task_requires_reconciliation",
+        "dispatch_exhausted",
+        "scheduler_recovered",
+    ]
     actor_type: Literal["system", "user"]
     actor_id: UUID | None
     occurred_at: datetime

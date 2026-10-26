@@ -1,0 +1,28 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_________ test_credential_expiring_during_workspace_lock_is_rejected __________
+
+client = <starlette.testclient.TestClient object at 0x00000260F6749A90>
+
+    def test_credential_expiring_during_workspace_lock_is_rejected(client):
+        _, run, worker_id, _, _ = ready(client)
+        response, before, after = blocked_until_expiry(client, run, worker_id)
+>       assert response.status_code == 401
+E       assert 201 == 401
+E        +  where 201 = <Response [201 Created]>.status_code
+
+tests\test_scheduler_credential_races.py:142: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================= slowest 5 durations =============================
+1.31s call     tests/test_scheduler_credential_races.py::test_credential_expiring_during_workspace_lock_is_rejected
+0.73s setup    tests/test_scheduler_credential_races.py::test_credential_expiring_during_workspace_lock_is_rejected
+
+(1 durations < 0.005s hidden.  Use -vv to show these durations.)
+=========================== short test summary info ===========================
+FAILED tests/test_scheduler_credential_races.py::test_credential_expiring_during_workspace_lock_is_rejected
+1 failed, 1 warning in 2.44s

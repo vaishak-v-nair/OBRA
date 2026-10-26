@@ -1,0 +1,37 @@
+$ pnpm --filter @orba/web build
+$ next build
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.ts took 71ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.3s
+  Running TypeScript ...
+  Finished TypeScript in 2.2s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/11) ...
+  Generating static pages using 11 workers (2/11) 
+  Generating static pages using 11 workers (5/11) 
+  Generating static pages using 11 workers (8/11) 
+✓ Generating static pages using 11 workers (11/11) in 273ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /[section]
+├ ƒ /api/v1/[...path]
+├ ○ /invitations/accept
+├ ○ /projects
+├ ƒ /projects/[id]
+├ ○ /projects/new
+├ ○ /settings
+├ ○ /signin
+├ ○ /signup
+├ ○ /workspaces
+├ ƒ /workspaces/[id]
+└ ○ /workspaces/new
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

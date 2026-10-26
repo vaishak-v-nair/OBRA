@@ -1,0 +1,44 @@
+........................................................................ [  9%]
+........................................................................ [ 18%]
+........................................................................ [ 27%]
+........................................................................ [ 37%]
+........................................................................ [ 46%]
+........................................................................ [ 55%]
+........................................................................ [ 64%]
+........................................................................ [ 74%]
+........................................................................ [ 83%]
+........................................................................ [ 92%]
+........................................................                 [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================ slowest 25 durations =============================
+36.61s call     tests/test_scheduler_api_restart.py::test_actual_api_process_restart_preserves_claim_and_acknowledgment
+30.49s call     tests/test_legacy.py::test_legacy_is_hidden_and_operator_claim_is_explicit
+17.76s call     tests/test_orchestration_proof.py::test_native_sql_integrity_guard_survives_python_optimization
+15.20s call     tests/test_pm_model_policy.py::test_actual_invalid_api_startup_hides_supplied_values[ORBA_PM_THINKING_LEVEL]
+15.13s call     tests/test_pm_model_policy.py::test_actual_invalid_api_startup_hides_supplied_values[ORBA_PM_MODEL]
+14.27s call     tests/test_scheduler_proof.py::test_complete_sql_backed_protocol_proof_and_adversarial_changes
+13.89s call     tests/test_orchestration_proof.py::test_full_receipt_validator_rejects_bound_but_invalid_proof[empty-proof]
+11.13s call     tests/test_projects.py::test_real_unavailable_database_returns_503_and_liveness_survives
+9.40s call     tests/test_scheduler_recovery.py::test_postack_crash_requires_reconciliation_never_redispatch
+8.64s call     tests/test_scheduler_recovery.py::test_heartbeat_vs_expiration_cannot_revive_stale_ownership
+8.57s call     tests/test_scheduler_imports.py::test_scheduler_and_protocol_client_do_not_load_model_sdk
+7.80s call     tests/test_scheduler_recovery.py::test_real_heartbeat_receipt_duplicate_and_hard_bound
+6.47s call     tests/test_scheduler_recovery.py::test_preack_expiration_fences_old_worker_and_new_owner
+5.94s call     tests/test_scheduler_recovery.py::test_preack_redispatch_is_bounded_and_terminal_replay_never_claims_new_task
+5.23s call     tests/test_orchestration_proof.py::test_every_sql_record_field_is_required[path0-fields0]
+4.75s call     tests/test_scheduler_recovery.py::test_explicit_release_preserves_acknowledgment_uncertainty[False-withdrawn]
+4.57s call     tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[revoke]
+4.52s call     tests/test_scheduler_migration.py::test_stage05a_snapshot_and_events_survive_scheduler_migration
+4.41s call     tests/test_scheduler_protocol.py::test_real_claim_manifest_acknowledgment_and_read
+4.40s call     tests/test_scheduler_security.py::test_source_supersession_prevents_unacknowledged_handoff_acceptance
+4.27s call     tests/test_orchestration.py::test_real_postgresql_edge_ownership_self_and_unique_constraints[cross_project]
+4.21s call     tests/test_orchestration.py::test_historical_snapshot_survives_new_architecture_approval_and_old_key_replay
+4.17s call     tests/test_scheduler_protocol.py::test_revocation_and_rotation_invalidate_ownership[rotate]
+4.16s call     tests/test_pm_persistence.py::test_viewer_member_approval_and_cross_workspace_isolation
+4.07s call     tests/test_orchestration_migration.py::test_stage04_source_rows_survive_additive_orchestration_migration
+776 passed, 1 warning in 1177.29s (0:19:37)

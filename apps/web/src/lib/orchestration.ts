@@ -27,9 +27,9 @@ export type EligibilityGraph = {
 export type RunDetail = OrchestrationRun & { tasks: OrchestrationTask[]; graph: EligibilityGraph; source_current: boolean };
 export type RunEvent = {
   id: string; run_id: string; task_id: string | null; sequence: number; run_revision: number;
-  event_type: "run_created" | "run_awaiting_executor" | "run_cancelled" | "task_cancelled";
+  event_type: "run_created" | "run_awaiting_executor" | "run_cancelled" | "task_cancelled" | "dispatch_queued" | "dispatch_withdrawn" | "lease_claimed" | "handoff_available" | "handoff_acknowledged" | "lease_renewed" | "lease_expired" | "lease_released" | "lease_revoked" | "worker_lease_rejected" | "worker_disabled" | "task_requires_reconciliation" | "dispatch_exhausted" | "scheduler_recovered";
   actor_type: "user" | "system"; actor_id: string | null; occurred_at: string;
-  previous_state: string | null; new_state: string; details: { execution_performed: false };
+  previous_state: string | null; new_state: string; details: { execution_performed: false; worker_id?: string | null; lease_id?: string | null; dispatch_id?: string | null; fence_epoch?: number | null; reason?: string };
 };
 const base = (project: string) => `/api/v1/projects/${project}/orchestration-runs`;
 export const orchestration = {

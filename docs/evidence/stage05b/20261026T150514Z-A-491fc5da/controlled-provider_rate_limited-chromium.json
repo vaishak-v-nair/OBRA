@@ -1,0 +1,67 @@
+{
+  "execution_class": "controlled_provider_double",
+  "provider_double": true,
+  "posts": 1,
+  "database": {
+    "source": "fresh SQLAlchemy session against guarded PostgreSQL",
+    "run_id": "84f571f7-09b2-4fe2-a773-da2f45925806",
+    "project_id": "81b8f71c-b645-4f74-a9cd-cbdb1e58e7c8",
+    "status": "failed",
+    "provider": "google-gemini",
+    "workspace_id": "d6190a5e-2902-4384-a703-a95751fc7239",
+    "initiator_id": "78b44664-c971-456c-96ad-ca7deb3456ec",
+    "provider_response_id": null,
+    "provider_request_id": null,
+    "usage": null,
+    "prompt_version": "pm-v2",
+    "prompt_hash": "c7b8aac189085ca73a281633265461c7327dfb3a5e531d61b7e3c51f42a29056",
+    "hash_version": "orba-pm-canonical-json-v1",
+    "started_at": "2026-10-26T15:18:52.209671+00:00",
+    "completed_at": "2026-10-26T15:18:53.719782+00:00",
+    "requested_model": "gemini-3.8-flash",
+    "returned_model": null,
+    "error_category": "provider_rate_limited",
+    "diagnostic_id": "34b7ea14-671d-45d5-b35b-fe664566cc68",
+    "diagnostic": {
+      "attempt": 1,
+      "stages_ms": {
+        "provider_call": 1505.016,
+        "running_transaction": 18.009,
+        "admission_transaction": 53.361
+      },
+      "elapsed_ms": 1576.673,
+      "error_origin": "controlled_double",
+      "dispatch_phase": "provider_response",
+      "exception_type": "ControlledProviderFailure",
+      "timing_version": 1,
+      "provider_double": true,
+      "timing_boundary": "before_terminal_commit",
+      "provider_http_status": 429,
+      "generation_configuration": {
+        "input_bytes": 6338,
+        "prompt_bytes": 2642,
+        "snapshot_bytes": 207,
+        "thinking_level": "low",
+        "max_input_bytes": 48000,
+        "max_output_tokens": 6000,
+        "provider_schema_bytes": 3489,
+        "provider_schema_sha256": "cbe399effdd5289c0511c69237acac349175845776f0450431628049786414c7"
+      }
+    },
+    "project_plans": [
+      {
+        "id": "a477b6ed-bf7f-47cd-8bc3-8cda0bf39eeb",
+        "version": 1,
+        "state": "approved",
+        "generating_run_id": null,
+        "content_hash": "bcb7a7ee1cd7a15fb6dc368281ecb15f58b73938338154873ee80f473560b2ca",
+        "approved_at": "2026-10-26T15:18:51.773356+00:00"
+      }
+    ]
+  },
+  "preservation": {
+    "content_hash": "bcb7a7ee1cd7a15fb6dc368281ecb15f58b73938338154873ee80f473560b2ca",
+    "approved_by": "78b44664-c971-456c-96ad-ca7deb3456ec",
+    "approved_at": "2026-10-26T15:18:51.773356Z"
+  }
+}

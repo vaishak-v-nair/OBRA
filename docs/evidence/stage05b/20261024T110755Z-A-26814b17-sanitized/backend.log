@@ -1,0 +1,45 @@
+........................................................................ [  9%]
+........................................................................ [ 18%]
+........................................................................ [ 27%]
+........................................................................ [ 37%]
+........................................................................ [ 46%]
+........................................................................ [ 55%]
+........................................................................ [ 65%]
+........................................................................ [ 74%]
+........................................................................ [ 83%]
+........................................................................ [ 93%]
+.....F...............................................                    [100%]
+================================== FAILURES ===================================
+_ test_malformed_persisted_policy_cannot_pass_equal_value_comparison[boolean] _
+
+client = <starlette.testclient.TestClient object at 0x00000193E5A8A690>
+damage = 'boolean'
+
+    @pytest.mark.parametrize("damage", ["missing", "boolean", "numeric_string"])
+    def test_malformed_persisted_policy_cannot_pass_equal_value_comparison(client, damage):
+        _, run, _, _, headers = ready(
+            client, config={"scheduler_global_capacity": 1, "scheduler_run_capacity": 1}
+        )
+        with phase(client.app.state.engine) as db:
+            row = db.get(SchedulerState, 1)
+            broken = dict(row.policy)
+            if damage == "missing":
+                broken.pop("global_capacity")
+            else:
+                broken["global_capacity"] = True if damage == "boolean" else "1"
+            row.policy = broken
+>       assert acquire(client, run, headers).status_code == 503
+E       AssertionError: assert 201 == 503
+E        +  where 201 = <Response [201 Created]>.status_code
+E        +    where <Response [201 Created]> = acquire(<starlette.testclient.TestClient object at 0x00000193E5A8A690>, {'id': 'cc7ceef5-7ea9-49df-997e-c4aff47e4a3a', 'project_id': '82bef7d7-8a19-4132-a665-791f4c742a92', 'workspace_id': 'c4869f60-4d6e-45e0-9ca0-ca11db3234d1', 'architecture_id': 'd55c8fa2-2189-43c5-85cf-2d5ff21bef1a', ...}, {'Authorization': 'Bearer <redacted-worker-credential>'})
+
+tests\test_scheduler_security.py:134: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\google\genai\types.py:42
+  E:\BrosKi\OBRA\apps\api\.venv\Lib\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_scheduler_security.py::test_malformed_persisted_policy_cannot_pass_equal_value_comparison[boolean]
+1 failed, 772 passed, 1 warning in 779.04s (0:12:59)

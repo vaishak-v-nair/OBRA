@@ -1,5 +1,22 @@
 # ORBA scope ledger
 
+Current Stage05B credential-publication repair is VERIFIED against fresh A/B/C:
+792 backend,201 regression browser and1 independent local protocol browser case;
+zero skips or retries. The prior acceptance below remains historical.
+See [the current repair record](VERIFICATION_STAGE05B_CREDENTIAL_REPAIR.md).
+
+Current scope is Stage05B: durable PostgreSQL scheduling, scoped worker
+credentials, leases, fencing and immutable protocol handoffs. **Stage05B VERIFIED**
+on 2026-10-26 against matching Gate A/B evidence:776 backend, 201 regression browser
+and 1 independent real worker-protocol browser case, zero skips/retries. Evidence is in
+[VERIFICATION_STAGE05B.md](VERIFICATION_STAGE05B.md). No coding/QA agent, external
+task execution, completion endpoint, human reconciliation workflow or Mission
+Control is implemented. **Overall Stage05: IN PROGRESS.**
+
+The following Stage05A scope and evidence describe the preserved historical
+checkpoint. Its later-stage boundaries are superseded only by the Stage05B
+authority above; Stage05C/D/06 remain deferred.
+
 **Stage05A VERIFIED** on2026-10-23 through matching deterministic Gate A and real
 local control-plane Gate B evidence. See VERIFICATION_STAGE05A.md. This does not
 verify the rest of Stage05.
@@ -65,11 +82,12 @@ history. Deterministic verification results belong to VERIFICATION.md, not this 
 Stage04 remains PARTIAL until its own freshly authorized real-model Gate B passes.
 No paid generation or commit is authorized by implementation work.
 
-## Stage05 and later: not implemented
+## Beyond Stage05B: deferred
 
-Task scheduling/execution, multi-agent orchestration, coding/QA agents, GitHub automation,
+Task execution, autonomous multi-agent delivery, coding/QA agents, GitHub automation,
 Skills Intelligence, realtime multiplayer, advanced canvas, full Model Hub and remote
-sandboxes remain deferred. No automatic transition to the next stage.
+sandboxes remain deferred. Stage05B's scheduler only assigns planning-task receipts;
+it does not execute work. No automatic transition to the next stage.
 
 ## Stage04.1: browser navigation and unpaid live-setup preflight
 
@@ -97,3 +115,10 @@ Actual commands, failure history and source-bound receipts are in
 [VERIFICATION_STAGE041.md](VERIFICATION_STAGE041.md). Its subsequent matching live B
 passed as recorded in VERIFICATION_STAGE041_LIVE.md. Stage04 is VERIFIED and
 checkpointed; current Stage05A work is separately gated and does not start05B.
+# Stage05B implementation boundary
+
+Durable scheduler/registry/leases/fencing/handoff control plane is in implementation
+and independent verification. Stage05A remains checkpointed and historically
+VERIFIED. Overall Stage05 remains IN PROGRESS. No execution-capable agent, human
+reconciliation control, advanced Mission Control, Stage05C/D or Stage06 is enabled.
+See [Stage05B verification](VERIFICATION_STAGE05B.md) for actual current evidence.

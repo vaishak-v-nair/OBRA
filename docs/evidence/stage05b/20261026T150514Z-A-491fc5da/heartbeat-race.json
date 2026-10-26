@@ -1,0 +1,120 @@
+{
+  "scenario": "heartbeat",
+  "holder_pid": 10255,
+  "request_pid": 10263,
+  "wait_event_type": "Lock",
+  "lock_observed_at": "2026-10-26T15:09:36.085681+00:00",
+  "credential_expires_at": "2026-10-26T15:09:36.688030+00:00",
+  "lock_released_at": "2026-10-26T15:09:36.696048+00:00",
+  "response_status": 401,
+  "before_sql": {
+    "dispatch": {
+      "id": "e5464000-da1b-489e-b1d1-d79a9069ba55",
+      "state": "leased",
+      "attempts": 1,
+      "fence_epoch": 1
+    },
+    "leases": 1,
+    "handoffs": 1,
+    "claim_receipts": 1,
+    "events": [
+      [
+        1,
+        "run_created",
+        1
+      ],
+      [
+        2,
+        "run_awaiting_executor",
+        2
+      ],
+      [
+        3,
+        "dispatch_queued",
+        3
+      ],
+      [
+        4,
+        "lease_claimed",
+        4
+      ],
+      [
+        5,
+        "handoff_available",
+        5
+      ],
+      [
+        6,
+        "handoff_acknowledged",
+        6
+      ]
+    ],
+    "execution_statuses": [
+      "awaiting_executor",
+      "awaiting_executor"
+    ],
+    "runs": [
+      [
+        "fdda1559-8994-4a22-9662-23d46a7beb45",
+        "awaiting_executor",
+        6,
+        6
+      ]
+    ]
+  },
+  "after_sql": {
+    "dispatch": {
+      "id": "e5464000-da1b-489e-b1d1-d79a9069ba55",
+      "state": "leased",
+      "attempts": 1,
+      "fence_epoch": 1
+    },
+    "leases": 1,
+    "handoffs": 1,
+    "claim_receipts": 1,
+    "events": [
+      [
+        1,
+        "run_created",
+        1
+      ],
+      [
+        2,
+        "run_awaiting_executor",
+        2
+      ],
+      [
+        3,
+        "dispatch_queued",
+        3
+      ],
+      [
+        4,
+        "lease_claimed",
+        4
+      ],
+      [
+        5,
+        "handoff_available",
+        5
+      ],
+      [
+        6,
+        "handoff_acknowledged",
+        6
+      ]
+    ],
+    "execution_statuses": [
+      "awaiting_executor",
+      "awaiting_executor"
+    ],
+    "runs": [
+      [
+        "fdda1559-8994-4a22-9662-23d46a7beb45",
+        "awaiting_executor",
+        6,
+        6
+      ]
+    ]
+  }
+}

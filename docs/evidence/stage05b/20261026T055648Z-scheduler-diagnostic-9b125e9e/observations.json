@@ -1,0 +1,14 @@
+{
+  "recorded_at": "2026-10-26T05:59:30.361463+00:00",
+  "result": "FAIL",
+  "actual_exit_code": 1,
+  "passed": 1,
+  "failed": 1,
+  "not_run": 13,
+  "client_script_readiness_case_passed": true,
+  "fixture_defect": "The new session-delay route held only the first initial GET and allowed another session request to finish.",
+  "repair": "Hold every initial session request until explicit release, record actual held count, retain all disabled-control assertions.",
+  "application_change_for_this_fixture_repair": false,
+  "gate_a_b_c": "NOT RUN",
+  "generation_requests": 0
+}

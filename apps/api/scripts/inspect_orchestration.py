@@ -20,6 +20,7 @@ from orba.orchestration_models import (
 )
 from orba.orchestration_schemas import EventRead, TaskRead
 from orba.pm_models import ProductManagerRun
+from orba.scheduler_schemas import validate_control_event
 from scripts.prepare_tests import TEST_URL
 from scripts.test_database import guard_test_url
 
@@ -110,7 +111,7 @@ def inspect(run_id):
                 and [event.sequence for event in events]
                 == list(range(1, run.last_event_sequence + 1))
                 and events[-1].new_state == run.status
-                and all(event.details == {"execution_performed": False} for event in events),
+                and all(validate_control_event(event) for event in events),
                 "lifecycle ledger is missing, inconsistent or claims execution.",
             )
             return {

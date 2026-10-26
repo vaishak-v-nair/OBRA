@@ -1,4 +1,26 @@
-# ORBA · Stage 05A
+# ORBA · Stage 05B
+
+**Current status: Stage05B VERIFIED after the credential-publication repair.**
+Fresh Gate A passed792 backend and201 browser tests across18 commands; independent
+local Gate B passed1 real scheduler/worker-protocol browser flow. Gate C validated
+matching source `d47cf1fe3478c7877dd7cda342e56c94fdc16a517be7964f5cfefd4244f20b6f`.
+Zero skips or retries. Real lock-wait regressions now reject expired credentials
+with401 and unchanged SQL state. [Repair and current evidence](docs/VERIFICATION_STAGE05B_CREDENTIAL_REPAIR.md).
+The earlier acceptance below remains historical.
+
+Stage05B adds PostgreSQL-backed scheduling, dedicated scoped worker credentials,
+temporary leases, fencing and immutable handoff receipts. **Stage05B VERIFIED**
+on 2026-10-26: 776 backend tests, 201 Gate A browser cases and 1 independent local
+worker-control-plane browser flow passed. All 18 A commands and B/C exited 0;
+no skips or retries. The real protocol client acknowledges planning tasks and sends heartbeats;
+it never executes code, calls a model or marks work complete. Overall Stage05 is
+IN PROGRESS. [Design and local commands](docs/ARCHITECTURE_STAGE05B.md) ·
+[verification record](docs/VERIFICATION_STAGE05B.md).
+
+Current verification commands are `pwsh -NoProfile -File scripts/verify.ps1`
+(all prior regressions plus Stage05B) and the independent
+`pwsh -NoProfile -File scripts/verify-scheduler-local.ps1`. No paid AI is required.
+Historical Stage05A reports and commands below remain preserved for audit.
 
 **Stage05A VERIFIED after the focused evidence-validator repair:**683 backend
 tests,186 Gate A browser cases and1 independent local control-plane browser flow.
@@ -23,10 +45,10 @@ preserves snapshots and audit events. **Overall Stage05: IN PROGRESS.**
 Current Stage05A verification is tracked in [VERIFICATION_STAGE05A.md](docs/VERIFICATION_STAGE05A.md).
 The schema, API, state machine, idempotency and future boundaries are documented
 in [ARCHITECTURE_STAGE05A.md](docs/ARCHITECTURE_STAGE05A.md).
-Do not commit or start05B without the owner's authorization. No paid generation
-is authorized by this stage.
+That checkpoint did not authorize later work. Stage05B is now explicitly
+authorized above; commits and paid generation still require separate permission.
 
-A local development workspace with real accounts, workspace permissions, persisted projects and product/architecture planning. An approved Product Plan can feed an explicit Architect request, producing a technical proposal and a PostgreSQL task dependency DAG for human review. No task is executed. Coding/QA agents, durable scheduling, GitHub, multiplayer, Skills installation and cloud execution remain later-stage work. Stage04 is **VERIFIED** on source `f6a3a687...`: the authorized single Gemini request and complete browser/SQL review flow passed on 2026-10-22. Current evidence is in [docs/VERIFICATION.md](docs/VERIFICATION.md) and the [live A/B/C report](docs/VERIFICATION_STAGE041_LIVE.md). Further paid attempts require fresh authorization.
+A local development workspace with real accounts, workspace permissions, persisted projects and product/architecture planning. An approved Product Plan can feed an explicit Architect request, producing a technical proposal and a PostgreSQL task dependency DAG for human review. Stage05B adds scheduling and handoff receipts; no task is executed. Coding/QA agents, GitHub, multiplayer, Skills installation and cloud execution remain later-stage work. Stage04 is **VERIFIED** on source `f6a3a687...`: the authorized single Gemini request and complete browser/SQL review flow passed on 2026-10-22. Current evidence is in [docs/VERIFICATION.md](docs/VERIFICATION.md) and the [live A/B/C report](docs/VERIFICATION_STAGE041_LIVE.md). Further paid attempts require fresh authorization.
 
 Stage03's historical **VERIFIED** source is `661f2828...`, checkpointed at `1aeb882cf9e788948df5ca5eac52e2a682a1f487`. Its actual285 backend/60 regression/33 controlled browser tests and one genuine Gemini3.6/minimal flow remain documented in the [immutable Stage03 A/B/C report](docs/VERIFICATION_STAGE033_LIVE.md). That evidence does not certify the new Architect implementation. Historical503/504 failures and credentials are preserved. New passwords remain15–128 Unicode code points, preserving legacy login/sessions. Stage04 is checkpointed at `bb880486bf7d8441cc6415f4dc6d6085a731151b`. Further paid generation or commits require owner authorization.
 
@@ -40,6 +62,7 @@ Stop any old Stage 01 API process before upgrading. Its unauthenticated routes m
 
 ```powershell
 pnpm install --frozen-lockfile
+pnpm --filter @orba/web exec playwright install chromium webkit
 uv sync --locked --directory apps/api
 docker compose -f infra/compose.yaml up -d --wait postgres
 if (!(Test-Path apps/api/.env)) { Copy-Item apps/api/.env.example apps/api/.env }
@@ -209,7 +232,27 @@ an exact documented exception and explicit approver disposition. Blocking decisi
 and inherited source confirmations cannot be silently erased. Approved versions are
 immutable; free draft copies retain their original source and do not rebase it.
 
-## Verification
+## Stage05B verification
+
+Run sequentially against the isolated test database; no model request or executor
+is used. Keep any development Next server stopped while browser checks use this
+checkout's build cache. Exact results and failed attempts are recorded in
+[VERIFICATION_STAGE05B.md](docs/VERIFICATION_STAGE05B.md).
+
+```powershell
+pwsh -NoProfile -File scripts/verify.ps1
+pwsh -NoProfile -File scripts/verify-scheduler-local.ps1
+uv run --directory apps/api python -m scripts.scheduler_verification C
+```
+
+Gate A retains every earlier regression and adds PostgreSQL worker-security,
+ownership races, fencing, recovery and strict-proof tests. Local Gate B runs actual
+scheduler and protocol-client processes through acknowledgment, heartbeat, restart
+and expiration, then reconciles browser/API/SQL evidence. It requires the current
+passing Gate A. Gate C requires matching passing receipts and fingerprints. A
+protocol handoff never proves coding, testing or verified task completion.
+
+## Historical Stage05A verification
 
 Stop this checkout's development Next server first (shared `.next/dev/lock`). All
 backend/browser/fixture/experiment operations use guarded loopback `orba_test` and
@@ -317,7 +360,7 @@ native-device or all-browser support. See [current verification](docs/VERIFICATI
 
 Suitable for the current local development scope, **not certified production-secure**. No verified email ownership, password recovery, MFA/passkeys, SSO/OAuth, durable security audit store, production TLS/reverse-proxy configuration, distributed deployment certification, automatic session cleanup worker or penetration test. Registration's duplicate-email response can disclose that an address is registered. No real-time permission push; subsequent protected requests enforce current permissions. Logout clears protected local state immediately; if the server cannot be reached, the UI explicitly warns that revocation is unconfirmed and does not claim the session was revoked. There is no server-side project idempotency guarantee after an uncertain write. Existing TypeScript 6.0.3 / ESLint 9.39.5 compatibility pins remain documented in architecture; 9.x is npm-deprecated until current Next lint plugins support 10.
 
-PM requests are synchronous and bounded (timeout 5–180s, output 512–16000 tokens); the SDK performs one attempt with automatic continuation, retries and function calling disabled. Default local admission: one active run per project, two globally, five attempts/account/hour, twenty globally/hour. The owner's current runtime limits are stricter: one globally, three attempts/account/hour and six globally/hour. PostgreSQL locks coordinate local API workers; this is not a distributed orchestration platform. Lease expiry marks interrupted runs without resuming them. A valid paid response can be discarded after session/permission/lease expiry. Actual dollar costs are not fabricated from missing usage; the dated comparison calculates only the published output-token component and explains billing uncertainty. No cancellation/billing guarantee, semantic truth guarantee, automatic recovery, task execution or durable scheduling is claimed. The Architect proposes technical plans only.
+PM requests are synchronous and bounded (timeout 5–180s, output 512–16000 tokens); the SDK performs one attempt with automatic continuation, retries and function calling disabled. Default local admission: one active run per project, two globally, five attempts/account/hour, twenty globally/hour. The owner's current runtime limits are stricter: one globally, three attempts/account/hour and six globally/hour. PostgreSQL locks coordinate local API workers. PM/Architect admission expiry marks interrupted generation runs without resuming them. A valid paid response can be discarded after session/permission/lease expiry. Actual dollar costs are not fabricated from missing usage; the dated comparison calculates only the published output-token component and explains billing uncertainty. No cancellation/billing guarantee, semantic truth guarantee or automatic model recovery is claimed. The Architect proposes technical plans only. The separate Stage05B scheduler manages planning-task ownership and handoff receipts; no task execution or exactly-once external effects are established.
 
-See [architecture](docs/ARCHITECTURE.md), [Stage03 plan](docs/STAGE03_PLAN.md), [test plan](docs/STAGE03_TEST_PLAN.md) and [current verification](docs/VERIFICATION.md). Historical evidence is preserved in `docs/VERIFICATION_STAGE01.md` and `docs/VERIFICATION_STAGE02.md`. Stop after Stage05A. Later-stage work and further live Architect generation require fresh authorization.
+See [architecture](docs/ARCHITECTURE.md), [Stage03 plan](docs/STAGE03_PLAN.md), [test plan](docs/STAGE03_TEST_PLAN.md) and [current verification](docs/VERIFICATION.md). Historical evidence is preserved in `docs/VERIFICATION_STAGE01.md` and `docs/VERIFICATION_STAGE02.md`. Stop after Stage05B. Later-stage work and further live Architect generation require fresh authorization.
 

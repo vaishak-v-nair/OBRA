@@ -56,7 +56,7 @@ test("unknown committed creation recovers by exact request ID without repeating 
   await expect(execution.getByRole("alert")).toContainText("unconfirmed");
   await expect(execution.getByRole("button", { name: "Create orchestration run", exact: true })).toBeDisabled();
   await execution.getByRole("button", { name: "Check creation status", exact: true }).click();
-  await expect(execution.getByRole("status")).toContainText("original saved run was recovered");
+  await expect(execution.getByRole("status").filter({ hasText: "original saved run was recovered" })).toContainText("original saved run was recovered");
   expect(posts).toBe(1);
   const records = await jsonGet<{ items: RunDetail[] }>(page, `/api/v1/projects/${project.id}/orchestration-runs`);
   expect(records.items).toHaveLength(1);

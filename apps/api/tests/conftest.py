@@ -7,6 +7,7 @@ from orba.config import Settings
 from orba.main import create_app
 from scripts.prepare_tests import prepare
 from scripts.test_database import guard_test_url
+from tests.report_safety import protect_report
 
 TEST_DATABASE_URL = os.environ.get(
     "TEST_DATABASE_URL",
@@ -14,6 +15,12 @@ TEST_DATABASE_URL = os.environ.get(
 )
 # Never truncate an arbitrary database supplied by a developer's environment.
 guard_test_url(TEST_DATABASE_URL)
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    result = yield
+    protect_report(result.get_result())
 
 
 def pytest_collection_modifyitems(items):

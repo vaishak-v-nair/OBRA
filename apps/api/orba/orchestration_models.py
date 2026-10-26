@@ -18,6 +18,7 @@ from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
 from orba.db import Base
+from orba.scheduler_models import EVENT_CHECK
 
 
 class OrchestrationRun(Base):
@@ -187,7 +188,7 @@ class OrchestrationEvent(Base):
         ),
         CheckConstraint("sequence > 0 AND run_revision > 0", name="orch_event_counters"),
         CheckConstraint(
-            "event_type IN ('run_created','run_awaiting_executor','run_cancelled','task_cancelled')",
+            EVENT_CHECK,
             name="orch_event_type",
         ),
         CheckConstraint(

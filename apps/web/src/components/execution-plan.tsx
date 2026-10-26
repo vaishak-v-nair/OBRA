@@ -6,6 +6,7 @@ import { ApiError, type Project } from "@/lib/api";
 import type { ArchitectureSummary } from "@/lib/architect";
 import { orchestration, type OrchestrationRun, type RunDetail, type RunEvent, type RunInput } from "@/lib/orchestration";
 import { ExecutionGraph } from "@/components/execution-graph";
+import { SchedulerStatus } from "@/components/scheduler-status";
 import { useSession } from "@/components/session";
 import { Button } from "@/components/ui/button";
 
@@ -109,9 +110,10 @@ function ExecutionPlanBody({ project, onArchitecture }: { project: Project; onAr
       <p className="form-note">Run revision {run.revision}. No executor, artifacts, tests or completion evidence exist.</p>
       <details><summary>Source binding and snapshot checksum</summary><p>Architecture: {run.architecture_id}</p><p>Product Plan: {run.source_plan_id}</p><p>{run.hash_version}: {run.snapshot_hash}</p></details>
       <ExecutionGraph key={run.id} run={run} />
+      <SchedulerStatus key={`scheduler-${run.id}`} run={run} />
       <section aria-label="Orchestration event history"><h3>Recorded event history</h3><ol className="execution-events">{events.map(event => <li key={event.id} data-event-sequence={event.sequence}><strong>#{event.sequence} {event.event_type.replaceAll("_", " ")}</strong><p><time dateTime={event.occurred_at}>{new Date(event.occurred_at).toLocaleString()}</time> · {event.actor_type}{event.actor_id ? ` ${event.actor_id}` : ""} · run revision {event.run_revision}</p><p>{event.previous_state?.replaceAll("_", " ") ?? "No previous state"} → {event.new_state.replaceAll("_", " ")}{event.task_id ? ` · task ${event.task_id}` : ""}</p></li>)}</ol>{nextSequence !== null && <Button variant="outline" disabled={busy} onClick={() => void action(async () => { const page = await orchestration.events(project.id, run.id, signal(), nextSequence); if (!signal()?.aborted) { setEvents(old => [...old, ...page.items]); setNextSequence(page.next_sequence); } })}>Load more events</Button>}</section>
       {writable && run.status === "awaiting_executor" && <Button ref={cancelButton} variant="outline" disabled={busy} onClick={() => setConfirm(true)}>Cancel orchestration run</Button>}
       <dialog ref={dialog} aria-label="Confirm orchestration cancellation" onCancel={() => setConfirm(false)} onClose={() => { setConfirm(false); cancelButton.current?.focus(); }}><h3>Cancel run {run.id}?</h3><p>This cancels the saved plan for future dispatch. No code has been run. The immutable snapshot and event history remain available.</p><div className="pm-actions"><Button autoFocus variant="outline" onClick={closeConfirmation} disabled={busy}>Keep run</Button><Button disabled={busy} onClick={() => void action(async () => { try { const saved = await orchestration.cancel(project.id, run, signal()); if (!signal()?.aborted) { setRun(saved); await selectRun(saved.id, signal()); setNotice("Cancellation was saved. No task was executed."); setConfirm(false); } } finally { if (!signal()?.aborted) setConfirm(false); } })}>Confirm cancellation</Button></div></dialog>
-    </div> : <div className="state-box"><h3>No orchestration runs yet</h3><p>Your approved engineering plan can be saved here. This stage has no execution agent or automatic scheduling.</p></div>}
+    </div> : <div className="state-box"><h3>No orchestration runs yet</h3><p>Your approved engineering plan can be saved here. Engineering tasks remain unexecuted. A local operator starts scheduling independently of this page.</p></div>}
   </section>;
 }

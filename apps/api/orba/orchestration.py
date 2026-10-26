@@ -32,6 +32,7 @@ from orba.orchestration_service import (
 from orba.pm import detach
 from orba.pm_schemas import Page
 from orba.pm_service import check_session, lock_project, phase
+from orba.scheduler_service import coordination, invalidate_run
 from orba.security import DB, Identity, authorized_project, csrf_guard
 
 router = APIRouter(
@@ -173,10 +174,16 @@ def cancel(
 ):
     actor, session_id = detach(identity, session)
     with phase(request.app.state.engine) as db:
+        coordination(db)
         lock_project(db, project_id, actor)
         run = get_run(db, project_id, run_id, lock=True)
         moment = check_session(db, session_id, actor)
-        transition(db, run, "cancelled", actor, moment, expected_revision=payload.expected_revision)
+        if run.revision != payload.expected_revision:
+            from orba.orchestration_service import conflict
+
+            conflict("run_revision_conflict", "The run changed. Refresh before cancelling.")
+        invalidate_run(db, run, request.app.state.settings.scheduler_policy())
+        transition(db, run, "cancelled", actor, moment, expected_revision=run.revision)
         result = detail(db, run)
         check_session(db, session_id, actor)
     return result

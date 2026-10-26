@@ -1,0 +1,27 @@
+[WebServer] INFO:     Started server process [12596]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 6 tests using 1 worker
+
+[WebServer] INFO:     security_event=session_rotated actor_id=2ee0114a-ff83-4e13-9062-5a1823d96e20 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=2ee0114a-ff83-4e13-9062-5a1823d96e20 workspace_id=5e68b317-7d7f-48bf-a32d-42194df136d8
+  ok 1 [chromium] › tests-orchestration\orchestration.spec.ts:10:5 › approved source creates one persisted snapshot with roots, blockers, real events and reload (1.4m)
+[WebServer] INFO:     security_event=session_rotated actor_id=eebb7876-de9d-44c7-be6c-64613c649081 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=eebb7876-de9d-44c7-be6c-64613c649081 workspace_id=f7c9065c-8908-4a45-bd91-97594896ec38
+  ok 2 [chromium] › tests-orchestration\orchestration.spec.ts:46:5 › unknown committed creation recovers by exact request ID without repeating POST (1.1m)
+[WebServer] INFO:     security_event=session_rotated actor_id=90c2c31f-299d-4e51-b9ea-fe104ac632e9 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=90c2c31f-299d-4e51-b9ea-fe104ac632e9 workspace_id=ce6c5fa7-3647-448b-beb3-4bfa3d06ef35
+  ok 3 [mobile] › tests-orchestration\orchestration.spec.ts:10:5 › approved source creates one persisted snapshot with roots, blockers, real events and reload (1.3m)
+[WebServer] INFO:     security_event=session_rotated actor_id=1a4a2557-a646-4e42-aae8-fce0faafb7e8 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=1a4a2557-a646-4e42-aae8-fce0faafb7e8 workspace_id=6c89c078-1106-4da4-a4c1-e8cfe357e8d1
+  ok 4 [mobile] › tests-orchestration\orchestration.spec.ts:46:5 › unknown committed creation recovers by exact request ID without repeating POST (1.3m)
+[WebServer] INFO:     security_event=session_rotated actor_id=c7d28e1d-121c-4c8f-a63b-e1da557cac6c workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=c7d28e1d-121c-4c8f-a63b-e1da557cac6c workspace_id=698410af-2e7b-4f27-98b0-ca1f0210d6a9
+  ok 5 [tablet] › tests-orchestration\orchestration.spec.ts:10:5 › approved source creates one persisted snapshot with roots, blockers, real events and reload (1.3m)
+[WebServer] INFO:     security_event=session_rotated actor_id=281dc136-83a4-46dd-ab88-6257f3f7cf18 workspace_id=-
+[WebServer] INFO:     security_event=workspace_membership_saved actor_id=281dc136-83a4-46dd-ab88-6257f3f7cf18 workspace_id=898c2988-29dc-4c80-9009-f685e853b28c
+  ok 6 [tablet] › tests-orchestration\orchestration.spec.ts:46:5 › unknown committed creation recovers by exact request ID without repeating POST (1.2m)
+
+  6 passed (8.2m)

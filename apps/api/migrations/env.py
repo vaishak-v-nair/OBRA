@@ -1,6 +1,6 @@
 from alembic import context
 
-from orba import architect_models, models, orchestration_models, pm_models  # noqa: F401
+from orba import architect_models, models, orchestration_models, pm_models, scheduler_models  # noqa: F401
 from orba.config import Settings
 from orba.db import Base, make_engine
 

@@ -26,6 +26,7 @@ from orba.pm_middleware import PMBodyLimitMiddleware
 from orba.pm_service import expire_runs, phase
 from orba.schemas import ProjectCreate, ProjectRead, ProjectUpdate
 from orba.security import DB, Identity, authorized_project, csrf_guard, membership, require_role
+from orba.workers import router as worker_router
 from orba.workspaces import router as workspace_router
 
 logger = logging.getLogger(__name__)
@@ -71,6 +72,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(pm_router)
     app.include_router(architect_router)
     app.include_router(orchestration_router)
+    app.include_router(worker_router)
     app.add_middleware(PMBodyLimitMiddleware)
 
     @app.exception_handler(PMError)
@@ -154,6 +156,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         session.execute(
             text(
                 "SELECT r.snapshot_hash,t.execution_status,d.prerequisite_id,e.sequence FROM orchestration_runs r CROSS JOIN orchestration_tasks t CROSS JOIN orchestration_dependencies d CROSS JOIN orchestration_events e LIMIT 0"
+            )
+        )
+        session.execute(
+            text(
+                "SELECT s.tick_count,w.enabled,c.version,d.fence_epoch,l.state,h.checksum,r.request_id,b.accepted_at FROM scheduler_state s CROSS JOIN worker_identities w CROSS JOIN worker_credentials c CROSS JOIN task_dispatches d CROSS JOIN task_leases l CROSS JOIN handoff_records h CROSS JOIN worker_claim_requests r CROSS JOIN lease_heartbeats b LIMIT 0"
             )
         )
         return {"status": "ready"}

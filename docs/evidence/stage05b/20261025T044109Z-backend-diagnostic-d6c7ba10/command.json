@@ -1,0 +1,29 @@
+{
+  "name": "scheduler-backend",
+  "argv": [
+    "uv",
+    "run",
+    "--directory",
+    "apps/api",
+    "pytest",
+    "-vv",
+    "--durations=25",
+    "-o",
+    "faulthandler_timeout=60",
+    "--junitxml=E:\\BrosKi\\OBRA\\docs\\evidence\\stage05b\\20261025T044109Z-backend-diagnostic-d6c7ba10\\backend.xml",
+    "tests\\test_scheduler_api_restart.py",
+    "tests\\test_scheduler_imports.py",
+    "tests\\test_scheduler_migration.py",
+    "tests\\test_scheduler_proof.py",
+    "tests\\test_scheduler_protocol.py",
+    "tests\\test_scheduler_recovery.py",
+    "tests\\test_scheduler_report_safety.py",
+    "tests\\test_scheduler_security.py",
+    "tests\\test_scheduler_verification.py"
+  ],
+  "started_at": "2026-10-25T04:41:17.489415+00:00",
+  "exit_code": 0,
+  "pid": 11144,
+  "duration_seconds": 340.981,
+  "completed_at": "2026-10-25T04:46:58.470305+00:00"
+}

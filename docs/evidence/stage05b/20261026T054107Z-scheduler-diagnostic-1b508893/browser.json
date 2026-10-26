@@ -1,0 +1,460 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\BrosKi\\OBRA\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.scheduler.config.ts",
+      "--workers=1",
+      "--retries=0",
+      "--max-failures=1"
+    ],
+    "configFile": "E:\\BrosKi\\OBRA\\apps\\web\\playwright.scheduler.config.ts",
+    "rootDir": "E:/BrosKi/OBRA/apps/web/tests-scheduler",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 1,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/BrosKi/OBRA/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "E:/BrosKi/OBRA/apps/web/tests-scheduler",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/BrosKi/OBRA/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "E:/BrosKi/OBRA/apps/web/tests-scheduler",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/BrosKi/OBRA/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "E:/BrosKi/OBRA/apps/web/tests-scheduler",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "E:\\BrosKi\\OBRA\\apps\\web\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "snapshotDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 120000,
+        "use": {
+          "baseURL": "http://localhost:3001",
+          "trace": "off",
+          "screenshot": "off",
+          "serviceWorkers": "block",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "E:\\BrosKi\\OBRA\\apps\\web\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "mobile",
+        "testDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "snapshotDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 120000,
+        "use": {
+          "baseURL": "http://localhost:3001",
+          "trace": "off",
+          "screenshot": "off",
+          "serviceWorkers": "block",
+          "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+          "viewport": {
+            "width": 390,
+            "height": 664
+          },
+          "screen": {
+            "width": 390,
+            "height": 844
+          },
+          "deviceScaleFactor": 3,
+          "isMobile": true,
+          "hasTouch": true,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "E:\\BrosKi\\OBRA\\apps\\web\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "tablet",
+        "testDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "snapshotDir": "E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 120000,
+        "use": {
+          "baseURL": "http://localhost:3001",
+          "trace": "off",
+          "screenshot": "off",
+          "serviceWorkers": "block",
+          "userAgent": "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+          "viewport": {
+            "width": 810,
+            "height": 1080
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": true,
+          "hasTouch": true,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "tablet"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scheduler.spec.ts",
+      "file": "scheduler.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "durable queue and real protocol acknowledgment remain separate from execution",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5421,
+                  "error": {
+                    "message": "Error: Command failed: uv run --directory ../api python -m scripts.prepare_tests\nTraceback (most recent call last):\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m144\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    self._dbapi_connection = \u001b[31mengine.raw_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n                             \u001b[31m~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m3326\u001b[0m, in \u001b[35mraw_connection\u001b[0m\r\n    return \u001b[31mself.pool.connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m448\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31m_ConnectionFairy._checkout\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m1320\u001b[0m, in \u001b[35m_checkout\u001b[0m\r\n    fairy = _ConnectionRecord.checkout(pool)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m712\u001b[0m, in \u001b[35mcheckout\u001b[0m\r\n    rec = pool._do_get()\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m178\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m176\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    return \u001b[31mself._create_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m389\u001b[0m, in \u001b[35m_create_connection\u001b[0m\r\n    return _ConnectionRecord(self)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m674\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    \u001b[31mself.__connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m921\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m917\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    self.dbapi_connection = connection = \u001b[31mpool._invoke_creator\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n                                         \u001b[31m~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\create.py\"\u001b[0m, line \u001b[35m667\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mdialect.connect\u001b[0m\u001b[1;31m(*cargs_tup, **cparams)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\default.py\"\u001b[0m, line \u001b[35m642\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mself.loaded_dbapi.connect\u001b[0m\u001b[1;31m(*cargs, **cparams)\u001b[0m  # type: ignore[no-any-return]  # NOQA: E501\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\psycopg\\connection.py\"\u001b[0m, line \u001b[35m126\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    raise last_ex.with_traceback(None)\r\n\u001b[1;35mpsycopg.errors.ConnectionTimeout\u001b[0m: \u001b[35mconnection timeout expired\u001b[0m\r\n\r\nThe above exception was the direct cause of the following exception:\r\n\r\nTraceback (most recent call last):\r\n  File \u001b[35m\"<frozen runpy>\"\u001b[0m, line \u001b[35m198\u001b[0m, in \u001b[35m_run_module_as_main\u001b[0m\r\n  File \u001b[35m\"<frozen runpy>\"\u001b[0m, line \u001b[35m88\u001b[0m, in \u001b[35m_run_code\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\scripts\\prepare_tests.py\"\u001b[0m, line \u001b[35m55\u001b[0m, in \u001b[35m<module>\u001b[0m\r\n    \u001b[31mprepare\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\scripts\\prepare_tests.py\"\u001b[0m, line \u001b[35m27\u001b[0m, in \u001b[35mprepare\u001b[0m\r\n    \u001b[31mcommand.upgrade\u001b[0m\u001b[1;31m(Config(\"alembic.ini\"), \"head\")\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\command.py\"\u001b[0m, line \u001b[35m487\u001b[0m, in \u001b[35mupgrade\u001b[0m\r\n    \u001b[31mscript.run_env\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\script\\base.py\"\u001b[0m, line \u001b[35m550\u001b[0m, in \u001b[35mrun_env\u001b[0m\r\n    \u001b[31mutil.load_python_file\u001b[0m\u001b[1;31m(self.dir, \"env.py\")\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\util\\pyfiles.py\"\u001b[0m, line \u001b[35m114\u001b[0m, in \u001b[35mload_python_file\u001b[0m\r\n    module = load_module_py(module_id, path)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\util\\pyfiles.py\"\u001b[0m, line \u001b[35m132\u001b[0m, in \u001b[35mload_module_py\u001b[0m\r\n    \u001b[31mspec.loader.exec_module\u001b[0m\u001b[1;31m(module)\u001b[0m  # type: ignore\r\n    \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"<frozen importlib._bootstrap_external>\"\u001b[0m, line \u001b[35m759\u001b[0m, in \u001b[35mexec_module\u001b[0m\r\n  File \u001b[35m\"<frozen importlib._bootstrap>\"\u001b[0m, line \u001b[35m491\u001b[0m, in \u001b[35m_call_with_frames_removed\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\migrations\\env.py\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m\r\n    with \u001b[31mengine.connect\u001b[0m\u001b[1;31m()\u001b[0m as connection:\r\n         \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m3302\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mself._connection_cls\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m146\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    \u001b[31mConnection._handle_dbapi_exception_noconnection\u001b[0m\u001b[1;31m(\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^\u001b[0m\r\n        \u001b[1;31merr, dialect, engine\u001b[0m\r\n        \u001b[1;31m^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n    \u001b[1;31m)\u001b[0m\r\n    \u001b[1;31m^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m2457\u001b[0m, in \u001b[35m_handle_dbapi_exception_noconnection\u001b[0m\r\n    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m144\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    self._dbapi_connection = \u001b[31mengine.raw_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n                             \u001b[31m~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m3326\u001b[0m, in \u001b[35mraw_connection\u001b[0m\r\n    return \u001b[31mself.pool.connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m448\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31m_ConnectionFairy._checkout\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m1320\u001b[0m, in \u001b[35m_checkout\u001b[0m\r\n    fairy = _ConnectionRecord.checkout(pool)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m712\u001b[0m, in \u001b[35mcheckout\u001b[0m\r\n    rec = pool._do_get()\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m178\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m176\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    return \u001b[31mself._create_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m389\u001b[0m, in \u001b[35m_create_connection\u001b[0m\r\n    return _ConnectionRecord(self)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m674\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    \u001b[31mself.__connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m921\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m917\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    self.dbapi_connection = connection = \u001b[31mpool._invoke_creator\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n                                         \u001b[31m~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\create.py\"\u001b[0m, line \u001b[35m667\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mdialect.connect\u001b[0m\u001b[1;31m(*cargs_tup, **cparams)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\default.py\"\u001b[0m, line \u001b[35m642\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mself.loaded_dbapi.connect\u001b[0m\u001b[1;31m(*cargs, **cparams)\u001b[0m  # type: ignore[no-any-return]  # NOQA: E501\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\psycopg\\connection.py\"\u001b[0m, line \u001b[35m126\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    raise last_ex.with_traceback(None)\r\n\u001b[1;35msqlalchemy.exc.OperationalError\u001b[0m: \u001b[35m(psycopg.errors.ConnectionTimeout) connection timeout expired\r\n(Background on this error at: https://sqlalche.me/e/20/e3q8)\u001b[0m\r\n",
+                    "stack": "Error: Command failed: uv run --directory ../api python -m scripts.prepare_tests\nTraceback (most recent call last):\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m144\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    self._dbapi_connection = \u001b[31mengine.raw_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n                             \u001b[31m~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m3326\u001b[0m, in \u001b[35mraw_connection\u001b[0m\r\n    return \u001b[31mself.pool.connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m448\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31m_ConnectionFairy._checkout\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m1320\u001b[0m, in \u001b[35m_checkout\u001b[0m\r\n    fairy = _ConnectionRecord.checkout(pool)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m712\u001b[0m, in \u001b[35mcheckout\u001b[0m\r\n    rec = pool._do_get()\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m178\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m176\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    return \u001b[31mself._create_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m389\u001b[0m, in \u001b[35m_create_connection\u001b[0m\r\n    return _ConnectionRecord(self)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m674\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    \u001b[31mself.__connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m921\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m917\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    self.dbapi_connection = connection = \u001b[31mpool._invoke_creator\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n                                         \u001b[31m~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\create.py\"\u001b[0m, line \u001b[35m667\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mdialect.connect\u001b[0m\u001b[1;31m(*cargs_tup, **cparams)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\default.py\"\u001b[0m, line \u001b[35m642\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mself.loaded_dbapi.connect\u001b[0m\u001b[1;31m(*cargs, **cparams)\u001b[0m  # type: ignore[no-any-return]  # NOQA: E501\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\psycopg\\connection.py\"\u001b[0m, line \u001b[35m126\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    raise last_ex.with_traceback(None)\r\n\u001b[1;35mpsycopg.errors.ConnectionTimeout\u001b[0m: \u001b[35mconnection timeout expired\u001b[0m\r\n\r\nThe above exception was the direct cause of the following exception:\r\n\r\nTraceback (most recent call last):\r\n  File \u001b[35m\"<frozen runpy>\"\u001b[0m, line \u001b[35m198\u001b[0m, in \u001b[35m_run_module_as_main\u001b[0m\r\n  File \u001b[35m\"<frozen runpy>\"\u001b[0m, line \u001b[35m88\u001b[0m, in \u001b[35m_run_code\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\scripts\\prepare_tests.py\"\u001b[0m, line \u001b[35m55\u001b[0m, in \u001b[35m<module>\u001b[0m\r\n    \u001b[31mprepare\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\scripts\\prepare_tests.py\"\u001b[0m, line \u001b[35m27\u001b[0m, in \u001b[35mprepare\u001b[0m\r\n    \u001b[31mcommand.upgrade\u001b[0m\u001b[1;31m(Config(\"alembic.ini\"), \"head\")\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\command.py\"\u001b[0m, line \u001b[35m487\u001b[0m, in \u001b[35mupgrade\u001b[0m\r\n    \u001b[31mscript.run_env\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\script\\base.py\"\u001b[0m, line \u001b[35m550\u001b[0m, in \u001b[35mrun_env\u001b[0m\r\n    \u001b[31mutil.load_python_file\u001b[0m\u001b[1;31m(self.dir, \"env.py\")\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\util\\pyfiles.py\"\u001b[0m, line \u001b[35m114\u001b[0m, in \u001b[35mload_python_file\u001b[0m\r\n    module = load_module_py(module_id, path)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\util\\pyfiles.py\"\u001b[0m, line \u001b[35m132\u001b[0m, in \u001b[35mload_module_py\u001b[0m\r\n    \u001b[31mspec.loader.exec_module\u001b[0m\u001b[1;31m(module)\u001b[0m  # type: ignore\r\n    \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"<frozen importlib._bootstrap_external>\"\u001b[0m, line \u001b[35m759\u001b[0m, in \u001b[35mexec_module\u001b[0m\r\n  File \u001b[35m\"<frozen importlib._bootstrap>\"\u001b[0m, line \u001b[35m491\u001b[0m, in \u001b[35m_call_with_frames_removed\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\migrations\\env.py\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m\r\n    with \u001b[31mengine.connect\u001b[0m\u001b[1;31m()\u001b[0m as connection:\r\n         \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m3302\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mself._connection_cls\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m146\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    \u001b[31mConnection._handle_dbapi_exception_noconnection\u001b[0m\u001b[1;31m(\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^\u001b[0m\r\n        \u001b[1;31merr, dialect, engine\u001b[0m\r\n        \u001b[1;31m^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n    \u001b[1;31m)\u001b[0m\r\n    \u001b[1;31m^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m2457\u001b[0m, in \u001b[35m_handle_dbapi_exception_noconnection\u001b[0m\r\n    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m144\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    self._dbapi_connection = \u001b[31mengine.raw_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n                             \u001b[31m~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m3326\u001b[0m, in \u001b[35mraw_connection\u001b[0m\r\n    return \u001b[31mself.pool.connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m448\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31m_ConnectionFairy._checkout\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m1320\u001b[0m, in \u001b[35m_checkout\u001b[0m\r\n    fairy = _ConnectionRecord.checkout(pool)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m712\u001b[0m, in \u001b[35mcheckout\u001b[0m\r\n    rec = pool._do_get()\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m178\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m176\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    return \u001b[31mself._create_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m389\u001b[0m, in \u001b[35m_create_connection\u001b[0m\r\n    return _ConnectionRecord(self)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m674\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    \u001b[31mself.__connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m921\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m917\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    self.dbapi_connection = connection = \u001b[31mpool._invoke_creator\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n                                         \u001b[31m~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\create.py\"\u001b[0m, line \u001b[35m667\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mdialect.connect\u001b[0m\u001b[1;31m(*cargs_tup, **cparams)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\default.py\"\u001b[0m, line \u001b[35m642\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mself.loaded_dbapi.connect\u001b[0m\u001b[1;31m(*cargs, **cparams)\u001b[0m  # type: ignore[no-any-return]  # NOQA: E501\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\psycopg\\connection.py\"\u001b[0m, line \u001b[35m126\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    raise last_ex.with_traceback(None)\r\n\u001b[1;35msqlalchemy.exc.OperationalError\u001b[0m: \u001b[35m(psycopg.errors.ConnectionTimeout) connection timeout expired\r\n(Background on this error at: https://sqlalche.me/e/20/e3q8)\u001b[0m\r\n\n    at testCommand (E:\\BrosKi\\OBRA\\apps\\web\\tests\\architect-preflight.ts:13:63)\n    at setupOrchestration (E:\\BrosKi\\OBRA\\apps\\web\\tests\\orchestration-setup.ts:13:14)\n    at E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler\\scheduler.spec.ts:10:57",
+                    "location": {
+                      "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests\\architect-preflight.ts",
+                      "column": 63,
+                      "line": 13
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m..\\tests\\architect-preflight.ts:13\n\n\u001b[0m \u001b[90m 11 |\u001b[39m   milestones\u001b[33m:\u001b[39m \u001b[33mMilestone\u001b[39m[]\u001b[33m;\u001b[39m [key\u001b[33m:\u001b[39m string]\u001b[33m:\u001b[39m unknown\u001b[33m;\u001b[39m\n \u001b[90m 12 |\u001b[39m }\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m testCommand \u001b[33m=\u001b[39m (\u001b[33m...\u001b[39margs\u001b[33m:\u001b[39m string[]) \u001b[33m=>\u001b[39m execFileSync(\u001b[32m\"uv\"\u001b[39m\u001b[33m,\u001b[39m [\u001b[32m\"run\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"--directory\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"../api\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"python\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"-m\"\u001b[39m\u001b[33m,\u001b[39m \u001b[33m...\u001b[39margs]\u001b[33m,\u001b[39m { encoding\u001b[33m:\u001b[39m \u001b[32m\"utf8\"\u001b[39m\u001b[33m,\u001b[39m stdio\u001b[33m:\u001b[39m [\u001b[32m\"ignore\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"pipe\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"pipe\"\u001b[39m] })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mfunction\u001b[39m preflightProof()\u001b[33m:\u001b[39m \u001b[33mPreflightProof\u001b[39m {\n \u001b[90m 15 |\u001b[39m   \u001b[36mreturn\u001b[39m { result\u001b[33m:\u001b[39m \u001b[32m\"FAIL\"\u001b[39m\u001b[33m,\u001b[39m approved_source_reloaded\u001b[33m:\u001b[39m \u001b[36mfalse\u001b[39m\u001b[33m,\u001b[39m step\u001b[33m:\u001b[39m \u001b[32m\"initial\"\u001b[39m\u001b[33m,\u001b[39m milestones\u001b[33m:\u001b[39m [] }\u001b[33m;\u001b[39m\n \u001b[90m 16 |\u001b[39m }\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests\\architect-preflight.ts",
+                        "column": 63,
+                        "line": 13
+                      },
+                      "message": "Error: Command failed: uv run --directory ../api python -m scripts.prepare_tests\nTraceback (most recent call last):\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m144\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    self._dbapi_connection = \u001b[31mengine.raw_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n                             \u001b[31m~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m3326\u001b[0m, in \u001b[35mraw_connection\u001b[0m\r\n    return \u001b[31mself.pool.connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m448\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31m_ConnectionFairy._checkout\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m1320\u001b[0m, in \u001b[35m_checkout\u001b[0m\r\n    fairy = _ConnectionRecord.checkout(pool)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m712\u001b[0m, in \u001b[35mcheckout\u001b[0m\r\n    rec = pool._do_get()\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m178\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m176\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    return \u001b[31mself._create_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m389\u001b[0m, in \u001b[35m_create_connection\u001b[0m\r\n    return _ConnectionRecord(self)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m674\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    \u001b[31mself.__connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m921\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m917\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    self.dbapi_connection = connection = \u001b[31mpool._invoke_creator\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n                                         \u001b[31m~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\create.py\"\u001b[0m, line \u001b[35m667\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mdialect.connect\u001b[0m\u001b[1;31m(*cargs_tup, **cparams)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\default.py\"\u001b[0m, line \u001b[35m642\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mself.loaded_dbapi.connect\u001b[0m\u001b[1;31m(*cargs, **cparams)\u001b[0m  # type: ignore[no-any-return]  # NOQA: E501\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\psycopg\\connection.py\"\u001b[0m, line \u001b[35m126\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    raise last_ex.with_traceback(None)\r\n\u001b[1;35mpsycopg.errors.ConnectionTimeout\u001b[0m: \u001b[35mconnection timeout expired\u001b[0m\r\n\r\nThe above exception was the direct cause of the following exception:\r\n\r\nTraceback (most recent call last):\r\n  File \u001b[35m\"<frozen runpy>\"\u001b[0m, line \u001b[35m198\u001b[0m, in \u001b[35m_run_module_as_main\u001b[0m\r\n  File \u001b[35m\"<frozen runpy>\"\u001b[0m, line \u001b[35m88\u001b[0m, in \u001b[35m_run_code\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\scripts\\prepare_tests.py\"\u001b[0m, line \u001b[35m55\u001b[0m, in \u001b[35m<module>\u001b[0m\r\n    \u001b[31mprepare\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\scripts\\prepare_tests.py\"\u001b[0m, line \u001b[35m27\u001b[0m, in \u001b[35mprepare\u001b[0m\r\n    \u001b[31mcommand.upgrade\u001b[0m\u001b[1;31m(Config(\"alembic.ini\"), \"head\")\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\command.py\"\u001b[0m, line \u001b[35m487\u001b[0m, in \u001b[35mupgrade\u001b[0m\r\n    \u001b[31mscript.run_env\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\script\\base.py\"\u001b[0m, line \u001b[35m550\u001b[0m, in \u001b[35mrun_env\u001b[0m\r\n    \u001b[31mutil.load_python_file\u001b[0m\u001b[1;31m(self.dir, \"env.py\")\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\util\\pyfiles.py\"\u001b[0m, line \u001b[35m114\u001b[0m, in \u001b[35mload_python_file\u001b[0m\r\n    module = load_module_py(module_id, path)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\alembic\\util\\pyfiles.py\"\u001b[0m, line \u001b[35m132\u001b[0m, in \u001b[35mload_module_py\u001b[0m\r\n    \u001b[31mspec.loader.exec_module\u001b[0m\u001b[1;31m(module)\u001b[0m  # type: ignore\r\n    \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"<frozen importlib._bootstrap_external>\"\u001b[0m, line \u001b[35m759\u001b[0m, in \u001b[35mexec_module\u001b[0m\r\n  File \u001b[35m\"<frozen importlib._bootstrap>\"\u001b[0m, line \u001b[35m491\u001b[0m, in \u001b[35m_call_with_frames_removed\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\migrations\\env.py\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m\r\n    with \u001b[31mengine.connect\u001b[0m\u001b[1;31m()\u001b[0m as connection:\r\n         \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m3302\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mself._connection_cls\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m146\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    \u001b[31mConnection._handle_dbapi_exception_noconnection\u001b[0m\u001b[1;31m(\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^\u001b[0m\r\n        \u001b[1;31merr, dialect, engine\u001b[0m\r\n        \u001b[1;31m^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n    \u001b[1;31m)\u001b[0m\r\n    \u001b[1;31m^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m2457\u001b[0m, in \u001b[35m_handle_dbapi_exception_noconnection\u001b[0m\r\n    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m144\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    self._dbapi_connection = \u001b[31mengine.raw_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n                             \u001b[31m~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\"\u001b[0m, line \u001b[35m3326\u001b[0m, in \u001b[35mraw_connection\u001b[0m\r\n    return \u001b[31mself.pool.connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m448\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31m_ConnectionFairy._checkout\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m1320\u001b[0m, in \u001b[35m_checkout\u001b[0m\r\n    fairy = _ConnectionRecord.checkout(pool)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m712\u001b[0m, in \u001b[35mcheckout\u001b[0m\r\n    rec = pool._do_get()\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m178\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\impl.py\"\u001b[0m, line \u001b[35m176\u001b[0m, in \u001b[35m_do_get\u001b[0m\r\n    return \u001b[31mself._create_connection\u001b[0m\u001b[1;31m()\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m389\u001b[0m, in \u001b[35m_create_connection\u001b[0m\r\n    return _ConnectionRecord(self)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m674\u001b[0m, in \u001b[35m__init__\u001b[0m\r\n    \u001b[31mself.__connect\u001b[0m\u001b[1;31m()\u001b[0m\r\n    \u001b[31m~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m921\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    with \u001b[31mutil.safe_reraise\u001b[0m\u001b[1;31m()\u001b[0m:\r\n         \u001b[31m~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\langhelpers.py\"\u001b[0m, line \u001b[35m122\u001b[0m, in \u001b[35m__exit__\u001b[0m\r\n    raise exc_value.with_traceback(exc_tb)\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\pool\\base.py\"\u001b[0m, line \u001b[35m917\u001b[0m, in \u001b[35m__connect\u001b[0m\r\n    self.dbapi_connection = connection = \u001b[31mpool._invoke_creator\u001b[0m\u001b[1;31m(self)\u001b[0m\r\n                                         \u001b[31m~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\create.py\"\u001b[0m, line \u001b[35m667\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mdialect.connect\u001b[0m\u001b[1;31m(*cargs_tup, **cparams)\u001b[0m\r\n           \u001b[31m~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\default.py\"\u001b[0m, line \u001b[35m642\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    return \u001b[31mself.loaded_dbapi.connect\u001b[0m\u001b[1;31m(*cargs, **cparams)\u001b[0m  # type: ignore[no-any-return]  # NOQA: E501\r\n           \u001b[31m~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^\u001b[0m\r\n  File \u001b[35m\"E:\\BrosKi\\OBRA\\apps\\api\\.venv\\Lib\\site-packages\\psycopg\\connection.py\"\u001b[0m, line \u001b[35m126\u001b[0m, in \u001b[35mconnect\u001b[0m\r\n    raise last_ex.with_traceback(None)\r\n\u001b[1;35msqlalchemy.exc.OperationalError\u001b[0m: \u001b[35m(psycopg.errors.ConnectionTimeout) connection timeout expired\r\n(Background on this error at: https://sqlalche.me/e/20/e3q8)\u001b[0m\r\n\n\n   at ..\\tests\\architect-preflight.ts:13\n\n  11 |   milestones: Milestone[]; [key: string]: unknown;\n  12 | };\n> 13 | export const testCommand = (...args: string[]) => execFileSync(\"uv\", [\"run\", \"--directory\", \"../api\", \"python\", \"-m\", ...args], { encoding: \"utf8\", stdio: [\"ignore\", \"pipe\", \"pipe\"] });\n     |                                                               ^\n  14 | export function preflightProof(): PreflightProof {\n  15 |   return { result: \"FAIL\", approved_source_reloaded: false, step: \"initial\", milestones: [] };\n  16 | }\n    at testCommand (E:\\BrosKi\\OBRA\\apps\\web\\tests\\architect-preflight.ts:13:63)\n    at setupOrchestration (E:\\BrosKi\\OBRA\\apps\\web\\tests\\orchestration-setup.ts:13:14)\n    at E:\\BrosKi\\OBRA\\apps\\web\\tests-scheduler\\scheduler.spec.ts:10:57"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T05:42:00.313Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "E:\\BrosKi\\OBRA\\apps\\web\\test-results\\scheduler-durable-queue-an-23f0b-ain-separate-from-execution-chromium\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "E:\\BrosKi\\OBRA\\apps\\web\\tests\\architect-preflight.ts",
+                    "column": 63,
+                    "line": 13
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-719ce5e4819ee71a5f51",
+          "file": "scheduler.spec.ts",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "title": "browser session cannot impersonate a worker or forge completion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-84fbbd3bf4d439b29b80",
+          "file": "scheduler.spec.ts",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "title": "scheduling errors preserve the immutable task graph and do not invent success",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-2d7452d124719aa7e557",
+          "file": "scheduler.spec.ts",
+          "line": 41,
+          "column": 5
+        },
+        {
+          "title": "durable queue and real protocol acknowledgment remain separate from execution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-06f675f1212fa1e8cd05",
+          "file": "scheduler.spec.ts",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "title": "browser session cannot impersonate a worker or forge completion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-b5f4af1e07b662d4ae80",
+          "file": "scheduler.spec.ts",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "title": "scheduling errors preserve the immutable task graph and do not invent success",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-75944f3fce7a35ae006f",
+          "file": "scheduler.spec.ts",
+          "line": 41,
+          "column": 5
+        },
+        {
+          "title": "durable queue and real protocol acknowledgment remain separate from execution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-8bafd997c98d86cdb8fc",
+          "file": "scheduler.spec.ts",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "title": "browser session cannot impersonate a worker or forge completion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-8fc2448a0acb92e835cd",
+          "file": "scheduler.spec.ts",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "title": "scheduling errors preserve the immutable task graph and do not invent success",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "eb2914db6cfca014f332-6a5db8cbfd57050a1fc0",
+          "file": "scheduler.spec.ts",
+          "line": 41,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "stats": {
+    "startTime": "2026-10-26T05:41:17.070Z",
+    "duration": 50119.566999999995,
+    "expected": 0,
+    "skipped": 8,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

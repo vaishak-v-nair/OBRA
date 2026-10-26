@@ -1,0 +1,120 @@
+{
+  "scenario": "heartbeat",
+  "holder_pid": 7803,
+  "request_pid": 7811,
+  "wait_event_type": "Lock",
+  "lock_observed_at": "2026-10-26T15:00:00.278603+00:00",
+  "credential_expires_at": "2026-10-26T15:00:00.895037+00:00",
+  "lock_released_at": "2026-10-26T15:00:00.896300+00:00",
+  "response_status": 401,
+  "before_sql": {
+    "dispatch": {
+      "id": "b9da54e1-666c-4d47-b67d-8d5b1ed5b3ee",
+      "state": "leased",
+      "attempts": 1,
+      "fence_epoch": 1
+    },
+    "leases": 1,
+    "handoffs": 1,
+    "claim_receipts": 1,
+    "events": [
+      [
+        1,
+        "run_created",
+        1
+      ],
+      [
+        2,
+        "run_awaiting_executor",
+        2
+      ],
+      [
+        3,
+        "dispatch_queued",
+        3
+      ],
+      [
+        4,
+        "lease_claimed",
+        4
+      ],
+      [
+        5,
+        "handoff_available",
+        5
+      ],
+      [
+        6,
+        "handoff_acknowledged",
+        6
+      ]
+    ],
+    "execution_statuses": [
+      "awaiting_executor",
+      "awaiting_executor"
+    ],
+    "runs": [
+      [
+        "406c181e-a63c-45b6-9576-ed7e771c72f5",
+        "awaiting_executor",
+        6,
+        6
+      ]
+    ]
+  },
+  "after_sql": {
+    "dispatch": {
+      "id": "b9da54e1-666c-4d47-b67d-8d5b1ed5b3ee",
+      "state": "leased",
+      "attempts": 1,
+      "fence_epoch": 1
+    },
+    "leases": 1,
+    "handoffs": 1,
+    "claim_receipts": 1,
+    "events": [
+      [
+        1,
+        "run_created",
+        1
+      ],
+      [
+        2,
+        "run_awaiting_executor",
+        2
+      ],
+      [
+        3,
+        "dispatch_queued",
+        3
+      ],
+      [
+        4,
+        "lease_claimed",
+        4
+      ],
+      [
+        5,
+        "handoff_available",
+        5
+      ],
+      [
+        6,
+        "handoff_acknowledged",
+        6
+      ]
+    ],
+    "execution_statuses": [
+      "awaiting_executor",
+      "awaiting_executor"
+    ],
+    "runs": [
+      [
+        "406c181e-a63c-45b6-9576-ed7e771c72f5",
+        "awaiting_executor",
+        6,
+        6
+      ]
+    ]
+  }
+}
